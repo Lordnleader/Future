@@ -14,7 +14,7 @@
       href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./src/styles.css" />
+    <link rel="stylesheet" href="./src/styles.css?v=20260514-globe10" />
   </head>
   <body>
     <main class="app-shell" data-mode="landing">
@@ -69,6 +69,13 @@
                 Treat resilience as operating leverage, not insurance.
               </p>
             </div>
+            <div class="surprise-block">
+              <span>Non-obvious read</span>
+              <p id="cardSurprise">
+                The important signal may be the second-order behavior that
+                becomes rational before the headline trend is obvious.
+              </p>
+            </div>
             <dl class="signal-stats">
               <div>
                 <dt>Horizon</dt>
@@ -97,6 +104,10 @@
             <canvas id="globeCanvas"></canvas>
             <div class="globe-vignette" aria-hidden="true"></div>
             <div class="scanline" aria-hidden="true"></div>
+            <div class="spin-field" id="spinField" aria-hidden="true">
+              <span>SCRUB ROTATION</span>
+              <i></i>
+            </div>
             <div class="globe-readout" aria-live="polite">
               <span id="readoutMode">BROWSE</span>
               <span id="readoutLocation">GLOBAL SIGNAL SURFACE</span>
@@ -146,6 +157,22 @@
             </article>
 
             <article class="brief-panel">
+              <p class="panel-label">Non-obvious read</p>
+              <p id="briefSurprise">
+                The important signal may be the second-order behavior that
+                becomes rational before the headline trend is obvious.
+              </p>
+            </article>
+
+            <article class="brief-panel">
+              <p class="panel-label">Watch for</p>
+              <p id="briefWatch">
+                Watch for confirming and disconfirming signals before treating
+                this as a durable direction of travel.
+              </p>
+            </article>
+
+            <article class="brief-panel">
               <p class="panel-label">Source layer</p>
               <ul class="source-list" id="sourceList"></ul>
             </article>
@@ -164,6 +191,7 @@
       </section>
     </main>
 
-    <script type="module" src="./src/main.js"></script>
+    <script type="module" src="./src/main.js?v=20260514-globe10"></script>
   </body>
 </html>
+
