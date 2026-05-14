@@ -811,6 +811,281 @@ const bets = [
   },
 ];
 
+const categorySignalAdditions = {
+  AI: [
+    "Cross-signal inference: model capability growth only matters where power, memory bandwidth, and deployment economics can keep up.",
+    "Constraint check: look for procurement language, chip packaging investment, and grid interconnection queues moving together.",
+    "Disconfirmation watch: if inference costs fall faster than power constraints rise, the bet weakens.",
+  ],
+  Biotechnology: [
+    "Cross-signal inference: biology becomes industrial when feedstock, regulation, and local processing incentives align.",
+    "Constraint check: permitting, contamination risk, and buyer trust may matter more than lab capability.",
+    "Disconfirmation watch: weak offtake agreements or inconsistent policy support would slow the implied transition.",
+  ],
+  Cities: [
+    "Cross-signal inference: heat, insurance, comfort, and maintenance budgets can reprice urban behavior before migration shows up.",
+    "Constraint check: track building codes, cooling-load data, health guidance, and visitor timing together.",
+    "Disconfirmation watch: if adaptation investment arrives faster than stress signals compound, the bet becomes less sharp.",
+  ],
+  Climate: [
+    "Cross-signal inference: climate stress becomes a systems bet when ecological signals start changing logistics, finance, or food assumptions.",
+    "Constraint check: official hazard data is strongest when paired with observable behavior changes in markets or policy.",
+    "Disconfirmation watch: stable rainfall, lower fire incidence, or new buffers would reduce near-term pressure.",
+  ],
+  Energy: [
+    "Cross-signal inference: energy advantage is shifting from pure generation scale toward controllability, storage, and local reliability.",
+    "Constraint check: watch grid queues, outage frequency, cooling demand, and battery deployment as one stack.",
+    "Disconfirmation watch: fast transmission buildout or cheaper centralized capacity would soften the resilience premium.",
+  ],
+  "Food systems": [
+    "Cross-signal inference: food risk becomes non-linear when crop stress, route fragility, household sensitivity, and storage constraints overlap.",
+    "Constraint check: the useful signal is not one bad harvest; it is repeated stress across price, logistics, and policy layers.",
+    "Disconfirmation watch: high stocks, diversified imports, and stable local prices would weaken the pressure reading.",
+  ],
+  Geopolitics: [
+    "Cross-signal inference: institutional ambiguity becomes expensive when infrastructure, trade, and security assumptions all need predictability.",
+    "Constraint check: track sanctions, insurance, port behavior, military posture, and domestic legitimacy together.",
+    "Disconfirmation watch: credible de-escalation or durable coordination would slow the risk premium.",
+  ],
+  Infrastructure: [
+    "Cross-signal inference: infrastructure value is moving toward sensing, redundancy, and recovery speed rather than only bigger assets.",
+    "Constraint check: look for maintenance backlogs, outage maps, emergency procurement, and insurance exclusions lining up.",
+    "Disconfirmation watch: if regulation funds hardening early, the advantage may move from disruption response to implementation quality.",
+  ],
+  Labour: [
+    "Cross-signal inference: heat and demographic stress can quietly change productivity assumptions before labour markets visibly break.",
+    "Constraint check: compare illness, absenteeism, wage pressure, working-hour restrictions, and cooling infrastructure.",
+    "Disconfirmation watch: adaptation, mechanisation, or job redesign can absorb some pressure if deployed early.",
+  ],
+  Logistics: [
+    "Cross-signal inference: route fragility is becoming a balance-sheet issue, not just an operations issue.",
+    "Constraint check: freight rates, insurance language, naval posture, and port congestion should be read as one signal surface.",
+    "Disconfirmation watch: sustained route normalization and falling insurance premiums would reduce the bet.",
+  ],
+  Manufacturing: [
+    "Cross-signal inference: manufacturing resilience becomes valuable when qualification cycles are slower than geopolitical risk cycles.",
+    "Constraint check: subsidies, export controls, power reliability, and supplier geography need to move in the same direction.",
+    "Disconfirmation watch: if trust and capacity concentrate again without disruption, redundant production loses urgency.",
+  ],
+  Materials: [
+    "Cross-signal inference: material value is migrating from tonnes alone toward proof, processing, provenance, and political durability.",
+    "Constraint check: price, permitting, buyer ESG requirements, and downstream policy should be cross-read.",
+    "Disconfirmation watch: lower demand growth or cleaner substitutes would reduce the strategic premium.",
+  ],
+  Robotics: [
+    "Cross-signal inference: robotics adoption is likelier where labour pain is repetitive, measurable, and geographically clustered.",
+    "Constraint check: watch maintenance capacity, sensor cost, insurance acceptance, and dull operational use cases.",
+    "Disconfirmation watch: if labour availability improves or robots remain service-heavy, adoption stays narrower.",
+  ],
+  Water: [
+    "Cross-signal inference: water stress becomes strategic when it couples to electricity, food, and cross-border legitimacy.",
+    "Constraint check: basin data, crop patterns, hydropower output, and household price sensitivity matter together.",
+    "Disconfirmation watch: wet years can hide structural fragility; durable infrastructure and governance reform would weaken the bet.",
+  ],
+  default: [
+    "Cross-signal inference: the bet strengthens when current events sit inside a deeper structural constraint.",
+    "Constraint check: the signal is more useful when geography, institutions, and behavior point in the same direction.",
+    "Disconfirmation watch: contrary official data or durable behavioral reversal would weaken the thesis.",
+  ],
+};
+
+const betReadouts = {
+  "sahel-microgrids": {
+    surprise:
+      "The mind-bending version is that the Sahel may skip parts of the old grid-development sequence: cooling, phones, pumps, and security demand can make microgrids a sovereignty layer before they are a climate story.",
+    watch:
+      "Watch diesel displacement, mobile-money financing, battery theft/security rules, and whether clinics or telecom towers become anchor customers.",
+  },
+  "red-sea-routing": {
+    surprise:
+      "The deeper bet is not a shipping crisis. It is that boardrooms relearn geography: a narrow waterway can quietly decide food prices, inventory accounting, and which factories look well-run.",
+    watch:
+      "Watch war-risk premiums, Cape routing persistence, port blank sailings, and whether importers accept higher working capital as normal.",
+  },
+  "taiwan-redundancy": {
+    surprise:
+      "The non-obvious edge is that duplicate capacity may become a trust product: buyers pay for qualified fallback before anything breaks because qualification time itself is the scarce asset.",
+    watch:
+      "Watch advanced packaging bottlenecks, power contracts, export-control language, and whether smaller suppliers get pulled into redundancy mandates.",
+  },
+  "europe-retrofit": {
+    surprise:
+      "Buildings may become the hidden health infrastructure of Europe: insulation, shading, and heat pumps start looking like public-health tools rather than renovation choices.",
+    watch:
+      "Watch mortality data, cooling-load peaks, landlord compliance rules, and whether insurers or lenders start pricing heat exposure.",
+  },
+  "coastal-insurance": {
+    surprise:
+      "The surprising part is that retreat can happen through paperwork before politics: exclusions, deductibles, and mortgage friction can move faster than zoning maps.",
+    watch:
+      "Watch insurer exits, public backstop losses, post-storm rebuilding rules, and whether buyers demand flood-risk discounts earlier.",
+  },
+  "gulf-hydrogen": {
+    surprise:
+      "Hydrogen may become less a fuel export and more a diplomacy instrument: ports, ammonia, steel, and offtake contracts could turn energy transition into alliance architecture.",
+    watch:
+      "Watch electrolyzer utilization, water sourcing scrutiny, ammonia shipping standards, and whether buyers sign bankable long-term contracts.",
+  },
+  "amazon-rainfall": {
+    surprise:
+      "The Amazon signal is not only forest loss. It is whether rainfall reliability becomes a credit condition for agriculture, hydropower, and even urban expansion.",
+    watch:
+      "Watch dry-season length, river transport interruptions, soy/cattle credit terms, and commodity buyers tightening deforestation proof.",
+  },
+  "india-heat-labour": {
+    surprise:
+      "Heat could become a hidden wage: factories and cities may pay through lower output, shorter shifts, cooling capital, and worker churn before official productivity data catches up.",
+    watch:
+      "Watch wet-bulb alerts, construction shift rules, cooling subsidies, and absenteeism in logistics and outdoor work.",
+  },
+  "japan-care-automation": {
+    surprise:
+      "The care robot story may not be humanoids; it may be mundane dignity infrastructure: lifts, sensors, scheduling, and fall prevention that keep institutions functional.",
+    watch:
+      "Watch caregiver vacancy rates, reimbursement codes, procurement by elder-care chains, and whether families accept ambient monitoring.",
+  },
+  "arctic-routing": {
+    surprise:
+      "The Arctic may become strategically important even before it becomes commercially convenient: mapping, insurance, rescue capacity, and military presence can arrive ahead of profitable shipping.",
+    watch:
+      "Watch ice variability, search-and-rescue investment, port hardening, and whether insurers price Arctic routes as experimental or routine.",
+  },
+  "east-africa-cold-chain": {
+    surprise:
+      "The cold-chain upside is that food security can be won after harvest: refrigeration and logistics may beat yield improvement as the fastest visible gain.",
+    watch:
+      "Watch mini-grid cold rooms, vaccine logistics reuse, market-loss data, and whether aggregators finance storage for small producers.",
+  },
+  "south-china-sea": {
+    surprise:
+      "The risk is not just naval confrontation. It is operational hesitation: firms may pay for optionality because ambiguity itself slows routing, investment, and inventory decisions.",
+    watch:
+      "Watch coast-guard incidents, insurance wording, subsea cable routing, and procurement moving from cheapest to most optional.",
+  },
+  "chile-lithium-circularity": {
+    surprise:
+      "The strategic prize may shift from extraction to retention: whoever can keep lithium in a circular loop owns resilience after the first mining boom.",
+    watch:
+      "Watch recycling yields, brine-water rules, battery passport enforcement, and automaker deals that reserve recycled supply.",
+  },
+  "ukraine-distributed-energy": {
+    surprise:
+      "Ukraine may turn distributed power from emergency improvisation into a playbook for hostile-environment infrastructure everywhere.",
+    watch:
+      "Watch microgrid procurement, substation repair times, mobile storage, and whether reconstruction funds favor modular resilience over old centralization.",
+  },
+  "uk-grid-flex": {
+    surprise:
+      "The UK grid constraint may create a new asset class in invisible flexibility: batteries, demand response, and controllable loads become as strategic as generation.",
+    watch:
+      "Watch queue reform, negative pricing, grid-connection auctions, and whether data centers pay for flexible load behavior.",
+  },
+  "california-water-reuse": {
+    surprise:
+      "Water reuse may cross a psychological threshold: once trust, regulation, and scarcity converge, recycled water becomes civic infrastructure rather than a last resort.",
+    watch:
+      "Watch direct potable reuse approvals, utility bond language, drought restrictions, and whether industry signs long offtake contracts.",
+  },
+  "caribbean-grid-hardening": {
+    surprise:
+      "Island grids may become test beds for the future of resilience finance: storms make payback visible, so microgrids can be justified faster than on continents.",
+    watch:
+      "Watch parametric insurance, hospital and port microgrids, battery procurement, and post-hurricane rebuild standards.",
+  },
+  "antarctic-governance": {
+    surprise:
+      "Antarctica may matter because it is one of the last places where science, minerals, tourism, and strategic signaling collide under a fragile treaty norm.",
+    watch:
+      "Watch inspection disputes, tourism caps, research-station expansion, and any language that reframes access as national interest.",
+  },
+  "north-sea-subsea": {
+    surprise:
+      "The North Seaâs valuable infrastructure is becoming less visible and more vulnerable: cables, interconnectors, pipelines, and wind assets form one undersea nervous system.",
+    watch:
+      "Watch seabed surveillance budgets, cable repair capacity, sabotage investigations, and insurance terms for offshore energy assets.",
+  },
+  "west-africa-cocoa": {
+    surprise:
+      "Cocoa stress is a social signal as much as a crop signal: when climate, disease, farmer incomes, and regulation converge, chocolate becomes a governance problem.",
+    watch:
+      "Watch farmgate prices, swollen-shoot disease, EU traceability enforcement, and whether processors invest directly in farmer resilience.",
+  },
+  "balkans-batteries": {
+    surprise:
+      "The Balkans could become a battery corridor only if social license becomes part of industrial strategy; minerals without legitimacy may strand themselves.",
+    watch:
+      "Watch protest intensity, permitting speed, EU supply-chain language, and whether communities receive credible local benefits.",
+  },
+  "australia-fire-comms": {
+    surprise:
+      "Fire resilience may make communications infrastructure a life-safety layer: satellites, mesh networks, and battery-backed towers move from nice-to-have to civic baseline.",
+    watch:
+      "Watch tower outage data, emergency-service procurement, satellite handset adoption, and insurance pressure on rural connectivity.",
+  },
+  "nile-water-politics": {
+    surprise:
+      "The Nile risk is that water becomes a calendar problem: power generation, irrigation, and domestic legitimacy peak at different moments and force political tradeoffs.",
+    watch:
+      "Watch reservoir filling rules, wheat import costs, hydropower output, and diplomatic language during drought years.",
+  },
+  "brazil-bioindustrial": {
+    surprise:
+      "Brazilâs edge may be turning agriculture into a platform: sugar, residues, biodiversity, and industrial biology can make rural assets feel like a manufacturing base.",
+    watch:
+      "Watch SAF mandates, fermentation capacity, feedstock traceability, and whether global buyers pay for lower-carbon molecules.",
+  },
+  "us-heartland-robotics": {
+    surprise:
+      "Robotics may win first by being boring: the most consequential machines will do repetitive inspection, picking, spraying, and hauling where labour gaps are already priced in.",
+    watch:
+      "Watch dealer service networks, farm credit terms, insurance acceptance, and whether robots reduce input waste rather than only labour hours.",
+  },
+  "med-tourism-heat": {
+    surprise:
+      "Mediterranean tourism may not shrink so much as invert: value moves to shade, timing, water reliability, and places that can make heat feel managed.",
+    watch:
+      "Watch hotel cooling costs, cruise schedule changes, wildfire cancellations, and municipal visitor caps during peak heat.",
+  },
+  "indonesia-nickel": {
+    surprise:
+      "Nickel may become a reputational material: buyers want batteries, but they also want a supply chain they can defend in public.",
+    watch:
+      "Watch tailings rules, power-source disclosure, local processing margins, and automaker pressure for auditable supply.",
+  },
+  "central-asia-water": {
+    surprise:
+      "Central Asiaâs water issue may express as electricity stress first: irrigation decisions, winter heating, and hydropower can pull the same rivers in opposite directions.",
+    watch:
+      "Watch reservoir levels, winter blackouts, cotton acreage, and regional compensation deals during dry years.",
+  },
+  "korea-ai-efficiency": {
+    surprise:
+      "The AI race may become a thermodynamics race: the winner is not just the best model, but the stack that can turn watts and memory into reliable products.",
+    watch:
+      "Watch HBM supply, advanced packaging yield, data-center power deals, and edge-AI deployments that prize performance per watt.",
+  },
+  "horn-maritime-food": {
+    surprise:
+      "The Horn signal is a compounding trap: shipping disruption is most dangerous where households already convert small price moves into political and humanitarian stress.",
+    watch:
+      "Watch grain tender delays, port congestion, exchange-rate pressure, and whether aid agencies pre-position food before route risk spikes.",
+  },
+};
+
+for (const bet of bets) {
+  const readout = betReadouts[bet.id] || {
+    surprise:
+      "The important signal is the second-order behavior that becomes rational before the headline trend is obvious.",
+    watch:
+      "Watch for confirming and disconfirming signals across policy, price, geography, and institutional behavior.",
+  };
+  const additions = categorySignalAdditions[bet.category] || categorySignalAdditions.default;
+  bet.surprise = readout.surprise;
+  bet.watch = readout.watch;
+  bet.signals = [...bet.signals, ...additions];
+  bet.signalCount = Math.max(bet.signalCount + 38, 104 + ((bet.id.length * 7) % 31));
+}
+
 const sourceIndex = {
   arXiv: "https://arxiv.org/",
   Eurostat: "https://ec.europa.eu/eurostat",
@@ -924,6 +1199,18 @@ const landMasses = [
   ],
 ];
 
+const LAND_TOPOLOGY_URL =
+  "https://cdn.jsdelivr.net/npm/world-atlas@2/land-110m.json";
+let landRings = landMasses;
+let landDots = [];
+let landFillDots = [];
+let landSource = "fallback";
+
+function setLandTelemetry() {
+  document.documentElement.dataset.landSource = landSource;
+  document.documentElement.dataset.landDots = String(landDots.length + landFillDots.length);
+}
+
 const stars = Array.from({ length: 140 }, (_, index) => {
   const seed = Math.sin(index * 999) * 10000;
   const x = seed - Math.floor(seed);
@@ -941,6 +1228,7 @@ const appShell = document.querySelector(".app-shell");
 const canvas = document.querySelector("#globeCanvas");
 const ctx = canvas.getContext("2d");
 const betCard = document.querySelector("#betCard");
+const spinField = document.querySelector("#spinField");
 const enterButton = document.querySelector("#enterButton");
 const openBriefButton = document.querySelector("#openBrief");
 const sourcesButton = document.querySelector("#sourcesButton");
@@ -958,6 +1246,7 @@ const fields = {
   title: document.querySelector("#cardTitle"),
   summary: document.querySelector("#cardSummary"),
   implication: document.querySelector("#cardImplication"),
+  surprise: document.querySelector("#cardSurprise"),
   horizon: document.querySelector("#cardHorizon"),
   signals: document.querySelector("#cardSignals"),
   category: document.querySelector("#cardCategory"),
@@ -965,6 +1254,8 @@ const fields = {
   briefDeck: document.querySelector("#briefDeck"),
   rationale: document.querySelector("#briefRationale"),
   why: document.querySelector("#briefWhy"),
+  briefSurprise: document.querySelector("#briefSurprise"),
+  briefWatch: document.querySelector("#briefWatch"),
   signalList: document.querySelector("#signalList"),
   sourceList: document.querySelector("#sourceList"),
 };
@@ -979,8 +1270,16 @@ let hoveredBet = null;
 let projectedPins = [];
 let centerLon = 15;
 let autoLon = 15;
+let targetLon = 15;
 let lastTime = performance.now();
 let pointer = { x: -9999, y: -9999 };
+const spin = {
+  dragging: false,
+  lastX: 0,
+  velocity: 0,
+  manualUntil: 0,
+  moved: false,
+};
 
 function isDesktop() {
   return window.matchMedia("(min-width: 821px)").matches;
@@ -998,6 +1297,146 @@ function shortestAngle(from, to) {
   return ((((to - from) % 360) + 540) % 360) - 180;
 }
 
+function normalizeLon(value) {
+  return ((((value + 180) % 360) + 360) % 360) - 180;
+}
+
+function decodeTopoArc(topology, arcIndex) {
+  const arc = topology.arcs[arcIndex < 0 ? ~arcIndex : arcIndex];
+  const [scaleX, scaleY] = topology.transform.scale;
+  const [translateX, translateY] = topology.transform.translate;
+  let x = 0;
+  let y = 0;
+  const points = arc.map(([dx, dy]) => {
+    x += dx;
+    y += dy;
+    return [y * scaleY + translateY, x * scaleX + translateX];
+  });
+  return arcIndex < 0 ? points.reverse() : points;
+}
+
+function decodeTopoRing(topology, ring) {
+  return ring.flatMap((arcIndex, index) => {
+    const arc = decodeTopoArc(topology, arcIndex);
+    return index === 0 ? arc : arc.slice(1);
+  });
+}
+
+function collectLandRings(topology) {
+  const geometry = topology.objects.land;
+  const geometries =
+    geometry.type === "GeometryCollection" ? geometry.geometries : [geometry];
+  const rings = [];
+
+  for (const item of geometries) {
+    const polygons = item.type === "Polygon" ? [item.arcs] : item.arcs;
+    for (const polygon of polygons || []) {
+      for (const ring of polygon) {
+        const decoded = decodeTopoRing(topology, ring);
+        if (decoded.length > 3) rings.push(decoded);
+      }
+    }
+  }
+
+  return rings;
+}
+
+function buildLandDots(rings) {
+  const dots = [];
+  for (const ring of rings) {
+    for (let index = 0; index < ring.length - 1; index += 2) {
+      const [latA, lonA] = ring[index];
+      const [latB, lonB] = ring[index + 1];
+      dots.push([latA, lonA]);
+      const distance = Math.hypot(latB - latA, lonB - lonA);
+      const steps = Math.min(6, Math.floor(distance / 1.6));
+      for (let step = 1; step < steps; step += 1) {
+        const t = step / steps;
+        dots.push([
+          latA + (latB - latA) * t,
+          lonA + (lonB - lonA) * t,
+        ]);
+      }
+    }
+  }
+  return dots;
+}
+
+function ringBounds(ring) {
+  return ring.reduce(
+    (bounds, [lat, lon]) => ({
+      minLat: Math.min(bounds.minLat, lat),
+      maxLat: Math.max(bounds.maxLat, lat),
+      minLon: Math.min(bounds.minLon, lon),
+      maxLon: Math.max(bounds.maxLon, lon),
+    }),
+    { minLat: 90, maxLat: -90, minLon: 180, maxLon: -180 },
+  );
+}
+
+function pointInRing(lat, lon, ring) {
+  let inside = false;
+  for (let i = 0, j = ring.length - 1; i < ring.length; j = i, i += 1) {
+    const [latI, lonI] = ring[i];
+    const [latJ, lonJ] = ring[j];
+    const intersects =
+      lonI > lon !== lonJ > lon &&
+      lat < ((latJ - latI) * (lon - lonI)) / (lonJ - lonI || 0.00001) + latI;
+    if (intersects) inside = !inside;
+  }
+  return inside;
+}
+
+function buildLandFillDots(rings) {
+  const prepared = rings
+    .map((ring) => ({ ring, bounds: ringBounds(ring) }))
+    .filter(({ bounds }) => bounds.maxLon - bounds.minLon < 340);
+  const dots = [];
+  const step = 1.65;
+  for (let lat = -58; lat <= 78; lat += step) {
+    const offset = Math.sin(lat * 2.71) * 0.45;
+    for (let lon = -180 + offset; lon <= 180; lon += step) {
+      const ring = prepared.find(
+        ({ bounds, ring: candidate }) =>
+          lat >= bounds.minLat &&
+          lat <= bounds.maxLat &&
+          lon >= bounds.minLon &&
+          lon <= bounds.maxLon &&
+          pointInRing(lat, lon, candidate),
+      );
+      if (ring) {
+        dots.push([
+          lat + Math.sin((lat + lon) * 1.7) * 0.18,
+          lon + Math.cos((lat - lon) * 1.3) * 0.18,
+        ]);
+      }
+    }
+  }
+  return dots;
+}
+
+async function loadDetailedLand() {
+  try {
+    const response = await fetch(LAND_TOPOLOGY_URL, { cache: "force-cache" });
+    if (!response.ok) throw new Error(`land topology ${response.status}`);
+    const topology = await response.json();
+    const rings = collectLandRings(topology);
+    if (rings.length < 5) throw new Error("land topology empty");
+    landRings = rings;
+    landDots = buildLandDots(rings);
+    landFillDots = buildLandFillDots(rings);
+    landSource = "natural-earth";
+    setLandTelemetry();
+  } catch (error) {
+    landSource = "fallback";
+    landRings = landMasses;
+    landDots = buildLandDots(landMasses);
+    landFillDots = buildLandFillDots(landMasses);
+    setLandTelemetry();
+    console.warn("Using fallback land geometry", error);
+  }
+}
+
 function resize() {
   const rect = canvas.getBoundingClientRect();
   dpr = Math.min(window.devicePixelRatio || 1, 2);
@@ -1012,9 +1451,11 @@ function globeMetrics() {
   const selectedShift = mode === "selected" || mode === "brief";
   const desktop = isDesktop();
   return {
-    cx: width * (selectedShift && desktop ? 0.64 : 0.5),
-    cy: height * (desktop ? 0.53 : selectedShift ? 0.37 : 0.47),
-    r: Math.min(width, height) * (desktop ? 0.36 : selectedShift ? 0.36 : 0.39),
+    cx: desktop ? width * (selectedShift ? 0.35 : 0.42) : width * 0.5,
+    cy: height * (desktop ? 0.54 : selectedShift ? 0.37 : 0.47),
+    r: desktop
+      ? Math.min(width * 0.36, height * 0.58)
+      : Math.min(width, height) * (selectedShift ? 0.36 : 0.39),
   };
 }
 
@@ -1041,8 +1482,8 @@ function drawBackground(now) {
   ctx.save();
   for (const star of stars) {
     const pulse = Math.sin(now * 0.00045 + star.x * 8) * 0.04;
-    ctx.globalAlpha = Math.max(0, star.alpha + pulse);
-    ctx.fillStyle = "#efe7d7";
+    ctx.globalAlpha = Math.max(0, star.alpha * 0.42 + pulse * 0.24);
+    ctx.fillStyle = "#1d2023";
     ctx.beginPath();
     ctx.arc(star.x * width, star.y * height, star.radius, 0, Math.PI * 2);
     ctx.fill();
@@ -1059,10 +1500,10 @@ function drawSphere(metrics) {
     metrics.cy,
     metrics.r * 1.06,
   );
-  gradient.addColorStop(0, "rgba(239, 231, 215, 0.105)");
-  gradient.addColorStop(0.52, "rgba(32, 42, 38, 0.22)");
-  gradient.addColorStop(0.84, "rgba(7, 8, 8, 0.58)");
-  gradient.addColorStop(1, "rgba(0, 0, 0, 0.18)");
+  gradient.addColorStop(0, "rgba(255, 255, 255, 0.98)");
+  gradient.addColorStop(0.46, "rgba(238, 240, 240, 0.92)");
+  gradient.addColorStop(0.78, "rgba(214, 217, 218, 0.72)");
+  gradient.addColorStop(1, "rgba(178, 183, 184, 0.28)");
 
   ctx.save();
   ctx.beginPath();
@@ -1070,7 +1511,7 @@ function drawSphere(metrics) {
   ctx.fillStyle = gradient;
   ctx.fill();
   ctx.lineWidth = 1;
-  ctx.strokeStyle = "rgba(239, 231, 215, 0.16)";
+  ctx.strokeStyle = "rgba(28, 31, 34, 0.18)";
   ctx.stroke();
 
   const rim = ctx.createRadialGradient(
@@ -1082,8 +1523,8 @@ function drawSphere(metrics) {
     metrics.r * 1.12,
   );
   rim.addColorStop(0, "rgba(255,255,255,0)");
-  rim.addColorStop(0.78, "rgba(184,255,111,0.04)");
-  rim.addColorStop(1, "rgba(239,231,215,0.13)");
+  rim.addColorStop(0.78, "rgba(210, 28, 28, 0.035)");
+  rim.addColorStop(1, "rgba(16, 18, 20, 0.15)");
   ctx.fillStyle = rim;
   ctx.fill();
   ctx.restore();
@@ -1093,7 +1534,7 @@ function strokeProjectedLine(points, options = {}) {
   const metrics = globeMetrics();
   ctx.save();
   ctx.lineWidth = options.width || 1;
-  ctx.strokeStyle = options.color || "rgba(239, 231, 215, 0.1)";
+  ctx.strokeStyle = options.color || "rgba(17, 20, 24, 0.1)";
   ctx.globalAlpha = options.alpha ?? 1;
   ctx.beginPath();
 
@@ -1125,7 +1566,7 @@ function drawGraticule(metrics) {
     const points = [];
     for (let lon = -180; lon <= 180; lon += 4) points.push([lat, lon]);
     strokeProjectedLine(points, {
-      color: lat === 0 ? "rgba(184, 255, 111, 0.18)" : "rgba(239, 231, 215, 0.075)",
+      color: lat === 0 ? "rgba(198, 33, 31, 0.16)" : "rgba(20, 24, 28, 0.075)",
       width: lat === 0 ? 1.1 : 0.75,
     });
   }
@@ -1134,7 +1575,7 @@ function drawGraticule(metrics) {
     const points = [];
     for (let lat = -82; lat <= 82; lat += 3) points.push([lat, lon]);
     strokeProjectedLine(points, {
-      color: lon % 90 === 0 ? "rgba(156, 206, 208, 0.12)" : "rgba(239, 231, 215, 0.06)",
+      color: lon % 90 === 0 ? "rgba(20, 24, 28, 0.11)" : "rgba(20, 24, 28, 0.052)",
       width: lon % 90 === 0 ? 1 : 0.7,
     });
   }
@@ -1147,14 +1588,25 @@ function drawLand(metrics) {
   ctx.arc(metrics.cx, metrics.cy, metrics.r, 0, Math.PI * 2);
   ctx.clip();
 
-  for (const mass of landMasses) {
+  ctx.fillStyle = "rgba(18, 21, 24, 0.56)";
+  for (let index = 0; index < landFillDots.length; index += 1) {
+    const [lat, lon] = landFillDots[index];
+    const point = project(lat, lon, metrics);
+    if (point.visible && point.z > 0.03) {
+      ctx.globalAlpha = Math.min(0.36, 0.08 + point.z * 0.22);
+      ctx.beginPath();
+      ctx.arc(point.x, point.y, point.z > 0.55 ? 0.9 : 0.58, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+  ctx.globalAlpha = 1;
+
+  for (const ring of landRings) {
     ctx.beginPath();
-    let visibleCount = 0;
     let drawing = false;
-    for (const pointLatLon of mass) {
+    for (const pointLatLon of ring) {
       const point = project(pointLatLon[0], pointLatLon[1], metrics);
-      if (point.visible) {
-        visibleCount += 1;
+      if (point.visible && point.z > -0.01) {
         if (!drawing) {
           ctx.moveTo(point.x, point.y);
           drawing = true;
@@ -1165,15 +1617,28 @@ function drawLand(metrics) {
         drawing = false;
       }
     }
-    if (visibleCount > 3) {
-      ctx.closePath();
-      ctx.fillStyle = "rgba(239, 231, 215, 0.032)";
-      ctx.strokeStyle = "rgba(239, 231, 215, 0.075)";
-      ctx.lineWidth = 1;
+    ctx.strokeStyle =
+      landSource === "natural-earth"
+        ? "rgba(35, 39, 42, 0.19)"
+        : "rgba(35, 39, 42, 0.1)";
+    ctx.lineWidth = landSource === "natural-earth" ? 0.72 : 0.85;
+    ctx.stroke();
+  }
+
+  ctx.fillStyle = "rgba(34, 37, 40, 0.32)";
+  const stride = landSource === "natural-earth" ? 1 : 2;
+  for (let index = 0; index < landDots.length; index += stride) {
+    const [lat, lon] = landDots[index];
+    const point = project(lat, lon, metrics);
+    if (point.visible && point.z > 0.04) {
+      const alpha = Math.min(0.34, 0.08 + point.z * 0.18);
+      ctx.globalAlpha = alpha;
+      ctx.beginPath();
+      ctx.arc(point.x, point.y, point.z > 0.55 ? 0.72 : 0.48, 0, Math.PI * 2);
       ctx.fill();
-      ctx.stroke();
     }
   }
+  ctx.globalAlpha = 1;
   ctx.restore();
 }
 
@@ -1235,7 +1700,7 @@ function drawLinks() {
     const a = getBet(from);
     const b = getBet(to);
     if (!a || !b) continue;
-    drawArc(a, b, "rgba(156, 206, 208, 0.34)", 0.16, 0.72);
+    drawArc(a, b, "rgba(46, 50, 55, 0.3)", 0.16, 0.72);
   }
 
   if (mode !== "selected" && mode !== "brief") return;
@@ -1247,14 +1712,14 @@ function drawLinks() {
   for (const bet of related) {
     const color =
       selectedBet.kind === "good"
-        ? "rgba(184, 255, 111, 0.72)"
-        : "rgba(255, 109, 102, 0.66)";
+        ? "rgba(42, 46, 50, 0.72)"
+        : "rgba(198, 33, 31, 0.66)";
     drawArc(selectedBet, bet, color, 0.44, 1.25);
   }
 }
 
 function kindColor(bet, alpha = 1) {
-  const base = bet.kind === "good" ? "184, 255, 111" : "255, 109, 102";
+  const base = bet.kind === "good" ? "28, 32, 36" : "198, 33, 31";
   return `rgba(${base}, ${alpha})`;
 }
 
@@ -1265,7 +1730,7 @@ function drawPin(bet, projected, isSelected, isHovered) {
   ctx.save();
   ctx.globalAlpha = dim * Math.max(0.2, projected.z);
   ctx.shadowColor = kindColor(bet, isSelected || isHovered ? 0.72 : 0.42);
-  ctx.shadowBlur = isSelected ? 22 : isHovered ? 16 : 8;
+  ctx.shadowBlur = isSelected ? 18 : isHovered ? 12 : 4;
   ctx.fillStyle = kindColor(bet, isSelected ? 0.95 : 0.76);
   ctx.beginPath();
   ctx.arc(projected.x, projected.y, radius, 0, Math.PI * 2);
@@ -1323,14 +1788,14 @@ function drawLabel(bet, projected, isSelected, isHovered, boxes) {
   }
 
   ctx.globalAlpha = shouldForce ? 1 : 0.72;
-  ctx.fillStyle = "rgba(3, 4, 4, 0.62)";
+  ctx.fillStyle = "rgba(255, 255, 255, 0.74)";
   ctx.strokeStyle = kindColor(bet, shouldForce ? 0.42 : 0.18);
   ctx.lineWidth = 1;
   roundRect(ctx, box.x, box.y, box.w, box.h, 10);
   ctx.fill();
   ctx.stroke();
 
-  ctx.fillStyle = bet.kind === "good" ? "rgba(217, 255, 167, 0.86)" : "rgba(255, 177, 171, 0.86)";
+  ctx.fillStyle = bet.kind === "good" ? "rgba(24, 27, 30, 0.86)" : "rgba(198, 33, 31, 0.92)";
   ctx.fillText(displayText, x + 9, y + 12);
   ctx.restore();
 }
@@ -1378,11 +1843,23 @@ function drawPins(metrics) {
       const isHovered = hoveredBet?.id === bet.id;
       drawLabel(bet, point, isSelected, isHovered, labelBoxes);
     });
+
+  const qaPin = projectedPins.find(
+    (pin) =>
+      pin.type === "pin" &&
+      pin.x > 24 &&
+      pin.y > 24 &&
+      pin.x < width - 24 &&
+      pin.y < height - 24,
+  );
+  if (qaPin) {
+    document.documentElement.dataset.visiblePin = `${Math.round(qaPin.x)},${Math.round(qaPin.y)}`;
+  }
 }
 
 function drawCalibration(metrics) {
   ctx.save();
-  ctx.strokeStyle = "rgba(239, 231, 215, 0.12)";
+  ctx.strokeStyle = "rgba(24, 28, 32, 0.16)";
   ctx.lineWidth = 1;
   const gap = metrics.r + 22;
   const size = 12;
@@ -1407,11 +1884,16 @@ function animate(now = performance.now()) {
   const delta = Math.min(40, now - lastTime);
   lastTime = now;
 
-  if (mode === "browse") {
-    autoLon = (autoLon + delta * 0.0024) % 360;
+  if (!spin.dragging && Math.abs(spin.velocity) > 0.001) {
+    targetLon = normalizeLon(targetLon + spin.velocity * delta);
+    spin.velocity *= 0.94;
+  } else if (mode === "browse" && now > spin.manualUntil) {
+    autoLon = normalizeLon(autoLon + delta * 0.0024);
+    targetLon = autoLon;
+  } else if ((mode === "selected" || mode === "brief") && now > spin.manualUntil) {
+    targetLon = normalizeLon(targetLon + shortestAngle(targetLon, selectedBet.lon) * 0.018);
   }
 
-  const targetLon = mode === "browse" || mode === "landing" ? autoLon : selectedBet.lon;
   centerLon += shortestAngle(centerLon, targetLon) * 0.045;
 
   const metrics = globeMetrics();
@@ -1471,6 +1953,9 @@ function setMode(nextMode) {
 
 function setSelectedBet(bet) {
   selectedBet = bet;
+  targetLon = normalizeLon(bet.lon);
+  spin.velocity = 0;
+  spin.manualUntil = performance.now() + 1800;
   updateCard(bet);
   updateBrief(bet);
   setMode("selected");
@@ -1485,6 +1970,7 @@ function updateCard(bet) {
   fields.title.textContent = bet.title;
   fields.summary.textContent = bet.summary;
   fields.implication.textContent = bet.implication;
+  fields.surprise.textContent = bet.surprise;
   fields.horizon.textContent = bet.horizon;
   fields.signals.textContent = String(bet.signalCount);
   fields.category.textContent = bet.category;
@@ -1495,6 +1981,8 @@ function updateBrief(bet) {
   fields.briefDeck.textContent = `${bet.region}. ${bet.summary}`;
   fields.rationale.textContent = bet.rationale;
   fields.why.textContent = bet.why;
+  fields.briefSurprise.textContent = bet.surprise;
+  fields.briefWatch.textContent = bet.watch;
   fields.signalList.replaceChildren(
     ...bet.signals.map((signal) => {
       const item = document.createElement("li");
@@ -1529,17 +2017,65 @@ function enterExperience() {
   setTimeout(() => canvas.focus?.(), 400);
 }
 
+function beginSpinScrub(event) {
+  if (mode === "landing") return;
+  spin.dragging = true;
+  spin.lastX = event.clientX;
+  spin.velocity = 0;
+  spin.moved = false;
+  spin.manualUntil = performance.now() + 5000;
+  appShell.dataset.scrubbing = "true";
+  try {
+    canvas.setPointerCapture?.(event.pointerId);
+  } catch {
+    // Synthetic pointer events used in QA do not always register capture state.
+  }
+}
+
+function updateSpinScrub(event, multiplier = 0.34) {
+  const dx = event.clientX - spin.lastX;
+  if (Math.abs(dx) < 0.2) return;
+  targetLon = normalizeLon(targetLon - dx * multiplier);
+  autoLon = targetLon;
+  spin.velocity = -dx * 0.012;
+  spin.lastX = event.clientX;
+  spin.moved = spin.moved || Math.abs(dx) > 2;
+  spin.manualUntil = performance.now() + 4200;
+}
+
+function endSpinScrub(event) {
+  if (!spin.dragging) return;
+  spin.dragging = false;
+  spin.manualUntil = performance.now() + 3800;
+  delete appShell.dataset.scrubbing;
+  try {
+    canvas.releasePointerCapture?.(event.pointerId);
+  } catch {
+    // Release can fail if the pointer left the document before capture completed.
+  }
+}
+
 function handleCanvasPointerMove(event) {
   const rect = canvas.getBoundingClientRect();
   pointer = {
     x: event.clientX - rect.left,
     y: event.clientY - rect.top,
   };
+  if (spin.dragging) {
+    updateSpinScrub(event);
+  } else if (mode !== "landing" && pointer.x > width * 0.68 && Math.abs(event.movementX) > 0.4) {
+    spin.lastX = event.clientX - event.movementX;
+    updateSpinScrub(event, 0.08);
+  }
   hoveredBet = findHoveredBet();
   updateHoverPlate(event);
 }
 
 function handleCanvasClick(event) {
+  if (spin.moved) {
+    spin.moved = false;
+    return;
+  }
   const rect = canvas.getBoundingClientRect();
   pointer = {
     x: event.clientX - rect.left,
@@ -1573,8 +2109,15 @@ enterButton.addEventListener("click", enterExperience);
 openBriefButton.addEventListener("click", openBrief);
 sourcesButton.addEventListener("click", openBrief);
 canvas.addEventListener("pointermove", handleCanvasPointerMove);
+canvas.addEventListener("pointerdown", beginSpinScrub);
+canvas.addEventListener("pointerup", endSpinScrub);
+canvas.addEventListener("pointercancel", endSpinScrub);
 canvas.addEventListener("pointerleave", handleCanvasLeave);
 canvas.addEventListener("click", handleCanvasClick);
+spinField.addEventListener("pointerdown", beginSpinScrub);
+spinField.addEventListener("pointermove", handleCanvasPointerMove);
+spinField.addEventListener("pointerup", endSpinScrub);
+spinField.addEventListener("pointercancel", endSpinScrub);
 filterButtons.forEach((button) => {
   button.addEventListener("click", () => setFilter(button.dataset.filter));
 });
@@ -1582,4 +2125,18 @@ filterButtons.forEach((button) => {
 updateCard(selectedBet);
 updateBrief(selectedBet);
 resize();
+setLandTelemetry();
+window.__futureBetsState = () => ({
+  mode,
+  centerLon,
+  targetLon,
+  activeFilter,
+  selected: selectedBet.id,
+  hovering: hoveredBet?.id || null,
+  scrubbing: spin.dragging,
+  landSource,
+  landDots: landDots.length,
+});
+loadDetailedLand();
 requestAnimationFrame(animate);
+
