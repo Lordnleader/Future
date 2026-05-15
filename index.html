@@ -5,55 +5,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Future Bets is a quiet intelligence interface for directional future signals and multi-source pattern recognition."
+      content="A quiet intelligence interface for directional future signals and multi-source pattern recognition."
     />
-    <title>Future Bets</title>
+    <title>Predict the Future</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./src/styles.css?v=20260514-globe10" />
+    <link rel="stylesheet" href="./src/styles.css?v=20260515-landing1" />
   </head>
   <body>
     <main class="app-shell" data-mode="landing">
-      <section class="landing" aria-label="Future Bets landing">
-        <div class="landing-mark" aria-hidden="true"></div>
+      <section class="landing" aria-label="Future signals landing">
+        <img
+          class="landing-image"
+          src="./assets/landing-mountains-clean.jpg"
+          alt=""
+          aria-hidden="true"
+        />
+        <div class="landing-graphics" aria-hidden="true">
+          <span class="landing-readout readout-top">N 45.8321 / E 6.8656</span>
+          <span class="landing-readout readout-left">PATTERN INDEX</span>
+          <span class="landing-readout readout-right">SURFACE SIGNAL</span>
+          <span class="landing-readout readout-bottom">RANGE 2.4KM / MODE ACTIVE</span>
+          <span class="landing-node node-a"></span>
+          <span class="landing-node node-b"></span>
+          <span class="landing-node node-c"></span>
+          <span class="landing-node node-d"></span>
+          <span class="landing-vector vector-a"></span>
+          <span class="landing-vector vector-b"></span>
+          <span class="landing-vector vector-c"></span>
+          <span class="landing-frame frame-a"></span>
+          <span class="landing-frame frame-b"></span>
+        </div>
+        <canvas class="landing-terrain" id="terrainCanvas" aria-hidden="true"></canvas>
         <p class="landing-kicker">EVERYTHING EXISTS IN PATTERNS</p>
         <button class="enter-button" id="enterButton" type="button">
           PREDICT THE FUTURE
         </button>
       </section>
 
-      <section class="experience" aria-label="Future Bets globe">
+      <section class="experience" aria-label="Future signals globe">
         <header class="top-chrome" aria-label="System controls">
-          <a class="brand-lockup" href="#top" aria-label="Future Bets home">
+          <a class="brand-lockup" href="#top" aria-label="Predict the future home">
             <span class="brand-dot" aria-hidden="true"></span>
-            <span>FUTURE BETS</span>
+            <span>PREDICT THE FUTURE</span>
           </a>
-          <nav class="chrome-nav" aria-label="Globe filters">
-            <button class="nav-chip is-active" type="button" data-filter="all">
-              ALL SIGNALS
-            </button>
-            <button class="nav-chip" type="button" data-filter="good">
-              GOOD BETS
-            </button>
-            <button class="nav-chip" type="button" data-filter="bad">
-              BAD BETS
-            </button>
-          </nav>
           <div class="system-status" aria-label="System status">
             <span class="pulse" aria-hidden="true"></span>
-            <span>PUBLIC SIGNAL MESH</span>
+            <span>EVERYTHING EXISTS IN PATTERNS</span>
           </div>
         </header>
 
         <div class="globe-layout" id="top">
-          <aside class="bet-card" id="betCard" aria-live="polite">
+          <aside class="signal-card" id="signalCard" aria-live="polite">
             <div class="card-rule" aria-hidden="true"></div>
             <div class="card-meta">
-              <span class="tag" id="cardKind">GOOD BET</span>
+              <span class="tag" id="cardKind">SIGNAL</span>
               <span class="tag tag-muted" id="cardConfidence">CONFIDENCE 72</span>
             </div>
             <p class="card-region" id="cardRegion">GLOBAL / SIGNAL CONVERGENCE</p>
@@ -100,27 +110,23 @@
             </div>
           </aside>
 
-          <section class="globe-stage" aria-label="Interactive future bets globe">
+          <section class="globe-stage" aria-label="Interactive future signals globe">
             <canvas id="globeCanvas"></canvas>
             <div class="globe-vignette" aria-hidden="true"></div>
             <div class="scanline" aria-hidden="true"></div>
-            <div class="spin-field" id="spinField" aria-hidden="true">
-              <span>SCRUB ROTATION</span>
-              <i></i>
-            </div>
             <div class="globe-readout" aria-live="polite">
               <span id="readoutMode">BROWSE</span>
               <span id="readoutLocation">GLOBAL SIGNAL SURFACE</span>
             </div>
             <div class="hover-plate" id="hoverPlate" aria-hidden="true">
-              <span id="hoverKind">GOOD BET</span>
+              <span id="hoverKind">SIGNAL</span>
               <strong id="hoverTitle">Future signal</strong>
             </div>
           </section>
         </div>
       </section>
 
-      <section class="brief-section" id="brief" aria-label="Future bet brief">
+      <section class="brief-section" id="brief" aria-label="Future signal brief">
         <div class="brief-shell">
           <div class="brief-heading">
             <p class="section-kicker">FULL BRIEF</p>
@@ -137,7 +143,7 @@
               <p id="briefRationale">
                 Short-term disruption signals appear stronger when read
                 against long-running infrastructure, energy, and governance
-                pressures. The bet is not certainty; it is a directional
+                pressures. The signal is not certainty; it is a directional
                 inference from converging evidence.
               </p>
             </article>
@@ -181,8 +187,8 @@
           <div class="method-strip">
             <span>METHODOLOGY</span>
             <p>
-              Future Bets reads current-event clustering, structural context,
-              and official geographic or institutional signals together. A bet
+              The system reads current-event clustering, structural context,
+              and official geographic or institutional signals together. A signal
               is presented as a direction of travel, not as financial advice or
               a single-headline conclusion.
             </p>
@@ -191,7 +197,6 @@
       </section>
     </main>
 
-    <script type="module" src="./src/main.js?v=20260514-globe10"></script>
+    <script type="module" src="./src/main.js?v=20260515-landing1"></script>
   </body>
 </html>
-

@@ -31,10 +31,7 @@ body {
   min-height: 100vh;
   margin: 0;
   overflow-x: hidden;
-  background:
-    radial-gradient(circle at 12% 20%, rgba(255, 255, 255, 0.9), transparent 22rem),
-    radial-gradient(circle at 70% 28%, rgba(198, 33, 31, 0.045), transparent 30rem),
-    linear-gradient(180deg, #fbfbf8 0%, var(--paper) 54%, #e9e9e5 100%);
+  background: #f6f5f1;
   color: var(--ink);
   font-family: var(--sans);
 }
@@ -65,12 +62,7 @@ a {
   z-index: -1;
   pointer-events: none;
   content: "";
-  opacity: 0.42;
-  background-image:
-    linear-gradient(rgba(18, 20, 22, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(18, 20, 22, 0.027) 1px, transparent 1px);
-  background-size: 88px 88px;
-  mask-image: radial-gradient(circle at 43% 50%, #000 0%, transparent 72%);
+  opacity: 0;
 }
 
 .app-shell::after {
@@ -79,46 +71,237 @@ a {
   z-index: 20;
   pointer-events: none;
   content: "";
-  opacity: 0.17;
-  background-image:
-    radial-gradient(circle at 20% 30%, rgba(18, 20, 22, 0.09) 0 1px, transparent 1.2px),
-    radial-gradient(circle at 73% 64%, rgba(18, 20, 22, 0.06) 0 1px, transparent 1.1px);
-  background-size: 4px 4px, 7px 7px;
-  mix-blend-mode: multiply;
+  opacity: 0;
 }
 
 .landing {
   position: fixed;
   inset: 0;
   z-index: 15;
+  --landing-x: 0;
+  --landing-y: 0;
   display: grid;
   min-height: 100vh;
   place-content: center;
   justify-items: center;
   gap: 1.1rem;
   padding: 2rem;
-  background:
-    radial-gradient(circle at 50% 48%, rgba(255, 255, 255, 0.92), transparent 23rem),
-    radial-gradient(circle at 50% 58%, rgba(198, 33, 31, 0.04), transparent 30rem),
-    var(--paper);
+  background: #f7f6f2;
+  overflow: hidden;
   transition:
     opacity 920ms cubic-bezier(0.19, 1, 0.22, 1),
     transform 920ms cubic-bezier(0.19, 1, 0.22, 1),
     visibility 920ms step-end;
 }
 
-.landing-mark {
-  width: 2.25rem;
-  height: 2.25rem;
-  border: 1px solid rgba(23, 25, 28, 0.16);
+.landing::before,
+.landing::after {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  content: "";
+}
+
+.landing::before {
+  background:
+    radial-gradient(circle at 50% 48%, rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.36) 14rem, transparent 28rem),
+    linear-gradient(180deg, rgba(250, 250, 247, 0.26), rgba(255, 255, 255, 0.12) 38%, rgba(247, 246, 242, 0.22));
+}
+
+.landing::after {
+  opacity: 0.24;
+  background:
+    linear-gradient(90deg, transparent 49.96%, rgba(198, 33, 31, 0.12) 50%, transparent 50.04%),
+    linear-gradient(180deg, transparent 55%, rgba(198, 33, 31, 0.1) 55.08%, transparent 55.16%);
+  mask-image: radial-gradient(circle at 50% 50%, #000 0 48%, transparent 74%);
+}
+
+.landing-image {
+  position: absolute;
+  inset: -4%;
+  z-index: 0;
+  width: 108%;
+  height: 108%;
+  object-fit: cover;
+  object-position: center 56%;
+  opacity: 0.88;
+  pointer-events: none;
+  transform: translate3d(
+      calc(var(--landing-x) * -1.55rem),
+      calc(var(--landing-y) * -1.05rem),
+      0
+    )
+    scale(1.018);
+  filter: grayscale(1) contrast(1.08) brightness(1.12);
+  transition: transform 220ms ease-out;
+}
+
+.landing-graphics {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  transform: translate3d(
+    calc(var(--landing-x) * -0.68rem),
+    calc(var(--landing-y) * -0.42rem),
+    0
+  );
+  transition: transform 220ms ease-out;
+}
+
+.landing-graphics::before,
+.landing-graphics::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+}
+
+.landing-graphics::before {
+  opacity: 0.42;
+  background:
+    linear-gradient(90deg, transparent 12%, rgba(24, 27, 30, 0.18) 12.04%, transparent 12.08%),
+    linear-gradient(90deg, transparent 64%, rgba(24, 27, 30, 0.16) 64.04%, transparent 64.08%),
+    linear-gradient(180deg, transparent 18%, rgba(24, 27, 30, 0.14) 18.06%, transparent 18.12%),
+    linear-gradient(180deg, transparent 78%, rgba(24, 27, 30, 0.12) 78.06%, transparent 78.12%);
+}
+
+.landing-graphics::after {
+  opacity: 0.28;
+  background-image: radial-gradient(rgba(24, 27, 30, 0.22) 0.7px, transparent 0.8px);
+  background-size: 16px 16px;
+  mask-image: radial-gradient(ellipse at 58% 66%, #000 0 16%, transparent 34%);
+}
+
+.landing-readout,
+.landing-node,
+.landing-vector,
+.landing-frame {
+  position: absolute;
+}
+
+.landing-readout {
+  color: rgba(198, 33, 31, 0.5);
+  font-family: var(--mono);
+  font-size: clamp(0.48rem, 0.72vw, 0.64rem);
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.readout-top {
+  top: 3.1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(23, 25, 28, 0.46);
+}
+
+.readout-left {
+  left: 13.6%;
+  bottom: 24%;
+}
+
+.readout-right {
+  top: 21%;
+  right: 17%;
+}
+
+.readout-bottom {
+  right: 9%;
+  bottom: 12%;
+  color: rgba(23, 25, 28, 0.38);
+}
+
+.landing-node {
+  width: 0.36rem;
+  height: 0.36rem;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.42);
-  box-shadow:
-    inset 0 0 2rem rgba(23, 25, 28, 0.045),
-    0 0 3rem rgba(23, 25, 28, 0.04);
+  background: rgba(198, 33, 31, 0.68);
+  box-shadow: 0 0 0 0.32rem rgba(198, 33, 31, 0.08);
+}
+
+.node-a {
+  top: 30%;
+  left: 23%;
+}
+
+.node-b {
+  top: 23%;
+  right: 31%;
+}
+
+.node-c {
+  right: 18%;
+  bottom: 27%;
+}
+
+.node-d {
+  left: 17%;
+  bottom: 33%;
+}
+
+.landing-vector {
+  height: 1px;
+  transform-origin: left center;
+  background: rgba(198, 33, 31, 0.32);
+}
+
+.vector-a {
+  top: 30.3%;
+  left: 23.3%;
+  width: 21vw;
+  transform: rotate(-8deg);
+}
+
+.vector-b {
+  top: 23.4%;
+  right: 31.2%;
+  width: 18vw;
+  transform: rotate(16deg);
+}
+
+.vector-c {
+  right: 18.2%;
+  bottom: 27.2%;
+  width: 15vw;
+  transform: rotate(-42deg);
+}
+
+.landing-frame {
+  border-color: rgba(24, 27, 30, 0.36);
+  border-style: solid;
+}
+
+.frame-a {
+  top: 17%;
+  left: 9%;
+  width: 31vw;
+  height: 23vh;
+  border-width: 1px 0 0 1px;
+}
+
+.frame-b {
+  right: 8%;
+  bottom: 12%;
+  width: 22vw;
+  height: 27vh;
+  border-width: 0 1px 1px 0;
+}
+
+.landing-terrain {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+  pointer-events: none;
 }
 
 .landing-kicker {
+  position: relative;
+  z-index: 2;
   margin: 0;
   color: rgba(23, 25, 28, 0.74);
   font-family: var(--mono);
@@ -129,8 +312,7 @@ a {
 
 .enter-button,
 .primary-action,
-.secondary-action,
-.nav-chip {
+.secondary-action {
   cursor: pointer;
   transition:
     border-color 240ms ease,
@@ -141,6 +323,8 @@ a {
 }
 
 .enter-button {
+  position: relative;
+  z-index: 2;
   min-height: 2.45rem;
   padding: 0 1rem;
   border: 1px solid rgba(23, 25, 28, 0.22);
@@ -165,6 +349,10 @@ a {
   visibility: hidden;
   opacity: 0;
   transform: scale(1.015);
+}
+
+.app-shell[data-landing-done="true"] .landing {
+  display: none;
 }
 
 .experience {
@@ -192,7 +380,7 @@ a {
   right: 0;
   z-index: 10;
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
+  grid-template-columns: 1fr 1fr;
   align-items: center;
   gap: 1.5rem;
   min-height: 4.8rem;
@@ -212,15 +400,13 @@ a {
 }
 
 .brand-lockup,
-.system-status,
-.chrome-nav {
+.system-status {
   display: flex;
   align-items: center;
 }
 
 .brand-lockup,
 .system-status,
-.nav-chip,
 .tag,
 .card-region,
 .panel-label,
@@ -246,32 +432,6 @@ a {
   border-radius: 50%;
   background: var(--accent);
   box-shadow: 0 0 1.2rem rgba(198, 33, 31, 0.22);
-}
-
-.chrome-nav {
-  justify-content: center;
-  gap: 0.35rem;
-  padding: 0.28rem;
-  border: 1px solid var(--rule);
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.58);
-  backdrop-filter: blur(18px);
-}
-
-.nav-chip {
-  min-height: 2rem;
-  padding: 0 0.74rem;
-  border: 1px solid transparent;
-  border-radius: 999px;
-  background: transparent;
-  color: rgba(23, 25, 28, 0.48);
-}
-
-.nav-chip:hover,
-.nav-chip.is-active {
-  border-color: rgba(23, 25, 28, 0.14);
-  background: rgba(23, 25, 28, 0.055);
-  color: rgba(23, 25, 28, 0.86);
 }
 
 .system-status {
@@ -314,53 +474,15 @@ a {
   inset: 0;
   pointer-events: none;
   background:
-    radial-gradient(circle at 41% 53%, transparent 0 35%, rgba(244, 244, 241, 0.2) 57%, rgba(244, 244, 241, 0.84) 100%),
-    linear-gradient(90deg, rgba(244, 244, 241, 0.08), transparent 20%, transparent 62%, rgba(244, 244, 241, 0.94));
+    radial-gradient(circle at 41% 53%, transparent 0 42%, rgba(246, 245, 241, 0.14) 62%, rgba(246, 245, 241, 0.9) 100%),
+    linear-gradient(90deg, rgba(246, 245, 241, 0.04), transparent 22%, transparent 67%, rgba(246, 245, 241, 0.92));
 }
 
 .scanline {
-  position: absolute;
-  left: 4%;
-  right: 30%;
-  top: 50%;
-  height: 1px;
-  pointer-events: none;
-  opacity: 0.52;
-  background: linear-gradient(90deg, transparent, rgba(23, 25, 28, 0.18), transparent);
+  display: none;
 }
 
-.spin-field {
-  position: absolute;
-  top: 9rem;
-  right: min(34rem, 34vw);
-  bottom: 6rem;
-  z-index: 5;
-  display: grid;
-  width: 4.2rem;
-  place-items: center;
-  border-left: 1px solid rgba(23, 25, 28, 0.14);
-  color: rgba(23, 25, 28, 0.44);
-  cursor: ew-resize;
-  pointer-events: auto;
-}
-
-.spin-field span {
-  writing-mode: vertical-rl;
-  transform: rotate(180deg);
-  font-family: var(--mono);
-  font-size: 0.62rem;
-  text-transform: uppercase;
-}
-
-.spin-field i {
-  position: absolute;
-  width: 1px;
-  height: 4rem;
-  background: linear-gradient(180deg, transparent, rgba(198, 33, 31, 0.34), transparent);
-}
-
-.app-shell[data-scrubbing="true"] #globeCanvas,
-.app-shell[data-scrubbing="true"] .spin-field {
+.app-shell[data-scrubbing="true"] #globeCanvas {
   cursor: grabbing;
 }
 
@@ -411,7 +533,7 @@ a {
   line-height: 1.25;
 }
 
-.bet-card {
+.signal-card {
   position: fixed;
   top: 50%;
   right: clamp(1rem, 3vw, 2.6rem);
@@ -437,7 +559,7 @@ a {
     transform 520ms cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-.app-shell[data-mode="selected"] .bet-card {
+.app-shell[data-mode="selected"] .signal-card {
   opacity: 1;
   pointer-events: auto;
   transform: translate3d(0, -50%, 0);
@@ -448,10 +570,6 @@ a {
   height: 1px;
   margin-bottom: 1rem;
   background: linear-gradient(90deg, rgba(23, 25, 28, 0.5), rgba(23, 25, 28, 0.12), transparent);
-}
-
-.bet-card[data-kind="bad"] .card-rule {
-  background: linear-gradient(90deg, rgba(198, 33, 31, 0.58), rgba(23, 25, 28, 0.12), transparent);
 }
 
 .card-meta {
@@ -473,12 +591,6 @@ a {
   color: rgba(23, 25, 28, 0.85);
 }
 
-.tag[data-kind="bad"] {
-  border-color: rgba(198, 33, 31, 0.3);
-  background: rgba(198, 33, 31, 0.08);
-  color: rgba(198, 33, 31, 0.94);
-}
-
 .tag-muted {
   border-color: rgba(23, 25, 28, 0.13);
   background: rgba(255, 255, 255, 0.44);
@@ -490,7 +602,7 @@ a {
   color: rgba(23, 25, 28, 0.48);
 }
 
-.bet-card h1 {
+.signal-card h1 {
   max-width: 23rem;
   margin: 0;
   color: rgba(23, 25, 28, 0.96);
@@ -723,6 +835,58 @@ a {
 }
 
 @media (max-width: 820px) {
+  .landing {
+    padding: 1.25rem;
+  }
+
+  .landing-image {
+    object-position: center 59%;
+    filter: grayscale(1) contrast(1.05) brightness(1.15);
+  }
+
+  .readout-left,
+  .readout-right,
+  .readout-bottom,
+  .node-c,
+  .node-d,
+  .vector-c,
+  .frame-b {
+    display: none;
+  }
+
+  .readout-top {
+    top: 1.2rem;
+  }
+
+  .node-a {
+    top: 37%;
+    left: 16%;
+  }
+
+  .node-b {
+    top: 31%;
+    right: 18%;
+  }
+
+  .vector-a {
+    top: 37.2%;
+    left: 16.3%;
+    width: 42vw;
+  }
+
+  .vector-b {
+    top: 31.2%;
+    right: 18.3%;
+    width: 32vw;
+  }
+
+  .frame-a {
+    top: 23%;
+    left: 6%;
+    width: 48vw;
+    height: 18vh;
+  }
+
   .top-chrome {
     position: absolute;
     grid-template-columns: 1fr;
@@ -731,15 +895,8 @@ a {
   }
 
   .brand-lockup,
-  .system-status,
-  .chrome-nav {
+  .system-status {
     justify-self: start;
-  }
-
-  .chrome-nav {
-    width: 100%;
-    justify-content: flex-start;
-    overflow-x: auto;
   }
 
   .system-status {
@@ -751,11 +908,7 @@ a {
     padding-top: 8rem;
   }
 
-  .spin-field {
-    display: none;
-  }
-
-  .bet-card {
+  .signal-card {
     position: fixed;
     top: auto;
     left: 1rem;
@@ -767,12 +920,12 @@ a {
     transform: translate3d(0, 1rem, 0);
   }
 
-  .app-shell[data-mode="selected"] .bet-card,
-  .app-shell[data-mode="brief"] .bet-card {
+  .app-shell[data-mode="selected"] .signal-card,
+  .app-shell[data-mode="brief"] .signal-card {
     transform: none;
   }
 
-  .bet-card h1 {
+  .signal-card h1 {
     max-width: none;
     font-size: 1.75rem;
   }
@@ -825,4 +978,3 @@ a {
     animation-duration: 0.01ms !important;
   }
 }
-
