@@ -2095,7 +2095,7 @@ function createEarthRenderer(target) {
       void main() {
         if (vZ <= 0.0) discard;
         float h = texture2D(uTopo, vUv).r;
-        float land = mix(1.0, texture2D(uMask, vUv).a, uMaskReady);
+        float land = texture2D(uMask, vUv).a * step(0.5, uMaskReady);
         float e = texture2D(uTopo, vUv + vec2(uTexel.x, 0.0)).r;
         float w = texture2D(uTopo, vUv - vec2(uTexel.x, 0.0)).r;
         float n = texture2D(uTopo, vUv - vec2(0.0, uTexel.y)).r;
@@ -2511,26 +2511,43 @@ function createLandMask(rings, widthValue = 2048, heightValue = 1024) {
   mask.height = heightValue;
   maskCtx.clearRect(0, 0, widthValue, heightValue);
   maskCtx.fillStyle = "rgba(255, 255, 255, 1)";
-  maskCtx.beginPath();
 
   for (const ring of rings) {
-    let drawing = false;
-    let previousX = 0;
+    if (ring.length < 4) continue;
+    const unwrapped = [];
+    let lonOffset = 0;
+    let previousLon = ring[0][1];
+
     for (const [lat, lon] of ring) {
-      const x = ((lon + 180) / 360) * widthValue;
-      const y = ((90 - lat) / 180) * heightValue;
-      if (!drawing || Math.abs(x - previousX) > widthValue * 0.42) {
-        maskCtx.moveTo(x, y);
-        drawing = true;
-      } else {
-        maskCtx.lineTo(x, y);
+      let adjustedLon = lon + lonOffset;
+      while (adjustedLon - previousLon > 180) {
+        lonOffset -= 360;
+        adjustedLon = lon + lonOffset;
       }
-      previousX = x;
+      while (adjustedLon - previousLon < -180) {
+        lonOffset += 360;
+        adjustedLon = lon + lonOffset;
+      }
+      previousLon = adjustedLon;
+      unwrapped.push([lat, adjustedLon]);
     }
-    if (drawing) maskCtx.closePath();
+
+    for (const shift of [-360, 0, 360]) {
+      maskCtx.beginPath();
+      unwrapped.forEach(([lat, lon], index) => {
+        const x = ((lon + shift + 180) / 360) * widthValue;
+        const y = ((90 - lat) / 180) * heightValue;
+        if (index === 0) {
+          maskCtx.moveTo(x, y);
+        } else {
+          maskCtx.lineTo(x, y);
+        }
+      });
+      maskCtx.closePath();
+      maskCtx.fill();
+    }
   }
 
-  maskCtx.fill();
   return mask;
 }
 
