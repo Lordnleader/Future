@@ -1177,48 +1177,266 @@ const signalReadouts = {
   },
 };
 
+const predictionEngineConfig = {
+  version: "PFE-2.1",
+  generatedAt: new Date().toISOString(),
+  cadenceTarget: "nightly-0100-local",
+  weights: {
+    baseRate: 0.1,
+    evidence: 0.11,
+    weakSignalBurst: 0.12,
+    convergence: 0.15,
+    causalTension: 0.13,
+    friction: 0.1,
+    asymmetry: 0.09,
+    leadLag: 0.07,
+    timing: 0.07,
+    falsifiability: 0.06,
+  },
+  nightlyInputContract: [
+    "geo_signal_seed",
+    "source_mix",
+    "reference_class_prior",
+    "leading_indicators",
+    "disconfirmers",
+    "previous_resolution_outcomes",
+  ],
+};
+
+const predictionCategoryPriors = {
+  AI: {
+    baseRate: 64,
+    volatility: 72,
+    referenceClass: "compute infrastructure adoption under resource constraints",
+    leading: ["power-purchase agreements", "HBM and packaging supply", "inference cost curves"],
+    failure: "model efficiency improves faster than local power, water, or memory limits tighten",
+  },
+  Biotechnology: {
+    baseRate: 54,
+    volatility: 65,
+    referenceClass: "lab capability crossing into industrial scale",
+    leading: ["offtake agreements", "regulatory classification", "contamination and quality controls"],
+    failure: "buyers keep treating the capability as experimental rather than operational",
+  },
+  Cities: {
+    baseRate: 59,
+    volatility: 57,
+    referenceClass: "urban operating costs changing before migration data",
+    leading: ["insurance wording", "building-code revisions", "utility peak-load data"],
+    failure: "adaptation investment absorbs stress before households or lenders change behavior",
+  },
+  Climate: {
+    baseRate: 62,
+    volatility: 70,
+    referenceClass: "physical risk becoming financial or policy behavior",
+    leading: ["hazard-data revisions", "insurer exclusions", "emergency procurement"],
+    failure: "seasonal recovery restores buffers and keeps market behavior stable",
+  },
+  Energy: {
+    baseRate: 68,
+    volatility: 60,
+    referenceClass: "energy reliability repricing under capacity stress",
+    leading: ["grid-connection queues", "capacity-market prices", "backup-power procurement"],
+    failure: "transmission and flexible capacity arrive faster than demand peaks",
+  },
+  "Food systems": {
+    baseRate: 61,
+    volatility: 66,
+    referenceClass: "food-system stress compounding across climate, logistics, and households",
+    leading: ["stocks-to-use ratios", "grain tenders", "cold-chain utilization"],
+    failure: "stocks, imports, and household purchasing power stay resilient through stress periods",
+  },
+  Geopolitics: {
+    baseRate: 57,
+    volatility: 74,
+    referenceClass: "strategic ambiguity converting into optionality spending",
+    leading: ["insurance language", "military posture", "redundant route or supplier procurement"],
+    failure: "durable de-escalation removes the option value before capital is committed",
+  },
+  Infrastructure: {
+    baseRate: 66,
+    volatility: 56,
+    referenceClass: "infrastructure fragility becoming a procurement rule",
+    leading: ["maintenance backlog", "outage recurrence", "hardening finance"],
+    failure: "public funding and maintenance capacity close the resilience gap early",
+  },
+  Labour: {
+    baseRate: 63,
+    volatility: 52,
+    referenceClass: "capacity shortages changing service quality before headline unemployment",
+    leading: ["absenteeism", "wage premia", "shift rules and vacancy duration"],
+    failure: "automation, migration, or redesign expands usable capacity before demand peaks",
+  },
+  Logistics: {
+    baseRate: 65,
+    volatility: 68,
+    referenceClass: "route disruption becoming balance-sheet friction",
+    leading: ["war-risk premiums", "blank sailings", "inventory days"],
+    failure: "route normalization and lower insurance premia persist for multiple cycles",
+  },
+  Manufacturing: {
+    baseRate: 60,
+    volatility: 58,
+    referenceClass: "industrial redundancy becoming a trust and qualification asset",
+    leading: ["supplier qualification", "subsidy conditions", "power reliability contracts"],
+    failure: "buyers reconcentrate capacity without pricing continuity risk",
+  },
+  Materials: {
+    baseRate: 58,
+    volatility: 64,
+    referenceClass: "material scarcity filtered through proof, processing, and consent",
+    leading: ["permitting velocity", "buyer provenance rules", "processing margins"],
+    failure: "substitution, recycling, or lower demand removes the strategic premium",
+  },
+  Robotics: {
+    baseRate: 55,
+    volatility: 61,
+    referenceClass: "automation adoption where work is repetitive and scarcity is measurable",
+    leading: ["service-network density", "insurance acceptance", "maintenance cost curves"],
+    failure: "human labour availability improves or robots remain too service-heavy",
+  },
+  Water: {
+    baseRate: 67,
+    volatility: 63,
+    referenceClass: "water stress coupling into power, food, and legitimacy",
+    leading: ["basin allocations", "reservoir and groundwater levels", "industrial water permits"],
+    failure: "durable governance reform or infrastructure buffers reduce allocation conflict",
+  },
+  default: {
+    baseRate: 56,
+    volatility: 58,
+    referenceClass: "weak-signal convergence across geography, institutions, and behavior",
+    leading: ["policy wording", "price behavior", "local operating data"],
+    failure: "official data and observed behavior stop moving in the same direction",
+  },
+};
+
+const predictionDomains = {
+  physical: ["heat", "water", "drought", "rainfall", "river", "snowpack", "storm", "fire", "cooling"],
+  capital: ["insurance", "credit", "capital", "premium", "price", "finance", "bond", "market"],
+  policy: ["policy", "regulation", "public", "rules", "permitting", "subsidy", "compliance"],
+  capacity: ["labour", "skills", "worker", "grid", "power", "housing", "storage", "capacity"],
+  security: ["security", "conflict", "defense", "sanctions", "sovereignty", "naval", "treaty"],
+  technology: ["AI", "automation", "robotics", "data", "compute", "semiconductor", "battery", "sensor"],
+  logistics: ["shipping", "route", "port", "corridor", "cable", "subsea", "freight", "cold-chain"],
+  legitimacy: ["trust", "consent", "legitimacy", "household", "community", "health", "migration"],
+};
+
+const sourceReliability = {
+  arXiv: 64,
+  Eurostat: 78,
+  FAOSTAT: 76,
+  GDELT: 56,
+  IEA: 78,
+  ILOSTAT: 74,
+  "NASA FIRMS": 76,
+  NOAA: 78,
+  "OECD AI": 75,
+  "OpenStreetMap Overpass": 63,
+  "UN Population": 78,
+  USGS: 77,
+  "V-Dem": 72,
+  "WHO GHO": 76,
+  "World Bank Indicators": 78,
+  "World Values Survey": 70,
+};
+
+const sourceGroups = {
+  arXiv: "research",
+  Eurostat: "official",
+  FAOSTAT: "official",
+  GDELT: "event stream",
+  IEA: "sector data",
+  ILOSTAT: "official",
+  "NASA FIRMS": "remote sensing",
+  NOAA: "physical data",
+  "OECD AI": "sector data",
+  "OpenStreetMap Overpass": "geography",
+  "UN Population": "official",
+  USGS: "geography",
+  "V-Dem": "institutional",
+  "WHO GHO": "official",
+  "World Bank Indicators": "official",
+  "World Values Survey": "survey",
+};
+
 const archetypeRules = [
   {
     name: "Chokepoint repricing",
     terms: ["shipping", "route", "port", "corridor", "cable", "subsea", "logistics"],
-    pressure: "security risk -> insurance language -> routing time -> working capital",
+    pressure: "security risk -> insurance wording -> route time -> working capital",
     hidden: "working-capital tolerance",
+    thesis:
+      "the cost first moves through contracts, inventory days, and risk language before it shows up as a simple shortage",
+    leading: ["insurance exclusions", "route persistence", "inventory days", "blank sailings"],
+    lagging: ["consumer prices", "formal route redesign", "new infrastructure announcements"],
+    failure: "insurance premia fall while routing normalizes for at least two reporting cycles",
   },
   {
     name: "Physical constraint",
     terms: ["water", "heat", "cooling", "drought", "rainfall", "river", "snowpack", "hydro"],
     pressure: "physical stress -> operating limits -> public policy -> asset repricing",
     hidden: "the point where environmental stress becomes an operating cost",
+    thesis:
+      "the forecast matters when a physical condition becomes a budget line, not just a climate headline",
+    leading: ["allocation rules", "utility peak-load data", "insurer wording", "operating-hour changes"],
+    lagging: ["migration statistics", "asset-price resets", "new zoning maps"],
+    failure: "buffers improve and price, policy, and operating behavior decouple from physical stress",
   },
   {
     name: "Capacity gap",
     terms: ["labour", "worker", "skills", "care", "staffing", "installer", "productivity"],
     pressure: "demographic pressure -> labour scarcity -> service reliability -> automation demand",
     hidden: "usable human capacity at the exact moment demand peaks",
+    thesis:
+      "the hidden shift is not unemployment; it is whether enough usable capacity exists in the exact place and hour demand appears",
+    leading: ["vacancy duration", "wage premia", "overtime and absenteeism", "automation procurement"],
+    lagging: ["headline unemployment", "national productivity data", "formal shortage declarations"],
+    failure: "work redesign or labour supply expands faster than the service bottleneck",
   },
   {
     name: "Resilience premium",
     terms: ["grid", "power", "microgrid", "battery", "outage", "energy", "infrastructure"],
     pressure: "reliability shock -> backup demand -> procurement change -> capital allocation",
     hidden: "credible fallback capacity",
+    thesis:
+      "buyers start paying for continuity and controllability, even when headline capacity looks adequate",
+    leading: ["backup procurement", "capacity-market prices", "interconnection queues", "outage recurrence"],
+    lagging: ["new central generation", "headline demand forecasts", "post-crisis policy packages"],
+    failure: "central reliability improves before users change procurement or financing behavior",
   },
   {
     name: "Trust bottleneck",
     terms: ["minerals", "materials", "lithium", "copper", "nickel", "carbon", "license", "consent"],
     pressure: "strategic demand -> permitting friction -> proof requirements -> supply reliability",
     hidden: "whether the supply story can survive public scrutiny",
+    thesis:
+      "volume is not enough when buyers, regulators, and communities require proof that the supply can be defended",
+    leading: ["permitting velocity", "traceability rules", "community benefit language", "buyer audits"],
+    lagging: ["mine output", "commodity price spikes", "national supply targets"],
+    failure: "substitution, cleaner processing, or local consent removes the credibility bottleneck",
   },
   {
     name: "Strategic optionality",
     terms: ["manufacturing", "redundancy", "defense", "nearshoring", "fabs", "supply"],
     pressure: "geopolitical uncertainty -> duplicated capacity -> qualification cycles -> pricing power",
     hidden: "time saved when concentrated assumptions fail",
+    thesis:
+      "the valuable asset is not spare capacity alone; it is already-qualified capacity that can be used before panic buying starts",
+    leading: ["qualification cycles", "supplier audits", "subsidy conditions", "dual-source contracts"],
+    lagging: ["completed factories", "trade statistics", "headline reshoring claims"],
+    failure: "buyers stop paying for redundancy and reconcentrate supply without disruption",
   },
   {
     name: "Institutional ambiguity",
     terms: ["governance", "arctic", "treaty", "sovereignty", "diplomacy", "security"],
     pressure: "ambiguous rules -> risk premium -> strategic positioning -> infrastructure investment",
     hidden: "who can act before rules become clear",
+    thesis:
+      "ambiguity itself becomes expensive because firms and states must buy options before institutions settle the rules",
+    leading: ["treaty language", "inspection disputes", "insurance wording", "dual-use infrastructure"],
+    lagging: ["formal rule changes", "new institutions", "resolved territorial claims"],
+    failure: "coordination becomes credible before option-value spending accelerates",
   },
 ];
 
@@ -1231,6 +1449,9 @@ function textForSignal(signal) {
     signal.implication,
     signal.rationale,
     signal.why,
+    signal.watch,
+    ...(signal.signals || []),
+    ...(signal.sources || []),
   ]
     .join(" ")
     .toLowerCase();
@@ -1245,79 +1466,255 @@ function parseHorizonMonths(horizon) {
 function inferArchetype(signal) {
   const text = textForSignal(signal);
   const match =
-    archetypeRules.find((rule) => rule.terms.some((term) => text.includes(term))) ||
+    archetypeRules.find((rule) => rule.terms.some((term) => includesTerm(text, term))) ||
     archetypeRules[0];
   return match;
 }
 
-function scoreSignal(signal, archetype) {
+function uniqueItems(items) {
+  return [...new Set(items.map((item) => item?.trim()).filter(Boolean))];
+}
+
+function sentence(value) {
+  const text = String(value || "").trim();
+  if (!text) return "";
+  return /[.!?]$/.test(text) ? text : `${text}.`;
+}
+
+function escapeRegExp(value) {
+  return String(value).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function includesTerm(text, term) {
+  const normalized = term.toLowerCase();
+  if (!/^[a-z0-9 ]+$/.test(normalized)) return text.includes(normalized);
+  return new RegExp(`(^|[^a-z0-9])${escapeRegExp(normalized)}(?=[^a-z0-9]|$)`).test(text);
+}
+
+function matchingTerms(text, terms) {
+  return terms.filter((term) => includesTerm(text, term));
+}
+
+function countMatches(text, terms) {
+  return matchingTerms(text, terms).length;
+}
+
+function categoryPriorFor(signal) {
+  return predictionCategoryPriors[signal.category] || predictionCategoryPriors.default;
+}
+
+function assessSourceMix(sources) {
+  const uniqueSources = uniqueItems(sources || []);
+  const reliability =
+    uniqueSources.reduce((sum, source) => sum + (sourceReliability[source] || 58), 0) /
+    Math.max(1, uniqueSources.length);
+  const groups = uniqueItems(uniqueSources.map((source) => sourceGroups[source] || "general"));
+  return {
+    depth: uniqueSources.length,
+    groups,
+    diversity: groups.length,
+    reliability: Math.round(reliability),
+  };
+}
+
+function inferDomainProfile(text) {
+  const active = Object.entries(predictionDomains)
+    .map(([domain, terms]) => ({
+      domain,
+      terms: matchingTerms(text, terms),
+    }))
+    .filter((entry) => entry.terms.length > 0);
+
+  return {
+    active: active.map((entry) => entry.domain),
+    count: active.length,
+    terms: uniqueItems(active.flatMap((entry) => entry.terms)),
+  };
+}
+
+function inferPredictionFeatures(signal, archetype) {
   const text = textForSignal(signal);
   const horizon = parseHorizonMonths(signal.horizon);
-  const domains = [
-    "policy",
+  const prior = categoryPriorFor(signal);
+  const sourceMix = assessSourceMix(signal.sources);
+  const domainProfile = inferDomainProfile(text);
+  const initialSignalStrength = signal.confidence ?? signal.impact ?? 58;
+  const signalLines = signal.signals || [];
+  const currentEventCount = countMatches(text, [
+    "current-event",
+    "reporting",
+    "premiums",
+    "queues",
+    "procurement",
+    "vacancy",
+    "outage",
+    "stress",
+    "spikes",
+  ]);
+  const structuralCount = countMatches(text, [
+    "structural",
+    "demographic",
+    "climate",
+    "capacity",
+    "dependency",
+    "constraint",
+    "exposure",
+    "fragility",
+    "reliability",
+  ]);
+  const frictionCount = countMatches(text, [
+    "bottleneck",
+    "scarcity",
+    "constraint",
+    "shortage",
+    "queue",
     "insurance",
-    "credit",
-    "labour",
-    "grid",
-    "water",
-    "heat",
-    "ports",
-    "security",
-    "power",
-    "housing",
-    "food",
-    "manufacturing",
-    "finance",
-  ].filter((term) => text.includes(term));
-  const sourceDepth = new Set(signal.sources || []).size;
-  const evidence = clamp(48 + sourceDepth * 9 + Math.min(signal.signals?.length || 0, 6) * 4, 0, 100);
-  const convergence = clamp(42 + domains.length * 7 + (text.includes("+") ? 8 : 0), 0, 100);
-  const timing = clamp(96 - horizon.min * 0.72 - horizon.max * 0.18, 24, 96);
-  const friction = clamp(
-    44 +
-      ["bottleneck", "scarcity", "constraint", "shortage", "queue", "insurance", "permitting", "capacity"]
-        .filter((term) => text.includes(term)).length *
-        10,
-    0,
-    100,
+    "permitting",
+    "capacity",
+    "trust",
+    "legitimacy",
+    "reliability",
+  ]);
+  const asymmetryCount = countMatches(text, [
+    "fragile",
+    "risk",
+    "stress",
+    "exposure",
+    "shock",
+    "withdrawal",
+    "volatility",
+    "disruption",
+    "contested",
+    "sensitivity",
+  ]);
+  const causalCount = countMatches(text, [
+    "because",
+    "converge",
+    "couples",
+    "connect",
+    "depends",
+    "turn",
+    "becomes",
+    "when",
+    "before",
+    "rather than",
+  ]);
+
+  const baseRate = clamp(
+    prior.baseRate +
+      (sourceMix.reliability - 62) * 0.16 +
+      sourceMix.diversity * 1.8 -
+      Math.max(0, horizon.max - 48) * 0.08,
+    28,
+    88,
   );
-  const asymmetry = clamp(
-    50 +
-      ["fragile", "risk", "stress", "exposure", "shock", "withdrawal", "volatility", "disruption"]
-        .filter((term) => text.includes(term)).length *
-        8,
-    0,
-    100,
+  const evidence = clamp(
+    28 + sourceMix.reliability * 0.33 + sourceMix.diversity * 5.5 + Math.min(signalLines.length, 7) * 4.2,
+    20,
+    96,
   );
-  const reversibility = clamp(88 - horizon.max * 0.25 + (text.includes("infrastructure") ? 9 : 0), 20, 92);
-  const novelty = clamp(54 + Math.min(signal.title.length, 64) * 0.3 + archetype.name.length * 0.35, 35, 92);
-  const disconfirmation = clamp(56 + (signal.watch ? 10 : 0) + sourceDepth * 4, 0, 100);
-  const score = Math.round(
-    evidence * 0.18 +
-      convergence * 0.2 +
-      timing * 0.14 +
-      friction * 0.17 +
-      asymmetry * 0.15 +
-      reversibility * 0.08 +
-      novelty * 0.04 +
-      disconfirmation * 0.04,
+  const weakSignalBurst = clamp(
+    24 +
+      initialSignalStrength * 0.42 +
+      currentEventCount * 5.5 +
+      (horizon.min <= 18 ? 7 : 0) +
+      (text.includes("watch") ? 4 : 0),
+    18,
+    94,
   );
+  const convergence = clamp(
+    34 +
+      domainProfile.count * 8.4 +
+      sourceMix.diversity * 4.8 +
+      structuralCount * 3.5 +
+      (text.includes("+") ? 5 : 0),
+    22,
+    98,
+  );
+  const causalTension = clamp(36 + causalCount * 4.8 + structuralCount * 4.2 + domainProfile.count * 2.8, 24, 96);
+  const friction = clamp(38 + frictionCount * 7.4 + (archetype.terms.some((term) => includesTerm(text, term)) ? 8 : 0), 22, 98);
+  const asymmetry = clamp(42 + asymmetryCount * 6.5 + prior.volatility * 0.18 + domainProfile.count * 2.2, 24, 96);
+  const leadLag = clamp(
+    34 +
+      Math.min(buildLeadingIndicators(signal, archetype).length, 4) * 8 +
+      Math.min(archetype.lagging.length, 4) * 4 +
+      (horizon.max >= 36 ? 6 : 0),
+    22,
+    94,
+  );
+  const timing = clamp(94 - horizon.min * 0.52 - horizon.max * 0.1 + weakSignalBurst * 0.08, 24, 96);
+  const falsifiability = clamp(
+    42 + Math.min(buildDisconfirmers(signal, archetype).length, 3) * 10 + sourceMix.depth * 3.8,
+    24,
+    96,
+  );
+  const novelty = clamp(42 + countMatches(text, ["hidden", "non-obvious", "second-order", "quiet", "before"]) * 7 + archetype.name.length * 0.4, 26, 92);
+  const uncertainty = clamp(
+    94 -
+      evidence * 0.22 -
+      convergence * 0.2 -
+      falsifiability * 0.18 -
+      baseRate * 0.12 +
+      Math.max(0, horizon.max - 36) * 0.26 +
+      prior.volatility * 0.1,
+    12,
+    74,
+  );
+
   return {
-    evidence: Math.round(evidence),
-    convergence: Math.round(convergence),
-    timing: Math.round(timing),
-    friction: Math.round(friction),
-    asymmetry: Math.round(asymmetry),
-    reversibility: Math.round(reversibility),
-    novelty: Math.round(novelty),
-    disconfirmation: Math.round(disconfirmation),
+    horizon,
+    prior,
+    sourceMix,
+    domainProfile,
+    baseRate,
+    evidence,
+    weakSignalBurst,
+    convergence,
+    causalTension,
+    friction,
+    asymmetry,
+    leadLag,
+    timing,
+    falsifiability,
+    novelty,
+    uncertainty,
+  };
+}
+
+function scoreSignal(signal, archetype) {
+  const features = inferPredictionFeatures(signal, archetype);
+  const weightedScore = Object.entries(predictionEngineConfig.weights).reduce(
+    (total, [dimension, weight]) => total + features[dimension] * weight,
+    0,
+  );
+  const calibrationPenalty = features.uncertainty * 0.08;
+  const noveltyLift = features.novelty * 0.025;
+  const score = Math.round(clamp(weightedScore - calibrationPenalty + noveltyLift, 28, 92));
+  return {
+    baseRate: Math.round(features.baseRate),
+    evidence: Math.round(features.evidence),
+    weakSignalBurst: Math.round(features.weakSignalBurst),
+    convergence: Math.round(features.convergence),
+    causalTension: Math.round(features.causalTension),
+    friction: Math.round(features.friction),
+    asymmetry: Math.round(features.asymmetry),
+    leadLag: Math.round(features.leadLag),
+    timing: Math.round(features.timing),
+    falsifiability: Math.round(features.falsifiability),
+    novelty: Math.round(features.novelty),
+    uncertainty: Math.round(features.uncertainty),
+    sourceDiversity: features.sourceMix.diversity,
+    sourceReliability: features.sourceMix.reliability,
+    domains: features.domainProfile.active,
+    referenceClass: features.prior.referenceClass,
     score,
   };
 }
 
-function convictionBand(score, horizon) {
-  if (score >= 78 && horizon.min <= 18) return "Near-term pressure";
-  if (score >= 74) return "High-conviction watch";
+function convictionBand(score, horizon, uncertainty = 50) {
+  if (score >= 80 && uncertainty <= 38 && horizon.min <= 18) return "Near-term inflection";
+  if (score >= 76 && uncertainty <= 48) return "High-conviction watch";
+  if (score >= 72 && uncertainty > 48) return "Strong signal, wide spread";
   if (score >= 66) return "Structured watch";
   return "Early signal";
 }
@@ -1330,22 +1727,71 @@ function buildLeadingIndicators(signal, archetype) {
     .map((part) => part.trim().replace(/\.$/, ""))
     .filter(Boolean)
     .slice(0, 4);
-  if (parts.length >= 3) return parts;
-  return [
+  return uniqueItems([
+    ...parts,
+    ...(categoryPriorFor(signal).leading || []),
+    ...(archetype.leading || []),
     `${archetype.hidden} becoming visible in procurement language`,
-    "policy changes arriving before headline demand shifts",
-    "local price, insurance, or operating data confirming the constraint",
-  ];
+  ]).slice(0, 4);
 }
 
 function buildDisconfirmers(signal, archetype) {
   const category = categorySignalAdditions[signal.category] || categorySignalAdditions.default;
   const disconfirmation = category.find((item) => item.startsWith("Disconfirmation watch:"));
   const clean = disconfirmation?.replace("Disconfirmation watch:", "").trim();
-  if (clean) return [clean];
-  return [
+  return uniqueItems([
+    clean,
+    archetype.failure,
+    categoryPriorFor(signal).failure,
     `the ${archetype.hidden} constraint eases for two reporting cycles`,
-    "policy, market pricing, and local operating behavior stop moving together",
+  ]).slice(0, 3);
+}
+
+function topScoreDimensions(scores) {
+  const dimensions = [
+    ["base-rate prior", scores.baseRate],
+    ["evidence quality", scores.evidence],
+    ["weak-signal burst", scores.weakSignalBurst],
+    ["cross-domain convergence", scores.convergence],
+    ["causal tension", scores.causalTension],
+    ["friction", scores.friction],
+    ["asymmetry", scores.asymmetry],
+    ["lead/lag clarity", scores.leadLag],
+    ["timing", scores.timing],
+    ["falsifiability", scores.falsifiability],
+  ];
+  return dimensions.sort((a, b) => b[1] - a[1]);
+}
+
+function buildScenarioWeights(scores) {
+  let base = Math.round(clamp(32 + scores.score * 0.34 + scores.baseRate * 0.12 - scores.uncertainty * 0.1, 38, 70));
+  let upside = Math.round(
+    clamp(15 + scores.asymmetry * 0.1 + scores.weakSignalBurst * 0.08 + scores.friction * 0.04 - scores.uncertainty * 0.06, 14, 34),
+  );
+  let downside = 100 - base - upside;
+  if (downside < 10) {
+    const adjustment = 10 - downside;
+    base -= Math.ceil(adjustment * 0.65);
+    upside -= Math.floor(adjustment * 0.35);
+    downside = 10;
+  }
+  if (downside > 42) {
+    const adjustment = downside - 42;
+    base += Math.ceil(adjustment * 0.7);
+    upside += Math.floor(adjustment * 0.3);
+    downside = 42;
+  }
+  return { base, upside, downside };
+}
+
+function buildEvidenceStack(signal, model) {
+  const domains = model.scores.domains.length ? model.scores.domains.join(", ") : "single-domain signal";
+  return [
+    `Reference class: ${model.scores.referenceClass}; prior ${model.scores.baseRate}/100 before weak-signal updates.`,
+    `Signal burst: ${model.scores.weakSignalBurst}/100 from current reporting, watch terms, and near-term timing pressure.`,
+    `Convergence: ${model.scores.convergence}/100 across ${domains}; source mix spans ${model.scores.sourceDiversity} evidence types.`,
+    `Causal test: ${model.archetype} maps ${model.pressurePath}`,
+    `Falsification: ${model.disconfirmers[0]}`,
   ];
 }
 
@@ -1353,28 +1799,42 @@ function buildPredictionModel(signal, readout) {
   const archetype = inferArchetype(signal);
   const scores = scoreSignal(signal, archetype);
   const horizon = parseHorizonMonths(signal.horizon);
-  const band = convictionBand(scores.score, horizon);
+  const band = convictionBand(scores.score, horizon, scores.uncertainty);
   const leadingIndicators = buildLeadingIndicators(signal, archetype);
   const disconfirmers = buildDisconfirmers(signal, archetype);
-  const baseCase = `${signal.summary} The model reads this as ${archetype.name.toLowerCase()}, not a simple continuation trend.`;
-  const upsideCase = `If early movement appears in ${leadingIndicators[0]}, the signal can become investable before the wider market treats it as consensus.`;
-  const downsideCase = `The read weakens if ${disconfirmers[0]}`;
-
-  return {
+  const scenarioWeights = buildScenarioWeights(scores);
+  const [primaryDimension, secondaryDimension, thirdDimension] = topScoreDimensions(scores);
+  const region = signal.region.replace(/\s*\/\s*/g, " / ");
+  const baseCase = `${scenarioWeights.base}% base weight: ${sentence(signal.summary)} In ${region}, operating read: ${sentence(signal.implication)} Edge: ${archetype.thesis}.`;
+  const upsideCase = `${scenarioWeights.upside}% acceleration weight: if ${leadingIndicators[0]}, the signal can move from watchlist to operating assumption before consensus data catches up.`;
+  const downsideCase = `${scenarioWeights.downside}% break weight: the forecast should be downgraded if ${disconfirmers[0]}`;
+  const pressurePath = `${archetype.pressure} -> lagging confirmation: ${archetype.lagging[0]}.`;
+  const nonObviousRead = `${readout.surprise} Model edge: ${archetype.hidden} is being treated as the variable that can move first.`;
+  const confidenceReason = `${predictionEngineConfig.version} score ${scores.score}/100: ${primaryDimension[0]} ${primaryDimension[1]}, ${secondaryDimension[0]} ${secondaryDimension[1]}, ${thirdDimension[0]} ${thirdDimension[1]}; uncertainty ${scores.uncertainty}/100.`;
+  const executiveRead = `${region}. ${band}: ${archetype.hidden} is the hinge variable. ${sentence(signal.summary)}`;
+  const model = {
+    version: predictionEngineConfig.version,
+    generatedAt: predictionEngineConfig.generatedAt,
     score: scores.score,
     scores,
+    scenarioWeights,
     convictionBand: band,
     archetype: archetype.name,
     hiddenVariable: archetype.hidden,
-    pressurePath: archetype.pressure,
+    pressurePath,
     leadingIndicators,
     disconfirmers,
     baseCase,
     upsideCase,
     downsideCase,
-    nonObviousRead: readout.surprise,
-    confidenceReason: `Score ${scores.score}/100: convergence ${scores.convergence}, timing ${scores.timing}, friction ${scores.friction}, asymmetry ${scores.asymmetry}.`,
+    nonObviousRead,
+    confidenceReason,
+    executiveRead,
+    automationContract: predictionEngineConfig.nightlyInputContract,
   };
+  model.evidenceStack = buildEvidenceStack(signal, model);
+
+  return model;
 }
 
 for (const signal of signals) {
@@ -2982,16 +3442,15 @@ function updateCard(signal) {
 function updateBrief(signal) {
   const model = signal.model;
   fields.briefTitle.textContent = signal.title;
-  fields.briefDeck.textContent = `${signal.region}. ${model.baseCase}`;
+  fields.briefDeck.textContent = model.executiveRead;
   fields.rationale.textContent = signal.rationale;
   fields.why.textContent = model.pressurePath;
   fields.briefSurprise.textContent = model.nonObviousRead;
   fields.briefWatch.textContent = model.leadingIndicators.join("; ");
   fields.briefDisconfirmers.textContent = model.disconfirmers.join("; ");
-  fields.briefScenarioSpread.textContent =
-    `Base: ${model.baseCase} Upside: ${model.upsideCase} Downside: ${model.downsideCase}`;
+  fields.briefScenarioSpread.textContent = `${model.baseCase} ${model.upsideCase} ${model.downsideCase}`;
   fields.signalList.replaceChildren(
-    ...signal.signals.map((signal) => {
+    ...(model.evidenceStack || signal.signals).map((signal) => {
       const item = document.createElement("li");
       item.textContent = signal;
       return item;
@@ -3266,5 +3725,27 @@ window.__futureSignalsState = () => ({
   reliefReady: earthRenderer.ready,
   reliefSize: earthRenderer.ready ? "webgl" : "0",
   detailedAssetsStarted,
+});
+window.__futurePredictionEngineState = () => ({
+  version: predictionEngineConfig.version,
+  generatedAt: predictionEngineConfig.generatedAt,
+  cadenceTarget: predictionEngineConfig.cadenceTarget,
+  dimensions: Object.keys(predictionEngineConfig.weights),
+  nightlyInputContract: predictionEngineConfig.nightlyInputContract,
+  selected: {
+    id: selectedSignal.id,
+    score: selectedSignal.model.score,
+    uncertainty: selectedSignal.model.scores.uncertainty,
+    scenarioWeights: selectedSignal.model.scenarioWeights,
+    archetype: selectedSignal.model.archetype,
+    referenceClass: selectedSignal.model.scores.referenceClass,
+  },
+  scoreRange: signals.reduce(
+    (range, signal) => ({
+      min: Math.min(range.min, signal.model.score),
+      max: Math.max(range.max, signal.model.score),
+    }),
+    { min: 100, max: 0 },
+  ),
 });
 requestAnimationFrame(animate);
