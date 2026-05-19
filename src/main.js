@@ -2255,22 +2255,25 @@ function strokeProjectedLine(points, metrics, options = {}) {
 }
 
 function drawGraticule(metrics) {
+  if (earthRenderer.ready) return;
+
   ctx.save();
   ctx.beginPath();
   ctx.arc(metrics.cx, metrics.cy, metrics.r, 0, Math.PI * 2);
   ctx.clip();
 
   for (const line of graticuleLatLines) {
+    if (line.lat === 0) continue;
     strokeProjectedLine(line.points, metrics, {
-      color: line.lat === 0 ? "rgba(198, 33, 31, 0.16)" : "rgba(20, 24, 28, 0.075)",
-      width: line.lat === 0 ? 1.1 : 0.75,
+      color: "rgba(20, 24, 28, 0.045)",
+      width: 0.55,
     });
   }
 
   for (const line of graticuleLonLines) {
     strokeProjectedLine(line.points, metrics, {
-      color: line.lon % 90 === 0 ? "rgba(20, 24, 28, 0.11)" : "rgba(20, 24, 28, 0.052)",
-      width: line.lon % 90 === 0 ? 1 : 0.7,
+      color: "rgba(20, 24, 28, 0.035)",
+      width: 0.5,
     });
   }
   ctx.restore();
@@ -2535,7 +2538,7 @@ function drawLabel(signal, projected, isSelected, isHovered, boxes) {
   }
 
   ctx.globalAlpha = shouldForce ? 1 : 0.72;
-  ctx.fillStyle = "rgba(255, 255, 255, 0.74)";
+  ctx.fillStyle = "rgba(255, 255, 255, 0.9)";
   ctx.strokeStyle = kindColor(signal, shouldForce ? 0.42 : 0.18, shouldForce);
   ctx.lineWidth = 1;
   roundRect(ctx, box.x, box.y, box.w, box.h, 10);
