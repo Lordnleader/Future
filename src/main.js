@@ -2622,6 +2622,14 @@ function project(lat, lon, metrics = globeMetrics()) {
   };
 }
 
+function breaksProjectedSegment(point, previousPoint, lat, lon, previousLat, previousLon, metrics) {
+  if (!previousPoint || previousLat === null || previousLon === null) return false;
+  if (Math.abs(lat - previousLat) > 34 || Math.abs(shortestAngle(previousLon, lon)) > 42) {
+    return true;
+  }
+  return Math.hypot(point.x - previousPoint.x, point.y - previousPoint.y) > metrics.r * 0.42;
+}
+
 function drawBackground(now) {
   ctx.clearRect(0, 0, width, height);
 }
@@ -2698,18 +2706,26 @@ function strokeProjectedLine(points, metrics, options = {}) {
   ctx.beginPath();
 
   let drawing = false;
+  let previousPoint = null;
+  let previousLat = null;
+  let previousLon = null;
   for (const [lat, lon] of points) {
     const point = project(lat, lon, metrics);
-    if (!point.visible) {
+    if (
+      !point.visible ||
+      breaksProjectedSegment(point, previousPoint, lat, lon, previousLat, previousLon, metrics)
+    ) {
       drawing = false;
-      continue;
     }
-    if (!drawing) {
+    if (point.visible && !drawing) {
       ctx.moveTo(point.x, point.y);
       drawing = true;
-    } else {
+    } else if (point.visible) {
       ctx.lineTo(point.x, point.y);
     }
+    previousPoint = point;
+    previousLat = lat;
+    previousLon = lon;
   }
   ctx.stroke();
   ctx.restore();
@@ -2746,13 +2762,14 @@ function buildRingPath(rings, metrics, options = {}) {
   for (const ring of rings) {
     let drawing = false;
     let segmentPoints = 0;
+    let segmentWasClipped = false;
     let lastLat = null;
     let lastLon = null;
+    let lastPoint = null;
     for (const [lat, lon] of ring) {
       const point = project(lat, lon, metrics);
       const jumps =
-        lastLat !== null &&
-        (Math.abs(lat - lastLat) > 34 || Math.abs(shortestAngle(lastLon, lon)) > 42);
+        breaksProjectedSegment(point, lastPoint, lat, lon, lastLat, lastLon, metrics);
       if (point.visible && point.z > (options.minZ ?? -0.012) && !jumps) {
         if (!drawing) {
           path.moveTo(point.x, point.y);
@@ -2763,17 +2780,19 @@ function buildRingPath(rings, metrics, options = {}) {
           segmentPoints += 1;
         }
       } else {
-        if (drawing && options.closeSegments && segmentPoints > 2) {
+        if (drawing && options.closeSegments && !segmentWasClipped && segmentPoints > 2) {
           path.closePath();
           traced += 1;
         }
         drawing = false;
         segmentPoints = 0;
+        segmentWasClipped = true;
       }
       lastLat = lat;
       lastLon = lon;
+      lastPoint = point;
     }
-    if (drawing && options.closeSegments && segmentPoints > 2) {
+    if (drawing && options.closeSegments && !segmentWasClipped && segmentPoints > 2) {
       path.closePath();
       traced += 1;
     }
@@ -2783,9 +2802,7 @@ function buildRingPath(rings, metrics, options = {}) {
 
 function prepareFramePaths(metrics) {
   framePaths = {
-    landFill: earthRenderer.ready
-      ? null
-      : buildRingPath(landRings, metrics, { closeSegments: true, minZ: -0.018 }).path,
+    landFill: null,
     coast: buildRingPath(landRings, metrics, { closeSegments: false, minZ: -0.006 }).path,
     countries:
       countryRings.length > 0
@@ -2909,17 +2926,7 @@ function drawArc(points, color, alpha = 0.3, widthValue = 1) {
 }
 
 function drawLinks() {
-  if (mode !== "selected" && mode !== "brief") return;
-
-  for (const link of ambientLinkRefs) {
-    drawArc(link.points, "rgba(46, 50, 55, 0.28)", 0.08, 0.58);
-  }
-
-  for (const link of ambientLinkRefs) {
-    if (link.from.id !== selectedSignal.id && link.to.id !== selectedSignal.id) continue;
-    const color = "rgba(198, 33, 31, 0.66)";
-    drawArc(link.points, color, 0.44, 1.25);
-  }
+  return;
 }
 
 function kindColor(signal, alpha = 1, active = false) {
@@ -3126,18 +3133,26 @@ function projectLanding(lat, lon, metrics) {
 function strokeLandingLine(points, metrics, color, widthValue = 0.7) {
   landingCtx.beginPath();
   let drawing = false;
+  let previousPoint = null;
+  let previousLat = null;
+  let previousLon = null;
   for (const [lat, lon] of points) {
     const point = projectLanding(lat, lon, metrics);
-    if (!point.visible) {
+    if (
+      !point.visible ||
+      breaksProjectedSegment(point, previousPoint, lat, lon, previousLat, previousLon, metrics)
+    ) {
       drawing = false;
-      continue;
     }
-    if (!drawing) {
+    if (point.visible && !drawing) {
       landingCtx.moveTo(point.x, point.y);
       drawing = true;
-    } else {
+    } else if (point.visible) {
       landingCtx.lineTo(point.x, point.y);
     }
+    previousPoint = point;
+    previousLat = lat;
+    previousLon = lon;
   }
   landingCtx.strokeStyle = color;
   landingCtx.lineWidth = widthValue;
@@ -3186,22 +3201,41 @@ function drawLandingLand(metrics) {
   landingCtx.beginPath();
   for (const ring of landMasses) {
     let drawing = false;
-    let visibleCount = 0;
+    let segmentPoints = 0;
+    let clipped = false;
+    const ringPath = [];
+    let lastLat = null;
+    let lastLon = null;
+    let lastPoint = null;
     for (const [lat, lon] of ring) {
       const point = projectLanding(lat, lon, metrics);
-      if (point.visible && point.z > -0.015) {
+      const jumps = breaksProjectedSegment(point, lastPoint, lat, lon, lastLat, lastLon, metrics);
+      if (point.visible && point.z > -0.015 && !jumps) {
         if (!drawing) {
-          landingCtx.moveTo(point.x, point.y);
           drawing = true;
+          segmentPoints = 1;
         } else {
-          landingCtx.lineTo(point.x, point.y);
+          segmentPoints += 1;
         }
-        visibleCount += 1;
+        ringPath.push(point);
       } else if (drawing) {
         drawing = false;
+        clipped = true;
+        segmentPoints = 0;
+      } else {
+        clipped = true;
       }
+      lastLat = lat;
+      lastLon = lon;
+      lastPoint = point;
     }
-    if (visibleCount > 3) landingCtx.closePath();
+    if (drawing && !clipped && segmentPoints > 3 && ringPath.length > 3) {
+      landingCtx.moveTo(ringPath[0].x, ringPath[0].y);
+      for (const point of ringPath.slice(1)) {
+        landingCtx.lineTo(point.x, point.y);
+      }
+      landingCtx.closePath();
+    }
   }
   landingCtx.fillStyle = landGradient;
   landingCtx.fill();

@@ -36,3 +36,18 @@ The long-term nightly generator should emit the same contract the page already e
 The site also exposes `window.__futurePredictionEngineState()` for QA so a future 1am
 automation can verify version, score range, scenario weights, selected archetype, and
 reference class after generation.
+
+## Nightly Signal Data
+
+The first live-data scaffold is in `scripts/generate-nightly-signals.js`. It runs
+with plain Node, needs no npm install, and writes `data/live-signal-candidates.json`.
+
+```bash
+node scripts/generate-nightly-signals.js --dry-run
+node scripts/generate-nightly-signals.js --live
+```
+
+GitHub Actions is configured in `.github/workflows/nightly-signals.yml` to run the
+generator nightly and commit changed signal data. See `docs/live-data-platform.md`
+for the source registry, optional API keys, and the path from candidate signals to
+fully data-backed predictions.
