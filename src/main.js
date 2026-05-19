@@ -1645,14 +1645,15 @@ function createEarthRenderer(target) {
         float relief = smoothstep(0.018, 0.55, h) * land;
         vec3 lightDir = normalize(vec3(-0.42, 0.36, 0.82));
         float light = clamp(dot(normalize(vNormal), lightDir) * 0.48 + 0.58, 0.0, 1.0);
-        float limb = smoothstep(0.0, 0.68, vZ);
+        float limb = smoothstep(0.0, 0.5, vZ);
+        float reliefDepth = mix(0.72, 1.0, limb);
         vec3 ocean = mix(vec3(0.985, 0.985, 0.965), vec3(0.90, 0.94, 0.93), 1.0 - light);
         vec3 landBase = mix(vec3(0.95, 0.955, 0.935), vec3(0.70, 0.76, 0.75), 1.0 - light);
         vec3 color = mix(ocean, landBase, land);
-        color -= vec3(0.32, 0.34, 0.34) * relief * 0.34;
-        color -= vec3(0.46, 0.47, 0.45) * ridge * 0.24;
-        color += vec3(0.05, 0.05, 0.04) * max(0.0, slope) * land;
-        float alpha = 0.96 * limb;
+        color -= vec3(0.32, 0.34, 0.34) * relief * 0.34 * reliefDepth;
+        color -= vec3(0.46, 0.47, 0.45) * ridge * 0.24 * reliefDepth;
+        color += vec3(0.05, 0.05, 0.04) * max(0.0, slope) * land * reliefDepth;
+        float alpha = mix(0.62, 0.96, limb);
         gl_FragColor = vec4(color, alpha);
       }
     `,
