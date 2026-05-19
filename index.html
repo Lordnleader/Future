@@ -14,33 +14,12 @@
       href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./src/styles.css?v=20260515-landing1" />
+    <link rel="stylesheet" href="./src/styles.css?v=20260519-rescue1" />
   </head>
   <body>
     <main class="app-shell" data-mode="landing">
       <section class="landing" aria-label="Future signals landing">
-        <img
-          class="landing-image"
-          src="./assets/landing-mountains-clean.jpg"
-          alt=""
-          aria-hidden="true"
-        />
-        <div class="landing-graphics" aria-hidden="true">
-          <span class="landing-readout readout-top">N 45.8321 / E 6.8656</span>
-          <span class="landing-readout readout-left">PATTERN INDEX</span>
-          <span class="landing-readout readout-right">SURFACE SIGNAL</span>
-          <span class="landing-readout readout-bottom">RANGE 2.4KM / MODE ACTIVE</span>
-          <span class="landing-node node-a"></span>
-          <span class="landing-node node-b"></span>
-          <span class="landing-node node-c"></span>
-          <span class="landing-node node-d"></span>
-          <span class="landing-vector vector-a"></span>
-          <span class="landing-vector vector-b"></span>
-          <span class="landing-vector vector-c"></span>
-          <span class="landing-frame frame-a"></span>
-          <span class="landing-frame frame-b"></span>
-        </div>
-        <canvas class="landing-terrain" id="terrainCanvas" aria-hidden="true"></canvas>
+        <canvas class="landing-globe" id="landingGlobeCanvas" aria-hidden="true"></canvas>
         <p class="landing-kicker">EVERYTHING EXISTS IN PATTERNS</p>
         <button class="enter-button" id="enterButton" type="button">
           PREDICT THE FUTURE
@@ -64,7 +43,7 @@
             <div class="card-rule" aria-hidden="true"></div>
             <div class="card-meta">
               <span class="tag" id="cardKind">SIGNAL</span>
-              <span class="tag tag-muted" id="cardConfidence">CONFIDENCE 72</span>
+              <span class="tag tag-muted" id="cardConfidence">HIGH-CONVICTION WATCH</span>
             </div>
             <p class="card-region" id="cardRegion">GLOBAL / SIGNAL CONVERGENCE</p>
             <h1 id="cardTitle">Distributed Resilience Becomes More Valuable</h1>
@@ -80,10 +59,17 @@
               </p>
             </div>
             <div class="surprise-block">
-              <span>Non-obvious read</span>
+              <span>Hidden variable</span>
               <p id="cardSurprise">
                 The important signal may be the second-order behavior that
                 becomes rational before the headline trend is obvious.
+              </p>
+            </div>
+            <div class="model-read">
+              <span>Model read</span>
+              <p id="cardModelRead">
+                Convergence, timing, friction, and disconfirmation are being
+                weighed together.
               </p>
             </div>
             <dl class="signal-stats">
@@ -92,12 +78,12 @@
                 <dd id="cardHorizon">18-36 months</dd>
               </div>
               <div>
-                <dt>Signals</dt>
-                <dd id="cardSignals">74</dd>
+                <dt>Conviction</dt>
+                <dd id="cardConviction">Watchlist</dd>
               </div>
               <div>
-                <dt>Category</dt>
-                <dd id="cardCategory">Infrastructure</dd>
+                <dt>Archetype</dt>
+                <dd id="cardArchetype">Bottleneck</dd>
               </div>
             </dl>
             <div class="card-actions">
@@ -111,6 +97,7 @@
           </aside>
 
           <section class="globe-stage" aria-label="Interactive future signals globe">
+            <canvas id="earthCanvas" aria-hidden="true"></canvas>
             <canvas id="globeCanvas"></canvas>
             <div class="globe-vignette" aria-hidden="true"></div>
             <div class="scanline" aria-hidden="true"></div>
@@ -149,12 +136,12 @@
             </article>
 
             <article class="brief-panel">
-              <p class="panel-label">Signal convergence</p>
+              <p class="panel-label">Evidence stack</p>
               <ol class="signal-list" id="signalList"></ol>
             </article>
 
             <article class="brief-panel">
-              <p class="panel-label">Why it matters</p>
+              <p class="panel-label">Pressure path</p>
               <p id="briefWhy">
                 The useful question is not whether one event dominates the
                 future, but whether multiple weak signals are making a
@@ -171,7 +158,7 @@
             </article>
 
             <article class="brief-panel">
-              <p class="panel-label">Watch for</p>
+              <p class="panel-label">Leading indicators</p>
               <p id="briefWatch">
                 Watch for confirming and disconfirming signals before treating
                 this as a durable direction of travel.
@@ -179,7 +166,22 @@
             </article>
 
             <article class="brief-panel">
-              <p class="panel-label">Source layer</p>
+              <p class="panel-label">What would prove this wrong</p>
+              <p id="briefDisconfirmers">
+                Watch for durable signals that reverse the pressure path.
+              </p>
+            </article>
+
+            <article class="brief-panel">
+              <p class="panel-label">Scenario spread</p>
+              <p id="briefScenarioSpread">
+                Base, upside, and downside cases are derived from the signal
+                model.
+              </p>
+            </article>
+
+            <article class="brief-panel">
+              <p class="panel-label">Evidence sources</p>
               <ul class="source-list" id="sourceList"></ul>
             </article>
           </div>
@@ -187,16 +189,16 @@
           <div class="method-strip">
             <span>METHODOLOGY</span>
             <p>
-              The system reads current-event clustering, structural context,
-              and official geographic or institutional signals together. A signal
-              is presented as a direction of travel, not as financial advice or
-              a single-headline conclusion.
+              The system uses local deterministic scoring across convergence,
+              timing, asymmetry, friction, reversibility, and disconfirmation.
+              A signal is presented as a direction of travel, not as financial
+              advice or a single-headline conclusion.
             </p>
           </div>
         </div>
       </section>
     </main>
 
-    <script type="module" src="./src/main.js?v=20260515-landing1"></script>
+    <script type="module" src="./src/main.js?v=20260519-rescue1"></script>
   </body>
 </html>

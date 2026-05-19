@@ -1177,6 +1177,206 @@ const signalReadouts = {
   },
 };
 
+const archetypeRules = [
+  {
+    name: "Chokepoint repricing",
+    terms: ["shipping", "route", "port", "corridor", "cable", "subsea", "logistics"],
+    pressure: "security risk -> insurance language -> routing time -> working capital",
+    hidden: "working-capital tolerance",
+  },
+  {
+    name: "Physical constraint",
+    terms: ["water", "heat", "cooling", "drought", "rainfall", "river", "snowpack", "hydro"],
+    pressure: "physical stress -> operating limits -> public policy -> asset repricing",
+    hidden: "the point where environmental stress becomes an operating cost",
+  },
+  {
+    name: "Capacity gap",
+    terms: ["labour", "worker", "skills", "care", "staffing", "installer", "productivity"],
+    pressure: "demographic pressure -> labour scarcity -> service reliability -> automation demand",
+    hidden: "usable human capacity at the exact moment demand peaks",
+  },
+  {
+    name: "Resilience premium",
+    terms: ["grid", "power", "microgrid", "battery", "outage", "energy", "infrastructure"],
+    pressure: "reliability shock -> backup demand -> procurement change -> capital allocation",
+    hidden: "credible fallback capacity",
+  },
+  {
+    name: "Trust bottleneck",
+    terms: ["minerals", "materials", "lithium", "copper", "nickel", "carbon", "license", "consent"],
+    pressure: "strategic demand -> permitting friction -> proof requirements -> supply reliability",
+    hidden: "whether the supply story can survive public scrutiny",
+  },
+  {
+    name: "Strategic optionality",
+    terms: ["manufacturing", "redundancy", "defense", "nearshoring", "fabs", "supply"],
+    pressure: "geopolitical uncertainty -> duplicated capacity -> qualification cycles -> pricing power",
+    hidden: "time saved when concentrated assumptions fail",
+  },
+  {
+    name: "Institutional ambiguity",
+    terms: ["governance", "arctic", "treaty", "sovereignty", "diplomacy", "security"],
+    pressure: "ambiguous rules -> risk premium -> strategic positioning -> infrastructure investment",
+    hidden: "who can act before rules become clear",
+  },
+];
+
+function textForSignal(signal) {
+  return [
+    signal.title,
+    signal.region,
+    signal.category,
+    signal.summary,
+    signal.implication,
+    signal.rationale,
+    signal.why,
+  ]
+    .join(" ")
+    .toLowerCase();
+}
+
+function parseHorizonMonths(horizon) {
+  const matches = String(horizon).match(/\d+/g)?.map(Number) || [36];
+  if (matches.length === 1) return { min: matches[0], max: matches[0] };
+  return { min: Math.min(matches[0], matches[1]), max: Math.max(matches[0], matches[1]) };
+}
+
+function inferArchetype(signal) {
+  const text = textForSignal(signal);
+  const match =
+    archetypeRules.find((rule) => rule.terms.some((term) => text.includes(term))) ||
+    archetypeRules[0];
+  return match;
+}
+
+function scoreSignal(signal, archetype) {
+  const text = textForSignal(signal);
+  const horizon = parseHorizonMonths(signal.horizon);
+  const domains = [
+    "policy",
+    "insurance",
+    "credit",
+    "labour",
+    "grid",
+    "water",
+    "heat",
+    "ports",
+    "security",
+    "power",
+    "housing",
+    "food",
+    "manufacturing",
+    "finance",
+  ].filter((term) => text.includes(term));
+  const sourceDepth = new Set(signal.sources || []).size;
+  const evidence = clamp(48 + sourceDepth * 9 + Math.min(signal.signals?.length || 0, 6) * 4, 0, 100);
+  const convergence = clamp(42 + domains.length * 7 + (text.includes("+") ? 8 : 0), 0, 100);
+  const timing = clamp(96 - horizon.min * 0.72 - horizon.max * 0.18, 24, 96);
+  const friction = clamp(
+    44 +
+      ["bottleneck", "scarcity", "constraint", "shortage", "queue", "insurance", "permitting", "capacity"]
+        .filter((term) => text.includes(term)).length *
+        10,
+    0,
+    100,
+  );
+  const asymmetry = clamp(
+    50 +
+      ["fragile", "risk", "stress", "exposure", "shock", "withdrawal", "volatility", "disruption"]
+        .filter((term) => text.includes(term)).length *
+        8,
+    0,
+    100,
+  );
+  const reversibility = clamp(88 - horizon.max * 0.25 + (text.includes("infrastructure") ? 9 : 0), 20, 92);
+  const novelty = clamp(54 + Math.min(signal.title.length, 64) * 0.3 + archetype.name.length * 0.35, 35, 92);
+  const disconfirmation = clamp(56 + (signal.watch ? 10 : 0) + sourceDepth * 4, 0, 100);
+  const score = Math.round(
+    evidence * 0.18 +
+      convergence * 0.2 +
+      timing * 0.14 +
+      friction * 0.17 +
+      asymmetry * 0.15 +
+      reversibility * 0.08 +
+      novelty * 0.04 +
+      disconfirmation * 0.04,
+  );
+  return {
+    evidence: Math.round(evidence),
+    convergence: Math.round(convergence),
+    timing: Math.round(timing),
+    friction: Math.round(friction),
+    asymmetry: Math.round(asymmetry),
+    reversibility: Math.round(reversibility),
+    novelty: Math.round(novelty),
+    disconfirmation: Math.round(disconfirmation),
+    score,
+  };
+}
+
+function convictionBand(score, horizon) {
+  if (score >= 78 && horizon.min <= 18) return "Near-term pressure";
+  if (score >= 74) return "High-conviction watch";
+  if (score >= 66) return "Structured watch";
+  return "Early signal";
+}
+
+function buildLeadingIndicators(signal, archetype) {
+  const watch = signal.watch || "";
+  const parts = watch
+    .replace(/^Watch\s+/i, "")
+    .split(/,\s+|;\s+| and whether | and /)
+    .map((part) => part.trim().replace(/\.$/, ""))
+    .filter(Boolean)
+    .slice(0, 4);
+  if (parts.length >= 3) return parts;
+  return [
+    `${archetype.hidden} becoming visible in procurement language`,
+    "policy changes arriving before headline demand shifts",
+    "local price, insurance, or operating data confirming the constraint",
+  ];
+}
+
+function buildDisconfirmers(signal, archetype) {
+  const category = categorySignalAdditions[signal.category] || categorySignalAdditions.default;
+  const disconfirmation = category.find((item) => item.startsWith("Disconfirmation watch:"));
+  const clean = disconfirmation?.replace("Disconfirmation watch:", "").trim();
+  if (clean) return [clean];
+  return [
+    `the ${archetype.hidden} constraint eases for two reporting cycles`,
+    "policy, market pricing, and local operating behavior stop moving together",
+  ];
+}
+
+function buildPredictionModel(signal, readout) {
+  const archetype = inferArchetype(signal);
+  const scores = scoreSignal(signal, archetype);
+  const horizon = parseHorizonMonths(signal.horizon);
+  const band = convictionBand(scores.score, horizon);
+  const leadingIndicators = buildLeadingIndicators(signal, archetype);
+  const disconfirmers = buildDisconfirmers(signal, archetype);
+  const baseCase = `${signal.summary} The model reads this as ${archetype.name.toLowerCase()}, not a simple continuation trend.`;
+  const upsideCase = `If early movement appears in ${leadingIndicators[0]}, the signal can become investable before the wider market treats it as consensus.`;
+  const downsideCase = `The read weakens if ${disconfirmers[0]}`;
+
+  return {
+    score: scores.score,
+    scores,
+    convictionBand: band,
+    archetype: archetype.name,
+    hiddenVariable: archetype.hidden,
+    pressurePath: archetype.pressure,
+    leadingIndicators,
+    disconfirmers,
+    baseCase,
+    upsideCase,
+    downsideCase,
+    nonObviousRead: readout.surprise,
+    confidenceReason: `Score ${scores.score}/100: convergence ${scores.convergence}, timing ${scores.timing}, friction ${scores.friction}, asymmetry ${scores.asymmetry}.`,
+  };
+}
+
 for (const signal of signals) {
   const readout = signalReadouts[signal.id] || {
     surprise:
@@ -1185,10 +1385,12 @@ for (const signal of signals) {
       "Watch for confirming and disconfirming signals across policy, price, geography, and institutional behavior.",
   };
   const additions = categorySignalAdditions[signal.category] || categorySignalAdditions.default;
-  signal.surprise = readout.surprise;
   signal.watch = readout.watch;
   signal.signals = [...signal.signals, ...additions];
-  signal.signalCount = Math.max(signal.signalCount + 38, 104 + ((signal.id.length * 7) % 31));
+  signal.model = buildPredictionModel(signal, readout);
+  signal.confidence = signal.model.score;
+  signal.signalCount = signal.model.scores.convergence;
+  signal.surprise = signal.model.hiddenVariable;
 }
 
 const sourceIndex = {
@@ -1224,6 +1426,18 @@ const ambientLinks = [
   ["australia-fire-comms", "med-tourism-heat"],
   ["arctic-routing", "antarctic-governance"],
 ];
+
+const signalsById = new Map(signals.map((signal) => [signal.id, signal]));
+const ambientLinkRefs = ambientLinks
+  .map(([from, to]) => ({
+    from: signalsById.get(from),
+    to: signalsById.get(to),
+  }))
+  .filter((link) => link.from && link.to)
+  .map((link) => ({
+    ...link,
+    points: greatCirclePoints(link.from, link.to, 42),
+  }));
 
 const landMasses = [
   [
@@ -1304,43 +1518,28 @@ const landMasses = [
   ],
 ];
 
-const LAND_TOPOLOGY_URL =
-  "./assets/land-110m.json";
-const mountainRanges = [
-  [[-53, -72], [-35, -70], [-22, -68], [-8, -76], [5, -77], [11, -73]],
-  [[32, -115], [39, -110], [48, -114], [58, -128], [63, -151]],
-  [[27, 68], [30, 78], [31, 88], [29, 96], [27, 103]],
-  [[36, 66], [40, 72], [42, 80], [43, 88]],
-  [[43, 5], [46, 8], [47, 12], [46, 16]],
-  [[41, 40], [42, 45], [43, 50], [44, 56]],
-  [[31, 35], [33, 39], [35, 44], [38, 50]],
-  [[-34, 18], [-28, 22], [-22, 28], [-16, 33], [-4, 37], [8, 39]],
-  [[-37, 146], [-31, 150], [-25, 151], [-18, 146]],
-  [[-45, 168], [-43, 171], [-41, 173]],
-  [[63, -45], [69, -38], [73, -28]],
-];
-const landTextureZones = [
-  { lat: 48, lon: -104, rx: 57, ry: 34 },
-  { lat: 17, lon: -92, rx: 26, ry: 22 },
-  { lat: -18, lon: -61, rx: 26, ry: 43 },
-  { lat: 52, lon: 15, rx: 34, ry: 19 },
-  { lat: 2, lon: 20, rx: 34, ry: 42 },
-  { lat: 35, lon: 80, rx: 72, ry: 36 },
-  { lat: -25, lon: 134, rx: 24, ry: 15 },
-  { lat: 72, lon: -42, rx: 22, ry: 12 },
-  { lat: -76, lon: 18, rx: 170, ry: 9 },
-];
+const GEOGRAPHY_TOPOLOGY_URL = "./assets/countries-50m.json";
 let landRings = landMasses;
-let landDots = [];
-let landFillDots = [];
+let landPointCount = landMasses.reduce((total, ring) => total + ring.length, 0);
+let countryRings = [];
+let countryPointCount = 0;
 let landSource = "fallback";
+const ENABLE_DETAILED_GLOBE = true;
+const ENABLE_TOPOLOGY_TEXTURE = true;
+const HIDDEN_FRAME_INTERVAL_MS = 250;
+let lastTelemetryAt = 0;
+let desktopMedia = window.matchMedia("(min-width: 821px)");
+let isDesktopViewport = desktopMedia.matches;
 
 function setLandTelemetry() {
   document.documentElement.dataset.landSource = landSource;
-  document.documentElement.dataset.landDots = String(landDots.length + landFillDots.length);
+  document.documentElement.dataset.landPoints = String(landPointCount);
+  document.documentElement.dataset.countryPoints = String(countryPointCount);
 }
 
-function setRuntimeTelemetry() {
+function setRuntimeTelemetry(now = performance.now()) {
+  if (now - lastTelemetryAt < 500) return;
+  lastTelemetryAt = now;
   document.documentElement.dataset.centerLon = centerLon.toFixed(2);
   document.documentElement.dataset.centerLat = centerLat.toFixed(2);
   document.documentElement.dataset.targetLon = targetLon.toFixed(2);
@@ -1348,6 +1547,250 @@ function setRuntimeTelemetry() {
   document.documentElement.dataset.zoom = currentZoom.toFixed(3);
   document.documentElement.dataset.signalCount = String(signals.length);
   document.documentElement.dataset.visibleSignals = String(projectedPins.filter((pin) => pin.type === "pin").length);
+  document.documentElement.dataset.reliefSize = earthRenderer.ready ? "webgl" : "0";
+  document.documentElement.dataset.reliefReady = String(earthRenderer.ready);
+  document.documentElement.dataset.landMaskReady = String(earthRenderer.maskReady);
+  document.documentElement.dataset.countryPoints = String(countryPointCount);
+}
+
+function createEarthRenderer(target) {
+  const gl = target.getContext("webgl", {
+    alpha: true,
+    antialias: true,
+    powerPreference: "high-performance",
+    preserveDrawingBuffer: false,
+  });
+
+  const noop = {
+    enabled: false,
+    ready: false,
+    maskReady: false,
+    upload() {},
+    uploadMask() {},
+    resize() {},
+    render() {
+      return false;
+    },
+  };
+  if (!gl) return noop;
+
+  function compileShader(type, source) {
+    const shader = gl.createShader(type);
+    gl.shaderSource(shader, source);
+    gl.compileShader(shader);
+    if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
+      throw new Error(gl.getShaderInfoLog(shader) || "WebGL shader compile failed");
+    }
+    return shader;
+  }
+
+  const vertexShader = compileShader(
+    gl.VERTEX_SHADER,
+    `
+      attribute vec3 aPosition;
+      attribute vec2 aUv;
+      uniform vec2 uViewport;
+      uniform vec2 uCenter;
+      uniform float uRadius;
+      uniform float uCenterLon;
+      uniform float uPitch;
+      varying vec2 vUv;
+      varying float vZ;
+      varying vec3 vNormal;
+
+      void main() {
+        float c = cos(uCenterLon);
+        float s = sin(uCenterLon);
+        float x = aPosition.x * c - aPosition.z * s;
+        float z = aPosition.x * s + aPosition.z * c;
+        float cp = cos(uPitch);
+        float sp = sin(uPitch);
+        float y = aPosition.y * cp - z * sp;
+        float z2 = aPosition.y * sp + z * cp;
+        vec2 screen = uCenter + vec2(x * uRadius, -y * uRadius);
+        vec2 clip = vec2(
+          (screen.x / uViewport.x) * 2.0 - 1.0,
+          1.0 - (screen.y / uViewport.y) * 2.0
+        );
+        gl_Position = vec4(clip, 0.0, 1.0);
+        vUv = aUv;
+        vZ = z2;
+        vNormal = normalize(vec3(x, y, z2));
+      }
+    `,
+  );
+
+  const fragmentShader = compileShader(
+    gl.FRAGMENT_SHADER,
+    `
+      precision mediump float;
+      uniform sampler2D uTopo;
+      uniform sampler2D uMask;
+      uniform vec2 uTexel;
+      uniform float uMaskReady;
+      varying vec2 vUv;
+      varying float vZ;
+      varying vec3 vNormal;
+
+      void main() {
+        if (vZ <= 0.0) discard;
+        float h = texture2D(uTopo, vUv).r;
+        float land = mix(1.0, texture2D(uMask, vUv).a, uMaskReady);
+        float e = texture2D(uTopo, vUv + vec2(uTexel.x, 0.0)).r;
+        float w = texture2D(uTopo, vUv - vec2(uTexel.x, 0.0)).r;
+        float n = texture2D(uTopo, vUv - vec2(0.0, uTexel.y)).r;
+        float s = texture2D(uTopo, vUv + vec2(0.0, uTexel.y)).r;
+        float slope = (e - w) * -0.35 + (s - n) * -0.52;
+        float ridge = smoothstep(0.012, 0.09, abs(e - w) + abs(n - s)) * land;
+        float relief = smoothstep(0.018, 0.55, h) * land;
+        vec3 lightDir = normalize(vec3(-0.42, 0.36, 0.82));
+        float light = clamp(dot(normalize(vNormal), lightDir) * 0.48 + 0.58, 0.0, 1.0);
+        float limb = smoothstep(0.0, 0.68, vZ);
+        vec3 ocean = mix(vec3(0.985, 0.985, 0.965), vec3(0.90, 0.94, 0.93), 1.0 - light);
+        vec3 landBase = mix(vec3(0.95, 0.955, 0.935), vec3(0.70, 0.76, 0.75), 1.0 - light);
+        vec3 color = mix(ocean, landBase, land);
+        color -= vec3(0.32, 0.34, 0.34) * relief * 0.34;
+        color -= vec3(0.46, 0.47, 0.45) * ridge * 0.24;
+        color += vec3(0.05, 0.05, 0.04) * max(0.0, slope) * land;
+        float alpha = 0.96 * limb;
+        gl_FragColor = vec4(color, alpha);
+      }
+    `,
+  );
+
+  const program = gl.createProgram();
+  gl.attachShader(program, vertexShader);
+  gl.attachShader(program, fragmentShader);
+  gl.linkProgram(program);
+  if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
+    console.warn(gl.getProgramInfoLog(program) || "WebGL program link failed");
+    return noop;
+  }
+
+  const lonSegments = 144;
+  const latSegments = 72;
+  const positions = [];
+  const uvs = [];
+  const indices = [];
+
+  for (let latIndex = 0; latIndex <= latSegments; latIndex += 1) {
+    const lat = -90 + (latIndex / latSegments) * 180;
+    const latRad = (lat * Math.PI) / 180;
+    const cosLat = Math.cos(latRad);
+    const sinLat = Math.sin(latRad);
+    for (let lonIndex = 0; lonIndex <= lonSegments; lonIndex += 1) {
+      const lon = -180 + (lonIndex / lonSegments) * 360;
+      const lonRad = (lon * Math.PI) / 180;
+      positions.push(cosLat * Math.sin(lonRad), sinLat, cosLat * Math.cos(lonRad));
+      uvs.push((lon + 180) / 360, (90 - lat) / 180);
+    }
+  }
+
+  for (let latIndex = 0; latIndex < latSegments; latIndex += 1) {
+    for (let lonIndex = 0; lonIndex < lonSegments; lonIndex += 1) {
+      const a = latIndex * (lonSegments + 1) + lonIndex;
+      const b = a + 1;
+      const c = a + lonSegments + 1;
+      const d = c + 1;
+      indices.push(a, c, b, b, c, d);
+    }
+  }
+
+  const positionBuffer = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(positions), gl.STATIC_DRAW);
+
+  const uvBuffer = gl.createBuffer();
+  gl.bindBuffer(gl.ARRAY_BUFFER, uvBuffer);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(uvs), gl.STATIC_DRAW);
+
+  const indexBuffer = gl.createBuffer();
+  gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, indexBuffer);
+  gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, new Uint16Array(indices), gl.STATIC_DRAW);
+
+  const texture = gl.createTexture();
+  const maskTexture = gl.createTexture();
+  const locations = {
+    position: gl.getAttribLocation(program, "aPosition"),
+    uv: gl.getAttribLocation(program, "aUv"),
+    viewport: gl.getUniformLocation(program, "uViewport"),
+    center: gl.getUniformLocation(program, "uCenter"),
+    radius: gl.getUniformLocation(program, "uRadius"),
+    centerLon: gl.getUniformLocation(program, "uCenterLon"),
+    pitch: gl.getUniformLocation(program, "uPitch"),
+    texel: gl.getUniformLocation(program, "uTexel"),
+    topo: gl.getUniformLocation(program, "uTopo"),
+    mask: gl.getUniformLocation(program, "uMask"),
+    maskReady: gl.getUniformLocation(program, "uMaskReady"),
+  };
+
+  const renderer = {
+    enabled: true,
+    ready: false,
+    maskReady: false,
+    textureWidth: 1,
+    textureHeight: 1,
+    upload(image) {
+      this.textureWidth = image.naturalWidth || 1;
+      this.textureHeight = image.naturalHeight || 1;
+      gl.bindTexture(gl.TEXTURE_2D, texture);
+      gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, false);
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.LUMINANCE, gl.LUMINANCE, gl.UNSIGNED_BYTE, image);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.REPEAT);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+      this.ready = true;
+    },
+    uploadMask(maskCanvas) {
+      gl.bindTexture(gl.TEXTURE_2D, maskTexture);
+      gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, false);
+      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, maskCanvas);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.REPEAT);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
+      gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
+      this.maskReady = true;
+    },
+    resize(targetWidth, targetHeight) {
+      gl.viewport(0, 0, targetWidth, targetHeight);
+    },
+    render(metrics, lon, lat) {
+      gl.viewport(0, 0, target.width, target.height);
+      gl.clearColor(0, 0, 0, 0);
+      gl.clear(gl.COLOR_BUFFER_BIT);
+      if (!this.ready) return false;
+
+      gl.useProgram(program);
+      gl.enable(gl.BLEND);
+      gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+      gl.activeTexture(gl.TEXTURE0);
+      gl.bindTexture(gl.TEXTURE_2D, texture);
+      gl.uniform1i(locations.topo, 0);
+      gl.activeTexture(gl.TEXTURE1);
+      gl.bindTexture(gl.TEXTURE_2D, maskTexture);
+      gl.uniform1i(locations.mask, 1);
+      gl.uniform1f(locations.maskReady, this.maskReady ? 1 : 0);
+      gl.uniform2f(locations.viewport, target.width, target.height);
+      gl.uniform2f(locations.center, metrics.cx * dpr, metrics.cy * dpr);
+      gl.uniform1f(locations.radius, metrics.r * dpr);
+      gl.uniform1f(locations.centerLon, (lon * Math.PI) / 180);
+      gl.uniform1f(locations.pitch, ((lat - 7) * Math.PI) / 180);
+      gl.uniform2f(locations.texel, 1 / this.textureWidth, 1 / this.textureHeight);
+
+      gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
+      gl.enableVertexAttribArray(locations.position);
+      gl.vertexAttribPointer(locations.position, 3, gl.FLOAT, false, 0, 0);
+      gl.bindBuffer(gl.ARRAY_BUFFER, uvBuffer);
+      gl.enableVertexAttribArray(locations.uv);
+      gl.vertexAttribPointer(locations.uv, 2, gl.FLOAT, false, 0, 0);
+      gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, indexBuffer);
+      gl.drawElements(gl.TRIANGLES, indices.length, gl.UNSIGNED_SHORT, 0);
+      return true;
+    },
+  };
+
+  return renderer;
 }
 
 const stars = Array.from({ length: 140 }, (_, index) => {
@@ -1363,17 +1806,39 @@ const stars = Array.from({ length: 140 }, (_, index) => {
   };
 });
 
-const terrainSamples = Array.from({ length: 1900 }, (_, index) => {
-  const a = Math.sin(index * 12.9898) * 43758.5453;
-  const b = Math.sin(index * 78.233) * 24634.6345;
+const graticuleLatLines = Array.from({ length: 7 }, (_, index) => {
+  const lat = -60 + index * 20;
   return {
-    x: a - Math.floor(a),
-    y: b - Math.floor(b),
-    seed: index * 0.013,
+    lat,
+    points: Array.from({ length: 91 }, (_, pointIndex) => [lat, -180 + pointIndex * 4]),
   };
 });
 
-const terrainPointer = {
+const graticuleLonLines = Array.from({ length: 12 }, (_, index) => {
+  const lon = -180 + index * 30;
+  return {
+    lon,
+    points: Array.from({ length: 56 }, (_, pointIndex) => [-82 + pointIndex * 3, lon]),
+  };
+});
+
+const landingLatLines = Array.from({ length: 5 }, (_, index) => {
+  const lat = -60 + index * 30;
+  return {
+    lat,
+    points: Array.from({ length: 61 }, (_, pointIndex) => [lat, -180 + pointIndex * 6]),
+  };
+});
+
+const landingLonLines = Array.from({ length: 8 }, (_, index) => {
+  const lon = -180 + index * 45;
+  return {
+    lon,
+    points: Array.from({ length: 34 }, (_, pointIndex) => [-82 + pointIndex * 5, lon]),
+  };
+});
+
+const landingPointer = {
   x: 0,
   y: 0,
   targetX: 0,
@@ -1382,23 +1847,18 @@ const terrainPointer = {
 
 const appShell = document.querySelector(".app-shell");
 const landing = document.querySelector(".landing");
+const landingCanvas = document.querySelector("#landingGlobeCanvas");
+const landingCtx = landingCanvas.getContext("2d", { alpha: true });
+const earthCanvas = document.querySelector("#earthCanvas");
 const canvas = document.querySelector("#globeCanvas");
 const ctx = canvas.getContext("2d");
-const terrainCanvas = document.querySelector("#terrainCanvas");
-const terrainCtx = terrainCanvas.getContext("2d");
-const terrainShadeCanvas = document.createElement("canvas");
-const terrainShadeCtx = terrainShadeCanvas.getContext("2d");
 const topologyTexture = {
   image: new Image(),
-  canvas: document.createElement("canvas"),
-  renderCanvas: document.createElement("canvas"),
-  ctx: null,
-  renderCtx: null,
-  data: null,
   width: 0,
   height: 0,
   ready: false,
 };
+const earthRenderer = createEarthRenderer(earthCanvas);
 const signalCard = document.querySelector("#signalCard");
 const enterButton = document.querySelector("#enterButton");
 const openBriefButton = document.querySelector("#openBrief");
@@ -1418,41 +1878,33 @@ const fields = {
   summary: document.querySelector("#cardSummary"),
   implication: document.querySelector("#cardImplication"),
   surprise: document.querySelector("#cardSurprise"),
+  modelRead: document.querySelector("#cardModelRead"),
   horizon: document.querySelector("#cardHorizon"),
-  signals: document.querySelector("#cardSignals"),
-  category: document.querySelector("#cardCategory"),
+  conviction: document.querySelector("#cardConviction"),
+  archetype: document.querySelector("#cardArchetype"),
   briefTitle: document.querySelector("#briefTitle"),
   briefDeck: document.querySelector("#briefDeck"),
   rationale: document.querySelector("#briefRationale"),
   why: document.querySelector("#briefWhy"),
   briefSurprise: document.querySelector("#briefSurprise"),
   briefWatch: document.querySelector("#briefWatch"),
+  briefDisconfirmers: document.querySelector("#briefDisconfirmers"),
+  briefScenarioSpread: document.querySelector("#briefScenarioSpread"),
   signalList: document.querySelector("#signalList"),
   sourceList: document.querySelector("#sourceList"),
 };
 
-topologyTexture.ctx = topologyTexture.canvas.getContext("2d", { willReadFrequently: true });
-topologyTexture.renderCtx = topologyTexture.renderCanvas.getContext("2d", { willReadFrequently: true });
 topologyTexture.image.addEventListener("load", () => {
   topologyTexture.width = topologyTexture.image.naturalWidth;
   topologyTexture.height = topologyTexture.image.naturalHeight;
-  topologyTexture.canvas.width = topologyTexture.width;
-  topologyTexture.canvas.height = topologyTexture.height;
-  topologyTexture.ctx.drawImage(topologyTexture.image, 0, 0);
-  topologyTexture.data = topologyTexture.ctx.getImageData(
-    0,
-    0,
-    topologyTexture.width,
-    topologyTexture.height,
-  ).data;
   topologyTexture.ready = true;
+  earthRenderer.upload(topologyTexture.image);
 });
-topologyTexture.image.src = "./assets/earth-topology.png";
 
 let width = 1;
 let height = 1;
-let terrainWidth = 1;
-let terrainHeight = 1;
+let landingWidth = 1;
+let landingHeight = 1;
 let dpr = 1;
 let mode = "landing";
 let activeFilter = "all";
@@ -1468,6 +1920,9 @@ let targetLat = 8;
 let currentZoom = 1;
 let targetZoom = 1;
 let lastTime = performance.now();
+let landingLon = -24;
+let landingLat = 8;
+let detailedAssetsStarted = false;
 let pointer = { x: -9999, y: -9999 };
 const spin = {
   dragging: false,
@@ -1479,9 +1934,14 @@ const spin = {
   moved: false,
   resetMovedTimer: 0,
 };
+let framePaths = {
+  landFill: null,
+  coast: null,
+  countries: null,
+};
 
 function isDesktop() {
-  return window.matchMedia("(min-width: 821px)").matches;
+  return isDesktopViewport;
 }
 
 function passesFilter(signal) {
@@ -1489,7 +1949,7 @@ function passesFilter(signal) {
 }
 
 function getSignal(id) {
-  return signals.find((signal) => signal.id === id);
+  return signalsById.get(id);
 }
 
 function shortestAngle(from, to) {
@@ -1505,7 +1965,7 @@ function clamp(value, min, max) {
 }
 
 function signalImpact(signal) {
-  return signal.impact ?? Math.max(48, 96 - signal.labelRank * 1.45);
+  return signal.model?.score ?? signal.impact ?? Math.max(48, 96 - signal.labelRank * 1.45);
 }
 
 function signalVisibleAtZoom(signal) {
@@ -1518,11 +1978,11 @@ function signalVisibleAtZoom(signal) {
 }
 
 function labelLimit() {
-  if (!isDesktop()) return currentZoom > 1.22 ? 13 : 7;
-  if (currentZoom < 0.88) return 10;
-  if (currentZoom < 1.12) return 12;
-  if (currentZoom < 1.42) return 20;
-  return 34;
+  if (!isDesktop()) return currentZoom > 1.22 ? 7 : 4;
+  if (currentZoom < 0.88) return 7;
+  if (currentZoom < 1.12) return 9;
+  if (currentZoom < 1.42) return 14;
+  return 22;
 }
 
 function decodeTopoArc(topology, arcIndex) {
@@ -1546,8 +2006,9 @@ function decodeTopoRing(topology, ring) {
   });
 }
 
-function collectLandRings(topology) {
-  const geometry = topology.objects.land;
+function collectTopologyRings(topology, objectName) {
+  const geometry = topology.objects[objectName];
+  if (!geometry) return [];
   const geometries =
     geometry.type === "GeometryCollection" ? geometry.geometries : [geometry];
   const rings = [];
@@ -1565,144 +2026,108 @@ function collectLandRings(topology) {
   return rings;
 }
 
-function buildLandDots(rings) {
-  const dots = [];
+function collectLandRings(topology) {
+  return collectTopologyRings(topology, "land");
+}
+
+function countLandPoints(rings) {
+  return rings.reduce((total, ring) => total + ring.length, 0);
+}
+
+function prepareRings(rings, stepLarge = 2, simplifyThreshold = 420) {
+  return rings
+    .map((ring) => {
+      if (ring.length < simplifyThreshold) return ring;
+      return ring.filter((_, index) => index % stepLarge === 0 || index === ring.length - 1);
+    })
+    .filter((ring) => ring.length > 3);
+}
+
+function createLandMask(rings, widthValue = 2048, heightValue = 1024) {
+  const mask = document.createElement("canvas");
+  const maskCtx = mask.getContext("2d");
+  mask.width = widthValue;
+  mask.height = heightValue;
+  maskCtx.clearRect(0, 0, widthValue, heightValue);
+  maskCtx.fillStyle = "rgba(255, 255, 255, 1)";
+  maskCtx.beginPath();
+
   for (const ring of rings) {
-    for (let index = 0; index < ring.length - 1; index += 2) {
-      const [latA, lonA] = ring[index];
-      const [latB, lonB] = ring[index + 1];
-      dots.push([latA, lonA]);
-      const distance = Math.hypot(latB - latA, lonB - lonA);
-      const steps = Math.min(6, Math.floor(distance / 1.6));
-      for (let step = 1; step < steps; step += 1) {
-        const t = step / steps;
-        dots.push([
-          latA + (latB - latA) * t,
-          lonA + (lonB - lonA) * t,
-        ]);
+    let drawing = false;
+    let previousX = 0;
+    for (const [lat, lon] of ring) {
+      const x = ((lon + 180) / 360) * widthValue;
+      const y = ((90 - lat) / 180) * heightValue;
+      if (!drawing || Math.abs(x - previousX) > widthValue * 0.42) {
+        maskCtx.moveTo(x, y);
+        drawing = true;
+      } else {
+        maskCtx.lineTo(x, y);
       }
+      previousX = x;
     }
+    if (drawing) maskCtx.closePath();
   }
-  return dots;
+
+  maskCtx.fill();
+  return mask;
 }
 
-function ringBounds(ring) {
-  return ring.reduce(
-    (bounds, [lat, lon]) => ({
-      minLat: Math.min(bounds.minLat, lat),
-      maxLat: Math.max(bounds.maxLat, lat),
-      minLon: Math.min(bounds.minLon, lon),
-      maxLon: Math.max(bounds.maxLon, lon),
-    }),
-    { minLat: 90, maxLat: -90, minLon: 180, maxLon: -180 },
-  );
-}
-
-function pointInRing(lat, lon, ring) {
-  let inside = false;
-  for (let i = 0, j = ring.length - 1; i < ring.length; j = i, i += 1) {
-    const [latI, lonI] = ring[i];
-    const [latJ, lonJ] = ring[j];
-    const intersects =
-      lonI > lon !== lonJ > lon &&
-      lat < ((latJ - latI) * (lon - lonI)) / (lonJ - lonI || 0.00001) + latI;
-    if (intersects) inside = !inside;
-  }
-  return inside;
-}
-
-function buildLandFillDots(rings) {
-  const prepared = rings
-    .map((ring) => ({ ring, bounds: ringBounds(ring) }))
-    .filter(({ bounds }) => bounds.maxLon - bounds.minLon < 340);
-  const dots = [];
-  const step = 1.25;
-  for (let lat = -58; lat <= 78; lat += step) {
-    const offset = Math.sin(lat * 2.71) * 0.45;
-    for (let lon = -180 + offset; lon <= 180; lon += step) {
-      const ring = prepared.find(
-        ({ bounds, ring: candidate }) =>
-          lat >= bounds.minLat &&
-          lat <= bounds.maxLat &&
-          lon >= bounds.minLon &&
-          lon <= bounds.maxLon &&
-          pointInRing(lat, lon, candidate),
-      );
-      if (ring) {
-        dots.push([
-          lat + Math.sin((lat + lon) * 1.7) * 0.18,
-          lon + Math.cos((lat - lon) * 1.3) * 0.18,
-        ]);
-      }
-    }
-  }
-  return dots;
-}
-
-function buildCoarseLandFillDots() {
-  const dots = [];
-  const step = 1.95;
-  for (let lat = -82; lat <= 78; lat += step) {
-    const rowOffset = Math.sin(lat * 3.1) * 0.45;
-    for (let lon = -180 + rowOffset; lon <= 180; lon += step) {
-      const inside = landTextureZones.some((zone) => {
-        const dLon = shortestAngle(zone.lon, lon);
-        const dLat = lat - zone.lat;
-        const edgeNoise =
-          Math.sin((lat + zone.lat) * 0.34 + lon * 0.18) * 0.08 +
-          Math.cos((lon - zone.lon) * 0.23) * 0.05;
-        return (dLon / zone.rx) ** 2 + (dLat / zone.ry) ** 2 < 1 + edgeNoise;
-      });
-      if (inside) {
-        dots.push([
-          lat + Math.sin((lat + lon) * 1.7) * 0.16,
-          lon + Math.cos((lat - lon) * 1.3) * 0.16,
-        ]);
-      }
-    }
-  }
-  return dots;
-}
-
-async function loadDetailedLand() {
+async function loadDetailedGeography() {
   try {
-    const response = await fetch(LAND_TOPOLOGY_URL, { cache: "force-cache" });
-    if (!response.ok) throw new Error(`land topology ${response.status}`);
+    const response = await fetch(GEOGRAPHY_TOPOLOGY_URL, { cache: "force-cache" });
+    if (!response.ok) throw new Error(`geography topology ${response.status}`);
     const topology = await response.json();
-    const rings = collectLandRings(topology);
-    if (rings.length < 5) throw new Error("land topology empty");
-    landRings = rings;
-    landDots = buildLandDots(rings);
-    landFillDots = buildLandFillDots(rings);
-    if (landFillDots.length < 6500) {
-      landFillDots = buildCoarseLandFillDots();
+    const detailedLand = prepareRings(collectLandRings(topology), 4, 20);
+    const detailedCountries = prepareRings(collectTopologyRings(topology, "countries"), 8, 20);
+    if (detailedLand.length < 20 || detailedCountries.length < 20) {
+      throw new Error("geography topology empty");
     }
-    landSource = "natural-earth";
+    landRings = detailedLand;
+    countryRings = detailedCountries;
+    landPointCount = countLandPoints(landRings);
+    countryPointCount = countLandPoints(countryRings);
+    landSource = "natural-earth-50m";
+    earthRenderer.uploadMask(createLandMask(landRings));
     setLandTelemetry();
   } catch (error) {
     landSource = "fallback";
     landRings = landMasses;
-    landDots = buildLandDots(landMasses);
-    landFillDots = buildCoarseLandFillDots();
+    landPointCount = countLandPoints(landRings);
+    countryRings = [];
+    countryPointCount = 0;
     setLandTelemetry();
-    console.warn("Using fallback land geometry", error);
+    console.warn("Using coastline-only globe", error);
   }
+}
+
+function startDetailedAssets() {
+  if (!ENABLE_DETAILED_GLOBE) return;
+  if (detailedAssetsStarted) return;
+  detailedAssetsStarted = true;
+  if (ENABLE_TOPOLOGY_TEXTURE) {
+    topologyTexture.image.src = "./assets/earth-topology.png";
+  }
+  loadDetailedGeography();
 }
 
 function resize() {
   const rect = canvas.getBoundingClientRect();
-  const terrainRect = terrainCanvas.getBoundingClientRect();
-  dpr = Math.min(window.devicePixelRatio || 1, 2);
+  const landingRect = landingCanvas.getBoundingClientRect();
+  dpr = 1;
   width = Math.max(1, rect.width);
   height = Math.max(1, rect.height);
-  terrainWidth = Math.max(1, terrainRect.width);
-  terrainHeight = Math.max(1, terrainRect.height);
+  landingWidth = Math.max(1, landingRect.width);
+  landingHeight = Math.max(1, landingRect.height);
+  earthCanvas.width = Math.floor(width * dpr);
+  earthCanvas.height = Math.floor(height * dpr);
+  earthRenderer.resize(Math.floor(width * dpr), Math.floor(height * dpr));
   canvas.width = Math.floor(width * dpr);
   canvas.height = Math.floor(height * dpr);
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-  terrainCanvas.width = Math.floor(terrainWidth * dpr);
-  terrainCanvas.height = Math.floor(terrainHeight * dpr);
-  terrainCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  landingCanvas.width = Math.floor(landingWidth * dpr);
+  landingCanvas.height = Math.floor(landingHeight * dpr);
+  landingCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
 }
 
 function globeMetrics() {
@@ -1741,6 +2166,31 @@ function drawBackground(now) {
 }
 
 function drawSphere(metrics) {
+  if (earthRenderer.ready) {
+    ctx.save();
+    ctx.beginPath();
+    ctx.arc(metrics.cx, metrics.cy, metrics.r, 0, Math.PI * 2);
+    ctx.strokeStyle = "rgba(28, 31, 34, 0.14)";
+    ctx.lineWidth = 1;
+    ctx.stroke();
+
+    const rim = ctx.createRadialGradient(
+      metrics.cx,
+      metrics.cy,
+      metrics.r * 0.68,
+      metrics.cx,
+      metrics.cy,
+      metrics.r * 1.08,
+    );
+    rim.addColorStop(0, "rgba(255,255,255,0)");
+    rim.addColorStop(0.76, "rgba(240, 242, 240, 0.06)");
+    rim.addColorStop(1, "rgba(18, 22, 24, 0.13)");
+    ctx.fillStyle = rim;
+    ctx.fill();
+    ctx.restore();
+    return;
+  }
+
   const gradient = ctx.createRadialGradient(
     metrics.cx - metrics.r * 0.32,
     metrics.cy - metrics.r * 0.28,
@@ -1779,8 +2229,7 @@ function drawSphere(metrics) {
   ctx.restore();
 }
 
-function strokeProjectedLine(points, options = {}) {
-  const metrics = globeMetrics();
+function strokeProjectedLine(points, metrics, options = {}) {
   ctx.save();
   ctx.lineWidth = options.width || 1;
   ctx.strokeStyle = options.color || "rgba(17, 20, 24, 0.1)";
@@ -1811,257 +2260,84 @@ function drawGraticule(metrics) {
   ctx.arc(metrics.cx, metrics.cy, metrics.r, 0, Math.PI * 2);
   ctx.clip();
 
-  for (let lat = -60; lat <= 60; lat += 20) {
-    const points = [];
-    for (let lon = -180; lon <= 180; lon += 4) points.push([lat, lon]);
-    strokeProjectedLine(points, {
-      color: lat === 0 ? "rgba(198, 33, 31, 0.16)" : "rgba(20, 24, 28, 0.075)",
-      width: lat === 0 ? 1.1 : 0.75,
+  for (const line of graticuleLatLines) {
+    strokeProjectedLine(line.points, metrics, {
+      color: line.lat === 0 ? "rgba(198, 33, 31, 0.16)" : "rgba(20, 24, 28, 0.075)",
+      width: line.lat === 0 ? 1.1 : 0.75,
     });
   }
 
-  for (let lon = -180; lon < 180; lon += 30) {
-    const points = [];
-    for (let lat = -82; lat <= 82; lat += 3) points.push([lat, lon]);
-    strokeProjectedLine(points, {
-      color: lon % 90 === 0 ? "rgba(20, 24, 28, 0.11)" : "rgba(20, 24, 28, 0.052)",
-      width: lon % 90 === 0 ? 1 : 0.7,
+  for (const line of graticuleLonLines) {
+    strokeProjectedLine(line.points, metrics, {
+      color: line.lon % 90 === 0 ? "rgba(20, 24, 28, 0.11)" : "rgba(20, 24, 28, 0.052)",
+      width: line.lon % 90 === 0 ? 1 : 0.7,
     });
   }
   ctx.restore();
 }
 
-function sampleTopology(lat, lon) {
-  if (!topologyTexture.ready || !topologyTexture.data) return 0;
-  const x = clamp(
-    Math.round(((normalizeLon(lon) + 180) / 360) * (topologyTexture.width - 1)),
-    0,
-    topologyTexture.width - 1,
-  );
-  const y = clamp(
-    Math.round(((90 - clamp(lat, -90, 90)) / 180) * (topologyTexture.height - 1)),
-    0,
-    topologyTexture.height - 1,
-  );
-  const index = (y * topologyTexture.width + x) * 4;
-  return topologyTexture.data[index] / 255;
-}
-
-function drawTopologySurface(metrics) {
-  if (!topologyTexture.ready || !topologyTexture.data) return;
-
-  const size = isDesktop() ? 430 : 270;
-  if (topologyTexture.renderCanvas.width !== size) {
-    topologyTexture.renderCanvas.width = size;
-    topologyTexture.renderCanvas.height = size;
-  }
-
-  const image = topologyTexture.renderCtx.createImageData(size, size);
-  const output = image.data;
-  const source = topologyTexture.data;
-  const pitch = ((centerLat - 7) * Math.PI) / 180;
-  const cosPitch = Math.cos(pitch);
-  const sinPitch = Math.sin(pitch);
-  const topoWidth = topologyTexture.width;
-  const topoHeight = topologyTexture.height;
-
-  for (let y = 0; y < size; y += 1) {
-    const sy = 1 - (y / (size - 1)) * 2;
-    for (let x = 0; x < size; x += 1) {
-      const sx = (x / (size - 1)) * 2 - 1;
-      const sphere = sx * sx + sy * sy;
-      if (sphere > 1) continue;
-
-      const z2 = Math.sqrt(1 - sphere);
-      const worldY = sy * cosPitch + z2 * sinPitch;
-      const worldZ = -sy * sinPitch + z2 * cosPitch;
-      const lat = (Math.asin(clamp(worldY, -1, 1)) * 180) / Math.PI;
-      const lon = normalizeLon(centerLon + (Math.atan2(sx, worldZ) * 180) / Math.PI);
-      const tx = Math.round(((lon + 180) / 360) * (topoWidth - 1));
-      const ty = Math.round(((90 - lat) / 180) * (topoHeight - 1));
-      const sourceIndex = (ty * topoWidth + tx) * 4;
-      const topo = source[sourceIndex] / 255;
-      if (topo < 0.018) continue;
-
-      const shade = Math.pow(topo, 0.72);
-      const frontFade = 0.28 + z2 * 0.72;
-      const alpha = Math.round(Math.min(58, shade * frontFade * 74));
-      if (alpha < 2) continue;
-
-      const targetIndex = (y * size + x) * 4;
-      output[targetIndex] = 30;
-      output[targetIndex + 1] = 34;
-      output[targetIndex + 2] = 35;
-      output[targetIndex + 3] = alpha;
-    }
-  }
-
-  topologyTexture.renderCtx.putImageData(image, 0, 0);
-  ctx.save();
-  ctx.beginPath();
-  ctx.arc(metrics.cx, metrics.cy, metrics.r, 0, Math.PI * 2);
-  ctx.clip();
-  ctx.globalCompositeOperation = "multiply";
-  ctx.globalAlpha = 0.78;
-  ctx.drawImage(
-    topologyTexture.renderCanvas,
-    metrics.cx - metrics.r,
-    metrics.cy - metrics.r,
-    metrics.r * 2,
-    metrics.r * 2,
-  );
-  ctx.restore();
-}
-
-function traceLandPath(metrics, { closeSegments = true, minZ = -0.015 } = {}) {
+function buildRingPath(rings, metrics, options = {}) {
+  const path = new Path2D();
   let traced = 0;
-  for (const ring of landRings) {
+  for (const ring of rings) {
     let drawing = false;
     let segmentPoints = 0;
-    for (const pointLatLon of ring) {
-      const point = project(pointLatLon[0], pointLatLon[1], metrics);
-      if (point.visible && point.z > minZ) {
+    let lastLat = null;
+    let lastLon = null;
+    for (const [lat, lon] of ring) {
+      const point = project(lat, lon, metrics);
+      const jumps =
+        lastLat !== null &&
+        (Math.abs(lat - lastLat) > 34 || Math.abs(shortestAngle(lastLon, lon)) > 42);
+      if (point.visible && point.z > (options.minZ ?? -0.012) && !jumps) {
         if (!drawing) {
-          ctx.moveTo(point.x, point.y);
+          path.moveTo(point.x, point.y);
           drawing = true;
           segmentPoints = 1;
         } else {
-          ctx.lineTo(point.x, point.y);
+          path.lineTo(point.x, point.y);
           segmentPoints += 1;
         }
       } else {
-        if (drawing && closeSegments && segmentPoints > 2) {
-          ctx.closePath();
+        if (drawing && options.closeSegments && segmentPoints > 2) {
+          path.closePath();
           traced += 1;
         }
         drawing = false;
         segmentPoints = 0;
       }
+      lastLat = lat;
+      lastLon = lon;
     }
-    if (drawing && closeSegments && segmentPoints > 2) {
-      ctx.closePath();
+    if (drawing && options.closeSegments && segmentPoints > 2) {
+      path.closePath();
       traced += 1;
     }
   }
-  return traced;
+  return { path, traced };
 }
 
-function strokeLandPath(metrics, color, widthValue, alpha = 1) {
+function prepareFramePaths(metrics) {
+  framePaths = {
+    landFill: earthRenderer.ready
+      ? null
+      : buildRingPath(landRings, metrics, { closeSegments: true, minZ: -0.018 }).path,
+    coast: buildRingPath(landRings, metrics, { closeSegments: false, minZ: -0.006 }).path,
+    countries:
+      countryRings.length > 0
+        ? buildRingPath(countryRings, metrics, { closeSegments: false, minZ: -0.006 }).path
+        : null,
+  };
+}
+
+function strokePath(path, color, widthValue, alpha = 1) {
   ctx.save();
-  ctx.beginPath();
-  traceLandPath(metrics, { closeSegments: false, minZ: -0.012 });
   ctx.strokeStyle = color;
   ctx.lineWidth = widthValue;
   ctx.globalAlpha = alpha;
   ctx.lineJoin = "round";
   ctx.lineCap = "round";
-  ctx.stroke();
-  ctx.restore();
-}
-
-function drawLandRelief(metrics) {
-  ctx.save();
-  ctx.beginPath();
-  ctx.arc(metrics.cx, metrics.cy, metrics.r, 0, Math.PI * 2);
-  ctx.clip();
-
-  ctx.save();
-  ctx.filter = "blur(3px)";
-  ctx.fillStyle = "rgba(118, 128, 128, 0.26)";
-  for (let index = 0; index < landFillDots.length; index += 1) {
-    const [lat, lon] = landFillDots[index];
-    const point = project(lat, lon, metrics);
-    if (point.visible && point.z > 0.015) {
-      ctx.globalAlpha = Math.min(0.12, 0.035 + point.z * 0.052);
-      ctx.beginPath();
-      ctx.arc(point.x, point.y, point.z > 0.55 ? 6.2 : 4.8, 0, Math.PI * 2);
-      ctx.fill();
-    }
-  }
-  ctx.globalAlpha = 1;
-  ctx.restore();
-
-  ctx.fillStyle = "rgba(29, 33, 36, 0.3)";
-  const fillStride = currentZoom > 1.05 ? 2 : 3;
-  for (let index = 0; index < landFillDots.length; index += fillStride) {
-    const [lat, lon] = landFillDots[index];
-    const point = project(lat, lon, metrics);
-    if (point.visible && point.z > 0.02) {
-      const topo = sampleTopology(lat, lon);
-      const texture =
-        Math.sin((lat + lon) * 0.46) * 0.5 +
-        Math.sin(lat * 0.77 - lon * 0.19) * 0.35;
-      const alpha = topologyTexture.ready
-        ? Math.min(0.16, 0.012 + topo * 0.22 + point.z * 0.018)
-        : Math.min(0.095, Math.max(0.018, 0.022 + point.z * 0.046 + texture * 0.012));
-      ctx.globalAlpha = alpha;
-      ctx.beginPath();
-      ctx.arc(
-        point.x,
-        point.y,
-        topologyTexture.ready ? 0.28 + topo * 0.72 : point.z > 0.55 ? 0.36 : 0.24,
-        0,
-        Math.PI * 2,
-      );
-      ctx.fill();
-    }
-  }
-
-  const reliefStride = currentZoom > 1.08 ? 1 : 3;
-  for (let index = 0; index < landFillDots.length; index += reliefStride) {
-    const [lat, lon] = landFillDots[index];
-    const point = project(lat, lon, metrics);
-    if (!point.visible || point.z < 0.08) continue;
-
-    const folded =
-      Math.abs(Math.sin(lat * 0.33 + lon * 0.18)) +
-      Math.abs(Math.sin(lat * 0.77 - lon * 0.09)) * 0.72 +
-      Math.abs(Math.cos(lat * 0.18 + lon * 0.41)) * 0.48;
-    const topo = sampleTopology(lat, lon);
-    const relief = topologyTexture.ready ? topo * 2.4 + folded * 0.16 : folded;
-    if (relief < (topologyTexture.ready ? 0.18 : 0.68)) continue;
-
-    const angle = lat * 0.018 + lon * 0.009 + relief * 0.8;
-    const length = (1.2 + relief * 2.4) * Math.min(1.5, currentZoom);
-    const dx = Math.cos(angle) * length;
-    const dy = Math.sin(angle) * length * 0.45;
-    const alpha = topologyTexture.ready
-      ? Math.min(0.22, 0.018 + topo * 0.32 + point.z * 0.024)
-      : Math.min(0.27, 0.05 + folded * 0.05 + point.z * 0.064);
-
-    ctx.beginPath();
-    ctx.strokeStyle = `rgba(255, 255, 255, ${alpha * 1.55})`;
-    ctx.lineWidth = 0.72;
-    ctx.moveTo(point.x - dx - 0.55, point.y - dy - 0.55);
-    ctx.lineTo(point.x + dx - 0.55, point.y + dy - 0.55);
-    ctx.stroke();
-
-    ctx.beginPath();
-    ctx.strokeStyle = `rgba(27, 31, 34, ${alpha})`;
-    ctx.lineWidth = 0.58;
-    ctx.moveTo(point.x - dx, point.y - dy);
-    ctx.lineTo(point.x + dx, point.y + dy);
-    ctx.stroke();
-  }
-
-  ctx.globalAlpha = 1;
-  ctx.lineCap = "round";
-  ctx.lineJoin = "round";
-  for (const range of mountainRanges) {
-    strokeProjectedLine(range, {
-      color: "rgba(31, 35, 38, 0.28)",
-      alpha: 0.36,
-      width: 0.58,
-    });
-    const highlight = range.map(([lat, lon]) => [lat + 0.18, lon - 0.22]);
-    strokeProjectedLine(highlight, {
-      color: "rgba(255, 255, 255, 0.78)",
-      alpha: 0.3,
-      width: 0.82,
-    });
-  }
-
-  ctx.globalAlpha = 1;
+  ctx.stroke(path);
   ctx.restore();
 }
 
@@ -2079,52 +2355,42 @@ function drawLand(metrics) {
     metrics.cy + metrics.r * 0.1,
     metrics.r * 0.95,
   );
-  landGradient.addColorStop(0, "rgba(237, 239, 239, 0.72)");
-  landGradient.addColorStop(0.46, "rgba(216, 221, 220, 0.54)");
-  landGradient.addColorStop(0.74, "rgba(191, 198, 197, 0.4)");
-  landGradient.addColorStop(1, "rgba(155, 165, 164, 0.24)");
+  const fillBoost = earthRenderer.ready ? 0.24 : 1;
+  landGradient.addColorStop(0, `rgba(237, 239, 239, ${0.72 * fillBoost})`);
+  landGradient.addColorStop(0.46, `rgba(216, 221, 220, ${0.54 * fillBoost})`);
+  landGradient.addColorStop(0.74, `rgba(191, 198, 197, ${0.4 * fillBoost})`);
+  landGradient.addColorStop(1, `rgba(155, 165, 164, ${0.24 * fillBoost})`);
 
-  ctx.beginPath();
-  for (const ring of landRings) {
-    const projected = ring.map(([lat, lon]) => project(lat, lon, metrics));
-    const visibleCount = projected.filter((point) => point.visible && point.z > -0.012).length;
-    if (visibleCount < Math.max(4, projected.length * 0.985)) continue;
-    projected.forEach((point, index) => {
-      if (index === 0) ctx.moveTo(point.x, point.y);
-      else ctx.lineTo(point.x, point.y);
-    });
-    ctx.closePath();
+  if (!earthRenderer.ready && framePaths.landFill) {
+    ctx.fillStyle = landGradient;
+    ctx.fill(framePaths.landFill);
   }
-  ctx.fillStyle = landGradient;
-  ctx.fill();
   ctx.restore();
-
-  drawLandRelief(metrics);
-  drawTopologySurface(metrics);
 
   ctx.save();
   ctx.beginPath();
   ctx.arc(metrics.cx, metrics.cy, metrics.r, 0, Math.PI * 2);
   ctx.clip();
   ctx.translate(-0.45, -0.55);
-  strokeLandPath(metrics, "rgba(255, 255, 255, 0.74)", 1.3, 0.82);
+  if (framePaths.coast) strokePath(framePaths.coast, "rgba(255, 255, 255, 0.74)", 1.1, 0.68);
   ctx.restore();
 
   ctx.save();
   ctx.beginPath();
   ctx.arc(metrics.cx, metrics.cy, metrics.r, 0, Math.PI * 2);
   ctx.clip();
-  strokeLandPath(
-    metrics,
-    landSource === "natural-earth" ? "rgba(29, 33, 36, 0.32)" : "rgba(29, 33, 36, 0.18)",
-    landSource === "natural-earth" ? 0.74 : 0.88,
-    1,
-  );
+  if (framePaths.coast) {
+    strokePath(
+      framePaths.coast,
+      landSource === "natural-earth" ? "rgba(29, 33, 36, 0.24)" : "rgba(29, 33, 36, 0.18)",
+      landSource === "natural-earth" ? 0.58 : 0.82,
+      0.9,
+    );
+  }
+  if (framePaths.countries) {
+    strokePath(framePaths.countries, "rgba(31, 34, 37, 0.17)", 0.46, 0.72);
+  }
   ctx.restore();
-}
-
-function drawMountainTexture() {
-  // Terrain detail now lives inside the land clip in drawLandRelief.
 }
 
 function toVector(lat, lon) {
@@ -2170,34 +2436,25 @@ function greatCirclePoints(a, b, count = 44) {
   return points;
 }
 
-function drawArc(fromSignal, toSignal, color, alpha = 0.3, widthValue = 1) {
-  const points = greatCirclePoints(fromSignal, toSignal, 50);
+function drawArc(points, color, alpha = 0.3, widthValue = 1) {
+  const metrics = globeMetrics();
   ctx.save();
   ctx.lineCap = "round";
-  ctx.shadowColor = color;
-  ctx.shadowBlur = 10;
-  strokeProjectedLine(points, { color, alpha, width: widthValue });
+  strokeProjectedLine(points, metrics, { color, alpha, width: widthValue });
   ctx.restore();
 }
 
 function drawLinks() {
   if (mode !== "selected" && mode !== "brief") return;
 
-  for (const [from, to] of ambientLinks) {
-    const a = getSignal(from);
-    const b = getSignal(to);
-    if (!a || !b) continue;
-    drawArc(a, b, "rgba(46, 50, 55, 0.28)", 0.08, 0.58);
+  for (const link of ambientLinkRefs) {
+    drawArc(link.points, "rgba(46, 50, 55, 0.28)", 0.08, 0.58);
   }
 
-  const related = ambientLinks
-    .filter(([from, to]) => from === selectedSignal.id || to === selectedSignal.id)
-    .map(([from, to]) => getSignal(from === selectedSignal.id ? to : from))
-    .filter(Boolean);
-
-  for (const signal of related) {
+  for (const link of ambientLinkRefs) {
+    if (link.from.id !== selectedSignal.id && link.to.id !== selectedSignal.id) continue;
     const color = "rgba(198, 33, 31, 0.66)";
-    drawArc(selectedSignal, signal, color, 0.44, 1.25);
+    drawArc(link.points, color, 0.44, 1.25);
   }
 }
 
@@ -2212,14 +2469,17 @@ function drawPin(signal, projected, isSelected, isHovered) {
   const radius = isSelected ? 5.6 : isHovered ? 4.8 : 3.4;
   ctx.save();
   ctx.globalAlpha = dim * Math.max(0.2, projected.z);
-  ctx.shadowColor = kindColor(signal, isSelected || isHovered ? 0.72 : 0.42, isSelected || isHovered);
-  ctx.shadowBlur = isSelected ? 18 : isHovered ? 12 : 4;
+  if (isSelected || isHovered) {
+    ctx.fillStyle = kindColor(signal, isSelected ? 0.1 : 0.07, true);
+    ctx.beginPath();
+    ctx.arc(projected.x, projected.y, radius + (isSelected ? 13 : 9), 0, Math.PI * 2);
+    ctx.fill();
+  }
   ctx.fillStyle = kindColor(signal, isSelected ? 0.95 : 0.76, isSelected || isHovered);
   ctx.beginPath();
   ctx.arc(projected.x, projected.y, radius, 0, Math.PI * 2);
   ctx.fill();
 
-  ctx.shadowBlur = 0;
   ctx.lineWidth = 1;
   ctx.strokeStyle = kindColor(signal, isSelected ? 0.72 : 0.34, isSelected || isHovered);
   ctx.beginPath();
@@ -2246,13 +2506,21 @@ function drawLabel(signal, projected, isSelected, isHovered, boxes) {
   const text = signal.title.toUpperCase();
   ctx.save();
   ctx.font = "10px 'DM Mono', monospace";
-  const maxTextLength = desktop ? 31 : 21;
+  const maxTextLength = desktop ? 31 : 18;
   const displayText =
     text.length > maxTextLength ? `${text.slice(0, maxTextLength)}...` : text;
   const labelWidth = Math.min(ctx.measureText(displayText).width, desktop ? 220 : 150);
-  const x = projected.x + 11;
-  const y = projected.y - 18;
+  let x = projected.x + 11;
+  let y = projected.y - 18;
+  if (x + labelWidth + 18 > width - 10) x = projected.x - labelWidth - 29;
+  x = clamp(x, 10, Math.max(10, width - labelWidth - 28));
+  y = clamp(y, 42, height - 34);
   const box = { x, y: y - 2, w: labelWidth + 18, h: 20 };
+
+  if (!shouldForce && boxes.some((existing) => rectsOverlap(existing, box))) {
+    ctx.restore();
+    return;
+  }
 
   boxes.push(box);
   if (passesFilter(signal) || shouldForce) {
@@ -2360,304 +2628,229 @@ function drawCalibration(metrics) {
   ctx.restore();
 }
 
-function terrainNoise(x, y, t) {
-  return (
-    Math.sin(x * 8.2 + y * 1.7 + t) * 0.32 +
-    Math.sin(x * 15.7 - y * 4.1 - t * 0.6) * 0.22 +
-    Math.sin((x + y) * 28.5 + t * 0.4) * 0.12
+function landingMetrics() {
+  const desktop = isDesktop();
+  const baseRadius = Math.min(
+    landingWidth * (desktop ? 0.2 : 0.44),
+    landingHeight * (desktop ? 0.31 : 0.25),
   );
+  return {
+    cx: landingWidth * (desktop ? 0.49 : 0.5) + landingPointer.x * 8,
+    cy: landingHeight * (desktop ? 0.49 : 0.43) + landingPointer.y * 6,
+    r: baseRadius,
+  };
 }
 
-function terrainHeightValue(x, y, t) {
-  const base =
-    terrainNoise(x * 0.9, y * 0.8, t * 0.7) * 0.9 +
-    terrainNoise(x * 1.8 + 2.5, y * 1.35 - 1.4, t * 0.45) * 0.45;
-  const ridgeA = 1 - Math.abs(Math.sin(x * 4.2 + y * 1.6 + terrainNoise(x, y, t) * 1.8));
-  const ridgeB = 1 - Math.abs(Math.sin(x * 2.7 - y * 3.4 + terrainNoise(x * 0.7, y * 0.7, t) * 1.3));
-  return base * 0.42 + ridgeA ** 3 * 0.46 + ridgeB ** 4 * 0.28;
+function projectLanding(lat, lon, metrics) {
+  const latRad = (lat * Math.PI) / 180;
+  const lonRad = ((lon - landingLon) * Math.PI) / 180;
+  const pitch = ((landingLat - 7) * Math.PI) / 180;
+  const cosLat = Math.cos(latRad);
+  const x = cosLat * Math.sin(lonRad);
+  const y = Math.sin(latRad);
+  const z = cosLat * Math.cos(lonRad);
+  const y2 = y * Math.cos(pitch) - z * Math.sin(pitch);
+  const z2 = y * Math.sin(pitch) + z * Math.cos(pitch);
+  return {
+    x: metrics.cx + x * metrics.r,
+    y: metrics.cy - y2 * metrics.r,
+    z: z2,
+    visible: z2 > -0.03,
+  };
 }
 
-function drawLandingHillshade(t, parallaxX, parallaxY) {
-  const shadeWidth = Math.max(260, Math.min(560, Math.round(terrainWidth / 3)));
-  const shadeHeight = Math.max(160, Math.min(360, Math.round(terrainHeight / 3)));
-  if (terrainShadeCanvas.width !== shadeWidth || terrainShadeCanvas.height !== shadeHeight) {
-    terrainShadeCanvas.width = shadeWidth;
-    terrainShadeCanvas.height = shadeHeight;
-  }
-
-  const image = terrainShadeCtx.createImageData(shadeWidth, shadeHeight);
-  const data = image.data;
-  const lightX = -0.58;
-  const lightY = -0.74;
-  const pixelStep = 1 / Math.min(shadeWidth, shadeHeight);
-
-  for (let y = 0; y < shadeHeight; y += 1) {
-    for (let x = 0; x < shadeWidth; x += 1) {
-      const nx = (x / shadeWidth - 0.5) * 3.15 - parallaxX / Math.max(terrainWidth, 1) * 0.8;
-      const ny = (y / shadeHeight - 0.5) * 2.05 - parallaxY / Math.max(terrainHeight, 1) * 0.65;
-      const h = terrainHeightValue(nx, ny, t);
-      const hx = terrainHeightValue(nx + pixelStep * 3.2, ny, t);
-      const hy = terrainHeightValue(nx, ny + pixelStep * 3.2, t);
-      const slope = (h - hx) * lightX + (h - hy) * lightY;
-      const vignette = Math.max(0, 1 - Math.hypot(nx * 0.42, ny * 0.7));
-      const value = clamp(242 + h * 11 + slope * 36, 218, 255);
-      const index = (y * shadeWidth + x) * 4;
-      data[index] = value;
-      data[index + 1] = value;
-      data[index + 2] = value;
-      data[index + 3] = Math.round(118 * vignette);
+function strokeLandingLine(points, metrics, color, widthValue = 0.7) {
+  landingCtx.beginPath();
+  let drawing = false;
+  for (const [lat, lon] of points) {
+    const point = projectLanding(lat, lon, metrics);
+    if (!point.visible) {
+      drawing = false;
+      continue;
+    }
+    if (!drawing) {
+      landingCtx.moveTo(point.x, point.y);
+      drawing = true;
+    } else {
+      landingCtx.lineTo(point.x, point.y);
     }
   }
+  landingCtx.strokeStyle = color;
+  landingCtx.lineWidth = widthValue;
+  landingCtx.stroke();
+}
 
-  terrainShadeCtx.putImageData(image, 0, 0);
-  terrainCtx.save();
-  terrainCtx.globalCompositeOperation = "multiply";
-  terrainCtx.globalAlpha = 0.72;
-  terrainCtx.imageSmoothingEnabled = true;
-  terrainCtx.drawImage(
-    terrainShadeCanvas,
-    -terrainWidth * 0.035 + parallaxX * 0.12,
-    -terrainHeight * 0.03 + parallaxY * 0.1,
-    terrainWidth * 1.07,
-    terrainHeight * 1.06,
+function drawLandingGraticule(metrics) {
+  landingCtx.save();
+  landingCtx.beginPath();
+  landingCtx.arc(metrics.cx, metrics.cy, metrics.r, 0, Math.PI * 2);
+  landingCtx.clip();
+
+  for (const line of landingLatLines) {
+    strokeLandingLine(
+      line.points,
+      metrics,
+      line.lat === 0 ? "rgba(198, 33, 31, 0.16)" : "rgba(24, 28, 31, 0.08)",
+      line.lat === 0 ? 0.9 : 0.62,
+    );
+  }
+
+  for (const line of landingLonLines) {
+    strokeLandingLine(line.points, metrics, "rgba(24, 28, 31, 0.07)", 0.58);
+  }
+  landingCtx.restore();
+}
+
+function drawLandingLand(metrics) {
+  landingCtx.save();
+  landingCtx.beginPath();
+  landingCtx.arc(metrics.cx, metrics.cy, metrics.r, 0, Math.PI * 2);
+  landingCtx.clip();
+
+  const landGradient = landingCtx.createRadialGradient(
+    metrics.cx - metrics.r * 0.26,
+    metrics.cy - metrics.r * 0.28,
+    metrics.r * 0.08,
+    metrics.cx + metrics.r * 0.12,
+    metrics.cy + metrics.r * 0.08,
+    metrics.r,
   );
-  terrainCtx.restore();
-}
+  landGradient.addColorStop(0, "rgba(34, 38, 40, 0.16)");
+  landGradient.addColorStop(0.62, "rgba(34, 38, 40, 0.1)");
+  landGradient.addColorStop(1, "rgba(34, 38, 40, 0.045)");
 
-function drawTerrainOverlayLine(x1, y1, x2, y2, alpha = 0.18) {
-  terrainCtx.strokeStyle = `rgba(198, 33, 31, ${alpha})`;
-  terrainCtx.lineWidth = 0.75;
-  terrainCtx.beginPath();
-  terrainCtx.moveTo(x1, y1);
-  terrainCtx.lineTo(x2, y2);
-  terrainCtx.stroke();
-}
-
-function drawTerrainPolyline(points, options = {}) {
-  if (points.length < 2) return;
-  terrainCtx.save();
-  terrainCtx.lineCap = "round";
-  terrainCtx.lineJoin = "round";
-
-  terrainCtx.beginPath();
-  points.forEach(([x, y], index) => {
-    if (index === 0) terrainCtx.moveTo(x, y);
-    else terrainCtx.lineTo(x, y);
-  });
-  terrainCtx.strokeStyle = options.highlight || "rgba(255, 255, 255, 0.68)";
-  terrainCtx.lineWidth = options.width ? options.width + 0.8 : 1.4;
-  terrainCtx.shadowColor = "rgba(255,255,255,0.65)";
-  terrainCtx.shadowBlur = 0;
-  terrainCtx.shadowOffsetX = -1;
-  terrainCtx.shadowOffsetY = -1;
-  terrainCtx.stroke();
-
-  terrainCtx.beginPath();
-  points.forEach(([x, y], index) => {
-    if (index === 0) terrainCtx.moveTo(x, y);
-    else terrainCtx.lineTo(x, y);
-  });
-  terrainCtx.strokeStyle = options.shadow || "rgba(24, 27, 30, 0.12)";
-  terrainCtx.lineWidth = options.width || 0.7;
-  terrainCtx.shadowColor = "rgba(24,27,30,0.1)";
-  terrainCtx.shadowOffsetX = 1.1;
-  terrainCtx.shadowOffsetY = 1.1;
-  terrainCtx.stroke();
-  terrainCtx.restore();
-}
-
-function drawReliefRange(centerX, centerY, widthValue, heightValue, angle, intensity = 1) {
-  terrainCtx.save();
-  terrainCtx.translate(centerX, centerY);
-  terrainCtx.rotate(angle);
-  const lineCount = Math.round(9 + intensity * 5);
-  for (let row = 0; row < lineCount; row += 1) {
-    const rowT = row / Math.max(1, lineCount - 1);
-    const baseY = (rowT - 0.5) * heightValue;
-    const taper = Math.sin(rowT * Math.PI);
-    const points = [];
-    for (let step = -42; step <= 42; step += 1) {
-      const x = (step / 42) * widthValue * (0.42 + taper * 0.44);
-      const peak =
-        Math.sin(step * 0.22 + row * 0.7) * heightValue * 0.035 +
-        terrainNoise(step * 0.04, row * 0.18, 0) * heightValue * 0.08;
-      const y = baseY + peak - taper * heightValue * 0.16 * Math.sin((step / 42) * Math.PI);
-      points.push([x, y]);
+  landingCtx.beginPath();
+  for (const ring of landMasses) {
+    let drawing = false;
+    let visibleCount = 0;
+    for (const [lat, lon] of ring) {
+      const point = projectLanding(lat, lon, metrics);
+      if (point.visible && point.z > -0.015) {
+        if (!drawing) {
+          landingCtx.moveTo(point.x, point.y);
+          drawing = true;
+        } else {
+          landingCtx.lineTo(point.x, point.y);
+        }
+        visibleCount += 1;
+      } else if (drawing) {
+        drawing = false;
+      }
     }
-    drawTerrainPolyline(points, {
-      width: row % 3 === 0 ? 0.95 : 0.58,
-      highlight: `rgba(255, 255, 255, ${0.58 + intensity * 0.14})`,
-      shadow: `rgba(25, 28, 31, ${0.075 + intensity * 0.055})`,
-    });
+    if (visibleCount > 3) landingCtx.closePath();
   }
-  terrainCtx.restore();
+  landingCtx.fillStyle = landGradient;
+  landingCtx.fill();
+
+  landingCtx.lineCap = "round";
+  landingCtx.lineJoin = "round";
+  for (const ring of landMasses) {
+    strokeLandingLine(ring, metrics, "rgba(24, 28, 31, 0.16)", 0.74);
+  }
+  landingCtx.restore();
 }
 
-function drawTerrainDotField(originX, originY, columns, rows, spacing, alpha = 0.08) {
-  terrainCtx.save();
-  terrainCtx.fillStyle = `rgba(24, 27, 30, ${alpha})`;
-  for (let row = 0; row < rows; row += 1) {
-    for (let col = 0; col < columns; col += 1) {
-      if ((row + col) % 7 === 0) continue;
-      const fade = 1 - Math.hypot(col / columns - 0.5, row / rows - 0.5) * 1.55;
-      if (fade <= 0) continue;
-      terrainCtx.globalAlpha = alpha * fade;
-      terrainCtx.fillRect(originX + col * spacing, originY + row * spacing, 1, 1);
-    }
+function drawLandingSignals(metrics) {
+  landingCtx.save();
+  landingCtx.beginPath();
+  landingCtx.arc(metrics.cx, metrics.cy, metrics.r, 0, Math.PI * 2);
+  landingCtx.clip();
+
+  for (const signal of signals) {
+    if (signal.labelRank > 18) continue;
+    const point = projectLanding(signal.lat, signal.lon, metrics);
+    if (!point.visible || point.z < 0.04) continue;
+    const alpha = Math.min(0.32, 0.08 + point.z * 0.17);
+    landingCtx.fillStyle = `rgba(198, 33, 31, ${alpha})`;
+    landingCtx.beginPath();
+    landingCtx.arc(point.x, point.y, point.z > 0.62 ? 2.2 : 1.65, 0, Math.PI * 2);
+    landingCtx.fill();
   }
-  terrainCtx.globalAlpha = 1;
-  terrainCtx.restore();
+  landingCtx.restore();
 }
 
-function drawLandingTerrain(now) {
-  if (!terrainCtx || mode !== "landing" || terrainCanvas.offsetParent === null) return;
-  terrainCtx.clearRect(0, 0, terrainWidth, terrainHeight);
+function drawLandingGlobe(now) {
+  if (!landingCtx || landingCanvas.offsetParent === null) return;
 
-  terrainPointer.x += (terrainPointer.targetX - terrainPointer.x) * 0.08;
-  terrainPointer.y += (terrainPointer.targetY - terrainPointer.y) * 0.08;
+  landingCtx.clearRect(0, 0, landingWidth, landingHeight);
+  landingPointer.x += (landingPointer.targetX - landingPointer.x) * 0.08;
+  landingPointer.y += (landingPointer.targetY - landingPointer.y) * 0.08;
 
-  const t = now * 0.00007;
-  const cx = terrainWidth * 0.5;
-  const cy = terrainHeight * 0.53;
-  const scale = Math.max(terrainWidth, terrainHeight);
-  const parallaxX = terrainPointer.x * scale * 0.045;
-  const parallaxY = terrainPointer.y * scale * 0.034;
-
-  terrainCtx.fillStyle = "#f7f6f2";
-  terrainCtx.fillRect(0, 0, terrainWidth, terrainHeight);
-
-  const ground = terrainCtx.createRadialGradient(
-    cx + parallaxX * 0.3,
-    cy + parallaxY * 0.3,
-    scale * 0.08,
-    cx,
-    cy,
-    scale * 0.72,
+  const metrics = landingMetrics();
+  const launching = mode === "launching";
+  const glow = landingCtx.createRadialGradient(
+    metrics.cx,
+    metrics.cy,
+    metrics.r * 0.1,
+    metrics.cx,
+    metrics.cy,
+    metrics.r * (launching ? 1.45 : 1.28),
   );
-  ground.addColorStop(0, "rgba(255, 255, 255, 0.98)");
-  ground.addColorStop(0.5, "rgba(230, 231, 228, 0.7)");
-  ground.addColorStop(1, "rgba(246, 245, 241, 0)");
-  terrainCtx.fillStyle = ground;
-  terrainCtx.fillRect(0, 0, terrainWidth, terrainHeight);
+  glow.addColorStop(0, launching ? "rgba(255, 255, 255, 0.92)" : "rgba(255, 255, 255, 0.74)");
+  glow.addColorStop(0.58, "rgba(235, 237, 236, 0.24)");
+  glow.addColorStop(1, "rgba(247, 246, 242, 0)");
+  landingCtx.fillStyle = glow;
+  landingCtx.fillRect(0, 0, landingWidth, landingHeight);
 
-  drawLandingHillshade(t, parallaxX, parallaxY);
+  const sphere = landingCtx.createRadialGradient(
+    metrics.cx - metrics.r * 0.34,
+    metrics.cy - metrics.r * 0.32,
+    metrics.r * 0.08,
+    metrics.cx,
+    metrics.cy,
+    metrics.r * 1.05,
+  );
+  sphere.addColorStop(0, "rgba(255, 255, 255, 0.98)");
+  sphere.addColorStop(0.54, "rgba(247, 248, 247, 0.72)");
+  sphere.addColorStop(0.86, "rgba(216, 221, 221, 0.34)");
+  sphere.addColorStop(1, "rgba(184, 193, 193, 0.16)");
 
-  terrainCtx.save();
-  terrainCtx.translate(cx + parallaxX, cy + parallaxY);
-  terrainCtx.rotate(-0.13);
+  landingCtx.save();
+  landingCtx.globalAlpha = launching ? 0.92 : 0.78;
+  landingCtx.beginPath();
+  landingCtx.arc(metrics.cx, metrics.cy, metrics.r, 0, Math.PI * 2);
+  landingCtx.fillStyle = sphere;
+  landingCtx.fill();
+  landingCtx.lineWidth = 1;
+  landingCtx.strokeStyle = "rgba(24, 28, 31, 0.13)";
+  landingCtx.stroke();
+  landingCtx.restore();
 
-  for (let band = -15; band <= 15; band += 1) {
-    const points = [];
-    for (let step = -110; step <= 110; step += 1) {
-      const x = (step / 110) * scale * 0.72;
-      const n =
-        terrainNoise(step * 0.036, band * 0.24, t) +
-        terrainNoise(step * 0.018 + 2.8, band * 0.12, t * 0.5) * 0.8;
-      const y =
-        band * scale * 0.03 +
-        n * scale * 0.021 +
-        Math.sin(step * 0.055 + band * 0.5) * scale * 0.006;
-      points.push([x, y]);
-    }
-    drawTerrainPolyline(points, {
-      width: band % 4 === 0 ? 0.82 : 0.48,
-      highlight:
-        band % 4 === 0 ? "rgba(255,255,255,0.78)" : "rgba(255,255,255,0.45)",
-      shadow: band % 4 === 0 ? "rgba(24,27,30,0.13)" : "rgba(24,27,30,0.055)",
-    });
+  landingCtx.globalAlpha = launching ? 0.9 : 0.75;
+  drawLandingLand(metrics);
+  drawLandingGraticule(metrics);
+  drawLandingSignals(metrics);
+  landingCtx.globalAlpha = 1;
+}
+
+function queueNextFrame() {
+  if (document.hidden) {
+    window.setTimeout(() => requestAnimationFrame(animate), HIDDEN_FRAME_INTERVAL_MS);
+    return;
   }
-  terrainCtx.restore();
-
-  drawReliefRange(
-    terrainWidth * 0.2 + parallaxX * 0.48,
-    terrainHeight * 0.2 + parallaxY * 0.28,
-    scale * 0.34,
-    scale * 0.11,
-    -0.08,
-    0.86,
-  );
-  drawReliefRange(
-    terrainWidth * 0.7 + parallaxX * 0.38,
-    terrainHeight * 0.2 + parallaxY * 0.34,
-    scale * 0.42,
-    scale * 0.14,
-    -0.16,
-    0.94,
-  );
-  drawReliefRange(
-    terrainWidth * 0.64 + parallaxX * 0.44,
-    terrainHeight * 0.72 + parallaxY * 0.38,
-    scale * 0.43,
-    scale * 0.16,
-    -0.18,
-    1,
-  );
-  drawReliefRange(
-    terrainWidth * 0.34 + parallaxX * 0.36,
-    terrainHeight * 0.44 + parallaxY * 0.3,
-    scale * 0.25,
-    scale * 0.1,
-    -0.28,
-    0.7,
-  );
-
-  terrainCtx.fillStyle = "rgba(23, 25, 28, 0.34)";
-  for (const sample of terrainSamples) {
-    const px = sample.x * terrainWidth + parallaxX * (0.1 + sample.x * 0.08);
-    const py = sample.y * terrainHeight + parallaxY * (0.1 + sample.y * 0.08);
-    const nx = (px - cx) / scale;
-    const ny = (py - cy) / scale;
-    const falloff = Math.max(0, 1 - Math.hypot(nx * 1.6, ny * 1.25));
-    const heightValue = terrainNoise(nx * 9, ny * 9, t + sample.seed);
-    const alpha = falloff * Math.max(0, heightValue + 0.34) * 0.075;
-    if (alpha <= 0.006) continue;
-    terrainCtx.globalAlpha = alpha;
-    terrainCtx.beginPath();
-    terrainCtx.arc(px, py, 0.55 + falloff * 0.65, 0, Math.PI * 2);
-    terrainCtx.fill();
-  }
-  terrainCtx.globalAlpha = 1;
-
-  drawTerrainDotField(
-    terrainWidth * 0.18 + parallaxX * 0.12,
-    terrainHeight * 0.18 + parallaxY * 0.08,
-    34,
-    14,
-    8,
-    0.07,
-  );
-  drawTerrainDotField(
-    terrainWidth * 0.67 + parallaxX * 0.1,
-    terrainHeight * 0.58 + parallaxY * 0.08,
-    42,
-    16,
-    7,
-    0.055,
-  );
-
-  terrainCtx.save();
-  terrainCtx.translate(parallaxX * 0.16, parallaxY * 0.12);
-  drawTerrainOverlayLine(terrainWidth * 0.1, terrainHeight * 0.24, terrainWidth * 0.86, terrainHeight * 0.24, 0.12);
-  drawTerrainOverlayLine(terrainWidth * 0.62, terrainHeight * 0.1, terrainWidth * 0.62, terrainHeight * 0.82, 0.16);
-  drawTerrainOverlayLine(terrainWidth * 0.14, terrainHeight * 0.71, terrainWidth * 0.14, terrainHeight * 0.28, 0.1);
-  for (let i = 0; i < 16; i += 1) {
-    const x = terrainWidth * (0.18 + i * 0.043);
-    const y = terrainHeight * (0.24 + Math.sin(i * 1.7) * 0.012);
-    terrainCtx.fillStyle = i % 5 === 0 ? "rgba(198, 33, 31, 0.32)" : "rgba(198, 33, 31, 0.14)";
-    terrainCtx.fillRect(x, y - 1, i % 5 === 0 ? 8 : 4, 1);
-  }
-  terrainCtx.font = "9px 'DM Mono', monospace";
-  terrainCtx.fillStyle = "rgba(198, 33, 31, 0.32)";
-  terrainCtx.fillText("SURFACE SIGNAL", terrainWidth * 0.64, terrainHeight * 0.245);
-  terrainCtx.fillText("PATTERN INDEX", terrainWidth * 0.15, terrainHeight * 0.708);
-  terrainCtx.restore();
+  requestAnimationFrame(animate);
 }
 
 function animate(now = performance.now()) {
+  if (document.hidden) {
+    lastTime = now;
+    queueNextFrame();
+    return;
+  }
+
   const delta = Math.min(40, now - lastTime);
   lastTime = now;
 
-  drawLandingTerrain(now);
+  if (mode === "landing" || mode === "launching") {
+    landingLon = normalizeLon(landingLon + delta * (mode === "launching" ? 0.018 : 0.0045));
+    landingLat += (8 - landingLat) * 0.02;
+    drawLandingGlobe(now);
+  }
+
+  if (mode === "landing") {
+    queueNextFrame();
+    return;
+  }
 
   const hasInertia = Math.hypot(spin.velocityX, spin.velocityY) > 0.001;
   if (!spin.dragging && hasInertia) {
@@ -2666,7 +2859,7 @@ function animate(now = performance.now()) {
     spin.velocityX *= 0.94;
     spin.velocityY *= 0.94;
   } else if (mode === "browse" && now > spin.manualUntil) {
-    autoLon = normalizeLon(autoLon + delta * 0.0024);
+    autoLon = normalizeLon(autoLon + delta * 0.0012);
     targetLon = autoLon;
     targetLat += (8 - targetLat) * 0.01;
   } else if ((mode === "selected" || mode === "brief") && now > spin.manualUntil) {
@@ -2679,17 +2872,18 @@ function animate(now = performance.now()) {
   centerLat += (targetLat - centerLat) * 0.07;
 
   const metrics = globeMetrics();
+  prepareFramePaths(metrics);
+  earthRenderer.render(metrics, centerLon, centerLat);
   drawBackground(now);
   drawSphere(metrics);
   drawLand(metrics);
-  drawMountainTexture(metrics);
   drawGraticule(metrics);
   drawLinks();
   drawPins(metrics);
   drawCalibration(metrics);
-  setRuntimeTelemetry();
+  setRuntimeTelemetry(now);
 
-  requestAnimationFrame(animate);
+  queueNextFrame();
 }
 
 function findHoveredSignal() {
@@ -2740,9 +2934,16 @@ function setMode(nextMode) {
       }
     }, 980);
   }
-  readoutMode.textContent = nextMode === "browse" ? "BROWSE" : nextMode === "brief" ? "BRIEF" : "SELECTED";
+  readoutMode.textContent =
+    nextMode === "browse" || nextMode === "launching"
+      ? "BROWSE"
+      : nextMode === "brief"
+        ? "BRIEF"
+        : "SELECTED";
   readoutLocation.textContent =
-    nextMode === "browse" ? "GLOBAL SIGNAL SURFACE" : selectedSignal.region;
+    nextMode === "browse" || nextMode === "launching"
+      ? "GLOBAL SIGNAL SURFACE"
+      : selectedSignal.region;
 }
 
 function setSelectedSignal(signal) {
@@ -2758,27 +2959,33 @@ function setSelectedSignal(signal) {
 }
 
 function updateCard(signal) {
+  const model = signal.model;
   signalCard.dataset.kind = "signal";
   fields.kind.textContent = "SIGNAL";
   fields.kind.dataset.kind = "signal";
-  fields.confidence.textContent = `CONFIDENCE ${signal.confidence}`;
+  fields.confidence.textContent = model.convictionBand.toUpperCase();
   fields.region.textContent = signal.region;
   fields.title.textContent = signal.title;
   fields.summary.textContent = signal.summary;
   fields.implication.textContent = signal.implication;
-  fields.surprise.textContent = signal.surprise;
+  fields.surprise.textContent = model.hiddenVariable;
+  fields.modelRead.textContent = model.confidenceReason;
   fields.horizon.textContent = signal.horizon;
-  fields.signals.textContent = String(signal.signalCount);
-  fields.category.textContent = signal.category;
+  fields.conviction.textContent = `${model.score}/100`;
+  fields.archetype.textContent = model.archetype;
 }
 
 function updateBrief(signal) {
+  const model = signal.model;
   fields.briefTitle.textContent = signal.title;
-  fields.briefDeck.textContent = `${signal.region}. ${signal.summary}`;
+  fields.briefDeck.textContent = `${signal.region}. ${model.baseCase}`;
   fields.rationale.textContent = signal.rationale;
-  fields.why.textContent = signal.why;
-  fields.briefSurprise.textContent = signal.surprise;
-  fields.briefWatch.textContent = signal.watch;
+  fields.why.textContent = model.pressurePath;
+  fields.briefSurprise.textContent = model.nonObviousRead;
+  fields.briefWatch.textContent = model.leadingIndicators.join("; ");
+  fields.briefDisconfirmers.textContent = model.disconfirmers.join("; ");
+  fields.briefScenarioSpread.textContent =
+    `Base: ${model.baseCase} Upside: ${model.upsideCase} Downside: ${model.downsideCase}`;
   fields.signalList.replaceChildren(
     ...signal.signals.map((signal) => {
       const item = document.createElement("li");
@@ -2809,8 +3016,24 @@ function openBrief() {
 }
 
 function enterExperience() {
-  setMode("browse");
-  setTimeout(() => canvas.focus?.(), 400);
+  if (mode !== "landing") return;
+  enterButton.disabled = true;
+  centerLon = normalizeLon(landingLon);
+  targetLon = centerLon;
+  autoLon = centerLon;
+  centerLat = 8;
+  targetLat = 8;
+  currentZoom = 0.92;
+  targetZoom = 1;
+  spin.velocityX = 0;
+  spin.velocityY = 0;
+  setMode("launching");
+  window.setTimeout(startDetailedAssets, 520);
+  window.setTimeout(() => {
+    setMode("browse");
+    enterButton.disabled = false;
+    canvas.focus?.();
+  }, 860);
 }
 
 function applyLaunchState() {
@@ -2841,6 +3064,7 @@ function applyLaunchState() {
 
   const launchSignal = getSignal(params.get("signal")) || selectedSignal;
   appShell.dataset.landingDone = "true";
+  startDetailedAssets();
   if (launchMode === "browse") {
     setMode("browse");
     return;
@@ -2970,15 +3194,15 @@ function handleCanvasLeave() {
 
 function handleLandingPointerMove(event) {
   const rect = landing.getBoundingClientRect();
-  terrainPointer.targetX = ((event.clientX - rect.left) / rect.width - 0.5) * 2;
-  terrainPointer.targetY = ((event.clientY - rect.top) / rect.height - 0.5) * 2;
-  landing.style.setProperty("--landing-x", terrainPointer.targetX.toFixed(3));
-  landing.style.setProperty("--landing-y", terrainPointer.targetY.toFixed(3));
+  landingPointer.targetX = ((event.clientX - rect.left) / rect.width - 0.5) * 2;
+  landingPointer.targetY = ((event.clientY - rect.top) / rect.height - 0.5) * 2;
+  landing.style.setProperty("--landing-x", landingPointer.targetX.toFixed(3));
+  landing.style.setProperty("--landing-y", landingPointer.targetY.toFixed(3));
 }
 
 function handleLandingPointerLeave() {
-  terrainPointer.targetX = 0;
-  terrainPointer.targetY = 0;
+  landingPointer.targetX = 0;
+  landingPointer.targetY = 0;
   landing.style.setProperty("--landing-x", "0");
   landing.style.setProperty("--landing-y", "0");
 }
@@ -2993,7 +3217,13 @@ function setFilter(filter) {
   }
 }
 
+function handleViewportChange() {
+  isDesktopViewport = desktopMedia.matches;
+  resize();
+}
+
 window.addEventListener("resize", resize);
+desktopMedia.addEventListener?.("change", handleViewportChange);
 window.addEventListener("wheel", handleWheel, { passive: false });
 enterButton.addEventListener("click", enterExperience);
 openBriefButton.addEventListener("click", openBrief);
@@ -3027,8 +3257,10 @@ window.__futureSignalsState = () => ({
   hovering: hoveredSignal?.id || null,
   scrubbing: spin.dragging,
   landSource,
-  landDots: landDots.length + landFillDots.length,
-  landFillDots: landFillDots.length,
+  landPoints: landPointCount,
+  countryPoints: countryPointCount,
+  reliefReady: earthRenderer.ready,
+  reliefSize: earthRenderer.ready ? "webgl" : "0",
+  detailedAssetsStarted,
 });
-loadDetailedLand();
 requestAnimationFrame(animate);
