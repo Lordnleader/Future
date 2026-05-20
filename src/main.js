@@ -2136,6 +2136,7 @@ function createEarthRenderer(target) {
       uniform sampler2D uMask;
       uniform vec2 uTexel;
       uniform float uMaskReady;
+      uniform float uZoom;
       varying vec2 vUv;
       varying float vZ;
       varying vec3 vNormal;
@@ -2148,19 +2149,33 @@ function createEarthRenderer(target) {
         float w = texture2D(uTopo, vUv - vec2(uTexel.x, 0.0)).r;
         float n = texture2D(uTopo, vUv - vec2(0.0, uTexel.y)).r;
         float s = texture2D(uTopo, vUv + vec2(0.0, uTexel.y)).r;
-        float slope = (e - w) * -0.35 + (s - n) * -0.52;
-        float ridge = smoothstep(0.012, 0.09, abs(e - w) + abs(n - s)) * land;
+        float eastWest = e - w;
+        float northSouth = s - n;
+        float slope = eastWest * -0.38 + northSouth * -0.52;
+        float terrainSlope = abs(eastWest) + abs(northSouth);
+        float zoomRelief = smoothstep(0.86, 1.7, uZoom);
+        float zoomMicro = smoothstep(1.12, 1.78, uZoom);
+        float ridge = smoothstep(0.01, 0.08, terrainSlope) * land;
         float relief = smoothstep(0.018, 0.55, h) * land;
+        float mountainMass = smoothstep(0.16, 0.72, h) * land;
+        float reliefScale = mix(6.0, 13.5, zoomRelief);
+        vec3 reliefNormal = normalize(vec3(-eastWest * reliefScale, northSouth * reliefScale, 1.0));
+        vec3 reliefLightDir = normalize(vec3(-0.48, 0.34, 0.81));
+        float reliefLight = clamp(dot(reliefNormal, reliefLightDir), 0.0, 1.0);
+        float ridgeShadow = (1.0 - reliefLight) * ridge * (0.08 + zoomMicro * 0.18);
+        float mountainShadow = max(0.0, 0.58 - reliefLight) * mountainMass * (0.12 + zoomRelief * 0.2);
+        float mountainHighlight = max(0.0, reliefLight - 0.62) * mountainMass * (0.08 + zoomRelief * 0.16);
         vec3 lightDir = normalize(vec3(-0.42, 0.36, 0.82));
         float light = clamp(dot(normalize(vNormal), lightDir) * 0.48 + 0.58, 0.0, 1.0);
         float limb = smoothstep(0.0, 0.5, vZ);
-        float reliefDepth = mix(0.72, 1.0, limb);
+        float reliefDepth = mix(0.86, 1.08, limb);
         vec3 ocean = mix(vec3(0.985, 0.985, 0.965), vec3(0.90, 0.94, 0.93), 1.0 - light);
         vec3 landBase = mix(vec3(0.95, 0.955, 0.935), vec3(0.70, 0.76, 0.75), 1.0 - light);
         vec3 color = mix(ocean, landBase, land);
-        color -= vec3(0.32, 0.34, 0.34) * relief * 0.34 * reliefDepth;
-        color -= vec3(0.46, 0.47, 0.45) * ridge * 0.24 * reliefDepth;
-        color += vec3(0.05, 0.05, 0.04) * max(0.0, slope) * land * reliefDepth;
+        color -= vec3(0.28, 0.30, 0.30) * (relief * 0.2 + mountainShadow + ridgeShadow) * reliefDepth;
+        color -= vec3(0.43, 0.44, 0.42) * ridge * (0.1 + zoomMicro * 0.15) * reliefDepth;
+        color += vec3(0.08, 0.08, 0.07) * mountainHighlight * reliefDepth;
+        color += vec3(0.045, 0.045, 0.035) * max(0.0, slope) * land * (0.7 + zoomRelief * 0.25) * reliefDepth;
         float alpha = mix(0.62, 0.96, limb);
         gl_FragColor = vec4(color, alpha);
       }
@@ -2231,6 +2246,7 @@ function createEarthRenderer(target) {
     topo: gl.getUniformLocation(program, "uTopo"),
     mask: gl.getUniformLocation(program, "uMask"),
     maskReady: gl.getUniformLocation(program, "uMaskReady"),
+    zoom: gl.getUniformLocation(program, "uZoom"),
   };
 
   const renderer = {
@@ -2264,7 +2280,7 @@ function createEarthRenderer(target) {
     resize(targetWidth, targetHeight) {
       gl.viewport(0, 0, targetWidth, targetHeight);
     },
-    render(metrics, lon, lat) {
+    render(metrics, lon, lat, zoom = 1) {
       gl.viewport(0, 0, target.width, target.height);
       gl.clearColor(0, 0, 0, 0);
       gl.clear(gl.COLOR_BUFFER_BIT);
@@ -2286,6 +2302,7 @@ function createEarthRenderer(target) {
       gl.uniform1f(locations.centerLon, (lon * Math.PI) / 180);
       gl.uniform1f(locations.pitch, ((lat - 7) * Math.PI) / 180);
       gl.uniform2f(locations.texel, 1 / this.textureWidth, 1 / this.textureHeight);
+      gl.uniform1f(locations.zoom, zoom);
 
       gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
       gl.enableVertexAttribArray(locations.position);
@@ -3439,7 +3456,7 @@ function animate(now = performance.now()) {
 
   const metrics = globeMetrics();
   prepareFramePaths(metrics);
-  earthRenderer.render(metrics, centerLon, centerLat);
+  earthRenderer.render(metrics, centerLon, centerLat, currentZoom);
   drawBackground(now);
   drawSphere(metrics);
   drawLand(metrics);
