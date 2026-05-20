@@ -40,7 +40,9 @@ reference class after generation.
 ## Nightly Signal Data
 
 The first live-data scaffold is in `scripts/generate-nightly-signals.js`. It runs
-with plain Node, needs no npm install, and writes `data/live-signal-candidates.json`.
+with plain Node, needs no npm install, and writes both
+`data/live-signal-candidates.json` and the browser-ready
+`data/predictions/latest.json`.
 
 ```bash
 node scripts/generate-nightly-signals.js --dry-run
@@ -48,6 +50,9 @@ node scripts/generate-nightly-signals.js --live
 ```
 
 GitHub Actions is configured in `.github/workflows/nightly-signals.yml` to run the
-generator nightly and commit changed signal data. See `docs/live-data-platform.md`
-for the source registry, optional API keys, and the path from candidate signals to
-fully data-backed predictions.
+generator nightly at 01:00 Europe/London and commit changed prediction data. The
+homepage fetches `data/predictions/latest.json` in the background and keeps the
+hand-authored signal set as a fallback, so the globe never goes blank if a source
+is temporarily unavailable. See `docs/live-data-platform.md` for the source
+registry, optional API keys, and the path from candidate signals to fully
+data-backed predictions.

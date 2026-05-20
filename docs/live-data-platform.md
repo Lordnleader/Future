@@ -1,21 +1,23 @@
 # Live Data Platform
 
-Predict the Future should become a static site fed by a nightly evidence pipeline.
-GitHub Pages stays simple: it serves HTML, JS, assets, and generated JSON. GitHub
+Predict the Future is a static site fed by a nightly evidence pipeline. GitHub
+Pages stays simple: it serves HTML, JS, assets, and generated JSON. GitHub
 Actions does the live work at night, writes `data/live-signal-candidates.json`,
-and eventually writes browser-ready `data/predictions/latest.json`.
+and writes browser-ready `data/predictions/latest.json`.
 
 ## Architecture
 
-1. `scripts/generate-nightly-signals.js` runs at night or on demand.
+1. `scripts/generate-nightly-signals.js` runs at 01:00 Europe/London or on demand.
 2. The script queries free/open APIs where possible and falls back per source if
    a key is missing or an endpoint fails.
 3. Output is normalized into candidate signals with evidence URLs, observed
    timestamps, source names, leading indicators, disconfirmers, and reference
    class priors.
-4. A later integration step should move PFE scoring server-side inside the
-   generator, then make the browser fetch `data/predictions/latest.json`.
-5. The current browser model remains the fallback so the globe never goes blank.
+4. The generator also emits `data/predictions/latest.json`, a compact set of
+   browser-ready predictions that preserve the same PFE input contract.
+5. The browser fetches the latest prediction JSON in the background, hydrates it
+   through PFE-2.1, and keeps the current hand-authored model as a fallback so
+   the globe never goes blank.
 
 ## Source Registry
 
@@ -53,3 +55,12 @@ The deterministic API pipeline should be the source of record. A separate Codex
 nightly research scan can run at 1am to search broader web/news sources and
 propose candidate signals, but those candidates should still be validated into
 the same JSON contract before they appear as live data-backed predictions.
+
+## Current Browser Contract
+
+`data/predictions/latest.json` uses `future-signals.predictions.v1` and exposes a
+`signals` array. Each signal carries geography, copy, source names, evidence
+items, `sourceMix`, `referenceClassPrior`, `leadingIndicators`, and
+`disconfirmers`. The browser merges these nightly signals ahead of the static
+fallback set, then recalculates PFE-2.1 scores client-side so the site can show
+fresh predictions without a build step.

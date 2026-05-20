@@ -1,4 +1,4 @@
-const signals = [
+let signals = [
   {
     id: "sahel-microgrids",
     kind: "signal",
@@ -1324,38 +1324,52 @@ const predictionDomains = {
 
 const sourceReliability = {
   arXiv: 64,
+  Crossref: 70,
   Eurostat: 78,
   FAOSTAT: 76,
   GDELT: 56,
+  "GDELT DOC 2.1": 56,
   IEA: 78,
   ILOSTAT: 74,
   "NASA FIRMS": 76,
+  "NASA POWER": 77,
   NOAA: 78,
   "OECD AI": 75,
+  "Open-Meteo Forecast": 74,
   "OpenStreetMap Overpass": 63,
+  ReliefWeb: 68,
   "UN Population": 78,
   USGS: 77,
+  "USGS Earthquake Catalog": 77,
   "V-Dem": 72,
   "WHO GHO": 76,
+  "Wikipedia / MediaWiki": 58,
   "World Bank Indicators": 78,
   "World Values Survey": 70,
 };
 
 const sourceGroups = {
   arXiv: "research",
+  Crossref: "research",
   Eurostat: "official",
   FAOSTAT: "official",
   GDELT: "event stream",
+  "GDELT DOC 2.1": "event stream",
   IEA: "sector data",
   ILOSTAT: "official",
   "NASA FIRMS": "remote sensing",
+  "NASA POWER": "physical data",
   NOAA: "physical data",
   "OECD AI": "sector data",
+  "Open-Meteo Forecast": "physical data",
   "OpenStreetMap Overpass": "geography",
+  ReliefWeb: "humanitarian",
   "UN Population": "official",
   USGS: "geography",
+  "USGS Earthquake Catalog": "geography",
   "V-Dem": "institutional",
   "WHO GHO": "official",
+  "Wikipedia / MediaWiki": "context",
   "World Bank Indicators": "official",
   "World Values Survey": "survey",
 };
@@ -1500,7 +1514,16 @@ function countMatches(text, terms) {
 }
 
 function categoryPriorFor(signal) {
-  return predictionCategoryPriors[signal.category] || predictionCategoryPriors.default;
+  const prior = predictionCategoryPriors[signal.category] || predictionCategoryPriors.default;
+  const livePrior = signal.referenceClassPrior;
+  if (!livePrior) return prior;
+
+  return {
+    ...prior,
+    baseRate: Number(livePrior.base_rate) || prior.baseRate,
+    volatility: Number(livePrior.volatility) || prior.volatility,
+    referenceClass: livePrior.label || prior.referenceClass,
+  };
 }
 
 function assessSourceMix(sources) {
@@ -1720,6 +1743,9 @@ function convictionBand(score, horizon, uncertainty = 50) {
 }
 
 function buildLeadingIndicators(signal, archetype) {
+  const nightlyIndicators = Array.isArray(signal.leadingIndicators)
+    ? signal.leadingIndicators.map((indicator) => indicator.text || indicator)
+    : [];
   const watch = signal.watch || "";
   const parts = watch
     .replace(/^Watch\s+/i, "")
@@ -1728,6 +1754,7 @@ function buildLeadingIndicators(signal, archetype) {
     .filter(Boolean)
     .slice(0, 4);
   return uniqueItems([
+    ...nightlyIndicators,
     ...parts,
     ...(categoryPriorFor(signal).leading || []),
     ...(archetype.leading || []),
@@ -1736,10 +1763,14 @@ function buildLeadingIndicators(signal, archetype) {
 }
 
 function buildDisconfirmers(signal, archetype) {
+  const nightlyDisconfirmers = Array.isArray(signal.disconfirmers)
+    ? signal.disconfirmers.map((disconfirmer) => disconfirmer.text || disconfirmer)
+    : [];
   const category = categorySignalAdditions[signal.category] || categorySignalAdditions.default;
   const disconfirmation = category.find((item) => item.startsWith("Disconfirmation watch:"));
   const clean = disconfirmation?.replace("Disconfirmation watch:", "").trim();
   return uniqueItems([
+    ...nightlyDisconfirmers,
     clean,
     archetype.failure,
     categoryPriorFor(signal).failure,
@@ -1837,7 +1868,7 @@ function buildPredictionModel(signal, readout) {
   return model;
 }
 
-for (const signal of signals) {
+function hydrateSignal(signal) {
   const readout = signalReadouts[signal.id] || {
     surprise:
       "The important signal is the second-order behavior that becomes rational before the headline trend is obvious.",
@@ -1845,29 +1876,39 @@ for (const signal of signals) {
       "Watch for confirming and disconfirming signals across policy, price, geography, and institutional behavior.",
   };
   const additions = categorySignalAdditions[signal.category] || categorySignalAdditions.default;
-  signal.watch = readout.watch;
-  signal.signals = [...signal.signals, ...additions];
+  signal.watch = signal.watch || readout.watch;
+  signal.signals = uniqueItems([...(signal.signals || []), ...additions]);
   signal.model = buildPredictionModel(signal, readout);
   signal.confidence = signal.model.score;
   signal.signalCount = signal.model.scores.convergence;
   signal.surprise = signal.model.hiddenVariable;
+  return signal;
 }
+
+signals = signals.map((signal) => hydrateSignal(signal));
 
 const sourceIndex = {
   arXiv: "https://arxiv.org/",
+  Crossref: "https://www.crossref.org/",
   Eurostat: "https://ec.europa.eu/eurostat",
   FAOSTAT: "https://www.fao.org/faostat/",
   GDELT: "https://www.gdeltproject.org/",
+  "GDELT DOC 2.1": "https://www.gdeltproject.org/",
   IEA: "https://www.iea.org/data-and-statistics",
   ILOSTAT: "https://ilostat.ilo.org/data/",
   "NASA FIRMS": "https://firms.modaps.eosdis.nasa.gov/",
+  "NASA POWER": "https://power.larc.nasa.gov/",
   NOAA: "https://www.noaa.gov/",
   "OECD AI": "https://oecd.ai/",
+  "Open-Meteo Forecast": "https://open-meteo.com/",
   "OpenStreetMap Overpass": "https://overpass-api.de/",
+  ReliefWeb: "https://reliefweb.int/",
   "UN Population": "https://population.un.org/wpp/",
   USGS: "https://www.usgs.gov/programs/national-geospatial-program",
+  "USGS Earthquake Catalog": "https://earthquake.usgs.gov/fdsnws/event/1/",
   "V-Dem": "https://www.v-dem.net/data/",
   "WHO GHO": "https://www.who.int/data/gho",
+  "Wikipedia / MediaWiki": "https://www.mediawiki.org/wiki/API:Action_API",
   "World Bank Indicators": "https://data.worldbank.org/indicator",
   "World Values Survey": "https://www.worldvaluessurvey.org/",
 };
@@ -1887,17 +1928,24 @@ const ambientLinks = [
   ["arctic-routing", "antarctic-governance"],
 ];
 
-const signalsById = new Map(signals.map((signal) => [signal.id, signal]));
-const ambientLinkRefs = ambientLinks
-  .map(([from, to]) => ({
-    from: signalsById.get(from),
-    to: signalsById.get(to),
-  }))
-  .filter((link) => link.from && link.to)
-  .map((link) => ({
-    ...link,
-    points: greatCirclePoints(link.from, link.to, 42),
-  }));
+let signalsById = new Map();
+let ambientLinkRefs = [];
+
+function rebuildSignalIndexes() {
+  signalsById = new Map(signals.map((signal) => [signal.id, signal]));
+  ambientLinkRefs = ambientLinks
+    .map(([from, to]) => ({
+      from: signalsById.get(from),
+      to: signalsById.get(to),
+    }))
+    .filter((link) => link.from && link.to)
+    .map((link) => ({
+      ...link,
+      points: greatCirclePoints(link.from, link.to, 42),
+    }));
+}
+
+rebuildSignalIndexes();
 
 const landMasses = [
   [
@@ -2330,6 +2378,8 @@ const hoverTitle = document.querySelector("#hoverTitle");
 const readoutMode = document.querySelector("#readoutMode");
 const readoutLocation = document.querySelector("#readoutLocation");
 const filterButtons = [...document.querySelectorAll("[data-filter]")];
+const LIVE_PREDICTIONS_URL = "./data/predictions/latest.json";
+const LIVE_PREDICTIONS_SCHEMA = "future-signals.predictions.v1";
 
 const fields = {
   kind: document.querySelector("#cardKind"),
@@ -2384,6 +2434,7 @@ let lastTime = performance.now();
 let landingLon = -24;
 let landingLat = 8;
 let detailedAssetsStarted = false;
+let nightlyPredictionMeta = null;
 let pointer = { x: -9999, y: -9999 };
 const spin = {
   dragging: false,
@@ -3595,6 +3646,112 @@ function applyLaunchState() {
   }
 }
 
+function predictionCacheKey() {
+  const now = new Date();
+  const parts = new Intl.DateTimeFormat("en-GB", {
+    timeZone: "Europe/London",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  })
+    .formatToParts(now)
+    .reduce((values, part) => ({ ...values, [part.type]: part.value }), {});
+  return `${parts.year}-${parts.month}-${parts.day}`;
+}
+
+function normalizeNightlySignal(signal, index) {
+  const lat = Number(signal.lat);
+  const lon = Number(signal.lon);
+  if (!signal?.id || !Number.isFinite(lat) || !Number.isFinite(lon)) return null;
+
+  return hydrateSignal({
+    id: String(signal.id),
+    kind: "signal",
+    title: String(signal.title || "Untitled future signal"),
+    lat,
+    lon,
+    labelRank: Number.isFinite(Number(signal.labelRank)) ? Number(signal.labelRank) : index + 1,
+    confidence: Number.isFinite(Number(signal.confidence)) ? Number(signal.confidence) : 58,
+    region: String(signal.region || "GLOBAL / NIGHTLY SIGNAL"),
+    category: String(signal.category || "default"),
+    horizon: String(signal.horizon || "12-36 months"),
+    signalCount: Number.isFinite(Number(signal.signalCount)) ? Number(signal.signalCount) : 0,
+    summary: String(signal.summary || "A nightly evidence scan surfaced this directional signal."),
+    implication: String(signal.implication || "Watch whether this weak signal compounds into behavior change."),
+    rationale: String(signal.rationale || "Generated from the nightly evidence pipeline."),
+    why: String(signal.why || "The useful signal is whether evidence keeps converging across independent sources."),
+    signals: Array.isArray(signal.signals) ? signal.signals.map(String) : [],
+    sources: Array.isArray(signal.sources) ? signal.sources.map(String) : [],
+    evidence: Array.isArray(signal.evidence) ? signal.evidence : [],
+    sourceMix: Array.isArray(signal.sourceMix) ? signal.sourceMix : [],
+    referenceClassPrior: signal.referenceClassPrior || null,
+    leadingIndicators: Array.isArray(signal.leadingIndicators) ? signal.leadingIndicators : [],
+    disconfirmers: Array.isArray(signal.disconfirmers) ? signal.disconfirmers : [],
+    generatedAt: signal.generatedAt || null,
+    nightly: true,
+  });
+}
+
+function applyNightlyPredictions(payload) {
+  const incomingSignals = Array.isArray(payload.signals)
+    ? payload.signals
+        .map((signal, index) => normalizeNightlySignal(signal, index))
+        .filter(Boolean)
+    : [];
+  if (!incomingSignals.length) return false;
+
+  const previousSelectedId = selectedSignal?.id;
+  const passiveMode = mode === "landing" || mode === "browse" || mode === "launching";
+  const incomingIds = new Set(incomingSignals.map((signal) => signal.id));
+  const fallbackSignals = signals.filter((signal) => !signal.nightly && !incomingIds.has(signal.id));
+  signals = [...incomingSignals, ...fallbackSignals];
+  rebuildSignalIndexes();
+
+  nightlyPredictionMeta = {
+    generatedAt: payload.generatedAt || payload.generator?.generatedAt || null,
+    runId: payload.generator?.runId || null,
+    mode: payload.generator?.mode || null,
+    count: incomingSignals.length,
+  };
+  document.documentElement.dataset.predictionSource = "nightly";
+  document.documentElement.dataset.predictionGeneratedAt = nightlyPredictionMeta.generatedAt || "";
+  document.documentElement.dataset.predictionCount = String(incomingSignals.length);
+
+  selectedSignal = passiveMode
+    ? incomingSignals[0]
+    : signalsById.get(previousSelectedId) || incomingSignals[0];
+  updateCard(selectedSignal);
+  updateBrief(selectedSignal);
+
+  const params = new URLSearchParams(window.location.search);
+  const launchSignal = getSignal(params.get("signal"));
+  const wasBrief = mode === "brief";
+  if ((mode === "selected" || mode === "brief") && launchSignal && selectedSignal.id !== launchSignal.id) {
+    setSelectedSignal(launchSignal);
+    if (wasBrief) setMode("brief");
+  }
+
+  return true;
+}
+
+async function loadNightlyPredictions() {
+  const url = `${LIVE_PREDICTIONS_URL}?v=${predictionCacheKey()}`;
+  try {
+    const response = await fetch(url, { cache: "no-store" });
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    const payload = await response.json();
+    if (payload.schemaVersion !== LIVE_PREDICTIONS_SCHEMA) {
+      throw new Error(`Unexpected prediction schema: ${payload.schemaVersion || "missing"}`);
+    }
+    if (!applyNightlyPredictions(payload)) {
+      throw new Error("No usable nightly predictions");
+    }
+  } catch (error) {
+    document.documentElement.dataset.predictionSource = "static-fallback";
+    document.documentElement.dataset.predictionLoadError = error.message;
+  }
+}
+
 function beginSpinScrub(event) {
   if (mode === "landing") return;
   spin.dragging = true;
@@ -3758,6 +3915,7 @@ updateBrief(selectedSignal);
 resize();
 setLandTelemetry();
 applyLaunchState();
+loadNightlyPredictions();
 window.__futureSignalsState = () => ({
   mode,
   centerLon,
@@ -3776,11 +3934,16 @@ window.__futureSignalsState = () => ({
   reliefReady: earthRenderer.ready,
   reliefSize: earthRenderer.ready ? "webgl" : "0",
   detailedAssetsStarted,
+  predictionSource: nightlyPredictionMeta ? "nightly" : "static",
+  predictionGeneratedAt: nightlyPredictionMeta?.generatedAt || null,
 });
 window.__futurePredictionEngineState = () => ({
   version: predictionEngineConfig.version,
   generatedAt: predictionEngineConfig.generatedAt,
   cadenceTarget: predictionEngineConfig.cadenceTarget,
+  source: nightlyPredictionMeta ? "nightly" : "static",
+  nightly: nightlyPredictionMeta,
+  signalCount: signals.length,
   dimensions: Object.keys(predictionEngineConfig.weights),
   nightlyInputContract: predictionEngineConfig.nightlyInputContract,
   selected: {

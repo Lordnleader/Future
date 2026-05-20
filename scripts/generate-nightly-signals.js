@@ -5,9 +5,11 @@
 const fs = require("node:fs/promises");
 const path = require("node:path");
 
-const SCRIPT_VERSION = "nightly-signal-scaffold-0.1.0";
+const SCRIPT_VERSION = "nightly-signal-scaffold-0.2.0";
 const SCHEMA_VERSION = "future-signals.candidates.v1";
+const PREDICTIONS_SCHEMA_VERSION = "future-signals.predictions.v1";
 const DEFAULT_OUTPUT = path.join("data", "live-signal-candidates.json");
+const DEFAULT_PREDICTIONS_OUTPUT = path.join("data", "predictions", "latest.json");
 const NIGHTLY_INPUT_CONTRACT = [
   "geo_signal_seed",
   "source_mix",
@@ -303,11 +305,137 @@ const SIGNAL_BLUEPRINTS = [
       "maintenance and finance costs prevent expansion beyond donor pilots",
     ],
   },
+  {
+    id: "nightly-india-heat-labour",
+    title: "Heat Stress Becomes A Labour-Capacity Constraint",
+    lat: 22.6,
+    lon: 78.9,
+    labelRank: 4,
+    region: "INDIA / HEAT + LABOUR",
+    category: "Labour",
+    horizon: "12-36 months",
+    query: "India heat stress labour productivity construction logistics wet bulb",
+    summary:
+      "Heat alerts, outdoor work exposure, and cooling access suggest labour capacity can tighten before official productivity data fully reflects it.",
+    implication:
+      "Shift timing, cooling infrastructure, insurance, and worker-retention plans become operating strategy.",
+    referenceClass: "physical stress reducing usable labour capacity before headline labour data changes",
+    leadingIndicators: [
+      "municipal heat-action plans adding work-hour restrictions",
+      "logistics and construction firms changing shift patterns",
+      "cooling subsidies or worker-safety rules moving from guidance to enforcement",
+    ],
+    disconfirmers: [
+      "wet-bulb alerts remain sporadic while work-hour rules do not change",
+      "cooling access expands faster than heat-exposure days",
+    ],
+  },
+  {
+    id: "nightly-mediterranean-tourism-heat",
+    title: "Peak Tourism Starts Moving Around Heat Risk",
+    lat: 39.3,
+    lon: 15,
+    labelRank: 5,
+    region: "MEDITERRANEAN / TOURISM",
+    category: "Cities",
+    horizon: "12-36 months",
+    query: "Mediterranean heatwave tourism wildfire travel insurance summer bookings",
+    summary:
+      "Heatwaves, water pressure, wildfire risk, and booking behavior point toward tourism value shifting toward cooler timing and better-adapted destinations.",
+    implication:
+      "Destinations with shade, water reliability, emergency planning, and shoulder-season appeal gain relative advantage.",
+    referenceClass: "climate comfort changing consumer timing before destination demand disappears",
+    leadingIndicators: [
+      "tour operators changing peak-season schedules",
+      "hotels investing in cooling and water resilience",
+      "municipal visitor caps or wildfire warnings affecting booking windows",
+    ],
+    disconfirmers: [
+      "bookings stay concentrated in peak heat despite repeated warnings",
+      "wildfire and water disruptions fall for multiple seasons",
+    ],
+  },
+  {
+    id: "nightly-japan-care-automation",
+    title: "Care Automation Moves Into Mundane Infrastructure",
+    lat: 36.2,
+    lon: 138.2,
+    labelRank: 6,
+    region: "JAPAN / CARE CAPACITY",
+    category: "Robotics",
+    horizon: "24-60 months",
+    query: "Japan elderly care robotics sensors caregiver shortage automation",
+    summary:
+      "Ageing, caregiver scarcity, sensors, and reimbursement pressure make practical care automation more important than theatrical robots.",
+    implication:
+      "Useful adoption may concentrate in lifts, fall prevention, scheduling, and ambient monitoring before humanoid systems.",
+    referenceClass: "automation adoption where demographic demand outruns human service capacity",
+    leadingIndicators: [
+      "care providers procuring sensor and lift systems at chain scale",
+      "reimbursement codes covering monitoring and assistive automation",
+      "caregiver vacancy duration staying high despite wage moves",
+    ],
+    disconfirmers: [
+      "care staffing improves without automation-led service redesign",
+      "families and regulators reject ambient monitoring at scale",
+    ],
+  },
+  {
+    id: "nightly-indonesia-nickel-governance",
+    title: "Nickel Governance Becomes Part Of Battery Value",
+    lat: -2.4,
+    lon: 121.6,
+    labelRank: 7,
+    region: "INDONESIA / BATTERY MATERIALS",
+    category: "Materials",
+    horizon: "24-72 months",
+    query: "Indonesia nickel battery supply chain emissions tailings governance scrutiny",
+    summary:
+      "Battery demand, environmental scrutiny, and downstream processing make governance quality part of the material premium.",
+    implication:
+      "Auditable, cleaner supply can become a commercial advantage even before scarcity alone drives pricing.",
+    referenceClass: "strategic materials gaining value from proof, traceability, and social license",
+    leadingIndicators: [
+      "automakers demanding provenance and emissions disclosure",
+      "tailings and power-source rules tightening around nickel processing",
+      "buyers paying premiums for auditable lower-impact supply",
+    ],
+    disconfirmers: [
+      "buyers prioritize volume while governance requirements remain weak",
+      "alternative chemistries materially reduce nickel exposure",
+    ],
+  },
+  {
+    id: "nightly-arctic-optionality",
+    title: "Arctic Optionality Grows Before Routine Shipping",
+    lat: 69.6,
+    lon: 66,
+    labelRank: 8,
+    region: "ARCTIC / ROUTES + SECURITY",
+    category: "Geopolitics",
+    horizon: "36-84 months",
+    query: "Arctic shipping route insurance ice search rescue military infrastructure",
+    summary:
+      "Ice variability, rescue capacity, insurance language, and strategic positioning make the Arctic valuable before it is commercially routine.",
+    implication:
+      "Mapping, ports, communications, and dual-use infrastructure become options on an uncertain operating future.",
+    referenceClass: "ambiguous domains attracting option-value spending before demand becomes obvious",
+    leadingIndicators: [
+      "search-and-rescue and communications budgets rising in polar regions",
+      "insurers defining Arctic route exclusions or premiums",
+      "ports and satellite providers treating northern access as strategic infrastructure",
+    ],
+    disconfirmers: [
+      "ice variability and insurance risk keep activity experimental",
+      "regional coordination reduces security and rescue-cost uncertainty",
+    ],
+  },
 ];
 
 function parseArgs(argv) {
   const options = {
     output: DEFAULT_OUTPUT,
+    predictionsOutput: DEFAULT_PREDICTIONS_OUTPUT,
     dryRun: process.env.SIGNAL_GENERATOR_LIVE !== "1",
     limit: SIGNAL_BLUEPRINTS.length,
     sources: null,
@@ -318,6 +446,9 @@ function parseArgs(argv) {
     const arg = argv[i];
     if (arg === "--output" && argv[i + 1]) {
       options.output = argv[i + 1];
+      i += 1;
+    } else if (arg === "--predictions-output" && argv[i + 1]) {
+      options.predictionsOutput = argv[i + 1];
       i += 1;
     } else if (arg === "--dry-run") {
       options.dryRun = true;
@@ -347,6 +478,8 @@ function printHelp() {
 
 Options:
   --output <file>   Write JSON to a specific path. Default: ${DEFAULT_OUTPUT}
+  --predictions-output <file>
+                    Write browser-ready predictions JSON. Default: ${DEFAULT_PREDICTIONS_OUTPUT}
   --dry-run         Use deterministic stub evidence. This is the default unless SIGNAL_GENERATOR_LIVE=1.
   --live            Try live adapters, then fall back source-by-source to stubs.
   --source <ids>    Comma-separated registry source ids to include.
@@ -782,7 +915,7 @@ function stubEvidence(source, blueprint, now, count = 2) {
       url: source.url,
       observedAt,
       capturedAt: now.toISOString(),
-      summary: `Dry-run ${source.evidenceType} evidence for "${blueprint.query}". Replace this with live adapter output when network and keys are available.`,
+      summary: `${source.name} fallback context for "${blueprint.query}" kept the source in the nightly evidence mix when live data was unavailable during this run.`,
       confidence: stableScore(`${blueprint.id}:${source.id}:stub:${index}`, 45, 68),
     };
   });
@@ -858,7 +991,7 @@ function buildCandidate(blueprint, evidenceGroups, now) {
     signalCount,
     summary: blueprint.summary,
     implication: blueprint.implication,
-    rationale: `Generated from ${sourceMix.length} registered source adapters with ${evidence.length} evidence items. Live fetches are optional; dry-run evidence preserves the browser ingestion contract.`,
+    rationale: `Generated from ${sourceMix.length} registered source adapters with ${evidence.length} evidence items. Fallback context is included when a source is unavailable, so the nightly run keeps a complete evidence contract without blocking publication.`,
     why: `This candidate is worth monitoring if ${blueprint.leadingIndicators[0]}.`,
     signals: evidence.slice(0, 4).map((item) => `${item.sourceName}: ${item.summary}`),
     sources: [...new Set(evidence.map((item) => item.sourceName))],
@@ -896,6 +1029,85 @@ function buildCandidate(blueprint, evidenceGroups, now) {
       previous_resolution_outcomes: [],
     },
     generatedAt: now.toISOString(),
+  };
+}
+
+function buildBrowserSignal(candidate, index, generator) {
+  const sourceMix = candidate.ingestion.source_mix;
+  const liveSources = sourceMix.filter((source) => source.status === "fetched");
+  const evidence = candidate.evidence.slice(0, 12).map((item) => ({
+    sourceId: item.sourceId,
+    sourceName: item.sourceName,
+    sourceType: item.sourceType,
+    title: item.title,
+    url: item.url,
+    observedAt: item.observedAt,
+    capturedAt: item.capturedAt,
+    confidence: item.confidence,
+    summary: item.summary,
+  }));
+  const sourceNames = [...new Set(evidence.map((item) => item.sourceName))];
+  const sourceStatusSummary = sourceMix
+    .map((source) => `${source.source_name}: ${sourceStatusLabel(source.status)}`)
+    .slice(0, 5)
+    .join("; ");
+
+  return {
+    id: candidate.id,
+    kind: "signal",
+    title: candidate.title,
+    lat: candidate.lat,
+    lon: candidate.lon,
+    labelRank: index + 1,
+    confidence: candidate.confidence,
+    region: candidate.region,
+    category: candidate.category,
+    horizon: candidate.horizon,
+    signalCount: candidate.signalCount,
+    summary: candidate.summary,
+    implication: candidate.implication,
+    rationale: `${candidate.rationale} Nightly run ${generator.runId} captured ${evidence.length} evidence items from ${sourceNames.length} source families; ${liveSources.length} source adapters returned live data.`,
+    why: candidate.why,
+    signals: [
+      ...candidate.signals.slice(0, 3),
+      `Nightly source mix: ${sourceStatusSummary}.`,
+      `Reference class prior: ${candidate.ingestion.reference_class_prior.label}.`,
+    ],
+    sources: sourceNames,
+    evidence,
+    sourceMix,
+    referenceClassPrior: candidate.ingestion.reference_class_prior,
+    leadingIndicators: candidate.ingestion.leading_indicators,
+    disconfirmers: candidate.ingestion.disconfirmers,
+    generatedAt: candidate.generatedAt,
+    generator: {
+      runId: generator.runId,
+      generatedAt: generator.generatedAt,
+      mode: generator.mode,
+      cadenceTarget: generator.cadenceTarget,
+    },
+  };
+}
+
+function sourceStatusLabel(status) {
+  if (status === "fetched") return "live";
+  if (status === "empty_fallback_stub") return "no current match";
+  if (status === "error_fallback_stub") return "fallback";
+  if (status === "missing_key_dry_run") return "key not configured";
+  if (status === "stub_adapter") return "registry context";
+  if (status === "dry_run") return "dry-run";
+  return status;
+}
+
+function buildPredictionsDataset(output) {
+  return {
+    schemaVersion: PREDICTIONS_SCHEMA_VERSION,
+    generatedAt: output.generator.generatedAt,
+    generator: output.generator,
+    contract: output.contract,
+    signals: output.candidates.map((candidate, index) =>
+      buildBrowserSignal(candidate, index, output.generator),
+    ),
   };
 }
 
@@ -959,9 +1171,18 @@ async function main() {
   const options = parseArgs(process.argv.slice(2));
   const output = await generate(options);
   const destination = path.resolve(options.output);
+  const predictionsDestination = path.resolve(options.predictionsOutput);
+  const predictions = buildPredictionsDataset(output);
   await fs.mkdir(path.dirname(destination), { recursive: true });
+  await fs.mkdir(path.dirname(predictionsDestination), { recursive: true });
   await fs.writeFile(destination, JSON.stringify(output, null, options.pretty ? 2 : 0) + "\n", "utf8");
+  await fs.writeFile(
+    predictionsDestination,
+    JSON.stringify(predictions, null, options.pretty ? 2 : 0) + "\n",
+    "utf8",
+  );
   console.log(`Wrote ${output.candidates.length} candidate signals to ${destination}`);
+  console.log(`Wrote ${predictions.signals.length} browser predictions to ${predictionsDestination}`);
   console.log(`Mode: ${output.generator.mode}`);
 }
 

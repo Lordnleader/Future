@@ -2,8 +2,10 @@ name: Nightly Future Signals
 
 on:
   schedule:
-    # 00:00 UTC is 01:00 London during British Summer Time.
+    # GitHub cron is UTC. One of these maps to 01:00 Europe/London
+    # depending on whether London is on GMT or British Summer Time.
     - cron: "0 0 * * *"
+    - cron: "0 1 * * *"
   workflow_dispatch:
 
 permissions:
@@ -13,15 +15,41 @@ jobs:
   generate:
     runs-on: ubuntu-latest
     steps:
+      - name: Guard London 1am schedule
+        id: schedule_guard
+        shell: bash
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "should_run=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          today_utc="$(date -u +%Y-%m-%d)"
+          if [ "${{ github.event.schedule }}" = "0 0 * * *" ]; then
+            scheduled_utc="${today_utc} 00:00 UTC"
+          else
+            scheduled_utc="${today_utc} 01:00 UTC"
+          fi
+
+          london_hour="$(TZ=Europe/London date -d "$scheduled_utc" +%H)"
+          if [ "$london_hour" = "01" ]; then
+            echo "should_run=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "should_run=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Checkout
+        if: steps.schedule_guard.outputs.should_run == 'true'
         uses: actions/checkout@v4
 
       - name: Set up Node
+        if: steps.schedule_guard.outputs.should_run == 'true'
         uses: actions/setup-node@v4
         with:
           node-version: "20"
 
       - name: Generate nightly signal candidates
+        if: steps.schedule_guard.outputs.should_run == 'true'
         run: node scripts/generate-nightly-signals.js --live
         env:
           NASA_FIRMS_API_KEY: ${{ secrets.NASA_FIRMS_API_KEY }}
@@ -33,13 +61,14 @@ jobs:
           CROSSREF_MAILTO: ${{ secrets.CROSSREF_MAILTO }}
 
       - name: Commit generated data
+        if: steps.schedule_guard.outputs.should_run == 'true'
         run: |
-          if git diff --quiet -- data/live-signal-candidates.json; then
+          if git diff --quiet -- data/live-signal-candidates.json data/predictions/latest.json; then
             echo "No signal data changes."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/live-signal-candidates.json
-          git commit -m "Update nightly signal candidates"
+          git add data/live-signal-candidates.json data/predictions/latest.json
+          git commit -m "Update nightly predictions"
           git push
