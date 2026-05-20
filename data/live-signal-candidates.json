@@ -3,11 +3,11 @@
   "generator": {
     "name": "predict-the-future-nightly-signal-generator",
     "version": "nightly-signal-scaffold-0.1.0",
-    "runId": "nightly-2026-05-19T22-01-07-959Z",
-    "generatedAt": "2026-05-19T22:01:07.959Z",
-    "mode": "dry_run",
+    "runId": "nightly-2026-05-20T02-01-43-488Z",
+    "generatedAt": "2026-05-20T02:01:43.488Z",
+    "mode": "mixed_or_live",
     "cadenceTarget": "nightly-0100-local",
-    "dryRunRequested": true
+    "dryRunRequested": false
   },
   "contract": [
     "geo_signal_seed",
@@ -179,7 +179,7 @@
       "name": "GDELT DOC 2.1",
       "adapter": "gdeltDoc",
       "statuses": {
-        "dry_run": 3
+        "error_fallback_stub": 3
       }
     },
     {
@@ -187,7 +187,7 @@
       "name": "World Bank Indicators",
       "adapter": "worldBank",
       "statuses": {
-        "dry_run": 3
+        "fetched": 3
       }
     },
     {
@@ -195,7 +195,8 @@
       "name": "Open-Meteo Forecast",
       "adapter": "openMeteo",
       "statuses": {
-        "dry_run": 3
+        "fetched": 2,
+        "error_fallback_stub": 1
       }
     },
     {
@@ -203,7 +204,7 @@
       "name": "NASA POWER",
       "adapter": "nasaPower",
       "statuses": {
-        "dry_run": 3
+        "fetched": 3
       }
     },
     {
@@ -211,7 +212,8 @@
       "name": "USGS Earthquake Catalog",
       "adapter": "usgsEarthquakes",
       "statuses": {
-        "dry_run": 3
+        "empty_fallback_stub": 2,
+        "fetched": 1
       }
     },
     {
@@ -219,7 +221,7 @@
       "name": "ReliefWeb",
       "adapter": "reliefWeb",
       "statuses": {
-        "dry_run": 3
+        "error_fallback_stub": 3
       }
     },
     {
@@ -227,7 +229,7 @@
       "name": "Crossref",
       "adapter": "crossref",
       "statuses": {
-        "dry_run": 3
+        "fetched": 3
       }
     },
     {
@@ -235,7 +237,7 @@
       "name": "arXiv",
       "adapter": "arxiv",
       "statuses": {
-        "dry_run": 3
+        "error_fallback_stub": 3
       }
     },
     {
@@ -243,7 +245,7 @@
       "name": "Wikipedia / MediaWiki",
       "adapter": "wikipedia",
       "statuses": {
-        "dry_run": 3
+        "fetched": 3
       }
     },
     {
@@ -251,7 +253,7 @@
       "name": "Wikidata Query Service",
       "adapter": "wikidataStub",
       "statuses": {
-        "dry_run": 3
+        "stub_adapter": 3
       }
     },
     {
@@ -259,7 +261,7 @@
       "name": "FAOSTAT",
       "adapter": "registryStub",
       "statuses": {
-        "dry_run": 3
+        "stub_adapter": 3
       }
     },
     {
@@ -267,7 +269,7 @@
       "name": "WHO Global Health Observatory",
       "adapter": "registryStub",
       "statuses": {
-        "dry_run": 3
+        "stub_adapter": 3
       }
     },
     {
@@ -275,7 +277,7 @@
       "name": "ILOSTAT",
       "adapter": "registryStub",
       "statuses": {
-        "dry_run": 3
+        "stub_adapter": 3
       }
     },
     {
@@ -283,7 +285,7 @@
       "name": "OECD Data API",
       "adapter": "registryStub",
       "statuses": {
-        "dry_run": 3
+        "stub_adapter": 3
       }
     }
   ],
@@ -299,16 +301,16 @@
       "region": "UNITED KINGDOM / POWER",
       "category": "Energy",
       "horizon": "12-30 months",
-      "signalCount": 28,
+      "signalCount": 39,
       "summary": "Renewables variability, electrification, and price volatility make demand flexibility more practical at household and municipal scale.",
       "implication": "Utilities, aggregators, and local authorities can turn flexible loads into resilience capacity before large grid upgrades land.",
-      "rationale": "Generated from 14 registered source adapters with 28 evidence items. Live fetches are optional; dry-run evidence preserves the browser ingestion contract.",
+      "rationale": "Generated from 14 registered source adapters with 19 evidence items. Live fetches are optional; dry-run evidence preserves the browser ingestion contract.",
       "why": "This candidate is worth monitoring if more households enrolling in automated demand-response tariffs.",
       "signals": [
         "GDELT DOC 2.1: Dry-run current_event evidence for \"grid flexibility demand response electricity prices renewables\". Replace this with live adapter output when network and keys are available.",
-        "GDELT DOC 2.1: Dry-run current_event evidence for \"grid flexibility demand response electricity prices renewables\". Replace this with live adapter output when network and keys are available.",
-        "World Bank Indicators: Dry-run structural evidence for \"grid flexibility demand response electricity prices renewables\". Replace this with live adapter output when network and keys are available.",
-        "World Bank Indicators: Dry-run structural evidence for \"grid flexibility demand response electricity prices renewables\". Replace this with live adapter output when network and keys are available."
+        "World Bank Indicators: Structural context from World Bank indicator EG.ELC.ACCS.ZS for World.",
+        "World Bank Indicators: Structural context from World Bank indicator EG.ELC.ACCS.ZS for World.",
+        "Open-Meteo Forecast: Open-Meteo forecast near UNITED KINGDOM / POWER: max temperature 16.4 C and precipitation 0.5 mm."
       ],
       "sources": [
         "GDELT DOC 2.1",
@@ -334,21 +336,21 @@
           "adapter": "gdeltDoc",
           "title": "Grid Flexibility Becomes A Local Resilience Product stub evidence 1",
           "url": "https://api.gdeltproject.org/api/v2/doc/doc",
-          "observedAt": "2026-05-18T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
+          "observedAt": "2026-05-19T02:01:43.488Z",
+          "capturedAt": "2026-05-20T02:01:43.488Z",
           "summary": "Dry-run current_event evidence for \"grid flexibility demand response electricity prices renewables\". Replace this with live adapter output when network and keys are available.",
           "confidence": 56
         },
         {
-          "sourceId": "gdelt-doc",
-          "sourceName": "GDELT DOC 2.1",
-          "sourceType": "current_event",
-          "adapter": "gdeltDoc",
-          "title": "Grid Flexibility Becomes A Local Resilience Product stub evidence 2",
-          "url": "https://api.gdeltproject.org/api/v2/doc/doc",
-          "observedAt": "2026-05-17T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
-          "summary": "Dry-run current_event evidence for \"grid flexibility demand response electricity prices renewables\". Replace this with live adapter output when network and keys are available.",
+          "sourceId": "world-bank-indicators",
+          "sourceName": "World Bank Indicators",
+          "sourceType": "structural",
+          "adapter": "worldBank",
+          "title": "Access to electricity (% of population): World",
+          "url": "https://api.worldbank.org/v2/country/WLD/indicator/EG.ELC.ACCS.ZS?format=json&per_page=3",
+          "observedAt": "2025-12-31T00:00:00.000Z",
+          "capturedAt": "2026-05-20T02:01:43.488Z",
+          "summary": "Structural context from World Bank indicator EG.ELC.ACCS.ZS for World.",
           "confidence": 57
         },
         {
@@ -356,59 +358,23 @@
           "sourceName": "World Bank Indicators",
           "sourceType": "structural",
           "adapter": "worldBank",
-          "title": "Grid Flexibility Becomes A Local Resilience Product stub evidence 1",
-          "url": "https://api.worldbank.org/v2/country/WLD/indicator/EG.ELC.ACCS.ZS",
-          "observedAt": "2026-05-18T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
-          "summary": "Dry-run structural evidence for \"grid flexibility demand response electricity prices renewables\". Replace this with live adapter output when network and keys are available.",
-          "confidence": 49
-        },
-        {
-          "sourceId": "world-bank-indicators",
-          "sourceName": "World Bank Indicators",
-          "sourceType": "structural",
-          "adapter": "worldBank",
-          "title": "Grid Flexibility Becomes A Local Resilience Product stub evidence 2",
-          "url": "https://api.worldbank.org/v2/country/WLD/indicator/EG.ELC.ACCS.ZS",
-          "observedAt": "2026-05-17T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
-          "summary": "Dry-run structural evidence for \"grid flexibility demand response electricity prices renewables\". Replace this with live adapter output when network and keys are available.",
-          "confidence": 50
+          "title": "Access to electricity (% of population): World",
+          "url": "https://api.worldbank.org/v2/country/WLD/indicator/EG.ELC.ACCS.ZS?format=json&per_page=3",
+          "observedAt": "2024-12-31T00:00:00.000Z",
+          "capturedAt": "2026-05-20T02:01:43.488Z",
+          "summary": "Structural context from World Bank indicator EG.ELC.ACCS.ZS for World.",
+          "confidence": 58
         },
         {
           "sourceId": "open-meteo",
           "sourceName": "Open-Meteo Forecast",
           "sourceType": "observed_condition",
           "adapter": "openMeteo",
-          "title": "Grid Flexibility Becomes A Local Resilience Product stub evidence 1",
-          "url": "https://api.open-meteo.com/v1/forecast",
-          "observedAt": "2026-05-18T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
-          "summary": "Dry-run observed_condition evidence for \"grid flexibility demand response electricity prices renewables\". Replace this with live adapter output when network and keys are available.",
-          "confidence": 64
-        },
-        {
-          "sourceId": "open-meteo",
-          "sourceName": "Open-Meteo Forecast",
-          "sourceType": "observed_condition",
-          "adapter": "openMeteo",
-          "title": "Grid Flexibility Becomes A Local Resilience Product stub evidence 2",
-          "url": "https://api.open-meteo.com/v1/forecast",
-          "observedAt": "2026-05-17T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
-          "summary": "Dry-run observed_condition evidence for \"grid flexibility demand response electricity prices renewables\". Replace this with live adapter output when network and keys are available.",
-          "confidence": 65
-        },
-        {
-          "sourceId": "nasa-power",
-          "sourceName": "NASA POWER",
-          "sourceType": "physical_baseline",
-          "adapter": "nasaPower",
-          "title": "Grid Flexibility Becomes A Local Resilience Product stub evidence 1",
-          "url": "https://power.larc.nasa.gov/api/temporal/daily/point",
-          "observedAt": "2026-05-18T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
-          "summary": "Dry-run physical_baseline evidence for \"grid flexibility demand response electricity prices renewables\". Replace this with live adapter output when network and keys are available.",
+          "title": "Open-Meteo Forecast: UNITED KINGDOM / POWER short-range weather signal",
+          "url": "https://api.open-meteo.com/v1/forecast?latitude=53.2&longitude=-2.4&hourly=temperature_2m%2Cprecipitation%2Cwind_speed_10m&daily=temperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&timezone=UTC&forecast_days=3",
+          "observedAt": "2026-05-20T00:00:00.000Z",
+          "capturedAt": "2026-05-20T02:01:43.488Z",
+          "summary": "Open-Meteo forecast near UNITED KINGDOM / POWER: max temperature 16.4 C and precipitation 0.5 mm.",
           "confidence": 66
         },
         {
@@ -416,84 +382,72 @@
           "sourceName": "NASA POWER",
           "sourceType": "physical_baseline",
           "adapter": "nasaPower",
-          "title": "Grid Flexibility Becomes A Local Resilience Product stub evidence 2",
-          "url": "https://power.larc.nasa.gov/api/temporal/daily/point",
-          "observedAt": "2026-05-17T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
-          "summary": "Dry-run physical_baseline evidence for \"grid flexibility demand response electricity prices renewables\". Replace this with live adapter output when network and keys are available.",
+          "title": "NASA POWER: recent physical baseline near UNITED KINGDOM / POWER",
+          "url": "https://power.larc.nasa.gov/api/temporal/daily/point?latitude=53.2&longitude=-2.4&start=20260514&end=20260520&community=RE&parameters=T2M%2CPRECTOTCORR%2CWS10M&format=JSON",
+          "observedAt": "2026-05-20T00:00:00.000Z",
+          "capturedAt": "2026-05-20T02:01:43.488Z",
+          "summary": "NASA POWER baseline: T2M -999 C, precipitation -999 mm/day, wind -999 m/s.",
+          "confidence": 54
+        },
+        {
+          "sourceId": "usgs-earthquakes",
+          "sourceName": "USGS Earthquake Catalog",
+          "sourceType": "hazard_event",
+          "adapter": "usgsEarthquakes",
+          "title": "Grid Flexibility Becomes A Local Resilience Product stub evidence 1",
+          "url": "https://earthquake.usgs.gov/fdsnws/event/1/query",
+          "observedAt": "2026-05-19T02:01:43.488Z",
+          "capturedAt": "2026-05-20T02:01:43.488Z",
+          "summary": "Dry-run hazard_event evidence for \"grid flexibility demand response electricity prices renewables\". Replace this with live adapter output when network and keys are available.",
+          "confidence": 64
+        },
+        {
+          "sourceId": "reliefweb",
+          "sourceName": "ReliefWeb",
+          "sourceType": "humanitarian_event",
+          "adapter": "reliefWeb",
+          "title": "Grid Flexibility Becomes A Local Resilience Product stub evidence 1",
+          "url": "https://api.reliefweb.int/v1/reports",
+          "observedAt": "2026-05-19T02:01:43.488Z",
+          "capturedAt": "2026-05-20T02:01:43.488Z",
+          "summary": "Dry-run humanitarian_event evidence for \"grid flexibility demand response electricity prices renewables\". Replace this with live adapter output when network and keys are available.",
+          "confidence": 64
+        },
+        {
+          "sourceId": "crossref",
+          "sourceName": "Crossref",
+          "sourceType": "research_metadata",
+          "adapter": "crossref",
+          "title": "Sustainability dynamics in the electricity sector: the role of marketing",
+          "url": "https://doi.org/10.15556/ijsim.02.04.005",
+          "observedAt": "2116-01-01T00:00:00.000Z",
+          "capturedAt": "2026-05-20T02:01:43.488Z",
+          "summary": "Crossref research metadata match from i-das; DOI 10.15556/ijsim.02.04.005.",
           "confidence": 67
         },
         {
-          "sourceId": "usgs-earthquakes",
-          "sourceName": "USGS Earthquake Catalog",
-          "sourceType": "hazard_event",
-          "adapter": "usgsEarthquakes",
-          "title": "Grid Flexibility Becomes A Local Resilience Product stub evidence 1",
-          "url": "https://earthquake.usgs.gov/fdsnws/event/1/query",
-          "observedAt": "2026-05-18T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
-          "summary": "Dry-run hazard_event evidence for \"grid flexibility demand response electricity prices renewables\". Replace this with live adapter output when network and keys are available.",
-          "confidence": 64
-        },
-        {
-          "sourceId": "usgs-earthquakes",
-          "sourceName": "USGS Earthquake Catalog",
-          "sourceType": "hazard_event",
-          "adapter": "usgsEarthquakes",
-          "title": "Grid Flexibility Becomes A Local Resilience Product stub evidence 2",
-          "url": "https://earthquake.usgs.gov/fdsnws/event/1/query",
-          "observedAt": "2026-05-17T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
-          "summary": "Dry-run hazard_event evidence for \"grid flexibility demand response electricity prices renewables\". Replace this with live adapter output when network and keys are available.",
-          "confidence": 65
-        },
-        {
-          "sourceId": "reliefweb",
-          "sourceName": "ReliefWeb",
-          "sourceType": "humanitarian_event",
-          "adapter": "reliefWeb",
-          "title": "Grid Flexibility Becomes A Local Resilience Product stub evidence 1",
-          "url": "https://api.reliefweb.int/v1/reports",
-          "observedAt": "2026-05-18T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
-          "summary": "Dry-run humanitarian_event evidence for \"grid flexibility demand response electricity prices renewables\". Replace this with live adapter output when network and keys are available.",
-          "confidence": 64
-        },
-        {
-          "sourceId": "reliefweb",
-          "sourceName": "ReliefWeb",
-          "sourceType": "humanitarian_event",
-          "adapter": "reliefWeb",
-          "title": "Grid Flexibility Becomes A Local Resilience Product stub evidence 2",
-          "url": "https://api.reliefweb.int/v1/reports",
-          "observedAt": "2026-05-17T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
-          "summary": "Dry-run humanitarian_event evidence for \"grid flexibility demand response electricity prices renewables\". Replace this with live adapter output when network and keys are available.",
-          "confidence": 65
+          "sourceId": "crossref",
+          "sourceName": "Crossref",
+          "sourceType": "research_metadata",
+          "adapter": "crossref",
+          "title": "Investigation on Velocity Response and Energy Saving Performance of Water Hydraulic Systems Without Using Servo Valve",
+          "url": "https://doi.org/10.3384/ecp1392a41",
+          "observedAt": "2103-09-09T00:00:00.000Z",
+          "capturedAt": "2026-05-20T02:01:43.488Z",
+          "summary": "Crossref research metadata match from Linköping University Electronic Press; DOI 10.3384/ecp1392a41.",
+          "confidence": 68
         },
         {
           "sourceId": "crossref",
           "sourceName": "Crossref",
           "sourceType": "research_metadata",
           "adapter": "crossref",
-          "title": "Grid Flexibility Becomes A Local Resilience Product stub evidence 1",
-          "url": "https://api.crossref.org/works",
-          "observedAt": "2026-05-18T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
-          "summary": "Dry-run research_metadata evidence for \"grid flexibility demand response electricity prices renewables\". Replace this with live adapter output when network and keys are available.",
-          "confidence": 56
-        },
-        {
-          "sourceId": "crossref",
-          "sourceName": "Crossref",
-          "sourceType": "research_metadata",
-          "adapter": "crossref",
-          "title": "Grid Flexibility Becomes A Local Resilience Product stub evidence 2",
-          "url": "https://api.crossref.org/works",
-          "observedAt": "2026-05-17T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
-          "summary": "Dry-run research_metadata evidence for \"grid flexibility demand response electricity prices renewables\". Replace this with live adapter output when network and keys are available.",
-          "confidence": 57
+          "title": "Market Failure or Government Failure? A Response to Jaworski",
+          "url": "https://doi.org/10.12747/bejr2013.01.08",
+          "observedAt": "2103-03-10T00:00:00.000Z",
+          "capturedAt": "2026-05-20T02:01:43.488Z",
+          "summary": "Crossref research metadata match from Journal Review Foundation; DOI 10.12747/bejr2013.01.08.",
+          "confidence": 48
         },
         {
           "sourceId": "arxiv",
@@ -502,21 +456,33 @@
           "adapter": "arxiv",
           "title": "Grid Flexibility Becomes A Local Resilience Product stub evidence 1",
           "url": "https://export.arxiv.org/api/query",
-          "observedAt": "2026-05-18T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
+          "observedAt": "2026-05-19T02:01:43.488Z",
+          "capturedAt": "2026-05-20T02:01:43.488Z",
           "summary": "Dry-run research_preprint evidence for \"grid flexibility demand response electricity prices renewables\". Replace this with live adapter output when network and keys are available.",
           "confidence": 55
         },
         {
-          "sourceId": "arxiv",
-          "sourceName": "arXiv",
-          "sourceType": "research_preprint",
-          "adapter": "arxiv",
-          "title": "Grid Flexibility Becomes A Local Resilience Product stub evidence 2",
-          "url": "https://export.arxiv.org/api/query",
-          "observedAt": "2026-05-17T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
-          "summary": "Dry-run research_preprint evidence for \"grid flexibility demand response electricity prices renewables\". Replace this with live adapter output when network and keys are available.",
+          "sourceId": "wikipedia",
+          "sourceName": "Wikipedia / MediaWiki",
+          "sourceType": "entity_context",
+          "adapter": "wikipedia",
+          "title": "Grid energy storage",
+          "url": "https://en.wikipedia.org/wiki/Grid_energy_storage",
+          "observedAt": "2026-05-20T02:01:43.488Z",
+          "capturedAt": "2026-05-20T02:01:43.488Z",
+          "summary": "Wikipedia context: Grid energy storage, also known as large-scale energy storage, is a set of technologies connected to the electrical power grid that store energy for later use. These systems help balance sup.",
+          "confidence": 55
+        },
+        {
+          "sourceId": "wikipedia",
+          "sourceName": "Wikipedia / MediaWiki",
+          "sourceType": "entity_context",
+          "adapter": "wikipedia",
+          "title": "Electrical grid",
+          "url": "https://en.wikipedia.org/wiki/Electrical_grid",
+          "observedAt": "2026-05-20T02:01:43.488Z",
+          "capturedAt": "2026-05-20T02:01:43.488Z",
+          "summary": "Wikipedia context: An electrical grid (or electricity network) is an interconnected network for electricity delivery from producers to consumers. Electrical grids consist of power stations, electrical substati.",
           "confidence": 56
         },
         {
@@ -524,24 +490,12 @@
           "sourceName": "Wikipedia / MediaWiki",
           "sourceType": "entity_context",
           "adapter": "wikipedia",
-          "title": "Grid Flexibility Becomes A Local Resilience Product stub evidence 1",
-          "url": "https://en.wikipedia.org/w/api.php",
-          "observedAt": "2026-05-18T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
-          "summary": "Dry-run entity_context evidence for \"grid flexibility demand response electricity prices renewables\". Replace this with live adapter output when network and keys are available.",
-          "confidence": 60
-        },
-        {
-          "sourceId": "wikipedia",
-          "sourceName": "Wikipedia / MediaWiki",
-          "sourceType": "entity_context",
-          "adapter": "wikipedia",
-          "title": "Grid Flexibility Becomes A Local Resilience Product stub evidence 2",
-          "url": "https://en.wikipedia.org/w/api.php",
-          "observedAt": "2026-05-17T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
-          "summary": "Dry-run entity_context evidence for \"grid flexibility demand response electricity prices renewables\". Replace this with live adapter output when network and keys are available.",
-          "confidence": 61
+          "title": "German Renewable Energy Sources Act",
+          "url": "https://en.wikipedia.org/wiki/German_Renewable_Energy_Sources_Act",
+          "observedAt": "2026-05-20T02:01:43.488Z",
+          "capturedAt": "2026-05-20T02:01:43.488Z",
+          "summary": "Wikipedia context: The Renewable Energy Sources Act or EEG (German: Erneuerbare-Energien-Gesetz) is a series of German laws that originally provided a feed-in tariff (FIT) scheme to encourage the generation of.",
+          "confidence": 57
         },
         {
           "sourceId": "wikidata",
@@ -550,70 +504,34 @@
           "adapter": "wikidataStub",
           "title": "Grid Flexibility Becomes A Local Resilience Product stub evidence 1",
           "url": "https://query.wikidata.org/sparql",
-          "observedAt": "2026-05-18T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
+          "observedAt": "2026-05-19T02:01:43.488Z",
+          "capturedAt": "2026-05-20T02:01:43.488Z",
           "summary": "Dry-run knowledge_graph evidence for \"grid flexibility demand response electricity prices renewables\". Replace this with live adapter output when network and keys are available.",
           "confidence": 65
         },
         {
-          "sourceId": "wikidata",
-          "sourceName": "Wikidata Query Service",
-          "sourceType": "knowledge_graph",
-          "adapter": "wikidataStub",
-          "title": "Grid Flexibility Becomes A Local Resilience Product stub evidence 2",
-          "url": "https://query.wikidata.org/sparql",
-          "observedAt": "2026-05-17T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
-          "summary": "Dry-run knowledge_graph evidence for \"grid flexibility demand response electricity prices renewables\". Replace this with live adapter output when network and keys are available.",
-          "confidence": 66
-        },
-        {
           "sourceId": "faostat",
           "sourceName": "FAOSTAT",
           "sourceType": "food_baseline",
           "adapter": "registryStub",
           "title": "Grid Flexibility Becomes A Local Resilience Product stub evidence 1",
           "url": "https://www.fao.org/faostat/",
-          "observedAt": "2026-05-18T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
+          "observedAt": "2026-05-19T02:01:43.488Z",
+          "capturedAt": "2026-05-20T02:01:43.488Z",
           "summary": "Dry-run food_baseline evidence for \"grid flexibility demand response electricity prices renewables\". Replace this with live adapter output when network and keys are available.",
           "confidence": 59
         },
         {
-          "sourceId": "faostat",
-          "sourceName": "FAOSTAT",
-          "sourceType": "food_baseline",
-          "adapter": "registryStub",
-          "title": "Grid Flexibility Becomes A Local Resilience Product stub evidence 2",
-          "url": "https://www.fao.org/faostat/",
-          "observedAt": "2026-05-17T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
-          "summary": "Dry-run food_baseline evidence for \"grid flexibility demand response electricity prices renewables\". Replace this with live adapter output when network and keys are available.",
-          "confidence": 60
-        },
-        {
           "sourceId": "who-gho",
           "sourceName": "WHO Global Health Observatory",
           "sourceType": "health_baseline",
           "adapter": "registryStub",
           "title": "Grid Flexibility Becomes A Local Resilience Product stub evidence 1",
           "url": "https://ghoapi.azureedge.net/api/",
-          "observedAt": "2026-05-18T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
+          "observedAt": "2026-05-19T02:01:43.488Z",
+          "capturedAt": "2026-05-20T02:01:43.488Z",
           "summary": "Dry-run health_baseline evidence for \"grid flexibility demand response electricity prices renewables\". Replace this with live adapter output when network and keys are available.",
           "confidence": 68
-        },
-        {
-          "sourceId": "who-gho",
-          "sourceName": "WHO Global Health Observatory",
-          "sourceType": "health_baseline",
-          "adapter": "registryStub",
-          "title": "Grid Flexibility Becomes A Local Resilience Product stub evidence 2",
-          "url": "https://ghoapi.azureedge.net/api/",
-          "observedAt": "2026-05-17T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
-          "summary": "Dry-run health_baseline evidence for \"grid flexibility demand response electricity prices renewables\". Replace this with live adapter output when network and keys are available.",
-          "confidence": 45
         },
         {
           "sourceId": "ilostat",
@@ -622,46 +540,22 @@
           "adapter": "registryStub",
           "title": "Grid Flexibility Becomes A Local Resilience Product stub evidence 1",
           "url": "https://ilostat.ilo.org/data/bulk/",
-          "observedAt": "2026-05-18T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
+          "observedAt": "2026-05-19T02:01:43.488Z",
+          "capturedAt": "2026-05-20T02:01:43.488Z",
           "summary": "Dry-run labour_baseline evidence for \"grid flexibility demand response electricity prices renewables\". Replace this with live adapter output when network and keys are available.",
           "confidence": 67
         },
         {
-          "sourceId": "ilostat",
-          "sourceName": "ILOSTAT",
-          "sourceType": "labour_baseline",
-          "adapter": "registryStub",
-          "title": "Grid Flexibility Becomes A Local Resilience Product stub evidence 2",
-          "url": "https://ilostat.ilo.org/data/bulk/",
-          "observedAt": "2026-05-17T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
-          "summary": "Dry-run labour_baseline evidence for \"grid flexibility demand response electricity prices renewables\". Replace this with live adapter output when network and keys are available.",
-          "confidence": 68
-        },
-        {
           "sourceId": "oecd",
           "sourceName": "OECD Data API",
           "sourceType": "structural",
           "adapter": "registryStub",
           "title": "Grid Flexibility Becomes A Local Resilience Product stub evidence 1",
           "url": "https://sdmx.oecd.org/public/rest/",
-          "observedAt": "2026-05-18T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
+          "observedAt": "2026-05-19T02:01:43.488Z",
+          "capturedAt": "2026-05-20T02:01:43.488Z",
           "summary": "Dry-run structural evidence for \"grid flexibility demand response electricity prices renewables\". Replace this with live adapter output when network and keys are available.",
           "confidence": 52
-        },
-        {
-          "sourceId": "oecd",
-          "sourceName": "OECD Data API",
-          "sourceType": "structural",
-          "adapter": "registryStub",
-          "title": "Grid Flexibility Becomes A Local Resilience Product stub evidence 2",
-          "url": "https://sdmx.oecd.org/public/rest/",
-          "observedAt": "2026-05-17T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
-          "summary": "Dry-run structural evidence for \"grid flexibility demand response electricity prices renewables\". Replace this with live adapter output when network and keys are available.",
-          "confidence": 53
         }
       ],
       "ingestion": {
@@ -682,18 +576,18 @@
             "source_name": "GDELT DOC 2.1",
             "evidence_type": "current_event",
             "adapter": "gdeltDoc",
-            "status": "dry_run",
-            "evidence_count": 2,
+            "status": "error_fallback_stub",
+            "evidence_count": 1,
             "url": "https://api.gdeltproject.org/api/v2/doc/doc",
             "requires_key": false,
-            "error": null
+            "error": "HTTP 429"
           },
           {
             "source_id": "world-bank-indicators",
             "source_name": "World Bank Indicators",
             "evidence_type": "structural",
             "adapter": "worldBank",
-            "status": "dry_run",
+            "status": "fetched",
             "evidence_count": 2,
             "url": "https://api.worldbank.org/v2/country/WLD/indicator/EG.ELC.ACCS.ZS",
             "requires_key": false,
@@ -704,8 +598,8 @@
             "source_name": "Open-Meteo Forecast",
             "evidence_type": "observed_condition",
             "adapter": "openMeteo",
-            "status": "dry_run",
-            "evidence_count": 2,
+            "status": "fetched",
+            "evidence_count": 1,
             "url": "https://api.open-meteo.com/v1/forecast",
             "requires_key": false,
             "error": null
@@ -715,8 +609,8 @@
             "source_name": "NASA POWER",
             "evidence_type": "physical_baseline",
             "adapter": "nasaPower",
-            "status": "dry_run",
-            "evidence_count": 2,
+            "status": "fetched",
+            "evidence_count": 1,
             "url": "https://power.larc.nasa.gov/api/temporal/daily/point",
             "requires_key": false,
             "error": null
@@ -726,8 +620,8 @@
             "source_name": "USGS Earthquake Catalog",
             "evidence_type": "hazard_event",
             "adapter": "usgsEarthquakes",
-            "status": "dry_run",
-            "evidence_count": 2,
+            "status": "empty_fallback_stub",
+            "evidence_count": 1,
             "url": "https://earthquake.usgs.gov/fdsnws/event/1/query",
             "requires_key": false,
             "error": null
@@ -737,19 +631,19 @@
             "source_name": "ReliefWeb",
             "evidence_type": "humanitarian_event",
             "adapter": "reliefWeb",
-            "status": "dry_run",
-            "evidence_count": 2,
+            "status": "error_fallback_stub",
+            "evidence_count": 1,
             "url": "https://api.reliefweb.int/v1/reports",
             "requires_key": false,
-            "error": null
+            "error": "HTTP 410"
           },
           {
             "source_id": "crossref",
             "source_name": "Crossref",
             "evidence_type": "research_metadata",
             "adapter": "crossref",
-            "status": "dry_run",
-            "evidence_count": 2,
+            "status": "fetched",
+            "evidence_count": 3,
             "url": "https://api.crossref.org/works",
             "requires_key": false,
             "error": null
@@ -759,19 +653,19 @@
             "source_name": "arXiv",
             "evidence_type": "research_preprint",
             "adapter": "arxiv",
-            "status": "dry_run",
-            "evidence_count": 2,
+            "status": "error_fallback_stub",
+            "evidence_count": 1,
             "url": "https://export.arxiv.org/api/query",
             "requires_key": false,
-            "error": null
+            "error": "This operation was aborted"
           },
           {
             "source_id": "wikipedia",
             "source_name": "Wikipedia / MediaWiki",
             "evidence_type": "entity_context",
             "adapter": "wikipedia",
-            "status": "dry_run",
-            "evidence_count": 2,
+            "status": "fetched",
+            "evidence_count": 3,
             "url": "https://en.wikipedia.org/w/api.php",
             "requires_key": false,
             "error": null
@@ -781,8 +675,8 @@
             "source_name": "Wikidata Query Service",
             "evidence_type": "knowledge_graph",
             "adapter": "wikidataStub",
-            "status": "dry_run",
-            "evidence_count": 2,
+            "status": "stub_adapter",
+            "evidence_count": 1,
             "url": "https://query.wikidata.org/sparql",
             "requires_key": false,
             "error": null
@@ -792,8 +686,8 @@
             "source_name": "FAOSTAT",
             "evidence_type": "food_baseline",
             "adapter": "registryStub",
-            "status": "dry_run",
-            "evidence_count": 2,
+            "status": "stub_adapter",
+            "evidence_count": 1,
             "url": "https://www.fao.org/faostat/",
             "requires_key": false,
             "error": null
@@ -803,8 +697,8 @@
             "source_name": "WHO Global Health Observatory",
             "evidence_type": "health_baseline",
             "adapter": "registryStub",
-            "status": "dry_run",
-            "evidence_count": 2,
+            "status": "stub_adapter",
+            "evidence_count": 1,
             "url": "https://ghoapi.azureedge.net/api/",
             "requires_key": false,
             "error": null
@@ -814,8 +708,8 @@
             "source_name": "ILOSTAT",
             "evidence_type": "labour_baseline",
             "adapter": "registryStub",
-            "status": "dry_run",
-            "evidence_count": 2,
+            "status": "stub_adapter",
+            "evidence_count": 1,
             "url": "https://ilostat.ilo.org/data/bulk/",
             "requires_key": false,
             "error": null
@@ -825,8 +719,8 @@
             "source_name": "OECD Data API",
             "evidence_type": "structural",
             "adapter": "registryStub",
-            "status": "dry_run",
-            "evidence_count": 2,
+            "status": "stub_adapter",
+            "evidence_count": 1,
             "url": "https://sdmx.oecd.org/public/rest/",
             "requires_key": false,
             "error": null
@@ -845,7 +739,7 @@
             "cadence": "nightly",
             "evidence_source_names": [
               "GDELT DOC 2.1",
-              "GDELT DOC 2.1"
+              "World Bank Indicators"
             ]
           },
           {
@@ -853,7 +747,7 @@
             "text": "distribution operators procuring flexibility before reinforcement",
             "cadence": "nightly",
             "evidence_source_names": [
-              "GDELT DOC 2.1",
+              "World Bank Indicators",
               "World Bank Indicators"
             ]
           },
@@ -863,7 +757,7 @@
             "cadence": "nightly",
             "evidence_source_names": [
               "World Bank Indicators",
-              "World Bank Indicators"
+              "Open-Meteo Forecast"
             ]
           }
         ],
@@ -881,7 +775,7 @@
         ],
         "previous_resolution_outcomes": []
       },
-      "generatedAt": "2026-05-19T22:01:07.959Z"
+      "generatedAt": "2026-05-20T02:01:43.488Z"
     },
     {
       "id": "nightly-coastal-risk-pricing",
@@ -894,16 +788,16 @@
       "region": "GULF COAST / RISK PRICING",
       "category": "Climate",
       "horizon": "12-36 months",
-      "signalCount": 28,
+      "signalCount": 37,
       "summary": "Insurance withdrawals, rebuilding costs, and severe-weather exposure suggest risk pricing can migrate into lending, housing liquidity, and local budgets.",
       "implication": "Insurability becomes a practical constraint on asset strategy, not a back-office procurement detail.",
-      "rationale": "Generated from 14 registered source adapters with 28 evidence items. Live fetches are optional; dry-run evidence preserves the browser ingestion contract.",
+      "rationale": "Generated from 14 registered source adapters with 19 evidence items. Live fetches are optional; dry-run evidence preserves the browser ingestion contract.",
       "why": "This candidate is worth monitoring if new exclusions or coverage caps in exposed coastal counties.",
       "signals": [
         "GDELT DOC 2.1: Dry-run current_event evidence for \"coastal insurance retreat property risk storm exposure premiums\". Replace this with live adapter output when network and keys are available.",
-        "GDELT DOC 2.1: Dry-run current_event evidence for \"coastal insurance retreat property risk storm exposure premiums\". Replace this with live adapter output when network and keys are available.",
-        "World Bank Indicators: Dry-run structural evidence for \"coastal insurance retreat property risk storm exposure premiums\". Replace this with live adapter output when network and keys are available.",
-        "World Bank Indicators: Dry-run structural evidence for \"coastal insurance retreat property risk storm exposure premiums\". Replace this with live adapter output when network and keys are available."
+        "World Bank Indicators: Structural context from World Bank indicator EG.ELC.ACCS.ZS for World.",
+        "World Bank Indicators: Structural context from World Bank indicator EG.ELC.ACCS.ZS for World.",
+        "Open-Meteo Forecast: Dry-run observed_condition evidence for \"coastal insurance retreat property risk storm exposure premiums\". Replace this with live adapter output when network and keys are available."
       ],
       "sources": [
         "GDELT DOC 2.1",
@@ -929,46 +823,34 @@
           "adapter": "gdeltDoc",
           "title": "Coastal Risk Pricing Spreads Beyond Obvious Hotspots stub evidence 1",
           "url": "https://api.gdeltproject.org/api/v2/doc/doc",
-          "observedAt": "2026-05-18T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
+          "observedAt": "2026-05-19T02:01:43.488Z",
+          "capturedAt": "2026-05-20T02:01:43.488Z",
           "summary": "Dry-run current_event evidence for \"coastal insurance retreat property risk storm exposure premiums\". Replace this with live adapter output when network and keys are available.",
           "confidence": 54
         },
         {
-          "sourceId": "gdelt-doc",
-          "sourceName": "GDELT DOC 2.1",
-          "sourceType": "current_event",
-          "adapter": "gdeltDoc",
-          "title": "Coastal Risk Pricing Spreads Beyond Obvious Hotspots stub evidence 2",
-          "url": "https://api.gdeltproject.org/api/v2/doc/doc",
-          "observedAt": "2026-05-17T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
-          "summary": "Dry-run current_event evidence for \"coastal insurance retreat property risk storm exposure premiums\". Replace this with live adapter output when network and keys are available.",
-          "confidence": 55
+          "sourceId": "world-bank-indicators",
+          "sourceName": "World Bank Indicators",
+          "sourceType": "structural",
+          "adapter": "worldBank",
+          "title": "Access to electricity (% of population): World",
+          "url": "https://api.worldbank.org/v2/country/WLD/indicator/EG.ELC.ACCS.ZS?format=json&per_page=3",
+          "observedAt": "2025-12-31T00:00:00.000Z",
+          "capturedAt": "2026-05-20T02:01:43.488Z",
+          "summary": "Structural context from World Bank indicator EG.ELC.ACCS.ZS for World.",
+          "confidence": 63
         },
         {
           "sourceId": "world-bank-indicators",
           "sourceName": "World Bank Indicators",
           "sourceType": "structural",
           "adapter": "worldBank",
-          "title": "Coastal Risk Pricing Spreads Beyond Obvious Hotspots stub evidence 1",
-          "url": "https://api.worldbank.org/v2/country/WLD/indicator/EG.ELC.ACCS.ZS",
-          "observedAt": "2026-05-18T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
-          "summary": "Dry-run structural evidence for \"coastal insurance retreat property risk storm exposure premiums\". Replace this with live adapter output when network and keys are available.",
-          "confidence": 55
-        },
-        {
-          "sourceId": "world-bank-indicators",
-          "sourceName": "World Bank Indicators",
-          "sourceType": "structural",
-          "adapter": "worldBank",
-          "title": "Coastal Risk Pricing Spreads Beyond Obvious Hotspots stub evidence 2",
-          "url": "https://api.worldbank.org/v2/country/WLD/indicator/EG.ELC.ACCS.ZS",
-          "observedAt": "2026-05-17T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
-          "summary": "Dry-run structural evidence for \"coastal insurance retreat property risk storm exposure premiums\". Replace this with live adapter output when network and keys are available.",
-          "confidence": 56
+          "title": "Access to electricity (% of population): World",
+          "url": "https://api.worldbank.org/v2/country/WLD/indicator/EG.ELC.ACCS.ZS?format=json&per_page=3",
+          "observedAt": "2024-12-31T00:00:00.000Z",
+          "capturedAt": "2026-05-20T02:01:43.488Z",
+          "summary": "Structural context from World Bank indicator EG.ELC.ACCS.ZS for World.",
+          "confidence": 64
         },
         {
           "sourceId": "open-meteo",
@@ -977,46 +859,22 @@
           "adapter": "openMeteo",
           "title": "Coastal Risk Pricing Spreads Beyond Obvious Hotspots stub evidence 1",
           "url": "https://api.open-meteo.com/v1/forecast",
-          "observedAt": "2026-05-18T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
+          "observedAt": "2026-05-19T02:01:43.488Z",
+          "capturedAt": "2026-05-20T02:01:43.488Z",
           "summary": "Dry-run observed_condition evidence for \"coastal insurance retreat property risk storm exposure premiums\". Replace this with live adapter output when network and keys are available.",
           "confidence": 50
         },
         {
-          "sourceId": "open-meteo",
-          "sourceName": "Open-Meteo Forecast",
-          "sourceType": "observed_condition",
-          "adapter": "openMeteo",
-          "title": "Coastal Risk Pricing Spreads Beyond Obvious Hotspots stub evidence 2",
-          "url": "https://api.open-meteo.com/v1/forecast",
-          "observedAt": "2026-05-17T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
-          "summary": "Dry-run observed_condition evidence for \"coastal insurance retreat property risk storm exposure premiums\". Replace this with live adapter output when network and keys are available.",
-          "confidence": 51
-        },
-        {
           "sourceId": "nasa-power",
           "sourceName": "NASA POWER",
           "sourceType": "physical_baseline",
           "adapter": "nasaPower",
-          "title": "Coastal Risk Pricing Spreads Beyond Obvious Hotspots stub evidence 1",
-          "url": "https://power.larc.nasa.gov/api/temporal/daily/point",
-          "observedAt": "2026-05-18T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
-          "summary": "Dry-run physical_baseline evidence for \"coastal insurance retreat property risk storm exposure premiums\". Replace this with live adapter output when network and keys are available.",
-          "confidence": 68
-        },
-        {
-          "sourceId": "nasa-power",
-          "sourceName": "NASA POWER",
-          "sourceType": "physical_baseline",
-          "adapter": "nasaPower",
-          "title": "Coastal Risk Pricing Spreads Beyond Obvious Hotspots stub evidence 2",
-          "url": "https://power.larc.nasa.gov/api/temporal/daily/point",
-          "observedAt": "2026-05-17T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
-          "summary": "Dry-run physical_baseline evidence for \"coastal insurance retreat property risk storm exposure premiums\". Replace this with live adapter output when network and keys are available.",
-          "confidence": 45
+          "title": "NASA POWER: recent physical baseline near GULF COAST / RISK PRICING",
+          "url": "https://power.larc.nasa.gov/api/temporal/daily/point?latitude=29.5&longitude=-90.2&start=20260514&end=20260520&community=RE&parameters=T2M%2CPRECTOTCORR%2CWS10M&format=JSON",
+          "observedAt": "2026-05-20T00:00:00.000Z",
+          "capturedAt": "2026-05-20T02:01:43.488Z",
+          "summary": "NASA POWER baseline: T2M -999 C, precipitation -999 mm/day, wind -999 m/s.",
+          "confidence": 61
         },
         {
           "sourceId": "usgs-earthquakes",
@@ -1025,22 +883,10 @@
           "adapter": "usgsEarthquakes",
           "title": "Coastal Risk Pricing Spreads Beyond Obvious Hotspots stub evidence 1",
           "url": "https://earthquake.usgs.gov/fdsnws/event/1/query",
-          "observedAt": "2026-05-18T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
+          "observedAt": "2026-05-19T02:01:43.488Z",
+          "capturedAt": "2026-05-20T02:01:43.488Z",
           "summary": "Dry-run hazard_event evidence for \"coastal insurance retreat property risk storm exposure premiums\". Replace this with live adapter output when network and keys are available.",
           "confidence": 58
-        },
-        {
-          "sourceId": "usgs-earthquakes",
-          "sourceName": "USGS Earthquake Catalog",
-          "sourceType": "hazard_event",
-          "adapter": "usgsEarthquakes",
-          "title": "Coastal Risk Pricing Spreads Beyond Obvious Hotspots stub evidence 2",
-          "url": "https://earthquake.usgs.gov/fdsnws/event/1/query",
-          "observedAt": "2026-05-17T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
-          "summary": "Dry-run hazard_event evidence for \"coastal insurance retreat property risk storm exposure premiums\". Replace this with live adapter output when network and keys are available.",
-          "confidence": 59
         },
         {
           "sourceId": "reliefweb",
@@ -1049,46 +895,46 @@
           "adapter": "reliefWeb",
           "title": "Coastal Risk Pricing Spreads Beyond Obvious Hotspots stub evidence 1",
           "url": "https://api.reliefweb.int/v1/reports",
-          "observedAt": "2026-05-18T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
+          "observedAt": "2026-05-19T02:01:43.488Z",
+          "capturedAt": "2026-05-20T02:01:43.488Z",
           "summary": "Dry-run humanitarian_event evidence for \"coastal insurance retreat property risk storm exposure premiums\". Replace this with live adapter output when network and keys are available.",
           "confidence": 62
         },
         {
-          "sourceId": "reliefweb",
-          "sourceName": "ReliefWeb",
-          "sourceType": "humanitarian_event",
-          "adapter": "reliefWeb",
-          "title": "Coastal Risk Pricing Spreads Beyond Obvious Hotspots stub evidence 2",
-          "url": "https://api.reliefweb.int/v1/reports",
-          "observedAt": "2026-05-17T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
-          "summary": "Dry-run humanitarian_event evidence for \"coastal insurance retreat property risk storm exposure premiums\". Replace this with live adapter output when network and keys are available.",
-          "confidence": 63
-        },
-        {
           "sourceId": "crossref",
           "sourceName": "Crossref",
           "sourceType": "research_metadata",
           "adapter": "crossref",
-          "title": "Coastal Risk Pricing Spreads Beyond Obvious Hotspots stub evidence 1",
-          "url": "https://api.crossref.org/works",
-          "observedAt": "2026-05-18T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
-          "summary": "Dry-run research_metadata evidence for \"coastal insurance retreat property risk storm exposure premiums\". Replace this with live adapter output when network and keys are available.",
-          "confidence": 58
-        },
-        {
-          "sourceId": "crossref",
-          "sourceName": "Crossref",
-          "sourceType": "research_metadata",
-          "adapter": "crossref",
-          "title": "Coastal Risk Pricing Spreads Beyond Obvious Hotspots stub evidence 2",
-          "url": "https://api.crossref.org/works",
-          "observedAt": "2026-05-17T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
-          "summary": "Dry-run research_metadata evidence for \"coastal insurance retreat property risk storm exposure premiums\". Replace this with live adapter output when network and keys are available.",
+          "title": "Assessment of Human Health Risk and Surface Soil Contamination by Some Toxic Elements in Arak City, Iran",
+          "url": "https://doi.org/10.32598/jaehr.9.4.1233",
+          "observedAt": "2121-10-01T00:00:00.000Z",
+          "capturedAt": "2026-05-20T02:01:43.488Z",
+          "summary": "Crossref research metadata match from Maad Rayan Publishing Company; DOI 10.32598/jaehr.9.4.1233.",
           "confidence": 59
+        },
+        {
+          "sourceId": "crossref",
+          "sourceName": "Crossref",
+          "sourceType": "research_metadata",
+          "adapter": "crossref",
+          "title": "Investigating the Non-carcinogenic Risk and Hazard Quotient of Heavy Metals in High-traffic Districts of Tehran Metropolis, Iran",
+          "url": "https://doi.org/10.32598/jaehr.9.4.1219",
+          "observedAt": "2121-10-01T00:00:00.000Z",
+          "capturedAt": "2026-05-20T02:01:43.488Z",
+          "summary": "Crossref research metadata match from Maad Rayan Publishing Company; DOI 10.32598/jaehr.9.4.1219.",
+          "confidence": 60
+        },
+        {
+          "sourceId": "crossref",
+          "sourceName": "Crossref",
+          "sourceType": "research_metadata",
+          "adapter": "crossref",
+          "title": "Investigation and Optimization of Air Pollution Risk by a Multi-criteria Decision Making Method Using Fuzzy TOPSIS: A Case Study of Construction Workers",
+          "url": "https://doi.org/10.32598/jaehr.9.4.1229",
+          "observedAt": "2121-10-01T00:00:00.000Z",
+          "capturedAt": "2026-05-20T02:01:43.488Z",
+          "summary": "Crossref research metadata match from Maad Rayan Publishing Company; DOI 10.32598/jaehr.9.4.1229.",
+          "confidence": 61
         },
         {
           "sourceId": "arxiv",
@@ -1097,46 +943,46 @@
           "adapter": "arxiv",
           "title": "Coastal Risk Pricing Spreads Beyond Obvious Hotspots stub evidence 1",
           "url": "https://export.arxiv.org/api/query",
-          "observedAt": "2026-05-18T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
+          "observedAt": "2026-05-19T02:01:43.488Z",
+          "capturedAt": "2026-05-20T02:01:43.488Z",
           "summary": "Dry-run research_preprint evidence for \"coastal insurance retreat property risk storm exposure premiums\". Replace this with live adapter output when network and keys are available.",
           "confidence": 45
         },
         {
-          "sourceId": "arxiv",
-          "sourceName": "arXiv",
-          "sourceType": "research_preprint",
-          "adapter": "arxiv",
-          "title": "Coastal Risk Pricing Spreads Beyond Obvious Hotspots stub evidence 2",
-          "url": "https://export.arxiv.org/api/query",
-          "observedAt": "2026-05-17T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
-          "summary": "Dry-run research_preprint evidence for \"coastal insurance retreat property risk storm exposure premiums\". Replace this with live adapter output when network and keys are available.",
-          "confidence": 46
+          "sourceId": "wikipedia",
+          "sourceName": "Wikipedia / MediaWiki",
+          "sourceType": "entity_context",
+          "adapter": "wikipedia",
+          "title": "Effects of climate change",
+          "url": "https://en.wikipedia.org/wiki/Effects_of_climate_change",
+          "observedAt": "2026-05-20T02:01:43.488Z",
+          "capturedAt": "2026-05-20T02:01:43.488Z",
+          "summary": "Wikipedia context: Effects of climate change are well documented and growing for Earth's natural environment and human societies. Changes to the climate system include an overall warming trend, changes to prec.",
+          "confidence": 56
         },
         {
           "sourceId": "wikipedia",
           "sourceName": "Wikipedia / MediaWiki",
           "sourceType": "entity_context",
           "adapter": "wikipedia",
-          "title": "Coastal Risk Pricing Spreads Beyond Obvious Hotspots stub evidence 1",
-          "url": "https://en.wikipedia.org/w/api.php",
-          "observedAt": "2026-05-18T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
-          "summary": "Dry-run entity_context evidence for \"coastal insurance retreat property risk storm exposure premiums\". Replace this with live adapter output when network and keys are available.",
-          "confidence": 50
+          "title": "Flood management",
+          "url": "https://en.wikipedia.org/wiki/Flood_management",
+          "observedAt": "2026-05-20T02:01:43.488Z",
+          "capturedAt": "2026-05-20T02:01:43.488Z",
+          "summary": "Wikipedia context: Flood management or flood control are methods used to reduce or prevent the detrimental effects of flood waters. Flooding can be caused by a mix of both natural processes, such as extreme we.",
+          "confidence": 57
         },
         {
           "sourceId": "wikipedia",
           "sourceName": "Wikipedia / MediaWiki",
           "sourceType": "entity_context",
           "adapter": "wikipedia",
-          "title": "Coastal Risk Pricing Spreads Beyond Obvious Hotspots stub evidence 2",
-          "url": "https://en.wikipedia.org/w/api.php",
-          "observedAt": "2026-05-17T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
-          "summary": "Dry-run entity_context evidence for \"coastal insurance retreat property risk storm exposure premiums\". Replace this with live adapter output when network and keys are available.",
-          "confidence": 51
+          "title": "Coastal development hazards",
+          "url": "https://en.wikipedia.org/wiki/Coastal_development_hazards",
+          "observedAt": "2026-05-20T02:01:43.488Z",
+          "capturedAt": "2026-05-20T02:01:43.488Z",
+          "summary": "Wikipedia context: A coastal development hazard is something that affects the natural environment by human activities and products. As coasts become more developed, the vulnerability component of the equation .",
+          "confidence": 58
         },
         {
           "sourceId": "wikidata",
@@ -1145,22 +991,10 @@
           "adapter": "wikidataStub",
           "title": "Coastal Risk Pricing Spreads Beyond Obvious Hotspots stub evidence 1",
           "url": "https://query.wikidata.org/sparql",
-          "observedAt": "2026-05-18T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
+          "observedAt": "2026-05-19T02:01:43.488Z",
+          "capturedAt": "2026-05-20T02:01:43.488Z",
           "summary": "Dry-run knowledge_graph evidence for \"coastal insurance retreat property risk storm exposure premiums\". Replace this with live adapter output when network and keys are available.",
           "confidence": 59
-        },
-        {
-          "sourceId": "wikidata",
-          "sourceName": "Wikidata Query Service",
-          "sourceType": "knowledge_graph",
-          "adapter": "wikidataStub",
-          "title": "Coastal Risk Pricing Spreads Beyond Obvious Hotspots stub evidence 2",
-          "url": "https://query.wikidata.org/sparql",
-          "observedAt": "2026-05-17T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
-          "summary": "Dry-run knowledge_graph evidence for \"coastal insurance retreat property risk storm exposure premiums\". Replace this with live adapter output when network and keys are available.",
-          "confidence": 60
         },
         {
           "sourceId": "faostat",
@@ -1169,46 +1003,22 @@
           "adapter": "registryStub",
           "title": "Coastal Risk Pricing Spreads Beyond Obvious Hotspots stub evidence 1",
           "url": "https://www.fao.org/faostat/",
-          "observedAt": "2026-05-18T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
+          "observedAt": "2026-05-19T02:01:43.488Z",
+          "capturedAt": "2026-05-20T02:01:43.488Z",
           "summary": "Dry-run food_baseline evidence for \"coastal insurance retreat property risk storm exposure premiums\". Replace this with live adapter output when network and keys are available.",
           "confidence": 49
         },
         {
-          "sourceId": "faostat",
-          "sourceName": "FAOSTAT",
-          "sourceType": "food_baseline",
-          "adapter": "registryStub",
-          "title": "Coastal Risk Pricing Spreads Beyond Obvious Hotspots stub evidence 2",
-          "url": "https://www.fao.org/faostat/",
-          "observedAt": "2026-05-17T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
-          "summary": "Dry-run food_baseline evidence for \"coastal insurance retreat property risk storm exposure premiums\". Replace this with live adapter output when network and keys are available.",
-          "confidence": 50
-        },
-        {
           "sourceId": "who-gho",
           "sourceName": "WHO Global Health Observatory",
           "sourceType": "health_baseline",
           "adapter": "registryStub",
           "title": "Coastal Risk Pricing Spreads Beyond Obvious Hotspots stub evidence 1",
           "url": "https://ghoapi.azureedge.net/api/",
-          "observedAt": "2026-05-18T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
+          "observedAt": "2026-05-19T02:01:43.488Z",
+          "capturedAt": "2026-05-20T02:01:43.488Z",
           "summary": "Dry-run health_baseline evidence for \"coastal insurance retreat property risk storm exposure premiums\". Replace this with live adapter output when network and keys are available.",
           "confidence": 58
-        },
-        {
-          "sourceId": "who-gho",
-          "sourceName": "WHO Global Health Observatory",
-          "sourceType": "health_baseline",
-          "adapter": "registryStub",
-          "title": "Coastal Risk Pricing Spreads Beyond Obvious Hotspots stub evidence 2",
-          "url": "https://ghoapi.azureedge.net/api/",
-          "observedAt": "2026-05-17T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
-          "summary": "Dry-run health_baseline evidence for \"coastal insurance retreat property risk storm exposure premiums\". Replace this with live adapter output when network and keys are available.",
-          "confidence": 59
         },
         {
           "sourceId": "ilostat",
@@ -1217,46 +1027,22 @@
           "adapter": "registryStub",
           "title": "Coastal Risk Pricing Spreads Beyond Obvious Hotspots stub evidence 1",
           "url": "https://ilostat.ilo.org/data/bulk/",
-          "observedAt": "2026-05-18T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
+          "observedAt": "2026-05-19T02:01:43.488Z",
+          "capturedAt": "2026-05-20T02:01:43.488Z",
           "summary": "Dry-run labour_baseline evidence for \"coastal insurance retreat property risk storm exposure premiums\". Replace this with live adapter output when network and keys are available.",
           "confidence": 57
         },
         {
-          "sourceId": "ilostat",
-          "sourceName": "ILOSTAT",
-          "sourceType": "labour_baseline",
-          "adapter": "registryStub",
-          "title": "Coastal Risk Pricing Spreads Beyond Obvious Hotspots stub evidence 2",
-          "url": "https://ilostat.ilo.org/data/bulk/",
-          "observedAt": "2026-05-17T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
-          "summary": "Dry-run labour_baseline evidence for \"coastal insurance retreat property risk storm exposure premiums\". Replace this with live adapter output when network and keys are available.",
-          "confidence": 58
-        },
-        {
           "sourceId": "oecd",
           "sourceName": "OECD Data API",
           "sourceType": "structural",
           "adapter": "registryStub",
           "title": "Coastal Risk Pricing Spreads Beyond Obvious Hotspots stub evidence 1",
           "url": "https://sdmx.oecd.org/public/rest/",
-          "observedAt": "2026-05-18T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
+          "observedAt": "2026-05-19T02:01:43.488Z",
+          "capturedAt": "2026-05-20T02:01:43.488Z",
           "summary": "Dry-run structural evidence for \"coastal insurance retreat property risk storm exposure premiums\". Replace this with live adapter output when network and keys are available.",
           "confidence": 62
-        },
-        {
-          "sourceId": "oecd",
-          "sourceName": "OECD Data API",
-          "sourceType": "structural",
-          "adapter": "registryStub",
-          "title": "Coastal Risk Pricing Spreads Beyond Obvious Hotspots stub evidence 2",
-          "url": "https://sdmx.oecd.org/public/rest/",
-          "observedAt": "2026-05-17T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
-          "summary": "Dry-run structural evidence for \"coastal insurance retreat property risk storm exposure premiums\". Replace this with live adapter output when network and keys are available.",
-          "confidence": 63
         }
       ],
       "ingestion": {
@@ -1277,18 +1063,18 @@
             "source_name": "GDELT DOC 2.1",
             "evidence_type": "current_event",
             "adapter": "gdeltDoc",
-            "status": "dry_run",
-            "evidence_count": 2,
+            "status": "error_fallback_stub",
+            "evidence_count": 1,
             "url": "https://api.gdeltproject.org/api/v2/doc/doc",
             "requires_key": false,
-            "error": null
+            "error": "fetch failed"
           },
           {
             "source_id": "world-bank-indicators",
             "source_name": "World Bank Indicators",
             "evidence_type": "structural",
             "adapter": "worldBank",
-            "status": "dry_run",
+            "status": "fetched",
             "evidence_count": 2,
             "url": "https://api.worldbank.org/v2/country/WLD/indicator/EG.ELC.ACCS.ZS",
             "requires_key": false,
@@ -1299,19 +1085,19 @@
             "source_name": "Open-Meteo Forecast",
             "evidence_type": "observed_condition",
             "adapter": "openMeteo",
-            "status": "dry_run",
-            "evidence_count": 2,
+            "status": "error_fallback_stub",
+            "evidence_count": 1,
             "url": "https://api.open-meteo.com/v1/forecast",
             "requires_key": false,
-            "error": null
+            "error": "fetch failed"
           },
           {
             "source_id": "nasa-power",
             "source_name": "NASA POWER",
             "evidence_type": "physical_baseline",
             "adapter": "nasaPower",
-            "status": "dry_run",
-            "evidence_count": 2,
+            "status": "fetched",
+            "evidence_count": 1,
             "url": "https://power.larc.nasa.gov/api/temporal/daily/point",
             "requires_key": false,
             "error": null
@@ -1321,8 +1107,8 @@
             "source_name": "USGS Earthquake Catalog",
             "evidence_type": "hazard_event",
             "adapter": "usgsEarthquakes",
-            "status": "dry_run",
-            "evidence_count": 2,
+            "status": "empty_fallback_stub",
+            "evidence_count": 1,
             "url": "https://earthquake.usgs.gov/fdsnws/event/1/query",
             "requires_key": false,
             "error": null
@@ -1332,19 +1118,19 @@
             "source_name": "ReliefWeb",
             "evidence_type": "humanitarian_event",
             "adapter": "reliefWeb",
-            "status": "dry_run",
-            "evidence_count": 2,
+            "status": "error_fallback_stub",
+            "evidence_count": 1,
             "url": "https://api.reliefweb.int/v1/reports",
             "requires_key": false,
-            "error": null
+            "error": "HTTP 410"
           },
           {
             "source_id": "crossref",
             "source_name": "Crossref",
             "evidence_type": "research_metadata",
             "adapter": "crossref",
-            "status": "dry_run",
-            "evidence_count": 2,
+            "status": "fetched",
+            "evidence_count": 3,
             "url": "https://api.crossref.org/works",
             "requires_key": false,
             "error": null
@@ -1354,19 +1140,19 @@
             "source_name": "arXiv",
             "evidence_type": "research_preprint",
             "adapter": "arxiv",
-            "status": "dry_run",
-            "evidence_count": 2,
+            "status": "error_fallback_stub",
+            "evidence_count": 1,
             "url": "https://export.arxiv.org/api/query",
             "requires_key": false,
-            "error": null
+            "error": "HTTP 429"
           },
           {
             "source_id": "wikipedia",
             "source_name": "Wikipedia / MediaWiki",
             "evidence_type": "entity_context",
             "adapter": "wikipedia",
-            "status": "dry_run",
-            "evidence_count": 2,
+            "status": "fetched",
+            "evidence_count": 3,
             "url": "https://en.wikipedia.org/w/api.php",
             "requires_key": false,
             "error": null
@@ -1376,8 +1162,8 @@
             "source_name": "Wikidata Query Service",
             "evidence_type": "knowledge_graph",
             "adapter": "wikidataStub",
-            "status": "dry_run",
-            "evidence_count": 2,
+            "status": "stub_adapter",
+            "evidence_count": 1,
             "url": "https://query.wikidata.org/sparql",
             "requires_key": false,
             "error": null
@@ -1387,8 +1173,8 @@
             "source_name": "FAOSTAT",
             "evidence_type": "food_baseline",
             "adapter": "registryStub",
-            "status": "dry_run",
-            "evidence_count": 2,
+            "status": "stub_adapter",
+            "evidence_count": 1,
             "url": "https://www.fao.org/faostat/",
             "requires_key": false,
             "error": null
@@ -1398,8 +1184,8 @@
             "source_name": "WHO Global Health Observatory",
             "evidence_type": "health_baseline",
             "adapter": "registryStub",
-            "status": "dry_run",
-            "evidence_count": 2,
+            "status": "stub_adapter",
+            "evidence_count": 1,
             "url": "https://ghoapi.azureedge.net/api/",
             "requires_key": false,
             "error": null
@@ -1409,8 +1195,8 @@
             "source_name": "ILOSTAT",
             "evidence_type": "labour_baseline",
             "adapter": "registryStub",
-            "status": "dry_run",
-            "evidence_count": 2,
+            "status": "stub_adapter",
+            "evidence_count": 1,
             "url": "https://ilostat.ilo.org/data/bulk/",
             "requires_key": false,
             "error": null
@@ -1420,8 +1206,8 @@
             "source_name": "OECD Data API",
             "evidence_type": "structural",
             "adapter": "registryStub",
-            "status": "dry_run",
-            "evidence_count": 2,
+            "status": "stub_adapter",
+            "evidence_count": 1,
             "url": "https://sdmx.oecd.org/public/rest/",
             "requires_key": false,
             "error": null
@@ -1440,7 +1226,7 @@
             "cadence": "nightly",
             "evidence_source_names": [
               "GDELT DOC 2.1",
-              "GDELT DOC 2.1"
+              "World Bank Indicators"
             ]
           },
           {
@@ -1448,7 +1234,7 @@
             "text": "state-backed insurers taking a larger share of policies",
             "cadence": "nightly",
             "evidence_source_names": [
-              "GDELT DOC 2.1",
+              "World Bank Indicators",
               "World Bank Indicators"
             ]
           },
@@ -1458,7 +1244,7 @@
             "cadence": "nightly",
             "evidence_source_names": [
               "World Bank Indicators",
-              "World Bank Indicators"
+              "Open-Meteo Forecast"
             ]
           }
         ],
@@ -1476,7 +1262,7 @@
         ],
         "previous_resolution_outcomes": []
       },
-      "generatedAt": "2026-05-19T22:01:07.959Z"
+      "generatedAt": "2026-05-20T02:01:43.488Z"
     },
     {
       "id": "nightly-cold-chain-infrastructure",
@@ -1489,16 +1275,16 @@
       "region": "EAST AFRICA / FOOD + HEALTH",
       "category": "Food systems",
       "horizon": "24-48 months",
-      "signalCount": 28,
+      "signalCount": 41,
       "summary": "Urban food demand, vaccine logistics, and solar refrigeration point toward cold-chain capacity as a shared health and food-system layer.",
       "implication": "Cooling logistics may unlock agriculture, clinics, and retail reliability at the same time.",
-      "rationale": "Generated from 14 registered source adapters with 28 evidence items. Live fetches are optional; dry-run evidence preserves the browser ingestion contract.",
+      "rationale": "Generated from 14 registered source adapters with 19 evidence items. Live fetches are optional; dry-run evidence preserves the browser ingestion contract.",
       "why": "This candidate is worth monitoring if solar cold-room projects expanding beyond pilots.",
       "signals": [
         "GDELT DOC 2.1: Dry-run current_event evidence for \"cold chain solar refrigeration vaccines food loss East Africa\". Replace this with live adapter output when network and keys are available.",
-        "GDELT DOC 2.1: Dry-run current_event evidence for \"cold chain solar refrigeration vaccines food loss East Africa\". Replace this with live adapter output when network and keys are available.",
-        "World Bank Indicators: Dry-run structural evidence for \"cold chain solar refrigeration vaccines food loss East Africa\". Replace this with live adapter output when network and keys are available.",
-        "World Bank Indicators: Dry-run structural evidence for \"cold chain solar refrigeration vaccines food loss East Africa\". Replace this with live adapter output when network and keys are available."
+        "World Bank Indicators: Structural context from World Bank indicator EG.ELC.ACCS.ZS for World.",
+        "World Bank Indicators: Structural context from World Bank indicator EG.ELC.ACCS.ZS for World.",
+        "Open-Meteo Forecast: Open-Meteo forecast near EAST AFRICA / FOOD + HEALTH: max temperature 24.8 C and precipitation 0.3 mm."
       ],
       "sources": [
         "GDELT DOC 2.1",
@@ -1524,118 +1310,70 @@
           "adapter": "gdeltDoc",
           "title": "Cold Chains Become Cross-Sector Growth Infrastructure stub evidence 1",
           "url": "https://api.gdeltproject.org/api/v2/doc/doc",
-          "observedAt": "2026-05-18T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
+          "observedAt": "2026-05-19T02:01:43.488Z",
+          "capturedAt": "2026-05-20T02:01:43.488Z",
           "summary": "Dry-run current_event evidence for \"cold chain solar refrigeration vaccines food loss East Africa\". Replace this with live adapter output when network and keys are available.",
           "confidence": 66
         },
         {
-          "sourceId": "gdelt-doc",
-          "sourceName": "GDELT DOC 2.1",
-          "sourceType": "current_event",
-          "adapter": "gdeltDoc",
-          "title": "Cold Chains Become Cross-Sector Growth Infrastructure stub evidence 2",
-          "url": "https://api.gdeltproject.org/api/v2/doc/doc",
-          "observedAt": "2026-05-17T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
-          "summary": "Dry-run current_event evidence for \"cold chain solar refrigeration vaccines food loss East Africa\". Replace this with live adapter output when network and keys are available.",
-          "confidence": 67
+          "sourceId": "world-bank-indicators",
+          "sourceName": "World Bank Indicators",
+          "sourceType": "structural",
+          "adapter": "worldBank",
+          "title": "Access to electricity (% of population): World",
+          "url": "https://api.worldbank.org/v2/country/WLD/indicator/EG.ELC.ACCS.ZS?format=json&per_page=3",
+          "observedAt": "2025-12-31T00:00:00.000Z",
+          "capturedAt": "2026-05-20T02:01:43.488Z",
+          "summary": "Structural context from World Bank indicator EG.ELC.ACCS.ZS for World.",
+          "confidence": 53
         },
         {
           "sourceId": "world-bank-indicators",
           "sourceName": "World Bank Indicators",
           "sourceType": "structural",
           "adapter": "worldBank",
-          "title": "Cold Chains Become Cross-Sector Growth Infrastructure stub evidence 1",
-          "url": "https://api.worldbank.org/v2/country/WLD/indicator/EG.ELC.ACCS.ZS",
-          "observedAt": "2026-05-18T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
-          "summary": "Dry-run structural evidence for \"cold chain solar refrigeration vaccines food loss East Africa\". Replace this with live adapter output when network and keys are available.",
-          "confidence": 67
-        },
-        {
-          "sourceId": "world-bank-indicators",
-          "sourceName": "World Bank Indicators",
-          "sourceType": "structural",
-          "adapter": "worldBank",
-          "title": "Cold Chains Become Cross-Sector Growth Infrastructure stub evidence 2",
-          "url": "https://api.worldbank.org/v2/country/WLD/indicator/EG.ELC.ACCS.ZS",
-          "observedAt": "2026-05-17T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
-          "summary": "Dry-run structural evidence for \"cold chain solar refrigeration vaccines food loss East Africa\". Replace this with live adapter output when network and keys are available.",
-          "confidence": 68
-        },
-        {
-          "sourceId": "open-meteo",
-          "sourceName": "Open-Meteo Forecast",
-          "sourceType": "observed_condition",
-          "adapter": "openMeteo",
-          "title": "Cold Chains Become Cross-Sector Growth Infrastructure stub evidence 1",
-          "url": "https://api.open-meteo.com/v1/forecast",
-          "observedAt": "2026-05-18T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
-          "summary": "Dry-run observed_condition evidence for \"cold chain solar refrigeration vaccines food loss East Africa\". Replace this with live adapter output when network and keys are available.",
-          "confidence": 46
-        },
-        {
-          "sourceId": "open-meteo",
-          "sourceName": "Open-Meteo Forecast",
-          "sourceType": "observed_condition",
-          "adapter": "openMeteo",
-          "title": "Cold Chains Become Cross-Sector Growth Infrastructure stub evidence 2",
-          "url": "https://api.open-meteo.com/v1/forecast",
-          "observedAt": "2026-05-17T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
-          "summary": "Dry-run observed_condition evidence for \"cold chain solar refrigeration vaccines food loss East Africa\". Replace this with live adapter output when network and keys are available.",
-          "confidence": 47
-        },
-        {
-          "sourceId": "nasa-power",
-          "sourceName": "NASA POWER",
-          "sourceType": "physical_baseline",
-          "adapter": "nasaPower",
-          "title": "Cold Chains Become Cross-Sector Growth Infrastructure stub evidence 1",
-          "url": "https://power.larc.nasa.gov/api/temporal/daily/point",
-          "observedAt": "2026-05-18T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
-          "summary": "Dry-run physical_baseline evidence for \"cold chain solar refrigeration vaccines food loss East Africa\". Replace this with live adapter output when network and keys are available.",
-          "confidence": 48
-        },
-        {
-          "sourceId": "nasa-power",
-          "sourceName": "NASA POWER",
-          "sourceType": "physical_baseline",
-          "adapter": "nasaPower",
-          "title": "Cold Chains Become Cross-Sector Growth Infrastructure stub evidence 2",
-          "url": "https://power.larc.nasa.gov/api/temporal/daily/point",
-          "observedAt": "2026-05-17T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
-          "summary": "Dry-run physical_baseline evidence for \"cold chain solar refrigeration vaccines food loss East Africa\". Replace this with live adapter output when network and keys are available.",
-          "confidence": 49
-        },
-        {
-          "sourceId": "usgs-earthquakes",
-          "sourceName": "USGS Earthquake Catalog",
-          "sourceType": "hazard_event",
-          "adapter": "usgsEarthquakes",
-          "title": "Cold Chains Become Cross-Sector Growth Infrastructure stub evidence 1",
-          "url": "https://earthquake.usgs.gov/fdsnws/event/1/query",
-          "observedAt": "2026-05-18T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
-          "summary": "Dry-run hazard_event evidence for \"cold chain solar refrigeration vaccines food loss East Africa\". Replace this with live adapter output when network and keys are available.",
+          "title": "Access to electricity (% of population): World",
+          "url": "https://api.worldbank.org/v2/country/WLD/indicator/EG.ELC.ACCS.ZS?format=json&per_page=3",
+          "observedAt": "2024-12-31T00:00:00.000Z",
+          "capturedAt": "2026-05-20T02:01:43.488Z",
+          "summary": "Structural context from World Bank indicator EG.ELC.ACCS.ZS for World.",
           "confidence": 54
         },
         {
+          "sourceId": "open-meteo",
+          "sourceName": "Open-Meteo Forecast",
+          "sourceType": "observed_condition",
+          "adapter": "openMeteo",
+          "title": "Open-Meteo Forecast: EAST AFRICA / FOOD + HEALTH short-range weather signal",
+          "url": "https://api.open-meteo.com/v1/forecast?latitude=-1.3&longitude=36.8&hourly=temperature_2m%2Cprecipitation%2Cwind_speed_10m&daily=temperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&timezone=UTC&forecast_days=3",
+          "observedAt": "2026-05-20T00:00:00.000Z",
+          "capturedAt": "2026-05-20T02:01:43.488Z",
+          "summary": "Open-Meteo forecast near EAST AFRICA / FOOD + HEALTH: max temperature 24.8 C and precipitation 0.3 mm.",
+          "confidence": 60
+        },
+        {
+          "sourceId": "nasa-power",
+          "sourceName": "NASA POWER",
+          "sourceType": "physical_baseline",
+          "adapter": "nasaPower",
+          "title": "NASA POWER: recent physical baseline near EAST AFRICA / FOOD + HEALTH",
+          "url": "https://power.larc.nasa.gov/api/temporal/daily/point?latitude=-1.3&longitude=36.8&start=20260514&end=20260520&community=RE&parameters=T2M%2CPRECTOTCORR%2CWS10M&format=JSON",
+          "observedAt": "2026-05-20T00:00:00.000Z",
+          "capturedAt": "2026-05-20T02:01:43.488Z",
+          "summary": "NASA POWER baseline: T2M -999 C, precipitation -999 mm/day, wind -999 m/s.",
+          "confidence": 58
+        },
+        {
           "sourceId": "usgs-earthquakes",
           "sourceName": "USGS Earthquake Catalog",
           "sourceType": "hazard_event",
           "adapter": "usgsEarthquakes",
-          "title": "Cold Chains Become Cross-Sector Growth Infrastructure stub evidence 2",
-          "url": "https://earthquake.usgs.gov/fdsnws/event/1/query",
-          "observedAt": "2026-05-17T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
-          "summary": "Dry-run hazard_event evidence for \"cold chain solar refrigeration vaccines food loss East Africa\". Replace this with live adapter output when network and keys are available.",
-          "confidence": 55
+          "title": "M 4.7 - 41 km ENE of Turmi, Ethiopia",
+          "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000sxka",
+          "observedAt": "2026-05-14T00:14:01.393Z",
+          "capturedAt": "2026-05-20T02:01:43.488Z",
+          "summary": "USGS event context near EAST AFRICA / FOOD + HEALTH: magnitude 4.7 Mw at 41 km ENE of Turmi, Ethiopia.",
+          "confidence": 54
         },
         {
           "sourceId": "reliefweb",
@@ -1644,46 +1382,46 @@
           "adapter": "reliefWeb",
           "title": "Cold Chains Become Cross-Sector Growth Infrastructure stub evidence 1",
           "url": "https://api.reliefweb.int/v1/reports",
-          "observedAt": "2026-05-18T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
+          "observedAt": "2026-05-19T02:01:43.488Z",
+          "capturedAt": "2026-05-20T02:01:43.488Z",
           "summary": "Dry-run humanitarian_event evidence for \"cold chain solar refrigeration vaccines food loss East Africa\". Replace this with live adapter output when network and keys are available.",
           "confidence": 50
         },
         {
-          "sourceId": "reliefweb",
-          "sourceName": "ReliefWeb",
-          "sourceType": "humanitarian_event",
-          "adapter": "reliefWeb",
-          "title": "Cold Chains Become Cross-Sector Growth Infrastructure stub evidence 2",
-          "url": "https://api.reliefweb.int/v1/reports",
-          "observedAt": "2026-05-17T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
-          "summary": "Dry-run humanitarian_event evidence for \"cold chain solar refrigeration vaccines food loss East Africa\". Replace this with live adapter output when network and keys are available.",
-          "confidence": 51
+          "sourceId": "crossref",
+          "sourceName": "Crossref",
+          "sourceType": "research_metadata",
+          "adapter": "crossref",
+          "title": "Consumers’ Buying Behaviour Towards Local Food in Greece During Economic Depression Period",
+          "url": "https://doi.org/10.15556/ijsim.02.04.003",
+          "observedAt": "2116-01-01T00:00:00.000Z",
+          "capturedAt": "2026-05-20T02:01:43.488Z",
+          "summary": "Crossref research metadata match from i-das; DOI 10.15556/ijsim.02.04.003.",
+          "confidence": 58
         },
         {
           "sourceId": "crossref",
           "sourceName": "Crossref",
           "sourceType": "research_metadata",
           "adapter": "crossref",
-          "title": "Cold Chains Become Cross-Sector Growth Infrastructure stub evidence 1",
-          "url": "https://api.crossref.org/works",
-          "observedAt": "2026-05-18T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
-          "summary": "Dry-run research_metadata evidence for \"cold chain solar refrigeration vaccines food loss East Africa\". Replace this with live adapter output when network and keys are available.",
-          "confidence": 62
+          "title": "Behavioral Screening Tests to Detect Hearing Loss in School Aged Children: A Review",
+          "url": "https://doi.org/10.21276/ijchmr.2016.2.2.11",
+          "observedAt": "2106-06-20T00:00:00.000Z",
+          "capturedAt": "2026-05-20T02:01:43.488Z",
+          "summary": "Crossref research metadata match from Marwah Infotech; DOI 10.21276/ijchmr.2016.2.2.11.",
+          "confidence": 59
         },
         {
           "sourceId": "crossref",
           "sourceName": "Crossref",
           "sourceType": "research_metadata",
           "adapter": "crossref",
-          "title": "Cold Chains Become Cross-Sector Growth Infrastructure stub evidence 2",
-          "url": "https://api.crossref.org/works",
-          "observedAt": "2026-05-17T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
-          "summary": "Dry-run research_metadata evidence for \"cold chain solar refrigeration vaccines food loss East Africa\". Replace this with live adapter output when network and keys are available.",
-          "confidence": 63
+          "title": "Demographic Determinants of Miraa Chewing Among the Youth in Central Division of Wajir East Sub County, Kenya",
+          "url": "https://doi.org/10.20431/2349-0381.0303007",
+          "observedAt": "2106-01-01T00:00:00.000Z",
+          "capturedAt": "2026-05-20T02:01:43.488Z",
+          "summary": "Crossref research metadata match from ARC Publications Pvt Ltd.; DOI 10.20431/2349-0381.0303007.",
+          "confidence": 60
         },
         {
           "sourceId": "arxiv",
@@ -1692,70 +1430,58 @@
           "adapter": "arxiv",
           "title": "Cold Chains Become Cross-Sector Growth Infrastructure stub evidence 1",
           "url": "https://export.arxiv.org/api/query",
-          "observedAt": "2026-05-18T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
+          "observedAt": "2026-05-19T02:01:43.488Z",
+          "capturedAt": "2026-05-20T02:01:43.488Z",
           "summary": "Dry-run research_preprint evidence for \"cold chain solar refrigeration vaccines food loss East Africa\". Replace this with live adapter output when network and keys are available.",
           "confidence": 65
         },
         {
-          "sourceId": "arxiv",
-          "sourceName": "arXiv",
-          "sourceType": "research_preprint",
-          "adapter": "arxiv",
-          "title": "Cold Chains Become Cross-Sector Growth Infrastructure stub evidence 2",
-          "url": "https://export.arxiv.org/api/query",
-          "observedAt": "2026-05-17T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
-          "summary": "Dry-run research_preprint evidence for \"cold chain solar refrigeration vaccines food loss East Africa\". Replace this with live adapter output when network and keys are available.",
-          "confidence": 66
-        },
-        {
           "sourceId": "wikipedia",
           "sourceName": "Wikipedia / MediaWiki",
           "sourceType": "entity_context",
           "adapter": "wikipedia",
-          "title": "Cold Chains Become Cross-Sector Growth Infrastructure stub evidence 1",
-          "url": "https://en.wikipedia.org/w/api.php",
-          "observedAt": "2026-05-18T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
-          "summary": "Dry-run entity_context evidence for \"cold chain solar refrigeration vaccines food loss East Africa\". Replace this with live adapter output when network and keys are available.",
-          "confidence": 62
-        },
-        {
-          "sourceId": "wikipedia",
-          "sourceName": "Wikipedia / MediaWiki",
-          "sourceType": "entity_context",
-          "adapter": "wikipedia",
-          "title": "Cold Chains Become Cross-Sector Growth Infrastructure stub evidence 2",
-          "url": "https://en.wikipedia.org/w/api.php",
-          "observedAt": "2026-05-17T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
-          "summary": "Dry-run entity_context evidence for \"cold chain solar refrigeration vaccines food loss East Africa\". Replace this with live adapter output when network and keys are available.",
-          "confidence": 63
-        },
-        {
-          "sourceId": "wikidata",
-          "sourceName": "Wikidata Query Service",
-          "sourceType": "knowledge_graph",
-          "adapter": "wikidataStub",
-          "title": "Cold Chains Become Cross-Sector Growth Infrastructure stub evidence 1",
-          "url": "https://query.wikidata.org/sparql",
-          "observedAt": "2026-05-18T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
-          "summary": "Dry-run knowledge_graph evidence for \"cold chain solar refrigeration vaccines food loss East Africa\". Replace this with live adapter output when network and keys are available.",
+          "title": "Submarine",
+          "url": "https://en.wikipedia.org/wiki/Submarine",
+          "observedAt": "2026-05-20T02:01:43.488Z",
+          "capturedAt": "2026-05-20T02:01:43.488Z",
+          "summary": "Wikipedia context: A submarine (often shortened to sub) is a watercraft capable of independent operation underwater. (It differs from a submersible, which has more limited underwater capability.) The term \"sub.",
           "confidence": 47
         },
         {
+          "sourceId": "wikipedia",
+          "sourceName": "Wikipedia / MediaWiki",
+          "sourceType": "entity_context",
+          "adapter": "wikipedia",
+          "title": "Technology",
+          "url": "https://en.wikipedia.org/wiki/Technology",
+          "observedAt": "2026-05-20T02:01:43.488Z",
+          "capturedAt": "2026-05-20T02:01:43.488Z",
+          "summary": "Wikipedia context: Technology is the application of conceptual knowledge to achieve practical goals, especially in a reproducible way. The word technology can also mean the products resulting from such efforts.",
+          "confidence": 48
+        },
+        {
+          "sourceId": "wikipedia",
+          "sourceName": "Wikipedia / MediaWiki",
+          "sourceType": "entity_context",
+          "adapter": "wikipedia",
+          "title": "List of Equinox episodes",
+          "url": "https://en.wikipedia.org/wiki/List_of_Equinox_episodes",
+          "observedAt": "2026-05-20T02:01:43.488Z",
+          "capturedAt": "2026-05-20T02:01:43.488Z",
+          "summary": "Wikipedia context: A list of Equinox episodes shows the full set of editions of the defunct (July 1986 - December 2006) Channel 4 science documentary series Equinox..",
+          "confidence": 49
+        },
+        {
           "sourceId": "wikidata",
           "sourceName": "Wikidata Query Service",
           "sourceType": "knowledge_graph",
           "adapter": "wikidataStub",
-          "title": "Cold Chains Become Cross-Sector Growth Infrastructure stub evidence 2",
+          "title": "Cold Chains Become Cross-Sector Growth Infrastructure stub evidence 1",
           "url": "https://query.wikidata.org/sparql",
-          "observedAt": "2026-05-17T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
+          "observedAt": "2026-05-19T02:01:43.488Z",
+          "capturedAt": "2026-05-20T02:01:43.488Z",
           "summary": "Dry-run knowledge_graph evidence for \"cold chain solar refrigeration vaccines food loss East Africa\". Replace this with live adapter output when network and keys are available.",
-          "confidence": 48
+          "confidence": 47
         },
         {
           "sourceId": "faostat",
@@ -1764,46 +1490,22 @@
           "adapter": "registryStub",
           "title": "Cold Chains Become Cross-Sector Growth Infrastructure stub evidence 1",
           "url": "https://www.fao.org/faostat/",
-          "observedAt": "2026-05-18T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
+          "observedAt": "2026-05-19T02:01:43.488Z",
+          "capturedAt": "2026-05-20T02:01:43.488Z",
           "summary": "Dry-run food_baseline evidence for \"cold chain solar refrigeration vaccines food loss East Africa\". Replace this with live adapter output when network and keys are available.",
           "confidence": 61
         },
         {
-          "sourceId": "faostat",
-          "sourceName": "FAOSTAT",
-          "sourceType": "food_baseline",
-          "adapter": "registryStub",
-          "title": "Cold Chains Become Cross-Sector Growth Infrastructure stub evidence 2",
-          "url": "https://www.fao.org/faostat/",
-          "observedAt": "2026-05-17T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
-          "summary": "Dry-run food_baseline evidence for \"cold chain solar refrigeration vaccines food loss East Africa\". Replace this with live adapter output when network and keys are available.",
-          "confidence": 62
-        },
-        {
           "sourceId": "who-gho",
           "sourceName": "WHO Global Health Observatory",
           "sourceType": "health_baseline",
           "adapter": "registryStub",
           "title": "Cold Chains Become Cross-Sector Growth Infrastructure stub evidence 1",
           "url": "https://ghoapi.azureedge.net/api/",
-          "observedAt": "2026-05-18T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
+          "observedAt": "2026-05-19T02:01:43.488Z",
+          "capturedAt": "2026-05-20T02:01:43.488Z",
           "summary": "Dry-run health_baseline evidence for \"cold chain solar refrigeration vaccines food loss East Africa\". Replace this with live adapter output when network and keys are available.",
           "confidence": 46
-        },
-        {
-          "sourceId": "who-gho",
-          "sourceName": "WHO Global Health Observatory",
-          "sourceType": "health_baseline",
-          "adapter": "registryStub",
-          "title": "Cold Chains Become Cross-Sector Growth Infrastructure stub evidence 2",
-          "url": "https://ghoapi.azureedge.net/api/",
-          "observedAt": "2026-05-17T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
-          "summary": "Dry-run health_baseline evidence for \"cold chain solar refrigeration vaccines food loss East Africa\". Replace this with live adapter output when network and keys are available.",
-          "confidence": 47
         },
         {
           "sourceId": "ilostat",
@@ -1812,46 +1514,22 @@
           "adapter": "registryStub",
           "title": "Cold Chains Become Cross-Sector Growth Infrastructure stub evidence 1",
           "url": "https://ilostat.ilo.org/data/bulk/",
-          "observedAt": "2026-05-18T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
+          "observedAt": "2026-05-19T02:01:43.488Z",
+          "capturedAt": "2026-05-20T02:01:43.488Z",
           "summary": "Dry-run labour_baseline evidence for \"cold chain solar refrigeration vaccines food loss East Africa\". Replace this with live adapter output when network and keys are available.",
           "confidence": 45
         },
         {
-          "sourceId": "ilostat",
-          "sourceName": "ILOSTAT",
-          "sourceType": "labour_baseline",
-          "adapter": "registryStub",
-          "title": "Cold Chains Become Cross-Sector Growth Infrastructure stub evidence 2",
-          "url": "https://ilostat.ilo.org/data/bulk/",
-          "observedAt": "2026-05-17T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
-          "summary": "Dry-run labour_baseline evidence for \"cold chain solar refrigeration vaccines food loss East Africa\". Replace this with live adapter output when network and keys are available.",
-          "confidence": 46
-        },
-        {
           "sourceId": "oecd",
           "sourceName": "OECD Data API",
           "sourceType": "structural",
           "adapter": "registryStub",
           "title": "Cold Chains Become Cross-Sector Growth Infrastructure stub evidence 1",
           "url": "https://sdmx.oecd.org/public/rest/",
-          "observedAt": "2026-05-18T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
+          "observedAt": "2026-05-19T02:01:43.488Z",
+          "capturedAt": "2026-05-20T02:01:43.488Z",
           "summary": "Dry-run structural evidence for \"cold chain solar refrigeration vaccines food loss East Africa\". Replace this with live adapter output when network and keys are available.",
           "confidence": 58
-        },
-        {
-          "sourceId": "oecd",
-          "sourceName": "OECD Data API",
-          "sourceType": "structural",
-          "adapter": "registryStub",
-          "title": "Cold Chains Become Cross-Sector Growth Infrastructure stub evidence 2",
-          "url": "https://sdmx.oecd.org/public/rest/",
-          "observedAt": "2026-05-17T22:01:07.959Z",
-          "capturedAt": "2026-05-19T22:01:07.959Z",
-          "summary": "Dry-run structural evidence for \"cold chain solar refrigeration vaccines food loss East Africa\". Replace this with live adapter output when network and keys are available.",
-          "confidence": 59
         }
       ],
       "ingestion": {
@@ -1872,18 +1550,18 @@
             "source_name": "GDELT DOC 2.1",
             "evidence_type": "current_event",
             "adapter": "gdeltDoc",
-            "status": "dry_run",
-            "evidence_count": 2,
+            "status": "error_fallback_stub",
+            "evidence_count": 1,
             "url": "https://api.gdeltproject.org/api/v2/doc/doc",
             "requires_key": false,
-            "error": null
+            "error": "fetch failed"
           },
           {
             "source_id": "world-bank-indicators",
             "source_name": "World Bank Indicators",
             "evidence_type": "structural",
             "adapter": "worldBank",
-            "status": "dry_run",
+            "status": "fetched",
             "evidence_count": 2,
             "url": "https://api.worldbank.org/v2/country/WLD/indicator/EG.ELC.ACCS.ZS",
             "requires_key": false,
@@ -1894,8 +1572,8 @@
             "source_name": "Open-Meteo Forecast",
             "evidence_type": "observed_condition",
             "adapter": "openMeteo",
-            "status": "dry_run",
-            "evidence_count": 2,
+            "status": "fetched",
+            "evidence_count": 1,
             "url": "https://api.open-meteo.com/v1/forecast",
             "requires_key": false,
             "error": null
@@ -1905,8 +1583,8 @@
             "source_name": "NASA POWER",
             "evidence_type": "physical_baseline",
             "adapter": "nasaPower",
-            "status": "dry_run",
-            "evidence_count": 2,
+            "status": "fetched",
+            "evidence_count": 1,
             "url": "https://power.larc.nasa.gov/api/temporal/daily/point",
             "requires_key": false,
             "error": null
@@ -1916,8 +1594,8 @@
             "source_name": "USGS Earthquake Catalog",
             "evidence_type": "hazard_event",
             "adapter": "usgsEarthquakes",
-            "status": "dry_run",
-            "evidence_count": 2,
+            "status": "fetched",
+            "evidence_count": 1,
             "url": "https://earthquake.usgs.gov/fdsnws/event/1/query",
             "requires_key": false,
             "error": null
@@ -1927,19 +1605,19 @@
             "source_name": "ReliefWeb",
             "evidence_type": "humanitarian_event",
             "adapter": "reliefWeb",
-            "status": "dry_run",
-            "evidence_count": 2,
+            "status": "error_fallback_stub",
+            "evidence_count": 1,
             "url": "https://api.reliefweb.int/v1/reports",
             "requires_key": false,
-            "error": null
+            "error": "HTTP 410"
           },
           {
             "source_id": "crossref",
             "source_name": "Crossref",
             "evidence_type": "research_metadata",
             "adapter": "crossref",
-            "status": "dry_run",
-            "evidence_count": 2,
+            "status": "fetched",
+            "evidence_count": 3,
             "url": "https://api.crossref.org/works",
             "requires_key": false,
             "error": null
@@ -1949,19 +1627,19 @@
             "source_name": "arXiv",
             "evidence_type": "research_preprint",
             "adapter": "arxiv",
-            "status": "dry_run",
-            "evidence_count": 2,
+            "status": "error_fallback_stub",
+            "evidence_count": 1,
             "url": "https://export.arxiv.org/api/query",
             "requires_key": false,
-            "error": null
+            "error": "This operation was aborted"
           },
           {
             "source_id": "wikipedia",
             "source_name": "Wikipedia / MediaWiki",
             "evidence_type": "entity_context",
             "adapter": "wikipedia",
-            "status": "dry_run",
-            "evidence_count": 2,
+            "status": "fetched",
+            "evidence_count": 3,
             "url": "https://en.wikipedia.org/w/api.php",
             "requires_key": false,
             "error": null
@@ -1971,8 +1649,8 @@
             "source_name": "Wikidata Query Service",
             "evidence_type": "knowledge_graph",
             "adapter": "wikidataStub",
-            "status": "dry_run",
-            "evidence_count": 2,
+            "status": "stub_adapter",
+            "evidence_count": 1,
             "url": "https://query.wikidata.org/sparql",
             "requires_key": false,
             "error": null
@@ -1982,8 +1660,8 @@
             "source_name": "FAOSTAT",
             "evidence_type": "food_baseline",
             "adapter": "registryStub",
-            "status": "dry_run",
-            "evidence_count": 2,
+            "status": "stub_adapter",
+            "evidence_count": 1,
             "url": "https://www.fao.org/faostat/",
             "requires_key": false,
             "error": null
@@ -1993,8 +1671,8 @@
             "source_name": "WHO Global Health Observatory",
             "evidence_type": "health_baseline",
             "adapter": "registryStub",
-            "status": "dry_run",
-            "evidence_count": 2,
+            "status": "stub_adapter",
+            "evidence_count": 1,
             "url": "https://ghoapi.azureedge.net/api/",
             "requires_key": false,
             "error": null
@@ -2004,8 +1682,8 @@
             "source_name": "ILOSTAT",
             "evidence_type": "labour_baseline",
             "adapter": "registryStub",
-            "status": "dry_run",
-            "evidence_count": 2,
+            "status": "stub_adapter",
+            "evidence_count": 1,
             "url": "https://ilostat.ilo.org/data/bulk/",
             "requires_key": false,
             "error": null
@@ -2015,8 +1693,8 @@
             "source_name": "OECD Data API",
             "evidence_type": "structural",
             "adapter": "registryStub",
-            "status": "dry_run",
-            "evidence_count": 2,
+            "status": "stub_adapter",
+            "evidence_count": 1,
             "url": "https://sdmx.oecd.org/public/rest/",
             "requires_key": false,
             "error": null
@@ -2035,7 +1713,7 @@
             "cadence": "nightly",
             "evidence_source_names": [
               "GDELT DOC 2.1",
-              "GDELT DOC 2.1"
+              "World Bank Indicators"
             ]
           },
           {
@@ -2043,7 +1721,7 @@
             "text": "clinic and market logistics procurements using the same refrigeration networks",
             "cadence": "nightly",
             "evidence_source_names": [
-              "GDELT DOC 2.1",
+              "World Bank Indicators",
               "World Bank Indicators"
             ]
           },
@@ -2053,7 +1731,7 @@
             "cadence": "nightly",
             "evidence_source_names": [
               "World Bank Indicators",
-              "World Bank Indicators"
+              "Open-Meteo Forecast"
             ]
           }
         ],
@@ -2071,7 +1749,7 @@
         ],
         "previous_resolution_outcomes": []
       },
-      "generatedAt": "2026-05-19T22:01:07.959Z"
+      "generatedAt": "2026-05-20T02:01:43.488Z"
     }
   ]
 }
