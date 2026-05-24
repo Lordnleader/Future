@@ -1,11 +1,11 @@
 {
   "schemaVersion": "future-signals.predictions.v1",
-  "generatedAt": "2026-05-23T01:53:12.843Z",
+  "generatedAt": "2026-05-24T01:59:58.250Z",
   "generator": {
     "name": "predict-the-future-nightly-signal-generator",
     "version": "nightly-signal-scaffold-0.2.0",
-    "runId": "nightly-2026-05-23T01-53-12-843Z",
-    "generatedAt": "2026-05-23T01:53:12.843Z",
+    "runId": "nightly-2026-05-24T01-59-58-250Z",
+    "generatedAt": "2026-05-24T01:59:58.250Z",
     "mode": "mixed_or_live",
     "cadenceTarget": "nightly-0100-local",
     "dryRunRequested": false
@@ -33,7 +33,7 @@
       "signalCount": 39,
       "summary": "Renewables variability, electrification, and price volatility make demand flexibility more practical at household and municipal scale.",
       "implication": "Utilities, aggregators, and local authorities can turn flexible loads into resilience capacity before large grid upgrades land.",
-      "rationale": "Generated from 14 registered source adapters with 19 evidence items. Fallback context is included when a source is unavailable, so the nightly run keeps a complete evidence contract without blocking publication. Nightly run nightly-2026-05-23T01-53-12-843Z captured 12 evidence items from 9 source families; 5 source adapters returned live data.",
+      "rationale": "Generated from 14 registered source adapters with 19 evidence items. Fallback context is included when a source is unavailable, so the nightly run keeps a complete evidence contract without blocking publication. Nightly run nightly-2026-05-24T01-59-58-250Z captured 12 evidence items from 9 source families; 5 source adapters returned live data.",
       "why": "This candidate is worth monitoring if more households enrolling in automated demand-response tariffs.",
       "signals": [
         "GDELT DOC 2.1: GDELT DOC 2.1 fallback context for \"grid flexibility demand response electricity prices renewables\" kept the source in the nightly evidence mix when live data was unavailable during this run.",
@@ -60,8 +60,8 @@
           "sourceType": "current_event",
           "title": "Grid Flexibility Becomes A Local Resilience Product stub evidence 1",
           "url": "https://api.gdeltproject.org/api/v2/doc/doc",
-          "observedAt": "2026-05-22T01:53:12.843Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "observedAt": "2026-05-23T01:59:58.250Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 56,
           "summary": "GDELT DOC 2.1 fallback context for \"grid flexibility demand response electricity prices renewables\" kept the source in the nightly evidence mix when live data was unavailable during this run."
         },
@@ -72,7 +72,7 @@
           "title": "Access to electricity (% of population): World",
           "url": "https://api.worldbank.org/v2/country/WLD/indicator/EG.ELC.ACCS.ZS?format=json&per_page=3",
           "observedAt": "2025-12-31T00:00:00.000Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 57,
           "summary": "Structural context from World Bank indicator EG.ELC.ACCS.ZS for World."
         },
@@ -83,7 +83,7 @@
           "title": "Access to electricity (% of population): World",
           "url": "https://api.worldbank.org/v2/country/WLD/indicator/EG.ELC.ACCS.ZS?format=json&per_page=3",
           "observedAt": "2024-12-31T00:00:00.000Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 58,
           "summary": "Structural context from World Bank indicator EG.ELC.ACCS.ZS for World."
         },
@@ -93,19 +93,19 @@
           "sourceType": "observed_condition",
           "title": "Open-Meteo Forecast: UNITED KINGDOM / POWER short-range weather signal",
           "url": "https://api.open-meteo.com/v1/forecast?latitude=53.2&longitude=-2.4&hourly=temperature_2m%2Cprecipitation%2Cwind_speed_10m&daily=temperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&timezone=UTC&forecast_days=3",
-          "observedAt": "2026-05-23T00:00:00.000Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "observedAt": "2026-05-24T00:00:00.000Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 66,
-          "summary": "Open-Meteo forecast near UNITED KINGDOM / POWER: max temperature 21.3 C and precipitation 1 mm."
+          "summary": "Open-Meteo forecast near UNITED KINGDOM / POWER: max temperature 24.1 C and precipitation 0 mm."
         },
         {
           "sourceId": "nasa-power",
           "sourceName": "NASA POWER",
           "sourceType": "physical_baseline",
           "title": "NASA POWER: recent physical baseline near UNITED KINGDOM / POWER",
-          "url": "https://power.larc.nasa.gov/api/temporal/daily/point?latitude=53.2&longitude=-2.4&start=20260517&end=20260523&community=RE&parameters=T2M%2CPRECTOTCORR%2CWS10M&format=JSON",
-          "observedAt": "2026-05-23T00:00:00.000Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "url": "https://power.larc.nasa.gov/api/temporal/daily/point?latitude=53.2&longitude=-2.4&start=20260518&end=20260524&community=RE&parameters=T2M%2CPRECTOTCORR%2CWS10M&format=JSON",
+          "observedAt": "2026-05-24T00:00:00.000Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 54,
           "summary": "NASA POWER baseline: T2M -999 C, precipitation -999 mm/day, wind -999 m/s."
         },
@@ -115,8 +115,8 @@
           "sourceType": "hazard_event",
           "title": "Grid Flexibility Becomes A Local Resilience Product stub evidence 1",
           "url": "https://earthquake.usgs.gov/fdsnws/event/1/query",
-          "observedAt": "2026-05-22T01:53:12.843Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "observedAt": "2026-05-23T01:59:58.250Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 64,
           "summary": "USGS Earthquake Catalog fallback context for \"grid flexibility demand response electricity prices renewables\" kept the source in the nightly evidence mix when live data was unavailable during this run."
         },
@@ -126,8 +126,8 @@
           "sourceType": "humanitarian_event",
           "title": "Grid Flexibility Becomes A Local Resilience Product stub evidence 1",
           "url": "https://api.reliefweb.int/v1/reports",
-          "observedAt": "2026-05-22T01:53:12.843Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "observedAt": "2026-05-23T01:59:58.250Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 64,
           "summary": "ReliefWeb fallback context for \"grid flexibility demand response electricity prices renewables\" kept the source in the nightly evidence mix when live data was unavailable during this run."
         },
@@ -138,7 +138,7 @@
           "title": "Sustainability dynamics in the electricity sector: the role of marketing",
           "url": "https://doi.org/10.15556/ijsim.02.04.005",
           "observedAt": "2116-01-01T00:00:00.000Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 67,
           "summary": "Crossref research metadata match from i-das; DOI 10.15556/ijsim.02.04.005."
         },
@@ -149,7 +149,7 @@
           "title": "Investigation on Velocity Response and Energy Saving Performance of Water Hydraulic Systems Without Using Servo Valve",
           "url": "https://doi.org/10.3384/ecp1392a41",
           "observedAt": "2103-09-09T00:00:00.000Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 68,
           "summary": "Crossref research metadata match from Linköping University Electronic Press; DOI 10.3384/ecp1392a41."
         },
@@ -160,7 +160,7 @@
           "title": "Market Failure or Government Failure? A Response to Jaworski",
           "url": "https://doi.org/10.12747/bejr2013.01.08",
           "observedAt": "2103-03-10T00:00:00.000Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 48,
           "summary": "Crossref research metadata match from Journal Review Foundation; DOI 10.12747/bejr2013.01.08."
         },
@@ -170,8 +170,8 @@
           "sourceType": "research_preprint",
           "title": "Grid Flexibility Becomes A Local Resilience Product stub evidence 1",
           "url": "https://export.arxiv.org/api/query",
-          "observedAt": "2026-05-22T01:53:12.843Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "observedAt": "2026-05-23T01:59:58.250Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 55,
           "summary": "arXiv fallback context for \"grid flexibility demand response electricity prices renewables\" kept the source in the nightly evidence mix when live data was unavailable during this run."
         },
@@ -181,8 +181,8 @@
           "sourceType": "entity_context",
           "title": "Grid energy storage",
           "url": "https://en.wikipedia.org/wiki/Grid_energy_storage",
-          "observedAt": "2026-05-23T01:53:12.843Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "observedAt": "2026-05-24T01:59:58.250Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 55,
           "summary": "Wikipedia context: Grid energy storage, also known as large-scale energy storage, is a set of technologies connected to the electrical power grid that store energy for later use. These systems help balance sup."
         }
@@ -197,7 +197,7 @@
           "evidence_count": 1,
           "url": "https://api.gdeltproject.org/api/v2/doc/doc",
           "requires_key": false,
-          "error": "fetch failed"
+          "error": "HTTP 429"
         },
         {
           "source_id": "world-bank-indicators",
@@ -390,10 +390,10 @@
           "check_cadence": "weekly"
         }
       ],
-      "generatedAt": "2026-05-23T01:53:12.843Z",
+      "generatedAt": "2026-05-24T01:59:58.250Z",
       "generator": {
-        "runId": "nightly-2026-05-23T01-53-12-843Z",
-        "generatedAt": "2026-05-23T01:53:12.843Z",
+        "runId": "nightly-2026-05-24T01-59-58-250Z",
+        "generatedAt": "2026-05-24T01:59:58.250Z",
         "mode": "mixed_or_live",
         "cadenceTarget": "nightly-0100-local"
       }
@@ -412,7 +412,7 @@
       "signalCount": 37,
       "summary": "Insurance withdrawals, rebuilding costs, and severe-weather exposure suggest risk pricing can migrate into lending, housing liquidity, and local budgets.",
       "implication": "Insurability becomes a practical constraint on asset strategy, not a back-office procurement detail.",
-      "rationale": "Generated from 14 registered source adapters with 19 evidence items. Fallback context is included when a source is unavailable, so the nightly run keeps a complete evidence contract without blocking publication. Nightly run nightly-2026-05-23T01-53-12-843Z captured 12 evidence items from 9 source families; 4 source adapters returned live data.",
+      "rationale": "Generated from 14 registered source adapters with 19 evidence items. Fallback context is included when a source is unavailable, so the nightly run keeps a complete evidence contract without blocking publication. Nightly run nightly-2026-05-24T01-59-58-250Z captured 12 evidence items from 9 source families; 4 source adapters returned live data.",
       "why": "This candidate is worth monitoring if new exclusions or coverage caps in exposed coastal counties.",
       "signals": [
         "GDELT DOC 2.1: GDELT DOC 2.1 fallback context for \"coastal insurance retreat property risk storm exposure premiums\" kept the source in the nightly evidence mix when live data was unavailable during this run.",
@@ -439,8 +439,8 @@
           "sourceType": "current_event",
           "title": "Coastal Risk Pricing Spreads Beyond Obvious Hotspots stub evidence 1",
           "url": "https://api.gdeltproject.org/api/v2/doc/doc",
-          "observedAt": "2026-05-22T01:53:12.843Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "observedAt": "2026-05-23T01:59:58.250Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 54,
           "summary": "GDELT DOC 2.1 fallback context for \"coastal insurance retreat property risk storm exposure premiums\" kept the source in the nightly evidence mix when live data was unavailable during this run."
         },
@@ -451,7 +451,7 @@
           "title": "Access to electricity (% of population): World",
           "url": "https://api.worldbank.org/v2/country/WLD/indicator/EG.ELC.ACCS.ZS?format=json&per_page=3",
           "observedAt": "2025-12-31T00:00:00.000Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 63,
           "summary": "Structural context from World Bank indicator EG.ELC.ACCS.ZS for World."
         },
@@ -462,7 +462,7 @@
           "title": "Access to electricity (% of population): World",
           "url": "https://api.worldbank.org/v2/country/WLD/indicator/EG.ELC.ACCS.ZS?format=json&per_page=3",
           "observedAt": "2024-12-31T00:00:00.000Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 64,
           "summary": "Structural context from World Bank indicator EG.ELC.ACCS.ZS for World."
         },
@@ -472,8 +472,8 @@
           "sourceType": "observed_condition",
           "title": "Coastal Risk Pricing Spreads Beyond Obvious Hotspots stub evidence 1",
           "url": "https://api.open-meteo.com/v1/forecast",
-          "observedAt": "2026-05-22T01:53:12.843Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "observedAt": "2026-05-23T01:59:58.250Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 50,
           "summary": "Open-Meteo Forecast fallback context for \"coastal insurance retreat property risk storm exposure premiums\" kept the source in the nightly evidence mix when live data was unavailable during this run."
         },
@@ -482,9 +482,9 @@
           "sourceName": "NASA POWER",
           "sourceType": "physical_baseline",
           "title": "NASA POWER: recent physical baseline near GULF COAST / RISK PRICING",
-          "url": "https://power.larc.nasa.gov/api/temporal/daily/point?latitude=29.5&longitude=-90.2&start=20260517&end=20260523&community=RE&parameters=T2M%2CPRECTOTCORR%2CWS10M&format=JSON",
-          "observedAt": "2026-05-23T00:00:00.000Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "url": "https://power.larc.nasa.gov/api/temporal/daily/point?latitude=29.5&longitude=-90.2&start=20260518&end=20260524&community=RE&parameters=T2M%2CPRECTOTCORR%2CWS10M&format=JSON",
+          "observedAt": "2026-05-24T00:00:00.000Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 61,
           "summary": "NASA POWER baseline: T2M -999 C, precipitation -999 mm/day, wind -999 m/s."
         },
@@ -494,8 +494,8 @@
           "sourceType": "hazard_event",
           "title": "Coastal Risk Pricing Spreads Beyond Obvious Hotspots stub evidence 1",
           "url": "https://earthquake.usgs.gov/fdsnws/event/1/query",
-          "observedAt": "2026-05-22T01:53:12.843Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "observedAt": "2026-05-23T01:59:58.250Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 58,
           "summary": "USGS Earthquake Catalog fallback context for \"coastal insurance retreat property risk storm exposure premiums\" kept the source in the nightly evidence mix when live data was unavailable during this run."
         },
@@ -505,8 +505,8 @@
           "sourceType": "humanitarian_event",
           "title": "Coastal Risk Pricing Spreads Beyond Obvious Hotspots stub evidence 1",
           "url": "https://api.reliefweb.int/v1/reports",
-          "observedAt": "2026-05-22T01:53:12.843Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "observedAt": "2026-05-23T01:59:58.250Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 62,
           "summary": "ReliefWeb fallback context for \"coastal insurance retreat property risk storm exposure premiums\" kept the source in the nightly evidence mix when live data was unavailable during this run."
         },
@@ -517,7 +517,7 @@
           "title": "Assessment of Human Health Risk and Surface Soil Contamination by Some Toxic Elements in Arak City, Iran",
           "url": "https://doi.org/10.32598/jaehr.9.4.1233",
           "observedAt": "2121-10-01T00:00:00.000Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 59,
           "summary": "Crossref research metadata match from Maad Rayan Publishing Company; DOI 10.32598/jaehr.9.4.1233."
         },
@@ -528,7 +528,7 @@
           "title": "Investigating the Non-carcinogenic Risk and Hazard Quotient of Heavy Metals in High-traffic Districts of Tehran Metropolis, Iran",
           "url": "https://doi.org/10.32598/jaehr.9.4.1219",
           "observedAt": "2121-10-01T00:00:00.000Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 60,
           "summary": "Crossref research metadata match from Maad Rayan Publishing Company; DOI 10.32598/jaehr.9.4.1219."
         },
@@ -539,7 +539,7 @@
           "title": "Investigation and Optimization of Air Pollution Risk by a Multi-criteria Decision Making Method Using Fuzzy TOPSIS: A Case Study of Construction Workers",
           "url": "https://doi.org/10.32598/jaehr.9.4.1229",
           "observedAt": "2121-10-01T00:00:00.000Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 61,
           "summary": "Crossref research metadata match from Maad Rayan Publishing Company; DOI 10.32598/jaehr.9.4.1229."
         },
@@ -549,8 +549,8 @@
           "sourceType": "research_preprint",
           "title": "Coastal Risk Pricing Spreads Beyond Obvious Hotspots stub evidence 1",
           "url": "https://export.arxiv.org/api/query",
-          "observedAt": "2026-05-22T01:53:12.843Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "observedAt": "2026-05-23T01:59:58.250Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 45,
           "summary": "arXiv fallback context for \"coastal insurance retreat property risk storm exposure premiums\" kept the source in the nightly evidence mix when live data was unavailable during this run."
         },
@@ -558,12 +558,12 @@
           "sourceId": "wikipedia",
           "sourceName": "Wikipedia / MediaWiki",
           "sourceType": "entity_context",
-          "title": "Effects of climate change",
-          "url": "https://en.wikipedia.org/wiki/Effects_of_climate_change",
-          "observedAt": "2026-05-23T01:53:12.843Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "title": "Climate change adaptation",
+          "url": "https://en.wikipedia.org/wiki/Climate_change_adaptation",
+          "observedAt": "2026-05-24T01:59:58.250Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 56,
-          "summary": "Wikipedia context: Effects of climate change are well documented and growing for Earth's natural environment and human societies. Changes to the climate system include an overall warming trend, changes to prec."
+          "summary": "Wikipedia context: Climate change adaptation is the process of adjusting to the effects of climate change, both current and anticipated. Adaptation aims to moderate or avoid harm for people, and is usually don."
         }
       ],
       "sourceMix": [
@@ -576,7 +576,7 @@
           "evidence_count": 1,
           "url": "https://api.gdeltproject.org/api/v2/doc/doc",
           "requires_key": false,
-          "error": "fetch failed"
+          "error": "HTTP 429"
         },
         {
           "source_id": "world-bank-indicators",
@@ -769,10 +769,10 @@
           "check_cadence": "weekly"
         }
       ],
-      "generatedAt": "2026-05-23T01:53:12.843Z",
+      "generatedAt": "2026-05-24T01:59:58.250Z",
       "generator": {
-        "runId": "nightly-2026-05-23T01-53-12-843Z",
-        "generatedAt": "2026-05-23T01:53:12.843Z",
+        "runId": "nightly-2026-05-24T01-59-58-250Z",
+        "generatedAt": "2026-05-24T01:59:58.250Z",
         "mode": "mixed_or_live",
         "cadenceTarget": "nightly-0100-local"
       }
@@ -791,7 +791,7 @@
       "signalCount": 41,
       "summary": "Urban food demand, vaccine logistics, and solar refrigeration point toward cold-chain capacity as a shared health and food-system layer.",
       "implication": "Cooling logistics may unlock agriculture, clinics, and retail reliability at the same time.",
-      "rationale": "Generated from 14 registered source adapters with 19 evidence items. Fallback context is included when a source is unavailable, so the nightly run keeps a complete evidence contract without blocking publication. Nightly run nightly-2026-05-23T01-53-12-843Z captured 12 evidence items from 9 source families; 6 source adapters returned live data.",
+      "rationale": "Generated from 14 registered source adapters with 19 evidence items. Fallback context is included when a source is unavailable, so the nightly run keeps a complete evidence contract without blocking publication. Nightly run nightly-2026-05-24T01-59-58-250Z captured 12 evidence items from 9 source families; 6 source adapters returned live data.",
       "why": "This candidate is worth monitoring if solar cold-room projects expanding beyond pilots.",
       "signals": [
         "GDELT DOC 2.1: GDELT DOC 2.1 fallback context for \"cold chain solar refrigeration vaccines food loss East Africa\" kept the source in the nightly evidence mix when live data was unavailable during this run.",
@@ -818,8 +818,8 @@
           "sourceType": "current_event",
           "title": "Cold Chains Become Cross-Sector Growth Infrastructure stub evidence 1",
           "url": "https://api.gdeltproject.org/api/v2/doc/doc",
-          "observedAt": "2026-05-22T01:53:12.843Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "observedAt": "2026-05-23T01:59:58.250Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 66,
           "summary": "GDELT DOC 2.1 fallback context for \"cold chain solar refrigeration vaccines food loss East Africa\" kept the source in the nightly evidence mix when live data was unavailable during this run."
         },
@@ -830,7 +830,7 @@
           "title": "Access to electricity (% of population): World",
           "url": "https://api.worldbank.org/v2/country/WLD/indicator/EG.ELC.ACCS.ZS?format=json&per_page=3",
           "observedAt": "2025-12-31T00:00:00.000Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 53,
           "summary": "Structural context from World Bank indicator EG.ELC.ACCS.ZS for World."
         },
@@ -841,7 +841,7 @@
           "title": "Access to electricity (% of population): World",
           "url": "https://api.worldbank.org/v2/country/WLD/indicator/EG.ELC.ACCS.ZS?format=json&per_page=3",
           "observedAt": "2024-12-31T00:00:00.000Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 54,
           "summary": "Structural context from World Bank indicator EG.ELC.ACCS.ZS for World."
         },
@@ -851,19 +851,19 @@
           "sourceType": "observed_condition",
           "title": "Open-Meteo Forecast: EAST AFRICA / FOOD + HEALTH short-range weather signal",
           "url": "https://api.open-meteo.com/v1/forecast?latitude=-1.3&longitude=36.8&hourly=temperature_2m%2Cprecipitation%2Cwind_speed_10m&daily=temperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&timezone=UTC&forecast_days=3",
-          "observedAt": "2026-05-23T00:00:00.000Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "observedAt": "2026-05-24T00:00:00.000Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 60,
-          "summary": "Open-Meteo forecast near EAST AFRICA / FOOD + HEALTH: max temperature 24.6 C and precipitation 0.9 mm."
+          "summary": "Open-Meteo forecast near EAST AFRICA / FOOD + HEALTH: max temperature 24.9 C and precipitation 0.5 mm."
         },
         {
           "sourceId": "nasa-power",
           "sourceName": "NASA POWER",
           "sourceType": "physical_baseline",
           "title": "NASA POWER: recent physical baseline near EAST AFRICA / FOOD + HEALTH",
-          "url": "https://power.larc.nasa.gov/api/temporal/daily/point?latitude=-1.3&longitude=36.8&start=20260517&end=20260523&community=RE&parameters=T2M%2CPRECTOTCORR%2CWS10M&format=JSON",
-          "observedAt": "2026-05-23T00:00:00.000Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "url": "https://power.larc.nasa.gov/api/temporal/daily/point?latitude=-1.3&longitude=36.8&start=20260518&end=20260524&community=RE&parameters=T2M%2CPRECTOTCORR%2CWS10M&format=JSON",
+          "observedAt": "2026-05-24T00:00:00.000Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 58,
           "summary": "NASA POWER baseline: T2M -999 C, precipitation -999 mm/day, wind -999 m/s."
         },
@@ -874,7 +874,7 @@
           "title": "M 4.7 - 41 km ENE of Turmi, Ethiopia",
           "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000sxka",
           "observedAt": "2026-05-14T00:14:01.393Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 54,
           "summary": "USGS event context near EAST AFRICA / FOOD + HEALTH: magnitude 4.7 Mw at 41 km ENE of Turmi, Ethiopia."
         },
@@ -884,8 +884,8 @@
           "sourceType": "humanitarian_event",
           "title": "Cold Chains Become Cross-Sector Growth Infrastructure stub evidence 1",
           "url": "https://api.reliefweb.int/v1/reports",
-          "observedAt": "2026-05-22T01:53:12.843Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "observedAt": "2026-05-23T01:59:58.250Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 50,
           "summary": "ReliefWeb fallback context for \"cold chain solar refrigeration vaccines food loss East Africa\" kept the source in the nightly evidence mix when live data was unavailable during this run."
         },
@@ -896,7 +896,7 @@
           "title": "Consumers’ Buying Behaviour Towards Local Food in Greece During Economic Depression Period",
           "url": "https://doi.org/10.15556/ijsim.02.04.003",
           "observedAt": "2116-01-01T00:00:00.000Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 58,
           "summary": "Crossref research metadata match from i-das; DOI 10.15556/ijsim.02.04.003."
         },
@@ -907,7 +907,7 @@
           "title": "Behavioral Screening Tests to Detect Hearing Loss in School Aged Children: A Review",
           "url": "https://doi.org/10.21276/ijchmr.2016.2.2.11",
           "observedAt": "2106-06-20T00:00:00.000Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 59,
           "summary": "Crossref research metadata match from Marwah Infotech; DOI 10.21276/ijchmr.2016.2.2.11."
         },
@@ -918,7 +918,7 @@
           "title": "Demographic Determinants of Miraa Chewing Among the Youth in Central Division of Wajir East Sub County, Kenya",
           "url": "https://doi.org/10.20431/2349-0381.0303007",
           "observedAt": "2106-01-01T00:00:00.000Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 60,
           "summary": "Crossref research metadata match from ARC Publications Pvt Ltd.; DOI 10.20431/2349-0381.0303007."
         },
@@ -928,8 +928,8 @@
           "sourceType": "research_preprint",
           "title": "Cold Chains Become Cross-Sector Growth Infrastructure stub evidence 1",
           "url": "https://export.arxiv.org/api/query",
-          "observedAt": "2026-05-22T01:53:12.843Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "observedAt": "2026-05-23T01:59:58.250Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 65,
           "summary": "arXiv fallback context for \"cold chain solar refrigeration vaccines food loss East Africa\" kept the source in the nightly evidence mix when live data was unavailable during this run."
         },
@@ -939,8 +939,8 @@
           "sourceType": "entity_context",
           "title": "Submarine",
           "url": "https://en.wikipedia.org/wiki/Submarine",
-          "observedAt": "2026-05-23T01:53:12.843Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "observedAt": "2026-05-24T01:59:58.250Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 47,
           "summary": "Wikipedia context: A submarine (often shortened to sub) is a watercraft capable of independent operation underwater. (It differs from a submersible, which has more limited underwater capability.) The term \"sub."
         }
@@ -1032,7 +1032,7 @@
           "evidence_count": 1,
           "url": "https://export.arxiv.org/api/query",
           "requires_key": false,
-          "error": "HTTP 429"
+          "error": "This operation was aborted"
         },
         {
           "source_id": "wikipedia",
@@ -1148,10 +1148,10 @@
           "check_cadence": "weekly"
         }
       ],
-      "generatedAt": "2026-05-23T01:53:12.843Z",
+      "generatedAt": "2026-05-24T01:59:58.250Z",
       "generator": {
-        "runId": "nightly-2026-05-23T01-53-12-843Z",
-        "generatedAt": "2026-05-23T01:53:12.843Z",
+        "runId": "nightly-2026-05-24T01-59-58-250Z",
+        "generatedAt": "2026-05-24T01:59:58.250Z",
         "mode": "mixed_or_live",
         "cadenceTarget": "nightly-0100-local"
       }
@@ -1170,7 +1170,7 @@
       "signalCount": 31,
       "summary": "Heat alerts, outdoor work exposure, and cooling access suggest labour capacity can tighten before official productivity data fully reflects it.",
       "implication": "Shift timing, cooling infrastructure, insurance, and worker-retention plans become operating strategy.",
-      "rationale": "Generated from 14 registered source adapters with 17 evidence items. Fallback context is included when a source is unavailable, so the nightly run keeps a complete evidence contract without blocking publication. Nightly run nightly-2026-05-23T01-53-12-843Z captured 12 evidence items from 9 source families; 4 source adapters returned live data.",
+      "rationale": "Generated from 14 registered source adapters with 17 evidence items. Fallback context is included when a source is unavailable, so the nightly run keeps a complete evidence contract without blocking publication. Nightly run nightly-2026-05-24T01-59-58-250Z captured 12 evidence items from 9 source families; 4 source adapters returned live data.",
       "why": "This candidate is worth monitoring if municipal heat-action plans adding work-hour restrictions.",
       "signals": [
         "GDELT DOC 2.1: GDELT DOC 2.1 fallback context for \"India heat stress labour productivity construction logistics wet bulb\" kept the source in the nightly evidence mix when live data was unavailable during this run.",
@@ -1197,8 +1197,8 @@
           "sourceType": "current_event",
           "title": "Heat Stress Becomes A Labour-Capacity Constraint stub evidence 1",
           "url": "https://api.gdeltproject.org/api/v2/doc/doc",
-          "observedAt": "2026-05-22T01:53:12.843Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "observedAt": "2026-05-23T01:59:58.250Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 60,
           "summary": "GDELT DOC 2.1 fallback context for \"India heat stress labour productivity construction logistics wet bulb\" kept the source in the nightly evidence mix when live data was unavailable during this run."
         },
@@ -1209,7 +1209,7 @@
           "title": "Access to electricity (% of population): World",
           "url": "https://api.worldbank.org/v2/country/WLD/indicator/EG.ELC.ACCS.ZS?format=json&per_page=3",
           "observedAt": "2025-12-31T00:00:00.000Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 58,
           "summary": "Structural context from World Bank indicator EG.ELC.ACCS.ZS for World."
         },
@@ -1220,7 +1220,7 @@
           "title": "Access to electricity (% of population): World",
           "url": "https://api.worldbank.org/v2/country/WLD/indicator/EG.ELC.ACCS.ZS?format=json&per_page=3",
           "observedAt": "2024-12-31T00:00:00.000Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 59,
           "summary": "Structural context from World Bank indicator EG.ELC.ACCS.ZS for World."
         },
@@ -1230,19 +1230,19 @@
           "sourceType": "observed_condition",
           "title": "Open-Meteo Forecast: INDIA / HEAT + LABOUR short-range weather signal",
           "url": "https://api.open-meteo.com/v1/forecast?latitude=22.6&longitude=78.9&hourly=temperature_2m%2Cprecipitation%2Cwind_speed_10m&daily=temperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&timezone=UTC&forecast_days=3",
-          "observedAt": "2026-05-23T00:00:00.000Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "observedAt": "2026-05-24T00:00:00.000Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 54,
-          "summary": "Open-Meteo forecast near INDIA / HEAT + LABOUR: max temperature 38 C and precipitation 0 mm."
+          "summary": "Open-Meteo forecast near INDIA / HEAT + LABOUR: max temperature 39.1 C and precipitation 0 mm."
         },
         {
           "sourceId": "nasa-power",
           "sourceName": "NASA POWER",
           "sourceType": "physical_baseline",
           "title": "NASA POWER: recent physical baseline near INDIA / HEAT + LABOUR",
-          "url": "https://power.larc.nasa.gov/api/temporal/daily/point?latitude=22.6&longitude=78.9&start=20260517&end=20260523&community=RE&parameters=T2M%2CPRECTOTCORR%2CWS10M&format=JSON",
-          "observedAt": "2026-05-23T00:00:00.000Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "url": "https://power.larc.nasa.gov/api/temporal/daily/point?latitude=22.6&longitude=78.9&start=20260518&end=20260524&community=RE&parameters=T2M%2CPRECTOTCORR%2CWS10M&format=JSON",
+          "observedAt": "2026-05-24T00:00:00.000Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 58,
           "summary": "NASA POWER baseline: T2M -999 C, precipitation -999 mm/day, wind -999 m/s."
         },
@@ -1252,8 +1252,8 @@
           "sourceType": "hazard_event",
           "title": "Heat Stress Becomes A Labour-Capacity Constraint stub evidence 1",
           "url": "https://earthquake.usgs.gov/fdsnws/event/1/query",
-          "observedAt": "2026-05-22T01:53:12.843Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "observedAt": "2026-05-23T01:59:58.250Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 52,
           "summary": "USGS Earthquake Catalog fallback context for \"India heat stress labour productivity construction logistics wet bulb\" kept the source in the nightly evidence mix when live data was unavailable during this run."
         },
@@ -1263,8 +1263,8 @@
           "sourceType": "humanitarian_event",
           "title": "Heat Stress Becomes A Labour-Capacity Constraint stub evidence 1",
           "url": "https://api.reliefweb.int/v1/reports",
-          "observedAt": "2026-05-22T01:53:12.843Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "observedAt": "2026-05-23T01:59:58.250Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 68,
           "summary": "ReliefWeb fallback context for \"India heat stress labour productivity construction logistics wet bulb\" kept the source in the nightly evidence mix when live data was unavailable during this run."
         },
@@ -1275,7 +1275,7 @@
           "title": "Effect of Drought Stress, Soil Salinity, P. indica, and MWCNs on Biodegradation of Diesel Oil in the Pb- and Cd-Polluted Soil Under Cultivation of Triticale Plant",
           "url": "https://doi.org/10.32598/jaehr.9.4.1232",
           "observedAt": "2121-10-01T00:00:00.000Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 54,
           "summary": "Crossref research metadata match from Maad Rayan Publishing Company; DOI 10.32598/jaehr.9.4.1232."
         },
@@ -1286,7 +1286,7 @@
           "title": "Investigation and Optimization of Air Pollution Risk by a Multi-criteria Decision Making Method Using Fuzzy TOPSIS: A Case Study of Construction Workers",
           "url": "https://doi.org/10.32598/jaehr.9.4.1229",
           "observedAt": "2121-10-01T00:00:00.000Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 55,
           "summary": "Crossref research metadata match from Maad Rayan Publishing Company; DOI 10.32598/jaehr.9.4.1229."
         },
@@ -1297,7 +1297,7 @@
           "title": "Natural Sustainability Ethics for Resolving Current Outer Space Challenges",
           "url": "https://doi.org/10.61781/11i20212bmlm",
           "observedAt": "2121-04-20T00:00:00.000Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 56,
           "summary": "Crossref research metadata match from BML Munjal University; DOI 10.61781/11i20212bmlm."
         },
@@ -1307,8 +1307,8 @@
           "sourceType": "research_preprint",
           "title": "Heat Stress Becomes A Labour-Capacity Constraint stub evidence 1",
           "url": "https://export.arxiv.org/api/query",
-          "observedAt": "2026-05-22T01:53:12.843Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "observedAt": "2026-05-23T01:59:58.250Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 51,
           "summary": "arXiv fallback context for \"India heat stress labour productivity construction logistics wet bulb\" kept the source in the nightly evidence mix when live data was unavailable during this run."
         },
@@ -1318,8 +1318,8 @@
           "sourceType": "entity_context",
           "title": "Heat Stress Becomes A Labour-Capacity Constraint stub evidence 1",
           "url": "https://en.wikipedia.org/w/api.php",
-          "observedAt": "2026-05-22T01:53:12.843Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "observedAt": "2026-05-23T01:59:58.250Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 56,
           "summary": "Wikipedia / MediaWiki fallback context for \"India heat stress labour productivity construction logistics wet bulb\" kept the source in the nightly evidence mix when live data was unavailable during this run."
         }
@@ -1334,7 +1334,7 @@
           "evidence_count": 1,
           "url": "https://api.gdeltproject.org/api/v2/doc/doc",
           "requires_key": false,
-          "error": "fetch failed"
+          "error": "HTTP 429"
         },
         {
           "source_id": "world-bank-indicators",
@@ -1527,10 +1527,10 @@
           "check_cadence": "weekly"
         }
       ],
-      "generatedAt": "2026-05-23T01:53:12.843Z",
+      "generatedAt": "2026-05-24T01:59:58.250Z",
       "generator": {
-        "runId": "nightly-2026-05-23T01-53-12-843Z",
-        "generatedAt": "2026-05-23T01:53:12.843Z",
+        "runId": "nightly-2026-05-24T01-59-58-250Z",
+        "generatedAt": "2026-05-24T01:59:58.250Z",
         "mode": "mixed_or_live",
         "cadenceTarget": "nightly-0100-local"
       }
@@ -1546,10 +1546,10 @@
       "region": "MEDITERRANEAN / TOURISM",
       "category": "Cities",
       "horizon": "12-36 months",
-      "signalCount": 33,
+      "signalCount": 36,
       "summary": "Heatwaves, water pressure, wildfire risk, and booking behavior point toward tourism value shifting toward cooler timing and better-adapted destinations.",
       "implication": "Destinations with shade, water reliability, emergency planning, and shoulder-season appeal gain relative advantage.",
-      "rationale": "Generated from 14 registered source adapters with 17 evidence items. Fallback context is included when a source is unavailable, so the nightly run keeps a complete evidence contract without blocking publication. Nightly run nightly-2026-05-23T01-53-12-843Z captured 12 evidence items from 9 source families; 5 source adapters returned live data.",
+      "rationale": "Generated from 14 registered source adapters with 18 evidence items. Fallback context is included when a source is unavailable, so the nightly run keeps a complete evidence contract without blocking publication. Nightly run nightly-2026-05-24T01-59-58-250Z captured 12 evidence items from 8 source families; 5 source adapters returned live data.",
       "why": "This candidate is worth monitoring if tour operators changing peak-season schedules.",
       "signals": [
         "GDELT DOC 2.1: GDELT DOC 2.1 fallback context for \"Mediterranean heatwave tourism wildfire travel insurance summer bookings\" kept the source in the nightly evidence mix when live data was unavailable during this run.",
@@ -1566,8 +1566,7 @@
         "USGS Earthquake Catalog",
         "ReliefWeb",
         "Crossref",
-        "arXiv",
-        "Wikipedia / MediaWiki"
+        "arXiv"
       ],
       "evidence": [
         {
@@ -1576,8 +1575,8 @@
           "sourceType": "current_event",
           "title": "Peak Tourism Starts Moving Around Heat Risk stub evidence 1",
           "url": "https://api.gdeltproject.org/api/v2/doc/doc",
-          "observedAt": "2026-05-22T01:53:12.843Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "observedAt": "2026-05-23T01:59:58.250Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 66,
           "summary": "GDELT DOC 2.1 fallback context for \"Mediterranean heatwave tourism wildfire travel insurance summer bookings\" kept the source in the nightly evidence mix when live data was unavailable during this run."
         },
@@ -1588,7 +1587,7 @@
           "title": "Access to electricity (% of population): World",
           "url": "https://api.worldbank.org/v2/country/WLD/indicator/EG.ELC.ACCS.ZS?format=json&per_page=3",
           "observedAt": "2025-12-31T00:00:00.000Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 50,
           "summary": "Structural context from World Bank indicator EG.ELC.ACCS.ZS for World."
         },
@@ -1599,7 +1598,7 @@
           "title": "Access to electricity (% of population): World",
           "url": "https://api.worldbank.org/v2/country/WLD/indicator/EG.ELC.ACCS.ZS?format=json&per_page=3",
           "observedAt": "2024-12-31T00:00:00.000Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 51,
           "summary": "Structural context from World Bank indicator EG.ELC.ACCS.ZS for World."
         },
@@ -1609,21 +1608,32 @@
           "sourceType": "observed_condition",
           "title": "Open-Meteo Forecast: MEDITERRANEAN / TOURISM short-range weather signal",
           "url": "https://api.open-meteo.com/v1/forecast?latitude=39.3&longitude=15&hourly=temperature_2m%2Cprecipitation%2Cwind_speed_10m&daily=temperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&timezone=UTC&forecast_days=3",
-          "observedAt": "2026-05-23T00:00:00.000Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "observedAt": "2026-05-24T00:00:00.000Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 72,
-          "summary": "Open-Meteo forecast near MEDITERRANEAN / TOURISM: max temperature 21 C and precipitation 0 mm."
+          "summary": "Open-Meteo forecast near MEDITERRANEAN / TOURISM: max temperature 21.4 C and precipitation 0 mm."
         },
         {
           "sourceId": "nasa-power",
           "sourceName": "NASA POWER",
           "sourceType": "physical_baseline",
           "title": "NASA POWER: recent physical baseline near MEDITERRANEAN / TOURISM",
-          "url": "https://power.larc.nasa.gov/api/temporal/daily/point?latitude=39.3&longitude=15&start=20260517&end=20260523&community=RE&parameters=T2M%2CPRECTOTCORR%2CWS10M&format=JSON",
-          "observedAt": "2026-05-23T00:00:00.000Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "url": "https://power.larc.nasa.gov/api/temporal/daily/point?latitude=39.3&longitude=15&start=20260518&end=20260524&community=RE&parameters=T2M%2CPRECTOTCORR%2CWS10M&format=JSON",
+          "observedAt": "2026-05-24T00:00:00.000Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 58,
           "summary": "NASA POWER baseline: T2M -999 C, precipitation -999 mm/day, wind -999 m/s."
+        },
+        {
+          "sourceId": "usgs-earthquakes",
+          "sourceName": "USGS Earthquake Catalog",
+          "sourceType": "hazard_event",
+          "title": "M 4.6 - 33 km WNW of Fry, Greece",
+          "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000szqj",
+          "observedAt": "2026-05-23T13:34:13.720Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
+          "confidence": 53,
+          "summary": "USGS event context near MEDITERRANEAN / TOURISM: magnitude 4.6 Mw at 33 km WNW of Fry, Greece."
         },
         {
           "sourceId": "usgs-earthquakes",
@@ -1632,8 +1642,8 @@
           "title": "M 4.7 - 22 km W of Kéfalos, Greece",
           "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000swsg",
           "observedAt": "2026-05-10T20:29:54.713Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
-          "confidence": 53,
+          "capturedAt": "2026-05-24T01:59:58.250Z",
+          "confidence": 54,
           "summary": "USGS event context near MEDITERRANEAN / TOURISM: magnitude 4.7 Mw at 22 km W of Kéfalos, Greece."
         },
         {
@@ -1642,8 +1652,8 @@
           "sourceType": "humanitarian_event",
           "title": "Peak Tourism Starts Moving Around Heat Risk stub evidence 1",
           "url": "https://api.reliefweb.int/v1/reports",
-          "observedAt": "2026-05-22T01:53:12.843Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "observedAt": "2026-05-23T01:59:58.250Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 50,
           "summary": "ReliefWeb fallback context for \"Mediterranean heatwave tourism wildfire travel insurance summer bookings\" kept the source in the nightly evidence mix when live data was unavailable during this run."
         },
@@ -1654,7 +1664,7 @@
           "title": "Tour leaders and Marketing in Travel and Tourism. An inextricable link",
           "url": "https://doi.org/10.15556/ijsim.04.03.005",
           "observedAt": "2117-01-01T00:00:00.000Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 49,
           "summary": "Crossref research metadata match from i-das; DOI 10.15556/ijsim.04.03.005."
         },
@@ -1665,7 +1675,7 @@
           "title": "Individual and contextual variables affecting entrepreneurship, innovation and application of new technologies in Greece. Case study from the Greek tourism and transport sector",
           "url": "https://doi.org/10.15556/ijiim.02.02.002",
           "observedAt": "2115-12-30T00:00:00.000Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 50,
           "summary": "Crossref research metadata match from i-das; DOI 10.15556/ijiim.02.02.002."
         },
@@ -1676,7 +1686,7 @@
           "title": "Title Pending 7246",
           "url": "https://doi.org/10.3998/tia.7246",
           "observedAt": "2036-05-08T00:00:00.000Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 51,
           "summary": "Crossref research metadata match from University of Michigan Library; DOI 10.3998/tia.7246."
         },
@@ -1686,21 +1696,10 @@
           "sourceType": "research_preprint",
           "title": "Peak Tourism Starts Moving Around Heat Risk stub evidence 1",
           "url": "https://export.arxiv.org/api/query",
-          "observedAt": "2026-05-22T01:53:12.843Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "observedAt": "2026-05-23T01:59:58.250Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 57,
           "summary": "arXiv fallback context for \"Mediterranean heatwave tourism wildfire travel insurance summer bookings\" kept the source in the nightly evidence mix when live data was unavailable during this run."
-        },
-        {
-          "sourceId": "wikipedia",
-          "sourceName": "Wikipedia / MediaWiki",
-          "sourceType": "entity_context",
-          "title": "Peak Tourism Starts Moving Around Heat Risk stub evidence 1",
-          "url": "https://en.wikipedia.org/w/api.php",
-          "observedAt": "2026-05-22T01:53:12.843Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
-          "confidence": 46,
-          "summary": "Wikipedia / MediaWiki fallback context for \"Mediterranean heatwave tourism wildfire travel insurance summer bookings\" kept the source in the nightly evidence mix when live data was unavailable during this run."
         }
       ],
       "sourceMix": [
@@ -1754,7 +1753,7 @@
           "evidence_type": "hazard_event",
           "adapter": "usgsEarthquakes",
           "status": "fetched",
-          "evidence_count": 1,
+          "evidence_count": 2,
           "url": "https://earthquake.usgs.gov/fdsnws/event/1/query",
           "requires_key": false,
           "error": null
@@ -1790,7 +1789,7 @@
           "evidence_count": 1,
           "url": "https://export.arxiv.org/api/query",
           "requires_key": false,
-          "error": "HTTP 429"
+          "error": "This operation was aborted"
         },
         {
           "source_id": "wikipedia",
@@ -1906,10 +1905,10 @@
           "check_cadence": "weekly"
         }
       ],
-      "generatedAt": "2026-05-23T01:53:12.843Z",
+      "generatedAt": "2026-05-24T01:59:58.250Z",
       "generator": {
-        "runId": "nightly-2026-05-23T01-53-12-843Z",
-        "generatedAt": "2026-05-23T01:53:12.843Z",
+        "runId": "nightly-2026-05-24T01-59-58-250Z",
+        "generatedAt": "2026-05-24T01:59:58.250Z",
         "mode": "mixed_or_live",
         "cadenceTarget": "nightly-0100-local"
       }
@@ -1928,13 +1927,13 @@
       "signalCount": 41,
       "summary": "Ageing, caregiver scarcity, sensors, and reimbursement pressure make practical care automation more important than theatrical robots.",
       "implication": "Useful adoption may concentrate in lifts, fall prevention, scheduling, and ambient monitoring before humanoid systems.",
-      "rationale": "Generated from 14 registered source adapters with 19 evidence items. Fallback context is included when a source is unavailable, so the nightly run keeps a complete evidence contract without blocking publication. Nightly run nightly-2026-05-23T01-53-12-843Z captured 12 evidence items from 7 source families; 6 source adapters returned live data.",
+      "rationale": "Generated from 14 registered source adapters with 19 evidence items. Fallback context is included when a source is unavailable, so the nightly run keeps a complete evidence contract without blocking publication. Nightly run nightly-2026-05-24T01-59-58-250Z captured 12 evidence items from 7 source families; 6 source adapters returned live data.",
       "why": "This candidate is worth monitoring if care providers procuring sensor and lift systems at chain scale.",
       "signals": [
         "GDELT DOC 2.1: GDELT DOC 2.1 fallback context for \"Japan elderly care robotics sensors caregiver shortage automation\" kept the source in the nightly evidence mix when live data was unavailable during this run.",
         "World Bank Indicators: Structural context from World Bank indicator EG.ELC.ACCS.ZS for World.",
         "World Bank Indicators: Structural context from World Bank indicator EG.ELC.ACCS.ZS for World.",
-        "Nightly source mix: GDELT DOC 2.1: fallback; World Bank Indicators: live; Open-Meteo Forecast: live; NASA POWER: live; USGS Earthquake Catalog: live.",
+        "Nightly source mix: GDELT DOC 2.1: no current match; World Bank Indicators: live; Open-Meteo Forecast: live; NASA POWER: live; USGS Earthquake Catalog: live.",
         "Reference class prior: automation adoption where demographic demand outruns human service capacity."
       ],
       "sources": [
@@ -1953,8 +1952,8 @@
           "sourceType": "current_event",
           "title": "Care Automation Moves Into Mundane Infrastructure stub evidence 1",
           "url": "https://api.gdeltproject.org/api/v2/doc/doc",
-          "observedAt": "2026-05-22T01:53:12.843Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "observedAt": "2026-05-23T01:59:58.250Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 54,
           "summary": "GDELT DOC 2.1 fallback context for \"Japan elderly care robotics sensors caregiver shortage automation\" kept the source in the nightly evidence mix when live data was unavailable during this run."
         },
@@ -1965,7 +1964,7 @@
           "title": "Access to electricity (% of population): World",
           "url": "https://api.worldbank.org/v2/country/WLD/indicator/EG.ELC.ACCS.ZS?format=json&per_page=3",
           "observedAt": "2025-12-31T00:00:00.000Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 57,
           "summary": "Structural context from World Bank indicator EG.ELC.ACCS.ZS for World."
         },
@@ -1976,7 +1975,7 @@
           "title": "Access to electricity (% of population): World",
           "url": "https://api.worldbank.org/v2/country/WLD/indicator/EG.ELC.ACCS.ZS?format=json&per_page=3",
           "observedAt": "2024-12-31T00:00:00.000Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 58,
           "summary": "Structural context from World Bank indicator EG.ELC.ACCS.ZS for World."
         },
@@ -1986,19 +1985,19 @@
           "sourceType": "observed_condition",
           "title": "Open-Meteo Forecast: JAPAN / CARE CAPACITY short-range weather signal",
           "url": "https://api.open-meteo.com/v1/forecast?latitude=36.2&longitude=138.2&hourly=temperature_2m%2Cprecipitation%2Cwind_speed_10m&daily=temperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&timezone=UTC&forecast_days=3",
-          "observedAt": "2026-05-23T00:00:00.000Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "observedAt": "2026-05-24T00:00:00.000Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 60,
-          "summary": "Open-Meteo forecast near JAPAN / CARE CAPACITY: max temperature 13.2 C and precipitation 0 mm."
+          "summary": "Open-Meteo forecast near JAPAN / CARE CAPACITY: max temperature 15.9 C and precipitation 0 mm."
         },
         {
           "sourceId": "nasa-power",
           "sourceName": "NASA POWER",
           "sourceType": "physical_baseline",
           "title": "NASA POWER: recent physical baseline near JAPAN / CARE CAPACITY",
-          "url": "https://power.larc.nasa.gov/api/temporal/daily/point?latitude=36.2&longitude=138.2&start=20260517&end=20260523&community=RE&parameters=T2M%2CPRECTOTCORR%2CWS10M&format=JSON",
-          "observedAt": "2026-05-23T00:00:00.000Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "url": "https://power.larc.nasa.gov/api/temporal/daily/point?latitude=36.2&longitude=138.2&start=20260518&end=20260524&community=RE&parameters=T2M%2CPRECTOTCORR%2CWS10M&format=JSON",
+          "observedAt": "2026-05-24T00:00:00.000Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 73,
           "summary": "NASA POWER baseline: T2M -999 C, precipitation -999 mm/day, wind -999 m/s."
         },
@@ -2009,7 +2008,7 @@
           "title": "M 4.6 - 40 km ENE of Kuji, Japan",
           "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000szjp",
           "observedAt": "2026-05-22T16:53:58.546Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 66,
           "summary": "USGS event context near JAPAN / CARE CAPACITY: magnitude 4.6 Mw at 40 km ENE of Kuji, Japan."
         },
@@ -2020,7 +2019,7 @@
           "title": "M 4.5 - 25 km NW of Takayama, Japan",
           "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000syva",
           "observedAt": "2026-05-19T23:11:56.272Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 46,
           "summary": "USGS event context near JAPAN / CARE CAPACITY: magnitude 4.5 Mw at 25 km NW of Takayama, Japan."
         },
@@ -2031,7 +2030,7 @@
           "title": "M 4.5 - 91 km ENE of Hachinohe, Japan",
           "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000syq4",
           "observedAt": "2026-05-19T10:23:35.881Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 47,
           "summary": "USGS event context near JAPAN / CARE CAPACITY: magnitude 4.5 Mw at 91 km ENE of Hachinohe, Japan."
         },
@@ -2041,8 +2040,8 @@
           "sourceType": "humanitarian_event",
           "title": "Care Automation Moves Into Mundane Infrastructure stub evidence 1",
           "url": "https://api.reliefweb.int/v1/reports",
-          "observedAt": "2026-05-22T01:53:12.843Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "observedAt": "2026-05-23T01:59:58.250Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 62,
           "summary": "ReliefWeb fallback context for \"Japan elderly care robotics sensors caregiver shortage automation\" kept the source in the nightly evidence mix when live data was unavailable during this run."
         },
@@ -2053,7 +2052,7 @@
           "title": "The Effects of Emotional Schema Therapy and Differentiation Training on Emotional Divorce in Women",
           "url": "https://doi.org/10.32598/jccnc.7.1.357.1",
           "observedAt": "2121-02-01T00:00:00.000Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 50,
           "summary": "Crossref research metadata match from Negah Scientific Publisher; DOI 10.32598/jccnc.7.1.357.1."
         },
@@ -2064,7 +2063,7 @@
           "title": "The Effects of Relaxing Music on Life Distress and Maternal-fetal Attachment in Pregnant Women",
           "url": "https://doi.org/10.32598/jccnc.7.1.33.14",
           "observedAt": "2121-02-01T00:00:00.000Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 51,
           "summary": "Crossref research metadata match from Negah Scientific Publisher; DOI 10.32598/jccnc.7.1.33.14."
         },
@@ -2075,7 +2074,7 @@
           "title": "The Role of Attachment Styles and Spiritual Intelligence in Predicting Women’s Emotional Divorce",
           "url": "https://doi.org/10.32598/jccnc.7.1.350.1",
           "observedAt": "2121-02-01T00:00:00.000Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 52,
           "summary": "Crossref research metadata match from Negah Scientific Publisher; DOI 10.32598/jccnc.7.1.350.1."
         }
@@ -2086,11 +2085,11 @@
           "source_name": "GDELT DOC 2.1",
           "evidence_type": "current_event",
           "adapter": "gdeltDoc",
-          "status": "error_fallback_stub",
+          "status": "empty_fallback_stub",
           "evidence_count": 1,
           "url": "https://api.gdeltproject.org/api/v2/doc/doc",
           "requires_key": false,
-          "error": "fetch failed"
+          "error": null
         },
         {
           "source_id": "world-bank-indicators",
@@ -2167,7 +2166,7 @@
           "evidence_count": 1,
           "url": "https://export.arxiv.org/api/query",
           "requires_key": false,
-          "error": "This operation was aborted"
+          "error": "HTTP 429"
         },
         {
           "source_id": "wikipedia",
@@ -2283,10 +2282,10 @@
           "check_cadence": "weekly"
         }
       ],
-      "generatedAt": "2026-05-23T01:53:12.843Z",
+      "generatedAt": "2026-05-24T01:59:58.250Z",
       "generator": {
-        "runId": "nightly-2026-05-23T01-53-12-843Z",
-        "generatedAt": "2026-05-23T01:53:12.843Z",
+        "runId": "nightly-2026-05-24T01-59-58-250Z",
+        "generatedAt": "2026-05-24T01:59:58.250Z",
         "mode": "mixed_or_live",
         "cadenceTarget": "nightly-0100-local"
       }
@@ -2302,16 +2301,16 @@
       "region": "INDONESIA / BATTERY MATERIALS",
       "category": "Materials",
       "horizon": "24-72 months",
-      "signalCount": 37,
+      "signalCount": 39,
       "summary": "Battery demand, environmental scrutiny, and downstream processing make governance quality part of the material premium.",
       "implication": "Auditable, cleaner supply can become a commercial advantage even before scarcity alone drives pricing.",
-      "rationale": "Generated from 14 registered source adapters with 19 evidence items. Fallback context is included when a source is unavailable, so the nightly run keeps a complete evidence contract without blocking publication. Nightly run nightly-2026-05-23T01-53-12-843Z captured 12 evidence items from 7 source families; 4 source adapters returned live data.",
+      "rationale": "Generated from 14 registered source adapters with 19 evidence items. Fallback context is included when a source is unavailable, so the nightly run keeps a complete evidence contract without blocking publication. Nightly run nightly-2026-05-24T01-59-58-250Z captured 12 evidence items from 7 source families; 5 source adapters returned live data.",
       "why": "This candidate is worth monitoring if automakers demanding provenance and emissions disclosure.",
       "signals": [
         "GDELT DOC 2.1: GDELT DOC 2.1 fallback context for \"Indonesia nickel battery supply chain emissions tailings governance scrutiny\" kept the source in the nightly evidence mix when live data was unavailable during this run.",
         "World Bank Indicators: Structural context from World Bank indicator EG.ELC.ACCS.ZS for World.",
         "World Bank Indicators: Structural context from World Bank indicator EG.ELC.ACCS.ZS for World.",
-        "Nightly source mix: GDELT DOC 2.1: fallback; World Bank Indicators: live; Open-Meteo Forecast: fallback; NASA POWER: live; USGS Earthquake Catalog: live.",
+        "Nightly source mix: GDELT DOC 2.1: no current match; World Bank Indicators: live; Open-Meteo Forecast: live; NASA POWER: live; USGS Earthquake Catalog: live.",
         "Reference class prior: strategic materials gaining value from proof, traceability, and social license."
       ],
       "sources": [
@@ -2330,8 +2329,8 @@
           "sourceType": "current_event",
           "title": "Nickel Governance Becomes Part Of Battery Value stub evidence 1",
           "url": "https://api.gdeltproject.org/api/v2/doc/doc",
-          "observedAt": "2026-05-22T01:53:12.843Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "observedAt": "2026-05-23T01:59:58.250Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 46,
           "summary": "GDELT DOC 2.1 fallback context for \"Indonesia nickel battery supply chain emissions tailings governance scrutiny\" kept the source in the nightly evidence mix when live data was unavailable during this run."
         },
@@ -2342,7 +2341,7 @@
           "title": "Access to electricity (% of population): World",
           "url": "https://api.worldbank.org/v2/country/WLD/indicator/EG.ELC.ACCS.ZS?format=json&per_page=3",
           "observedAt": "2025-12-31T00:00:00.000Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 61,
           "summary": "Structural context from World Bank indicator EG.ELC.ACCS.ZS for World."
         },
@@ -2353,7 +2352,7 @@
           "title": "Access to electricity (% of population): World",
           "url": "https://api.worldbank.org/v2/country/WLD/indicator/EG.ELC.ACCS.ZS?format=json&per_page=3",
           "observedAt": "2024-12-31T00:00:00.000Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 62,
           "summary": "Structural context from World Bank indicator EG.ELC.ACCS.ZS for World."
         },
@@ -2361,23 +2360,34 @@
           "sourceId": "open-meteo",
           "sourceName": "Open-Meteo Forecast",
           "sourceType": "observed_condition",
-          "title": "Nickel Governance Becomes Part Of Battery Value stub evidence 1",
-          "url": "https://api.open-meteo.com/v1/forecast",
-          "observedAt": "2026-05-22T01:53:12.843Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
-          "confidence": 50,
-          "summary": "Open-Meteo Forecast fallback context for \"Indonesia nickel battery supply chain emissions tailings governance scrutiny\" kept the source in the nightly evidence mix when live data was unavailable during this run."
+          "title": "Open-Meteo Forecast: INDONESIA / BATTERY MATERIALS short-range weather signal",
+          "url": "https://api.open-meteo.com/v1/forecast?latitude=-2.4&longitude=121.6&hourly=temperature_2m%2Cprecipitation%2Cwind_speed_10m&daily=temperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&timezone=UTC&forecast_days=3",
+          "observedAt": "2026-05-24T00:00:00.000Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
+          "confidence": 68,
+          "summary": "Open-Meteo forecast near INDONESIA / BATTERY MATERIALS: max temperature 23.6 C and precipitation 37.1 mm."
         },
         {
           "sourceId": "nasa-power",
           "sourceName": "NASA POWER",
           "sourceType": "physical_baseline",
           "title": "NASA POWER: recent physical baseline near INDONESIA / BATTERY MATERIALS",
-          "url": "https://power.larc.nasa.gov/api/temporal/daily/point?latitude=-2.4&longitude=121.6&start=20260517&end=20260523&community=RE&parameters=T2M%2CPRECTOTCORR%2CWS10M&format=JSON",
-          "observedAt": "2026-05-23T00:00:00.000Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "url": "https://power.larc.nasa.gov/api/temporal/daily/point?latitude=-2.4&longitude=121.6&start=20260518&end=20260524&community=RE&parameters=T2M%2CPRECTOTCORR%2CWS10M&format=JSON",
+          "observedAt": "2026-05-24T00:00:00.000Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 64,
           "summary": "NASA POWER baseline: T2M -999 C, precipitation -999 mm/day, wind -999 m/s."
+        },
+        {
+          "sourceId": "usgs-earthquakes",
+          "sourceName": "USGS Earthquake Catalog",
+          "sourceType": "hazard_event",
+          "title": "M 4.8 - 73 km WSW of Tobelo, Indonesia",
+          "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000szqs",
+          "observedAt": "2026-05-23T14:11:16.177Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
+          "confidence": 64,
+          "summary": "USGS event context near INDONESIA / BATTERY MATERIALS: magnitude 4.8 Mw at 73 km WSW of Tobelo, Indonesia."
         },
         {
           "sourceId": "usgs-earthquakes",
@@ -2386,8 +2396,8 @@
           "title": "M 5.9 - 113 km ESE of Bitung, Indonesia",
           "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000szdy",
           "observedAt": "2026-05-22T01:05:08.540Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
-          "confidence": 64,
+          "capturedAt": "2026-05-24T01:59:58.250Z",
+          "confidence": 65,
           "summary": "USGS event context near INDONESIA / BATTERY MATERIALS: magnitude 5.9 Mw at 113 km ESE of Bitung, Indonesia."
         },
         {
@@ -2397,20 +2407,9 @@
           "title": "M 4.7 - 104 km SE of Pondaguitan, Philippines",
           "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000szad",
           "observedAt": "2026-05-21T16:45:56.677Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
-          "confidence": 65,
-          "summary": "USGS event context near INDONESIA / BATTERY MATERIALS: magnitude 4.7 Mw at 104 km SE of Pondaguitan, Philippines."
-        },
-        {
-          "sourceId": "usgs-earthquakes",
-          "sourceName": "USGS Earthquake Catalog",
-          "sourceType": "hazard_event",
-          "title": "M 4.9 - 258 km WSW of Tual, Indonesia",
-          "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000sz43",
-          "observedAt": "2026-05-20T23:12:56.417Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 66,
-          "summary": "USGS event context near INDONESIA / BATTERY MATERIALS: magnitude 4.9 Mw at 258 km WSW of Tual, Indonesia."
+          "summary": "USGS event context near INDONESIA / BATTERY MATERIALS: magnitude 4.7 Mw at 104 km SE of Pondaguitan, Philippines."
         },
         {
           "sourceId": "reliefweb",
@@ -2418,8 +2417,8 @@
           "sourceType": "humanitarian_event",
           "title": "Nickel Governance Becomes Part Of Battery Value stub evidence 1",
           "url": "https://api.reliefweb.int/v1/reports",
-          "observedAt": "2026-05-22T01:53:12.843Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "observedAt": "2026-05-23T01:59:58.250Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 62,
           "summary": "ReliefWeb fallback context for \"Indonesia nickel battery supply chain emissions tailings governance scrutiny\" kept the source in the nightly evidence mix when live data was unavailable during this run."
         },
@@ -2430,7 +2429,7 @@
           "title": "PENGARUH KUALITAS LAYANAN DAN INSENTIF TERHADAP PERILAKU WORD OF MOUTH (WOM) KONSUMEN GARUDA INDONESIA JURUSAN JOGJA-JAKARTA",
           "url": "https://doi.org/10.56521/manajemen-dirgantara.v8i2.110",
           "observedAt": "2150-12-25T00:00:00.000Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 63,
           "summary": "Crossref research metadata match from Sekolah Tinggi Teknologi Kedirgantaraan Yogyakarta; DOI 10.56521/manajemen-dirgantara.v8i2.110."
         },
@@ -2441,7 +2440,7 @@
           "title": "The Correlation between Stigma and Family Acceptance with Religiosity of PLWH MSM in Medan, Indonesia",
           "url": "https://doi.org/10.31372/20190403.1048",
           "observedAt": "2109-09-16T00:00:00.000Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 64,
           "summary": "Crossref research metadata match from JMIR Publications Inc.; DOI 10.31372/20190403.1048."
         },
@@ -2452,7 +2451,7 @@
           "title": "Impact of digital transition and corporate governance on the financial performance: an empirical analysis during the post-pandemic period",
           "url": "https://doi.org/10.1504/ijef.2028.10074129",
           "observedAt": "2028-01-01T00:00:00.000Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 65,
           "summary": "Crossref research metadata match from Inderscience Publishers; DOI 10.1504/ijef.2028.10074129."
         }
@@ -2463,11 +2462,11 @@
           "source_name": "GDELT DOC 2.1",
           "evidence_type": "current_event",
           "adapter": "gdeltDoc",
-          "status": "error_fallback_stub",
+          "status": "empty_fallback_stub",
           "evidence_count": 1,
           "url": "https://api.gdeltproject.org/api/v2/doc/doc",
           "requires_key": false,
-          "error": "fetch failed"
+          "error": null
         },
         {
           "source_id": "world-bank-indicators",
@@ -2485,11 +2484,11 @@
           "source_name": "Open-Meteo Forecast",
           "evidence_type": "observed_condition",
           "adapter": "openMeteo",
-          "status": "error_fallback_stub",
+          "status": "fetched",
           "evidence_count": 1,
           "url": "https://api.open-meteo.com/v1/forecast",
           "requires_key": false,
-          "error": "fetch failed"
+          "error": null
         },
         {
           "source_id": "nasa-power",
@@ -2660,10 +2659,10 @@
           "check_cadence": "weekly"
         }
       ],
-      "generatedAt": "2026-05-23T01:53:12.843Z",
+      "generatedAt": "2026-05-24T01:59:58.250Z",
       "generator": {
-        "runId": "nightly-2026-05-23T01-53-12-843Z",
-        "generatedAt": "2026-05-23T01:53:12.843Z",
+        "runId": "nightly-2026-05-24T01-59-58-250Z",
+        "generatedAt": "2026-05-24T01:59:58.250Z",
         "mode": "mixed_or_live",
         "cadenceTarget": "nightly-0100-local"
       }
@@ -2679,16 +2678,16 @@
       "region": "ARCTIC / ROUTES + SECURITY",
       "category": "Geopolitics",
       "horizon": "36-84 months",
-      "signalCount": 39,
+      "signalCount": 41,
       "summary": "Ice variability, rescue capacity, insurance language, and strategic positioning make the Arctic valuable before it is commercially routine.",
       "implication": "Mapping, ports, communications, and dual-use infrastructure become options on an uncertain operating future.",
-      "rationale": "Generated from 14 registered source adapters with 19 evidence items. Fallback context is included when a source is unavailable, so the nightly run keeps a complete evidence contract without blocking publication. Nightly run nightly-2026-05-23T01-53-12-843Z captured 12 evidence items from 9 source families; 5 source adapters returned live data.",
+      "rationale": "Generated from 14 registered source adapters with 19 evidence items. Fallback context is included when a source is unavailable, so the nightly run keeps a complete evidence contract without blocking publication. Nightly run nightly-2026-05-24T01-59-58-250Z captured 12 evidence items from 9 source families; 6 source adapters returned live data.",
       "why": "This candidate is worth monitoring if search-and-rescue and communications budgets rising in polar regions.",
       "signals": [
-        "GDELT DOC 2.1: GDELT DOC 2.1 fallback context for \"Arctic shipping route insurance ice search rescue military infrastructure\" kept the source in the nightly evidence mix when live data was unavailable during this run.",
+        "GDELT DOC 2.1: GDELT article match for \"Arctic shipping route insurance ice search rescue military infrastructure\" observed at 20260326T173000Z.",
         "World Bank Indicators: Structural context from World Bank indicator EG.ELC.ACCS.ZS for World.",
         "World Bank Indicators: Structural context from World Bank indicator EG.ELC.ACCS.ZS for World.",
-        "Nightly source mix: GDELT DOC 2.1: fallback; World Bank Indicators: live; Open-Meteo Forecast: live; NASA POWER: live; USGS Earthquake Catalog: no current match.",
+        "Nightly source mix: GDELT DOC 2.1: live; World Bank Indicators: live; Open-Meteo Forecast: live; NASA POWER: live; USGS Earthquake Catalog: no current match.",
         "Reference class prior: ambiguous domains attracting option-value spending before demand becomes obvious."
       ],
       "sources": [
@@ -2707,12 +2706,12 @@
           "sourceId": "gdelt-doc",
           "sourceName": "GDELT DOC 2.1",
           "sourceType": "current_event",
-          "title": "Arctic Optionality Grows Before Routine Shipping stub evidence 1",
-          "url": "https://api.gdeltproject.org/api/v2/doc/doc",
-          "observedAt": "2026-05-22T01:53:12.843Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
-          "confidence": 61,
-          "summary": "GDELT DOC 2.1 fallback context for \"Arctic shipping route insurance ice search rescue military infrastructure\" kept the source in the nightly evidence mix when live data was unavailable during this run."
+          "title": "Worries grow in Norway as Murmansk becomes Russia main oil export hub",
+          "url": "https://www.thebarentsobserver.com/news/worries-grow-in-norway-as-murmansk-becomes-russias-main-oil-export-hub/447460",
+          "observedAt": "2026-03-26T17:30:00.000Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
+          "confidence": 66,
+          "summary": "GDELT article match for \"Arctic shipping route insurance ice search rescue military infrastructure\" observed at 20260326T173000Z."
         },
         {
           "sourceId": "world-bank-indicators",
@@ -2721,7 +2720,7 @@
           "title": "Access to electricity (% of population): World",
           "url": "https://api.worldbank.org/v2/country/WLD/indicator/EG.ELC.ACCS.ZS?format=json&per_page=3",
           "observedAt": "2025-12-31T00:00:00.000Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 52,
           "summary": "Structural context from World Bank indicator EG.ELC.ACCS.ZS for World."
         },
@@ -2732,7 +2731,7 @@
           "title": "Access to electricity (% of population): World",
           "url": "https://api.worldbank.org/v2/country/WLD/indicator/EG.ELC.ACCS.ZS?format=json&per_page=3",
           "observedAt": "2024-12-31T00:00:00.000Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 53,
           "summary": "Structural context from World Bank indicator EG.ELC.ACCS.ZS for World."
         },
@@ -2742,19 +2741,19 @@
           "sourceType": "observed_condition",
           "title": "Open-Meteo Forecast: ARCTIC / ROUTES + SECURITY short-range weather signal",
           "url": "https://api.open-meteo.com/v1/forecast?latitude=69.6&longitude=66&hourly=temperature_2m%2Cprecipitation%2Cwind_speed_10m&daily=temperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&timezone=UTC&forecast_days=3",
-          "observedAt": "2026-05-23T00:00:00.000Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "observedAt": "2026-05-24T00:00:00.000Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 71,
-          "summary": "Open-Meteo forecast near ARCTIC / ROUTES + SECURITY: max temperature -0.1 C and precipitation 0 mm."
+          "summary": "Open-Meteo forecast near ARCTIC / ROUTES + SECURITY: max temperature 1.2 C and precipitation 0 mm."
         },
         {
           "sourceId": "nasa-power",
           "sourceName": "NASA POWER",
           "sourceType": "physical_baseline",
           "title": "NASA POWER: recent physical baseline near ARCTIC / ROUTES + SECURITY",
-          "url": "https://power.larc.nasa.gov/api/temporal/daily/point?latitude=69.6&longitude=66&start=20260517&end=20260523&community=RE&parameters=T2M%2CPRECTOTCORR%2CWS10M&format=JSON",
-          "observedAt": "2026-05-23T00:00:00.000Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "url": "https://power.larc.nasa.gov/api/temporal/daily/point?latitude=69.6&longitude=66&start=20260518&end=20260524&community=RE&parameters=T2M%2CPRECTOTCORR%2CWS10M&format=JSON",
+          "observedAt": "2026-05-24T00:00:00.000Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 62,
           "summary": "NASA POWER baseline: T2M -999 C, precipitation -999 mm/day, wind -999 m/s."
         },
@@ -2764,8 +2763,8 @@
           "sourceType": "hazard_event",
           "title": "Arctic Optionality Grows Before Routine Shipping stub evidence 1",
           "url": "https://earthquake.usgs.gov/fdsnws/event/1/query",
-          "observedAt": "2026-05-22T01:53:12.843Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "observedAt": "2026-05-23T01:59:58.250Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 67,
           "summary": "USGS Earthquake Catalog fallback context for \"Arctic shipping route insurance ice search rescue military infrastructure\" kept the source in the nightly evidence mix when live data was unavailable during this run."
         },
@@ -2775,8 +2774,8 @@
           "sourceType": "humanitarian_event",
           "title": "Arctic Optionality Grows Before Routine Shipping stub evidence 1",
           "url": "https://api.reliefweb.int/v1/reports",
-          "observedAt": "2026-05-22T01:53:12.843Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "observedAt": "2026-05-23T01:59:58.250Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 45,
           "summary": "ReliefWeb fallback context for \"Arctic shipping route insurance ice search rescue military infrastructure\" kept the source in the nightly evidence mix when live data was unavailable during this run."
         },
@@ -2787,7 +2786,7 @@
           "title": "Organizational Factors Associated With Nurses’ Competence in Averting Failure to Rescue in Acute Care Settings",
           "url": "https://doi.org/10.32598/jccnc.7.1.358.1",
           "observedAt": "2121-02-01T00:00:00.000Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 62,
           "summary": "Crossref research metadata match from Negah Scientific Publisher; DOI 10.32598/jccnc.7.1.358.1."
         },
@@ -2798,7 +2797,7 @@
           "title": "Keyword Management Costs and 'Broad Match' in Sponsored Search Advertising",
           "url": "https://doi.org/10.2139/ssrn.2585593",
           "observedAt": "2104-01-01T00:00:00.000Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 63,
           "summary": "Crossref research metadata match from Elsevier BV; DOI 10.2139/ssrn.2585593."
         },
@@ -2809,7 +2808,7 @@
           "title": "Search, Sales Assistance and Purchase Decisions: An Analysis Using Retail Video Data",
           "url": "https://doi.org/10.2139/ssrn.2699765",
           "observedAt": "2104-01-01T00:00:00.000Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 64,
           "summary": "Crossref research metadata match from Elsevier BV; DOI 10.2139/ssrn.2699765."
         },
@@ -2819,8 +2818,8 @@
           "sourceType": "research_preprint",
           "title": "Arctic Optionality Grows Before Routine Shipping stub evidence 1",
           "url": "https://export.arxiv.org/api/query",
-          "observedAt": "2026-05-22T01:53:12.843Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "observedAt": "2026-05-23T01:59:58.250Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 68,
           "summary": "arXiv fallback context for \"Arctic shipping route insurance ice search rescue military infrastructure\" kept the source in the nightly evidence mix when live data was unavailable during this run."
         },
@@ -2828,12 +2827,12 @@
           "sourceId": "wikipedia",
           "sourceName": "Wikipedia / MediaWiki",
           "sourceType": "entity_context",
-          "title": "Nuclear marine propulsion",
-          "url": "https://en.wikipedia.org/wiki/Nuclear_marine_propulsion",
-          "observedAt": "2026-05-23T01:53:12.843Z",
-          "capturedAt": "2026-05-23T01:53:12.843Z",
+          "title": "Alaska",
+          "url": "https://en.wikipedia.org/wiki/Alaska",
+          "observedAt": "2026-05-24T01:59:58.250Z",
+          "capturedAt": "2026-05-24T01:59:58.250Z",
           "confidence": 46,
-          "summary": "Wikipedia context: Nuclear marine propulsion is propulsion of a ship or submarine with heat provided by a nuclear reactor. The power plant heats water to produce steam for a turbine used to turn the ship's pro."
+          "summary": "Wikipedia context: Alaska ( , ə-LASS-kə) is a non-contiguous U.S. state located in the northwestern regions of North America. Part of the Western United States region, it is one of the two non-contiguous U.S. ."
         }
       ],
       "sourceMix": [
@@ -2842,11 +2841,11 @@
           "source_name": "GDELT DOC 2.1",
           "evidence_type": "current_event",
           "adapter": "gdeltDoc",
-          "status": "error_fallback_stub",
+          "status": "fetched",
           "evidence_count": 1,
           "url": "https://api.gdeltproject.org/api/v2/doc/doc",
           "requires_key": false,
-          "error": "HTTP 429"
+          "error": null
         },
         {
           "source_id": "world-bank-indicators",
@@ -2923,7 +2922,7 @@
           "evidence_count": 1,
           "url": "https://export.arxiv.org/api/query",
           "requires_key": false,
-          "error": "HTTP 429"
+          "error": "This operation was aborted"
         },
         {
           "source_id": "wikipedia",
@@ -3039,10 +3038,10 @@
           "check_cadence": "weekly"
         }
       ],
-      "generatedAt": "2026-05-23T01:53:12.843Z",
+      "generatedAt": "2026-05-24T01:59:58.250Z",
       "generator": {
-        "runId": "nightly-2026-05-23T01-53-12-843Z",
-        "generatedAt": "2026-05-23T01:53:12.843Z",
+        "runId": "nightly-2026-05-24T01-59-58-250Z",
+        "generatedAt": "2026-05-24T01:59:58.250Z",
         "mode": "mixed_or_live",
         "cadenceTarget": "nightly-0100-local"
       }
