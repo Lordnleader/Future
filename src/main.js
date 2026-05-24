@@ -1864,8 +1864,187 @@ function buildPredictionModel(signal, readout) {
     automationContract: predictionEngineConfig.nightlyInputContract,
   };
   model.evidenceStack = buildEvidenceStack(signal, model);
+  model.publicNarrative = buildPublicNarrative(signal, model);
 
   return model;
+}
+
+function compactText(value) {
+  return String(value || "").replace(/\s+/g, " ").trim();
+}
+
+function lowerFirst(value) {
+  const text = compactText(value);
+  if (!text) return "";
+  return `${text.charAt(0).toLowerCase()}${text.slice(1)}`;
+}
+
+function upperFirst(value) {
+  const text = compactText(value);
+  if (!text) return "";
+  return `${text.charAt(0).toUpperCase()}${text.slice(1)}`;
+}
+
+function asTextList(items, limit = 4) {
+  return uniqueItems(
+    (items || [])
+      .map((item) => (typeof item === "string" ? item : item?.text || item?.summary || ""))
+      .map((item) => compactText(item).replace(/\.$/, "")),
+  ).slice(0, limit);
+}
+
+function formatSeries(items, fallback = "the signal") {
+  const list = asTextList(items, 4);
+  if (!list.length) return fallback;
+  if (list.length === 1) return list[0];
+  if (list.length === 2) return `${list[0]} and ${list[1]}`;
+  return `${list.slice(0, -1).join(", ")}, and ${list[list.length - 1]}`;
+}
+
+function publicRegion(region) {
+  return compactText(region || "Global")
+    .replace(/\s*\/\s*/g, " / ")
+    .split(" / ")
+    .map((part) =>
+      part
+        .toLowerCase()
+        .replace(/\b(ai|eu|uk|us|usa|uae|who|un)\b/g, (match) => match.toUpperCase())
+        .replace(/\b\w/g, (match) => match.toUpperCase()),
+    )
+    .join(" / ");
+}
+
+function cleanInternalLanguage(value) {
+  return compactText(value)
+    .replace(/\bPFE-[\w.-]+\s+score\s+\d+\/100:?\s*/gi, "")
+    .replace(/\bThe model is watching\b/gi, "The important thing to watch is")
+    .replace(/\bthe model is watching\b/gi, "the important thing to watch is")
+    .replace(/\bModel edge:\s*/gi, "A useful clue: ")
+    .replace(/\bmodel edge:\s*/gi, "a useful clue: ")
+    .replace(/\brather than the headline theme itself\b/gi, "rather than the headline itself")
+    .replace(/\bReference class:\s*/gi, "Similar historical pattern: ")
+    .replace(/\bSignal burst:\s*/gi, "Fresh reporting: ")
+    .replace(/\bConvergence:\s*/gi, "Evidence is converging: ")
+    .replace(/\bCausal test:\s*/gi, "Possible chain: ")
+    .replace(/\bFalsification:\s*/gi, "The picture weakens if ")
+    .replace(/\bDisconfirmation test:\s*/gi, "The picture weakens if ")
+    .replace(/\s+;\s+/g, "; ");
+}
+
+function looksInternal(value) {
+  return /PFE-|score\s+\d+\/100|Generated from|Fallback context|source adapters|evidence contract|Nightly run|candidate is worth monitoring|Reference class prior|Nightly source mix/i.test(
+    compactText(value),
+  );
+}
+
+function publicSentence(primary, fallback) {
+  const text = cleanInternalLanguage(primary);
+  if (!text || looksInternal(text)) return sentence(cleanInternalLanguage(fallback));
+  return sentence(text);
+}
+
+function indefiniteArticle(phrase) {
+  return /^[aeiou]/i.test(compactText(phrase)) ? "an" : "a";
+}
+
+function stripScenarioPrefix(value) {
+  return sentence(
+    cleanInternalLanguage(value)
+      .replace(/^\d+%\s+(base|main|upside|acceleration|downside|break|reversal)\s+(case|weight):\s*/i, "")
+      .replace(/^downgrade the forecast if\s+/i, "the picture weakens if ")
+      .replace(/^if\s+/i, "if "),
+  );
+}
+
+function humanizePressurePath(path) {
+  const text = compactText(path);
+  if (!text) return "The likely sequence starts with a quiet operating pressure and only later becomes visible in public data.";
+  const [mainPath, lagging] = text.split(/\s*->\s*lagging confirmation:\s*/i);
+  const steps = mainPath.split(/\s*->\s*/).map(compactText).filter(Boolean);
+  if (steps.length < 2) return sentence(cleanInternalLanguage(text.replace(/\s*->\s*/g, " then ")));
+
+  const [first, ...rest] = steps;
+  const nextSteps = formatSeries(rest, "the next visible behavior");
+  const lag = compactText(lagging);
+  return `${sentence(`The likely sequence starts with ${first}`)} That pressure can move into ${nextSteps}${lag ? `, while the public confirmation may arrive later through ${lag}` : ""}.`;
+}
+
+function publicHiddenVariable(signal, model) {
+  const hidden = compactText(model.hiddenVariable || "the first behavior that changes");
+  const signalText = textForSignal(signal);
+  const inferred = inferArchetype(signal);
+  const hiddenLooksPhysical = /environmental stress|physical condition/i.test(hidden);
+  const signalLooksPhysical = /water|heat|drought|rainfall|river|snowpack|storm|fire|cooling/i.test(signalText);
+  const resilience = archetypeRules.find((rule) => rule.name === "Resilience premium");
+  if (hiddenLooksPhysical && /grid|power|battery|microgrid|flexibility|backup|resilience/i.test(signalText)) {
+    return resilience?.hidden || hidden;
+  }
+  if (hiddenLooksPhysical && !signalLooksPhysical && inferred?.hidden) return inferred.hidden;
+  return hidden;
+}
+
+function buildPublicNarrative(signal, model) {
+  const region = publicRegion(signal.region);
+  const category = compactText(signal.category || "future signal").toLowerCase();
+  const hidden = publicHiddenVariable(signal, model);
+  const leading = asTextList(model.leadingIndicators, 4);
+  const disconfirmers = asTextList(model.disconfirmers, 3);
+  const sources = asTextList(signal.sources, 4);
+  const referenceClass = compactText(model.scores?.referenceClass || "similar past patterns");
+  const weights = model.scenarioWeights || {};
+  const baseWeight = Number.isFinite(Number(weights.base)) ? Number(weights.base) : null;
+  const upsideWeight = Number.isFinite(Number(weights.upside)) ? Number(weights.upside) : null;
+  const downsideWeight = Number.isFinite(Number(weights.downside)) ? Number(weights.downside) : null;
+  const score = Number.isFinite(Number(model.score)) ? Number(model.score) : Number(signal.confidence) || 0;
+  const scorePhrase = score >= 78 ? "strong" : score >= 68 ? "developing" : "emerging";
+  const deeperBase = cleanInternalLanguage(model.nonObviousRead || signal.why || signal.rationale);
+  const rationale = publicSentence(signal.rationale, signal.summary);
+  const why = publicSentence(signal.why, signal.implication);
+
+  return {
+    deck: `${region}. ${sentence(signal.summary)} The useful question is whether ${lowerFirst(hidden)} is starting to move from background condition to practical constraint.`,
+    overview: `${signal.title} is ${indefiniteArticle(scorePhrase)} ${scorePhrase} ${category} reading about ${region}. ${rationale} ${why} It becomes more interesting when ${lowerFirst(hidden)} starts changing decisions before the public story has a single neat explanation.`,
+    evidenceNotes: [
+      `Recent reporting gives the signal its timing: ${sentence(signal.summary)}`,
+      `The older context matters because this resembles ${referenceClass}.`,
+      `The place matters because ${region} turns the pattern into an observable operating problem rather than an abstract global theme.`,
+      `The reading strengthens if ${formatSeries(leading, hidden)} keep appearing across unrelated reports.`,
+      sources.length ? `The source base currently includes ${formatSeries(sources, "public datasets and reporting")}.` : "",
+    ].filter(Boolean),
+    pathway: humanizePressurePath(model.pressurePath),
+    deeperRead: `${sentence(upperFirst(deeperBase))} In plain terms, the visible headline may be late; the earlier move is when ${lowerFirst(hidden)} changes prices, rules, contracts, capacity, or everyday operating choices.`,
+    watch: `Watch ${formatSeries([hidden, ...leading], hidden)}. The reading becomes more durable when these signs appear together instead of as isolated anecdotes.`,
+    changePicture: `This reading should soften if ${formatSeries(disconfirmers, "the next evidence window points the other way")}.`,
+    scenarioSpread: [
+      `Main path${baseWeight ? ` (${baseWeight}%)` : ""}: ${stripScenarioPrefix(model.baseCase || signal.summary)}`,
+      `Faster path${upsideWeight ? ` (${upsideWeight}%)` : ""}: ${stripScenarioPrefix(model.upsideCase || signal.implication)}`,
+      `Reversal path${downsideWeight ? ` (${downsideWeight}%)` : ""}: ${stripScenarioPrefix(model.downsideCase || disconfirmers[0] || signal.why)}`,
+    ].join(" "),
+    cardRead: `This reads less like one headline and more like a pattern taking shape: ${lowerFirst(signal.implication)} Watch whether ${lowerFirst(hidden)} starts showing up in prices, policy, contracts, or operating decisions.`,
+    watchShort: formatSeries([hidden, ...leading], hidden),
+  };
+}
+
+function publicNarrativeFor(signal, model) {
+  const fallback = buildPublicNarrative(signal, model);
+  const incoming = model.publicNarrative && typeof model.publicNarrative === "object" ? model.publicNarrative : {};
+  const evidenceNotes =
+    Array.isArray(incoming.evidenceNotes) && incoming.evidenceNotes.length
+      ? incoming.evidenceNotes.map(cleanInternalLanguage)
+      : fallback.evidenceNotes;
+
+  return {
+    deck: cleanInternalLanguage(incoming.deck) || fallback.deck,
+    overview: cleanInternalLanguage(incoming.overview) || fallback.overview,
+    evidenceNotes,
+    pathway: cleanInternalLanguage(incoming.pathway) || fallback.pathway,
+    deeperRead: cleanInternalLanguage(incoming.deeperRead) || fallback.deeperRead,
+    watch: cleanInternalLanguage(incoming.watch) || fallback.watch,
+    changePicture: cleanInternalLanguage(incoming.changePicture) || fallback.changePicture,
+    scenarioSpread: cleanInternalLanguage(incoming.scenarioSpread) || fallback.scenarioSpread,
+    cardRead: cleanInternalLanguage(incoming.cardRead) || fallback.cardRead,
+    watchShort: cleanInternalLanguage(incoming.watchShort) || fallback.watchShort,
+  };
 }
 
 function normalizePatternUiModel(uiModel, signal) {
@@ -1945,6 +2124,7 @@ function normalizePatternUiModel(uiModel, signal) {
       Array.isArray(uiModel.evidenceStack) && uiModel.evidenceStack.length
         ? uiModel.evidenceStack
         : signal.patternModel?.evidenceStack || signal.signals,
+    publicNarrative: uiModel.publicNarrative || signal.patternModel?.publicNarrative || null,
     automationContract: uiModel.automationContract || signal.patternModel?.automationContract || [],
   };
 }
@@ -3624,6 +3804,7 @@ function setSelectedSignal(signal) {
 
 function updateCard(signal) {
   const model = signal.model;
+  const narrative = publicNarrativeFor(signal, model);
   signalCard.dataset.kind = "signal";
   fields.kind.textContent = "SIGNAL";
   fields.kind.dataset.kind = "signal";
@@ -3632,8 +3813,8 @@ function updateCard(signal) {
   fields.title.textContent = signal.title;
   fields.summary.textContent = signal.summary;
   fields.implication.textContent = signal.implication;
-  fields.surprise.textContent = model.hiddenVariable;
-  fields.modelRead.textContent = model.confidenceReason;
+  fields.surprise.textContent = narrative.watchShort;
+  fields.modelRead.textContent = narrative.cardRead;
   fields.horizon.textContent = signal.horizon;
   fields.conviction.textContent = `${model.score}/100`;
   fields.archetype.textContent = model.archetype;
@@ -3641,16 +3822,17 @@ function updateCard(signal) {
 
 function updateBrief(signal) {
   const model = signal.model;
+  const narrative = publicNarrativeFor(signal, model);
   fields.briefTitle.textContent = signal.title;
-  fields.briefDeck.textContent = model.executiveRead;
-  fields.rationale.textContent = signal.rationale;
-  fields.why.textContent = model.pressurePath;
-  fields.briefSurprise.textContent = model.nonObviousRead;
-  fields.briefWatch.textContent = model.leadingIndicators.join("; ");
-  fields.briefDisconfirmers.textContent = model.disconfirmers.join("; ");
-  fields.briefScenarioSpread.textContent = `${model.baseCase} ${model.upsideCase} ${model.downsideCase}`;
+  fields.briefDeck.textContent = narrative.deck;
+  fields.rationale.textContent = narrative.overview;
+  fields.why.textContent = narrative.pathway;
+  fields.briefSurprise.textContent = narrative.deeperRead;
+  fields.briefWatch.textContent = narrative.watch;
+  fields.briefDisconfirmers.textContent = narrative.changePicture;
+  fields.briefScenarioSpread.textContent = narrative.scenarioSpread;
   fields.signalList.replaceChildren(
-    ...(model.evidenceStack || signal.signals).map((signal) => {
+    ...(narrative.evidenceNotes || model.evidenceStack || signal.signals).map((signal) => {
       const item = document.createElement("li");
       item.textContent = signal;
       return item;

@@ -1035,16 +1035,19 @@ function buildCandidate(blueprint, evidenceGroups, now) {
     generatedAt: now.toISOString(),
   };
   const patternModel = buildPatternModel(candidate, { now, blueprint });
+  const publicNarrative = patternModel.publicNarrative || {};
 
   return {
     ...candidate,
     confidence: patternModel.confidence,
     signalCount: patternModel.scores.convergence,
-    rationale: patternModel.reasoningSummary,
-    why: patternModel.nonObviousRead,
+    rationale: publicNarrative.overview || patternModel.reasoningSummary,
+    why: publicNarrative.deeperRead || patternModel.nonObviousRead,
     signals: [
-      patternModel.reasoningSummary,
-      ...patternModel.evidenceStack.slice(0, 3),
+      ...(publicNarrative.evidenceNotes || [
+        patternModel.reasoningSummary,
+        ...patternModel.evidenceStack.slice(0, 3),
+      ]),
       ...candidate.signals.slice(0, 2),
     ],
     ingestion: {
@@ -1063,7 +1066,6 @@ function buildCandidate(blueprint, evidenceGroups, now) {
 
 function buildBrowserSignal(candidate, index, generator) {
   const sourceMix = candidate.ingestion.source_mix;
-  const liveSources = sourceMix.filter((source) => source.status === "fetched");
   const evidence = candidate.evidence.slice(0, 12).map((item) => ({
     sourceId: item.sourceId,
     sourceName: item.sourceName,
@@ -1076,10 +1078,6 @@ function buildBrowserSignal(candidate, index, generator) {
     summary: item.summary,
   }));
   const sourceNames = [...new Set(evidence.map((item) => item.sourceName))];
-  const sourceStatusSummary = sourceMix
-    .map((source) => `${source.source_name}: ${sourceStatusLabel(source.status)}`)
-    .slice(0, 5)
-    .join("; ");
 
   return {
     id: candidate.id,
@@ -1095,13 +1093,9 @@ function buildBrowserSignal(candidate, index, generator) {
     signalCount: candidate.signalCount,
     summary: candidate.summary,
     implication: candidate.implication,
-    rationale: `${candidate.rationale} Nightly run ${generator.runId} captured ${evidence.length} evidence items from ${sourceNames.length} source families; ${liveSources.length} source adapters returned live data.`,
+    rationale: candidate.rationale,
     why: candidate.why,
-    signals: [
-      ...candidate.signals.slice(0, 3),
-      `Nightly source mix: ${sourceStatusSummary}.`,
-      `Reference class prior: ${candidate.ingestion.reference_class_prior.label}.`,
-    ],
+    signals: candidate.signals.slice(0, 5),
     sources: sourceNames,
     evidence,
     sourceMix,
@@ -1123,16 +1117,6 @@ function buildBrowserSignal(candidate, index, generator) {
       patternEngineVersion: PATTERN_ENGINE_VERSION,
     },
   };
-}
-
-function sourceStatusLabel(status) {
-  if (status === "fetched") return "live";
-  if (status === "empty_fallback_stub") return "no current match";
-  if (status === "error_fallback_stub") return "fallback";
-  if (status === "missing_key_dry_run") return "key not configured";
-  if (status === "stub_adapter") return "registry context";
-  if (status === "dry_run") return "dry-run";
-  return status;
 }
 
 function buildPredictionsDataset(output) {

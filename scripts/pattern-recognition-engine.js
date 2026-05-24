@@ -817,6 +817,143 @@ function buildEvidenceStack(model) {
   ];
 }
 
+function compactText(value) {
+  return String(value || "").replace(/\s+/g, " ").trim();
+}
+
+function lowerFirst(value) {
+  const text = compactText(value);
+  if (!text) return "";
+  return `${text.charAt(0).toLowerCase()}${text.slice(1)}`;
+}
+
+function upperFirst(value) {
+  const text = compactText(value);
+  if (!text) return "";
+  return `${text.charAt(0).toUpperCase()}${text.slice(1)}`;
+}
+
+function asTextList(items, limit = 4) {
+  return uniqueItems(
+    (items || [])
+      .map((item) => (typeof item === "string" ? item : item?.text || item?.summary || ""))
+      .map((item) => compactText(item).replace(/\.$/, "")),
+  ).slice(0, limit);
+}
+
+function formatSeries(items, fallback = "the signal") {
+  const list = asTextList(items, 4);
+  if (!list.length) return fallback;
+  if (list.length === 1) return list[0];
+  if (list.length === 2) return `${list[0]} and ${list[1]}`;
+  return `${list.slice(0, -1).join(", ")}, and ${list[list.length - 1]}`;
+}
+
+function cleanInternalLanguage(value) {
+  return compactText(value)
+    .replace(/\bPFE-[\w.-]+\s+score\s+\d+\/100:?\s*/gi, "")
+    .replace(/\bThe model is watching\b/gi, "The important thing to watch is")
+    .replace(/\bthe model is watching\b/gi, "the important thing to watch is")
+    .replace(/\bModel edge:\s*/gi, "A useful clue: ")
+    .replace(/\bmodel edge:\s*/gi, "a useful clue: ")
+    .replace(/\brather than the headline theme itself\b/gi, "rather than the headline itself")
+    .replace(/\bReference class:\s*/gi, "Similar historical pattern: ")
+    .replace(/\bSignal burst:\s*/gi, "Fresh reporting: ")
+    .replace(/\bConvergence:\s*/gi, "Evidence is converging: ")
+    .replace(/\bCausal test:\s*/gi, "Possible chain: ")
+    .replace(/\bFalsification:\s*/gi, "The picture weakens if ")
+    .replace(/\bDisconfirmation test:\s*/gi, "The picture weakens if ")
+    .replace(/\s+;\s+/g, "; ");
+}
+
+function publicRegion(region) {
+  return compactText(region || "Global")
+    .replace(/\s*\/\s*/g, " / ")
+    .split(" / ")
+    .map((part) =>
+      part
+        .toLowerCase()
+        .replace(/\b(ai|eu|uk|us|usa|uae|who|un)\b/g, (match) => match.toUpperCase())
+        .replace(/\b\w/g, (match) => match.toUpperCase()),
+    )
+    .join(" / ");
+}
+
+function looksInternal(value) {
+  return /PFE-|score\s+\d+\/100|Generated from|Fallback context|source adapters|evidence contract|Nightly run|candidate is worth monitoring|Reference class prior|Nightly source mix/i.test(
+    compactText(value),
+  );
+}
+
+function publicSentence(primary, fallback) {
+  const text = cleanInternalLanguage(primary);
+  if (!text || looksInternal(text)) return sentence(cleanInternalLanguage(fallback));
+  return sentence(text);
+}
+
+function indefiniteArticle(phrase) {
+  return /^[aeiou]/i.test(compactText(phrase)) ? "an" : "a";
+}
+
+function stripScenarioPrefix(value) {
+  return sentence(
+    cleanInternalLanguage(value)
+      .replace(/^\d+%\s+(base|main|upside|acceleration|downside|break|reversal)\s+(case|weight):\s*/i, "")
+      .replace(/^downgrade the forecast if\s+/i, "the picture weakens if ")
+      .replace(/^if\s+/i, "if "),
+  );
+}
+
+function humanizePressurePath(path) {
+  const text = compactText(path);
+  if (!text) return "The likely sequence starts with a quiet operating pressure and only later becomes visible in public data.";
+  const [mainPath, lagging] = text.split(/\s*->\s*lagging confirmation:\s*/i);
+  const steps = mainPath.split(/\s*->\s*/).map(compactText).filter(Boolean);
+  if (steps.length < 2) return sentence(cleanInternalLanguage(text.replace(/\s*->\s*/g, " then ")));
+
+  const [first, ...rest] = steps;
+  const nextSteps = formatSeries(rest, "the next visible behavior");
+  const lag = compactText(lagging);
+  return `${sentence(`The likely sequence starts with ${first}`)} That pressure can move into ${nextSteps}${lag ? `, while the public confirmation may arrive later through ${lag}` : ""}.`;
+}
+
+function buildPublicNarrative(candidate, model) {
+  const region = publicRegion(candidate.region);
+  const category = compactText(candidate.category || "future signal").toLowerCase();
+  const hidden = compactText(model.archetype.hiddenVariable || "the first behavior that changes");
+  const leading = asTextList(model.leadingIndicators, 4);
+  const falsifiers = asTextList(model.falsifiers, 3);
+  const sources = asTextList(candidate.sources, 4);
+  const weights = model.scenarioSpread.weights;
+  const deeperBase = cleanInternalLanguage(model.nonObviousRead || candidate.why || candidate.rationale);
+  const scorePhrase = model.confidence >= 78 ? "strong" : model.confidence >= 68 ? "developing" : "emerging";
+  const rationale = publicSentence(candidate.rationale, candidate.summary);
+  const why = publicSentence(candidate.why, candidate.implication);
+
+  return {
+    deck: `${region}. ${sentence(candidate.summary)} The useful question is whether ${lowerFirst(hidden)} is starting to move from background condition to practical constraint.`,
+    overview: `${candidate.title} is ${indefiniteArticle(scorePhrase)} ${scorePhrase} ${category} reading about ${region}. ${rationale} ${why} It becomes more interesting when ${lowerFirst(hidden)} starts changing decisions before the public story has a single neat explanation.`,
+    evidenceNotes: [
+      `Recent reporting gives the signal its timing: ${sentence(candidate.summary)}`,
+      `The older context matters because this resembles ${model.referenceClass.label}.`,
+      `The place matters because ${region} turns the pattern into an observable operating problem rather than an abstract global theme.`,
+      `The reading strengthens if ${formatSeries(leading, hidden)} keep appearing across unrelated reports.`,
+      sources.length ? `The source base currently includes ${formatSeries(sources, "public datasets and reporting")}.` : "",
+    ].filter(Boolean),
+    pathway: humanizePressurePath(model.archetype.pressurePath),
+    deeperRead: `${sentence(upperFirst(deeperBase))} In plain terms, the visible headline may be late; the earlier move is when ${lowerFirst(hidden)} changes prices, rules, contracts, capacity, or everyday operating choices.`,
+    watch: `Watch ${formatSeries([hidden, ...leading], hidden)}. The reading becomes more durable when these signs appear together instead of as isolated anecdotes.`,
+    changePicture: `This reading should soften if ${formatSeries(falsifiers, "the next evidence window points the other way")}.`,
+    scenarioSpread: [
+      `Main path (${weights.base}%): ${stripScenarioPrefix(model.scenarioSpread.baseCase.summary)}`,
+      `Faster path (${weights.upside}%): ${stripScenarioPrefix(model.scenarioSpread.upsideCase.summary)}`,
+      `Reversal path (${weights.downside}%): ${stripScenarioPrefix(model.scenarioSpread.downsideCase.summary)}`,
+    ].join(" "),
+    cardRead: `This reads less like one headline and more like a pattern taking shape: ${lowerFirst(candidate.implication)} Watch whether ${lowerFirst(hidden)} starts showing up in prices, policy, contracts, or operating decisions.`,
+    watchShort: formatSeries([hidden, ...leading], hidden),
+  };
+}
+
 function buildUiModel(candidate, model) {
   const scenario = model.scenarioSpread;
   return {
@@ -855,6 +992,7 @@ function buildUiModel(candidate, model) {
     confidenceReason: model.reasoningSummary,
     executiveRead: `${candidate.region}. ${model.convictionBand}: ${candidate.summary}`,
     evidenceStack: model.evidenceStack,
+    publicNarrative: model.publicNarrative,
     automationContract: model.automationContract,
   };
 }
@@ -920,6 +1058,7 @@ function buildPatternModel(candidate, options = {}) {
   };
 
   model.evidenceStack = buildEvidenceStack(model);
+  model.publicNarrative = buildPublicNarrative(candidate, model);
   model.uiModel = buildUiModel(candidate, model);
   return model;
 }
