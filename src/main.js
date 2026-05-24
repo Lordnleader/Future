@@ -1868,6 +1868,87 @@ function buildPredictionModel(signal, readout) {
   return model;
 }
 
+function normalizePatternUiModel(uiModel, signal) {
+  if (!uiModel || typeof uiModel !== "object") return null;
+  const score = Number.isFinite(Number(uiModel.score)) ? Number(uiModel.score) : signal.confidence || 58;
+  const incomingScores = uiModel.scores || {};
+  const uncertainty = Number.isFinite(Number(incomingScores.uncertainty))
+    ? Number(incomingScores.uncertainty)
+    : 50;
+  const horizon = parseHorizonMonths(signal.horizon);
+  const scores = {
+    baseRate: Number(incomingScores.baseRate) || signal.referenceClassPrior?.base_rate || 56,
+    evidence: Number(incomingScores.evidence) || Number(incomingScores.evidenceQuality) || 58,
+    weakSignalBurst: Number(incomingScores.weakSignalBurst) || Number(incomingScores.recencyPulse) || 58,
+    convergence: Number(incomingScores.convergence) || signal.signalCount || 58,
+    causalTension: Number(incomingScores.causalTension) || Number(incomingScores.persistence) || 58,
+    friction: Number(incomingScores.friction) || Number(incomingScores.acceleration) || 58,
+    asymmetry: Number(incomingScores.asymmetry) || Number(incomingScores.impact) || 58,
+    leadLag: Number(incomingScores.leadLag) || Number(incomingScores.falsifiability) || 58,
+    timing: Number(incomingScores.timing) || Math.max(20, 100 - uncertainty),
+    falsifiability: Number(incomingScores.falsifiability) || 58,
+    novelty: Number(incomingScores.novelty) || 58,
+    uncertainty,
+    sourceDiversity: Number(incomingScores.sourceDiversity) || 1,
+    sourceReliability: Number(incomingScores.sourceReliability) || Number(incomingScores.evidenceQuality) || 58,
+    domains: Array.isArray(incomingScores.domains) ? incomingScores.domains : [],
+    referenceClass:
+      incomingScores.referenceClass ||
+      signal.patternModel?.referenceClass?.label ||
+      signal.referenceClassPrior?.label ||
+      "nightly weak-signal reference class",
+  };
+  const scenarioWeights =
+    uiModel.scenarioWeights && typeof uiModel.scenarioWeights === "object"
+      ? uiModel.scenarioWeights
+      : buildScenarioWeights({
+          score,
+          baseRate: scores.baseRate,
+          uncertainty: scores.uncertainty,
+          asymmetry: scores.asymmetry,
+          weakSignalBurst: scores.weakSignalBurst,
+          friction: scores.friction,
+        });
+
+  return {
+    version: uiModel.version || signal.patternModel?.version || "PFE-3.0-deterministic",
+    generatedAt: uiModel.generatedAt || signal.patternModel?.generatedAt || signal.generatedAt,
+    score,
+    scores,
+    scenarioWeights,
+    convictionBand: uiModel.convictionBand || convictionBand(score, horizon, scores.uncertainty),
+    archetype: uiModel.archetype || signal.patternModel?.archetype?.name || "Pattern convergence",
+    hiddenVariable:
+      uiModel.hiddenVariable ||
+      signal.patternModel?.archetype?.hiddenVariable ||
+      "the earliest observable behavior change",
+    pressurePath:
+      uiModel.pressurePath ||
+      signal.patternModel?.archetype?.pressurePath ||
+      "recent evidence -> structural comparison -> forecast update",
+    leadingIndicators: Array.isArray(uiModel.leadingIndicators)
+      ? uiModel.leadingIndicators
+      : signal.patternModel?.leadingIndicators || [],
+    disconfirmers: Array.isArray(uiModel.disconfirmers)
+      ? uiModel.disconfirmers
+      : signal.patternModel?.falsifiers || [],
+    baseCase: uiModel.baseCase || signal.patternModel?.scenarioSpread?.baseCase?.summary || signal.summary,
+    upsideCase: uiModel.upsideCase || signal.patternModel?.scenarioSpread?.upsideCase?.summary || signal.implication,
+    downsideCase:
+      uiModel.downsideCase ||
+      signal.patternModel?.scenarioSpread?.downsideCase?.summary ||
+      "Downgrade if the falsifiers dominate the next evidence window.",
+    nonObviousRead: uiModel.nonObviousRead || signal.patternModel?.nonObviousRead || signal.why,
+    confidenceReason: uiModel.confidenceReason || signal.patternModel?.reasoningSummary || signal.rationale,
+    executiveRead: uiModel.executiveRead || `${signal.region}. ${signal.summary}`,
+    evidenceStack:
+      Array.isArray(uiModel.evidenceStack) && uiModel.evidenceStack.length
+        ? uiModel.evidenceStack
+        : signal.patternModel?.evidenceStack || signal.signals,
+    automationContract: uiModel.automationContract || signal.patternModel?.automationContract || [],
+  };
+}
+
 function hydrateSignal(signal) {
   const readout = signalReadouts[signal.id] || {
     surprise:
@@ -1878,7 +1959,7 @@ function hydrateSignal(signal) {
   const additions = categorySignalAdditions[signal.category] || categorySignalAdditions.default;
   signal.watch = signal.watch || readout.watch;
   signal.signals = uniqueItems([...(signal.signals || []), ...additions]);
-  signal.model = buildPredictionModel(signal, readout);
+  signal.model = normalizePatternUiModel(signal.patternModel?.uiModel, signal) || buildPredictionModel(signal, readout);
   signal.confidence = signal.model.score;
   signal.signalCount = signal.model.scores.convergence;
   signal.surprise = signal.model.hiddenVariable;
@@ -3704,6 +3785,12 @@ function normalizeNightlySignal(signal, index) {
     referenceClassPrior: signal.referenceClassPrior || null,
     leadingIndicators: Array.isArray(signal.leadingIndicators) ? signal.leadingIndicators : [],
     disconfirmers: Array.isArray(signal.disconfirmers) ? signal.disconfirmers : [],
+    evidenceWindows: signal.evidenceWindows || null,
+    evidencePairs: Array.isArray(signal.evidencePairs) ? signal.evidencePairs : [],
+    patternModel: signal.patternModel || null,
+    forecast: signal.forecast || null,
+    resolutionCriteria: Array.isArray(signal.resolutionCriteria) ? signal.resolutionCriteria : [],
+    brierTracking: signal.brierTracking || null,
     generatedAt: signal.generatedAt || null,
     nightly: true,
   });

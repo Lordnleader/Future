@@ -13,17 +13,22 @@ and writes browser-ready `data/predictions/latest.json`.
 3. Output is normalized into candidate signals with evidence URLs, observed
    timestamps, source names, leading indicators, disconfirmers, and reference
    class priors.
-4. The generator also emits `data/predictions/latest.json`, a compact set of
-   browser-ready predictions that preserve the same PFE input contract.
-5. The browser fetches the latest prediction JSON in the background, hydrates it
-   through PFE-2.1, and keeps the current hand-authored model as a fallback so
-   the globe never goes blank.
+4. `scripts/pattern-recognition-engine.js` separates the evidence into
+   `recent_24h`, `prior_60d`, and `structural_baseline`, then scores each signal
+   with a deterministic Superforecasting-inspired model.
+5. The generator also emits `data/predictions/latest.json`, a compact set of
+   browser-ready predictions that preserve the same PFE input contract plus
+   `patternModel` forecast metadata.
+6. The browser fetches the latest prediction JSON in the background, uses the
+   nightly `patternModel.uiModel` when present, and keeps the current
+   hand-authored model as a fallback so the globe never goes blank.
 
 ## Source Registry
 
 Default live/no-key sources:
 
-- GDELT DOC 2.1 for global news/event evidence.
+- GDELT DOC 2.1 for global news/event evidence across the recent 60-day
+  comparison window.
 - World Bank Indicators for structural economic and development baselines.
 - Open-Meteo for current forecast and physical-condition context.
 - NASA POWER for recent climate and energy-relevant physical baselines.
@@ -61,6 +66,11 @@ the same JSON contract before they appear as live data-backed predictions.
 `data/predictions/latest.json` uses `future-signals.predictions.v1` and exposes a
 `signals` array. Each signal carries geography, copy, source names, evidence
 items, `sourceMix`, `referenceClassPrior`, `leadingIndicators`, and
-`disconfirmers`. The browser merges these nightly signals ahead of the static
-fallback set, then recalculates PFE-2.1 scores client-side so the site can show
-fresh predictions without a build step.
+`disconfirmers`. Newer runs also carry `evidenceWindows`, `evidencePairs`,
+`patternModel`, `forecast`, `resolutionCriteria`, and `brierTracking`. The
+browser merges these nightly signals ahead of the static fallback set, then uses
+the nightly PFE-3.0 model when available or recalculates PFE-2.1 scores
+client-side for older data.
+
+See `docs/pattern-recognition-engine.md` for the forecasting model and no-cost
+boundary.

@@ -4,8 +4,9 @@
 
 const fs = require("node:fs/promises");
 const path = require("node:path");
+const { PATTERN_ENGINE_VERSION, buildPatternModel } = require("./pattern-recognition-engine");
 
-const SCRIPT_VERSION = "nightly-signal-scaffold-0.2.0";
+const SCRIPT_VERSION = "nightly-signal-scaffold-0.3.0";
 const SCHEMA_VERSION = "future-signals.candidates.v1";
 const PREDICTIONS_SCHEMA_VERSION = "future-signals.predictions.v1";
 const DEFAULT_OUTPUT = path.join("data", "live-signal-candidates.json");
@@ -13,10 +14,12 @@ const DEFAULT_PREDICTIONS_OUTPUT = path.join("data", "predictions", "latest.json
 const NIGHTLY_INPUT_CONTRACT = [
   "geo_signal_seed",
   "source_mix",
+  "time_windowed_evidence",
   "reference_class_prior",
   "leading_indicators",
   "disconfirmers",
   "previous_resolution_outcomes",
+  "brier_score_tracking",
 ];
 
 const SOURCE_REGISTRY = [
@@ -609,13 +612,14 @@ async function gdeltDocAdapter(source, blueprint, now) {
     query: blueprint.query,
     mode: "artlist",
     format: "json",
-    maxrecords: "5",
+    maxrecords: "6",
     sort: "hybridrel",
+    timespan: "60d",
   });
   const url = `${source.url}?${params.toString()}`;
   const json = await fetchJson(url);
   const articles = Array.isArray(json.articles) ? json.articles : [];
-  return articles.slice(0, 3).map((article, index) => ({
+  return articles.slice(0, 6).map((article, index) => ({
     sourceId: source.id,
     sourceName: source.name,
     sourceType: source.evidenceType,
@@ -977,7 +981,7 @@ function buildCandidate(blueprint, evidenceGroups, now) {
   );
   const signalCount = evidence.length + liveEvidenceCount * 2;
 
-  return {
+  const candidate = {
     id: blueprint.id,
     kind: "candidate_signal",
     title: blueprint.title,
@@ -1030,6 +1034,31 @@ function buildCandidate(blueprint, evidenceGroups, now) {
     },
     generatedAt: now.toISOString(),
   };
+  const patternModel = buildPatternModel(candidate, { now, blueprint });
+
+  return {
+    ...candidate,
+    confidence: patternModel.confidence,
+    signalCount: patternModel.scores.convergence,
+    rationale: patternModel.reasoningSummary,
+    why: patternModel.nonObviousRead,
+    signals: [
+      patternModel.reasoningSummary,
+      ...patternModel.evidenceStack.slice(0, 3),
+      ...candidate.signals.slice(0, 2),
+    ],
+    ingestion: {
+      ...candidate.ingestion,
+      time_windowed_evidence: patternModel.evidenceWindows,
+      brier_score_tracking: patternModel.brierTracking,
+    },
+    evidenceWindows: patternModel.evidenceWindows,
+    evidencePairs: patternModel.evidencePairs,
+    patternModel,
+    forecast: patternModel.forecast,
+    resolutionCriteria: patternModel.forecast.resolutionCriteria,
+    brierTracking: patternModel.brierTracking,
+  };
 }
 
 function buildBrowserSignal(candidate, index, generator) {
@@ -1079,12 +1108,19 @@ function buildBrowserSignal(candidate, index, generator) {
     referenceClassPrior: candidate.ingestion.reference_class_prior,
     leadingIndicators: candidate.ingestion.leading_indicators,
     disconfirmers: candidate.ingestion.disconfirmers,
+    evidenceWindows: candidate.evidenceWindows,
+    evidencePairs: candidate.evidencePairs,
+    patternModel: candidate.patternModel,
+    forecast: candidate.forecast,
+    resolutionCriteria: candidate.resolutionCriteria,
+    brierTracking: candidate.brierTracking,
     generatedAt: candidate.generatedAt,
     generator: {
       runId: generator.runId,
       generatedAt: generator.generatedAt,
       mode: generator.mode,
       cadenceTarget: generator.cadenceTarget,
+      patternEngineVersion: PATTERN_ENGINE_VERSION,
     },
   };
 }
@@ -1149,6 +1185,7 @@ async function generate(options) {
       mode: dryRun ? "dry_run" : "mixed_or_live",
       cadenceTarget: "nightly-0100-local",
       dryRunRequested: options.dryRun,
+      patternEngineVersion: PATTERN_ENGINE_VERSION,
     },
     contract: NIGHTLY_INPUT_CONTRACT,
     sourceRegistry: sources.map((source) => ({
