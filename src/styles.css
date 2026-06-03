@@ -75,10 +75,19 @@ a {
 .app-shell::after {
   position: fixed;
   inset: 0;
-  z-index: 20;
+  z-index: 19;
   pointer-events: none;
   content: "";
   opacity: 0;
+  background:
+    radial-gradient(circle at 50% 50%, transparent 0 8vmin, rgba(198, 33, 31, 0.22) 8.2vmin 8.7vmin, rgba(255, 255, 255, 0.72) 9.4vmin 18vmin, transparent 34vmin),
+    radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.52), transparent 42vmin);
+  transform: scale(0.58);
+  transform-origin: 50% 50%;
+}
+
+.app-shell[data-mode="launching"]::after {
+  animation: launchSweep 1500ms cubic-bezier(0.65, 0, 0.35, 1) both;
 }
 
 .landing {
@@ -94,6 +103,7 @@ a {
   gap: 1rem;
   padding: 2rem;
   background-color: #f7f6f2;
+  clip-path: circle(150vmax at 50% 50%);
   overflow: hidden;
   transition:
     background-color 980ms cubic-bezier(0.19, 1, 0.22, 1),
@@ -148,6 +158,7 @@ a {
   transform-origin: 50% 50%;
   transition:
     opacity 1080ms cubic-bezier(0.19, 1, 0.22, 1),
+    filter 1180ms cubic-bezier(0.19, 1, 0.22, 1),
     transform 1320ms cubic-bezier(0.19, 1, 0.22, 1);
 }
 
@@ -206,6 +217,7 @@ a {
 }
 
 .app-shell[data-mode="launching"] .landing {
+  animation: landingIrisExit 1500ms cubic-bezier(0.65, 0, 0.35, 1) both;
   background-color: rgba(247, 246, 242, 0);
 }
 
@@ -215,8 +227,9 @@ a {
 }
 
 .app-shell[data-mode="launching"] .landing-globe {
-  opacity: 0.34;
-  transform: translate3d(-6vw, -1vh, 0) scale(2.12);
+  opacity: 0.06;
+  filter: blur(10px);
+  transform: translate3d(-9vw, -3vh, 0) scale(3.65);
 }
 
 .app-shell[data-mode="launching"] .landing-kicker,
@@ -243,8 +256,12 @@ a {
   min-height: 100vh;
   overflow: hidden;
   opacity: 0;
-  transform: translateY(0.45rem) scale(0.992);
+  clip-path: circle(7vmin at 50% 50%);
+  filter: blur(14px) saturate(0.88);
+  transform: translateY(0.45rem) scale(0.965);
   transition:
+    clip-path 1280ms cubic-bezier(0.19, 1, 0.22, 1),
+    filter 1280ms cubic-bezier(0.19, 1, 0.22, 1),
     opacity 1180ms cubic-bezier(0.19, 1, 0.22, 1),
     transform 1180ms cubic-bezier(0.19, 1, 0.22, 1);
 }
@@ -252,13 +269,92 @@ a {
 .app-shell[data-mode="browse"] .experience,
 .app-shell[data-mode="selected"] .experience,
 .app-shell[data-mode="brief"] .experience {
+  clip-path: circle(150vmax at 50% 50%);
+  filter: none;
   opacity: 1;
   transform: none;
 }
 
 .app-shell[data-mode="launching"] .experience {
-  opacity: 0.78;
-  transform: translateY(0.12rem) scale(0.997);
+  animation: worldReveal 1500ms cubic-bezier(0.65, 0, 0.35, 1) both;
+  opacity: 1;
+}
+
+@keyframes worldReveal {
+  0% {
+    clip-path: circle(5vmin at 50% 50%);
+    filter: blur(16px) saturate(0.78);
+    opacity: 0;
+    transform: translateY(0.7rem) scale(0.94);
+  }
+
+  22% {
+    clip-path: circle(14vmin at 50% 50%);
+    filter: blur(12px) saturate(0.84);
+    opacity: 0.58;
+    transform: translateY(0.48rem) scale(0.955);
+  }
+
+  58% {
+    clip-path: circle(76vmin at 50% 50%);
+    filter: blur(4px) saturate(0.95);
+    opacity: 0.96;
+    transform: translateY(0.12rem) scale(0.988);
+  }
+
+  100% {
+    clip-path: circle(150vmax at 50% 50%);
+    filter: blur(0) saturate(1);
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes landingIrisExit {
+  0% {
+    clip-path: circle(150vmax at 50% 50%);
+    filter: blur(0);
+    opacity: 1;
+    transform: none;
+  }
+
+  20% {
+    clip-path: circle(150vmax at 50% 50%);
+    opacity: 0.98;
+  }
+
+  58% {
+    clip-path: circle(72vmin at 50% 50%);
+    filter: blur(3px);
+    opacity: 0.72;
+  }
+
+  100% {
+    clip-path: circle(7vmin at 50% 50%);
+    filter: blur(9px);
+    opacity: 0;
+    transform: scale(1.04);
+  }
+}
+
+@keyframes launchSweep {
+  0% {
+    opacity: 0;
+    transform: scale(0.42);
+  }
+
+  18% {
+    opacity: 0.92;
+  }
+
+  62% {
+    opacity: 0.44;
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(3.1);
+  }
 }
 
 .top-chrome {
@@ -390,6 +486,16 @@ a {
   gap: 0.55rem;
   align-items: center;
   color: rgba(23, 25, 28, 0.52);
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 520ms ease,
+    transform 520ms cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.app-shell[data-mode="launching"] .globe-readout {
+  opacity: 0;
+  transform: translateY(0.38rem);
 }
 
 .globe-readout span + span {

@@ -3787,7 +3787,7 @@ function setMode(nextMode) {
   if (nextMode === "landing") {
     delete appShell.dataset.landingDone;
   } else {
-    const hideDelay = nextMode === "launching" ? 1600 : 1100;
+    const hideDelay = nextMode === "launching" ? 2050 : 1100;
     landingHideTimer = window.setTimeout(() => {
       if (mode !== "landing") {
         appShell.dataset.landingDone = "true";
@@ -3934,12 +3934,12 @@ function enterExperience() {
   spin.velocityX = 0;
   spin.velocityY = 0;
   setMode("launching");
-  window.setTimeout(startDetailedAssets, 360);
+  window.setTimeout(startDetailedAssets, 260);
   window.setTimeout(() => {
     setMode("browse");
     enterButton.disabled = false;
     canvas.focus?.();
-  }, 1080);
+  }, 1580);
 }
 
 function applyLaunchState() {
