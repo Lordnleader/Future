@@ -2653,6 +2653,7 @@ const topologyTexture = {
 };
 const earthRenderer = createEarthRenderer(earthCanvas);
 const signalCard = document.querySelector("#signalCard");
+const briefSection = document.querySelector("#brief");
 const enterButton = document.querySelector("#enterButton");
 const openBriefButton = document.querySelector("#openBrief");
 const sourcesButton = document.querySelector("#sourcesButton");
@@ -3811,8 +3812,29 @@ function clearScrolledCard() {
   delete appShell.dataset.cardHidden;
 }
 
+function getPageScrollY() {
+  return window.scrollY || document.documentElement.scrollTop || 0;
+}
+
+function updateScrollRegion(scrollY = getPageScrollY()) {
+  const briefTop = briefSection?.getBoundingClientRect().top ?? Number.POSITIVE_INFINITY;
+  const briefVisible = scrollY > Math.max(88, window.innerHeight * 0.13) || briefTop < window.innerHeight * 0.74;
+  if (briefVisible) {
+    appShell.dataset.scrollRegion = "brief";
+  } else {
+    delete appShell.dataset.scrollRegion;
+  }
+}
+
+function globeCanOwnWheel() {
+  const scrollY = getPageScrollY();
+  const briefTop = briefSection?.getBoundingClientRect().top ?? Number.POSITIVE_INFINITY;
+  return scrollY <= Math.max(28, window.innerHeight * 0.05) && briefTop > window.innerHeight * 0.78;
+}
+
 function restoreBrowseSurface() {
   clearScrolledCard();
+  delete appShell.dataset.scrollRegion;
   hoveredSignal = null;
   hoverPlate.classList.remove("is-visible");
   spin.velocityX = 0;
@@ -3831,9 +3853,10 @@ function handlePageScroll() {
     scrollFrame = 0;
     if (mode === "landing" || mode === "launching") return;
 
-    const scrollY = window.scrollY || document.documentElement.scrollTop || 0;
+    const scrollY = getPageScrollY();
     const hideAt = Math.max(96, window.innerHeight * 0.16);
     const restoreAt = Math.max(32, window.innerHeight * 0.06);
+    updateScrollRegion(scrollY);
 
     if ((mode === "selected" || mode === "brief") && scrollY > hideAt) {
       cardHiddenByScroll = true;
@@ -3842,7 +3865,7 @@ function handlePageScroll() {
       hoverPlate.classList.remove("is-visible");
     }
 
-    if ((cardHiddenByScroll || mode === "brief") && scrollY <= restoreAt) {
+    if (cardHiddenByScroll && scrollY <= restoreAt) {
       restoreBrowseSurface();
     }
   });
@@ -4193,6 +4216,10 @@ function handleCanvasMouseUp(event) {
 
 function handleWheel(event) {
   if (mode !== "browse") return;
+  if (!globeCanOwnWheel()) {
+    updateScrollRegion();
+    return;
+  }
   event.preventDefault();
   const direction = event.deltaY > 0 ? -1 : 1;
   const scale = event.deltaMode === 1 ? 0.12 : 0.0018;

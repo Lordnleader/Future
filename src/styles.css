@@ -507,6 +507,12 @@ a {
   display: none;
 }
 
+.app-shell[data-scroll-region="brief"] .globe-readout {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(0.38rem);
+}
+
 .hover-plate {
   position: fixed;
   z-index: 11;
