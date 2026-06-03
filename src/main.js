@@ -2707,6 +2707,8 @@ let selectedSignal = signals[0];
 let hoveredSignal = null;
 let projectedPins = [];
 let landingHideTimer = null;
+let cardHiddenByScroll = false;
+let scrollFrame = 0;
 let centerLon = 15;
 let centerLat = 8;
 let autoLon = 15;
@@ -2717,6 +2719,7 @@ let targetZoom = 1;
 let lastTime = performance.now();
 let landingLon = -24;
 let landingLat = 8;
+let globeLayoutProgress = 0;
 let detailedAssetsStarted = false;
 let nightlyPredictionMeta = null;
 let pointer = { x: -9999, y: -9999 };
@@ -2944,14 +2947,14 @@ function resize() {
 }
 
 function globeMetrics() {
-  const selectedShift = mode === "selected" || mode === "brief";
+  const selectedShift = globeLayoutProgress;
   const desktop = isDesktop();
   const baseRadius = desktop
     ? Math.min(width * 0.36, height * 0.58)
-    : Math.min(width, height) * (selectedShift ? 0.36 : 0.39);
+    : Math.min(width, height) * (0.39 + selectedShift * (0.36 - 0.39));
   return {
-    cx: desktop ? width * (selectedShift ? 0.35 : 0.42) : width * 0.5,
-    cy: height * (desktop ? 0.54 : selectedShift ? 0.37 : 0.47),
+    cx: desktop ? width * (0.42 + selectedShift * (0.35 - 0.42)) : width * 0.5,
+    cy: height * (desktop ? 0.54 : 0.47 + selectedShift * (0.37 - 0.47)),
     r: baseRadius * currentZoom,
   };
 }
@@ -3720,6 +3723,8 @@ function animate(now = performance.now()) {
   currentZoom += (targetZoom - currentZoom) * 0.08;
   centerLon = normalizeLon(centerLon + shortestAngle(centerLon, targetLon) * 0.07);
   centerLat += (targetLat - centerLat) * 0.07;
+  const targetLayoutProgress = mode === "selected" || mode === "brief" ? 1 : 0;
+  globeLayoutProgress += (targetLayoutProgress - globeLayoutProgress) * 0.11;
 
   const metrics = globeMetrics();
   prepareFramePaths(metrics);
@@ -3782,11 +3787,12 @@ function setMode(nextMode) {
   if (nextMode === "landing") {
     delete appShell.dataset.landingDone;
   } else {
+    const hideDelay = nextMode === "launching" ? 1600 : 1100;
     landingHideTimer = window.setTimeout(() => {
       if (mode !== "landing") {
         appShell.dataset.landingDone = "true";
       }
-    }, 980);
+    }, hideDelay);
   }
   readoutMode.textContent =
     nextMode === "browse" || nextMode === "launching"
@@ -3800,7 +3806,50 @@ function setMode(nextMode) {
       : selectedSignal.region;
 }
 
+function clearScrolledCard() {
+  cardHiddenByScroll = false;
+  delete appShell.dataset.cardHidden;
+}
+
+function restoreBrowseSurface() {
+  clearScrolledCard();
+  hoveredSignal = null;
+  hoverPlate.classList.remove("is-visible");
+  spin.velocityX = 0;
+  spin.velocityY = 0;
+  spin.manualUntil = performance.now() + 900;
+  targetLon = normalizeLon(centerLon);
+  autoLon = targetLon;
+  targetLat = 8;
+  targetZoom = 1;
+  setMode("browse");
+}
+
+function handlePageScroll() {
+  if (scrollFrame) return;
+  scrollFrame = requestAnimationFrame(() => {
+    scrollFrame = 0;
+    if (mode === "landing" || mode === "launching") return;
+
+    const scrollY = window.scrollY || document.documentElement.scrollTop || 0;
+    const hideAt = Math.max(96, window.innerHeight * 0.16);
+    const restoreAt = Math.max(32, window.innerHeight * 0.06);
+
+    if ((mode === "selected" || mode === "brief") && scrollY > hideAt) {
+      cardHiddenByScroll = true;
+      appShell.dataset.cardHidden = "true";
+      hoveredSignal = null;
+      hoverPlate.classList.remove("is-visible");
+    }
+
+    if ((cardHiddenByScroll || mode === "brief") && scrollY <= restoreAt) {
+      restoreBrowseSurface();
+    }
+  });
+}
+
 function setSelectedSignal(signal) {
+  clearScrolledCard();
   selectedSignal = signal;
   targetLon = normalizeLon(signal.lon);
   targetLat = clamp(signal.lat * 0.42, -58, 58);
@@ -3874,22 +3923,23 @@ function openBrief(targetSelector = "#brief") {
 function enterExperience() {
   if (mode !== "landing") return;
   enterButton.disabled = true;
+  clearScrolledCard();
   centerLon = normalizeLon(landingLon);
   targetLon = centerLon;
   autoLon = centerLon;
   centerLat = 8;
   targetLat = 8;
-  currentZoom = 0.92;
+  currentZoom = 0.78;
   targetZoom = 1;
   spin.velocityX = 0;
   spin.velocityY = 0;
   setMode("launching");
-  window.setTimeout(startDetailedAssets, 520);
+  window.setTimeout(startDetailedAssets, 360);
   window.setTimeout(() => {
     setMode("browse");
     enterButton.disabled = false;
     canvas.focus?.();
-  }, 860);
+  }, 1080);
 }
 
 function applyLaunchState() {
@@ -4191,6 +4241,7 @@ function handleViewportChange() {
 }
 
 window.addEventListener("resize", resize);
+window.addEventListener("scroll", handlePageScroll, { passive: true });
 desktopMedia.addEventListener?.("change", handleViewportChange);
 window.addEventListener("wheel", handleWheel, { passive: false });
 enterButton.addEventListener("click", enterExperience);
@@ -4221,6 +4272,7 @@ window.__futureSignalsState = () => ({
   targetLat,
   currentZoom,
   targetZoom,
+  globeLayoutProgress,
   activeFilter,
   selected: selectedSignal.id,
   hovering: hoveredSignal?.id || null,
