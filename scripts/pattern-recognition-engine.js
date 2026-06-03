@@ -923,17 +923,23 @@ function buildPublicNarrative(candidate, model) {
   const hidden = compactText(model.archetype.hiddenVariable || "the first behavior that changes");
   const leading = asTextList(model.leadingIndicators, 4);
   const falsifiers = asTextList(model.falsifiers, 3);
-  const sources = asTextList(candidate.sources, 4);
+  const researchItems = (candidate.evidence || []).filter((item) => item.sourceId === "codex-global-news-research");
+  const researchSources = asTextList(researchItems.map((item) => item.sourceName), 2);
+  const sources = uniqueItems([...researchSources, ...asTextList(candidate.sources, 6)]).slice(0, 4);
   const weights = model.scenarioSpread.weights;
   const deeperBase = cleanInternalLanguage(model.nonObviousRead || candidate.why || candidate.rationale);
   const scorePhrase = model.confidence >= 78 ? "strong" : model.confidence >= 68 ? "developing" : "emerging";
   const rationale = publicSentence(candidate.rationale, candidate.summary);
   const why = publicSentence(candidate.why, candidate.implication);
+  const researchNote = researchItems[0]?.summary
+    ? `Fresh reporting adds: ${sentence(researchItems[0].summary)}`
+    : null;
 
   return {
     deck: `${region}. ${sentence(candidate.summary)} The useful question is whether ${lowerFirst(hidden)} is starting to move from background condition to practical constraint.`,
     overview: `${candidate.title} is ${indefiniteArticle(scorePhrase)} ${scorePhrase} ${category} reading about ${region}. ${rationale} ${why} It becomes more interesting when ${lowerFirst(hidden)} starts changing decisions before the public story has a single neat explanation.`,
     evidenceNotes: [
+      researchNote,
       `Recent reporting gives the signal its timing: ${sentence(candidate.summary)}`,
       `The older context matters because this resembles ${model.referenceClass.label}.`,
       `The place matters because ${region} turns the pattern into an observable operating problem rather than an abstract global theme.`,

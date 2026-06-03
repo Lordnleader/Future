@@ -50,7 +50,7 @@ jobs:
 
       - name: Generate nightly signal candidates
         if: steps.schedule_guard.outputs.should_run == 'true'
-        run: node scripts/generate-nightly-signals.js --live
+        run: node scripts/generate-nightly-signals.js --live --research-input data/research/codex-news-digest.json
         env:
           NASA_FIRMS_API_KEY: ${{ secrets.NASA_FIRMS_API_KEY }}
           OPENAQ_API_KEY: ${{ secrets.OPENAQ_API_KEY }}

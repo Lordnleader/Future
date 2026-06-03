@@ -11,6 +11,7 @@ const SCHEMA_VERSION = "future-signals.candidates.v1";
 const PREDICTIONS_SCHEMA_VERSION = "future-signals.predictions.v1";
 const DEFAULT_OUTPUT = path.join("data", "live-signal-candidates.json");
 const DEFAULT_PREDICTIONS_OUTPUT = path.join("data", "predictions", "latest.json");
+const DEFAULT_RESEARCH_INPUT = path.join("data", "research", "codex-news-digest.json");
 const NIGHTLY_INPUT_CONTRACT = [
   "geo_signal_seed",
   "source_mix",
@@ -20,6 +21,7 @@ const NIGHTLY_INPUT_CONTRACT = [
   "disconfirmers",
   "previous_resolution_outcomes",
   "brier_score_tracking",
+  "codex_global_news_research",
 ];
 
 const SOURCE_REGISTRY = [
@@ -443,6 +445,7 @@ function parseArgs(argv) {
     limit: SIGNAL_BLUEPRINTS.length,
     sources: null,
     pretty: true,
+    researchInput: null,
   };
 
   for (let i = 0; i < argv.length; i += 1) {
@@ -465,6 +468,9 @@ function parseArgs(argv) {
     } else if (arg === "--source" && argv[i + 1]) {
       options.sources = argv[i + 1].split(",").map((source) => source.trim()).filter(Boolean);
       i += 1;
+    } else if (arg === "--research-input" && argv[i + 1]) {
+      options.researchInput = argv[i + 1];
+      i += 1;
     } else if (arg === "--help") {
       printHelp();
       process.exit(0);
@@ -486,6 +492,8 @@ Options:
   --dry-run         Use deterministic stub evidence. This is the default unless SIGNAL_GENERATOR_LIVE=1.
   --live            Try live adapters, then fall back source-by-source to stubs.
   --source <ids>    Comma-separated registry source ids to include.
+  --research-input <file>
+                    Optional Codex global-news research digest. Missing files are ignored.
   --limit <n>       Number of candidate signal blueprints to emit.
   --compact         Write compact JSON.
   --help            Show this help text.`);
@@ -557,6 +565,127 @@ function decodeXml(value) {
     .replace(/&#39;/g, "'")
     .replace(/\s+/g, " ")
     .trim();
+}
+
+function textTokens(value) {
+  return [
+    ...new Set(
+      String(value || "")
+        .toLowerCase()
+        .replace(/[^a-z0-9\s-]/g, " ")
+        .split(/\s+/)
+        .filter((token) => token.length > 3),
+    ),
+  ];
+}
+
+function normalizeConfidence(value, fallback = 64) {
+  const number = Number(value);
+  if (!Number.isFinite(number)) return fallback;
+  if (number <= 1) return Math.round(Math.max(0, Math.min(1, number)) * 100);
+  return Math.round(Math.max(1, Math.min(100, number)));
+}
+
+function parseOptionalDate(value, fallback) {
+  const date = new Date(value);
+  return Number.isNaN(date.getTime()) ? fallback.toISOString() : date.toISOString();
+}
+
+async function loadResearchDigest(inputPath, now) {
+  if (!inputPath) return null;
+  const resolved = path.resolve(inputPath);
+  try {
+    const raw = await fs.readFile(resolved, "utf8");
+    const parsed = JSON.parse(raw);
+    const items = Array.isArray(parsed) ? parsed : parsed.items;
+    return {
+      schemaVersion: parsed.schemaVersion || "future-signals.codex-research.v1",
+      generatedAt: parsed.generatedAt || now.toISOString(),
+      sourcePath: resolved,
+      items: Array.isArray(items) ? items : [],
+    };
+  } catch (error) {
+    if (error.code === "ENOENT") {
+      return {
+        schemaVersion: "future-signals.codex-research.v1",
+        generatedAt: now.toISOString(),
+        sourcePath: resolved,
+        items: [],
+        missing: true,
+      };
+    }
+    throw new Error(`Unable to load research digest at ${resolved}: ${error.message}`);
+  }
+}
+
+function itemMatchesBlueprint(item, blueprint) {
+  const related = item.relatedSignalIds || item.related_signal_ids || item.signalIds || [];
+  if (Array.isArray(related) && related.includes(blueprint.id)) return true;
+
+  const itemText = [
+    item.title,
+    item.summary,
+    item.region,
+    item.category,
+    item.query,
+    ...(item.terms || []),
+    ...(item.tags || []),
+  ].join(" ");
+  const blueprintText = [
+    blueprint.title,
+    blueprint.region,
+    blueprint.category,
+    blueprint.query,
+    blueprint.summary,
+    blueprint.implication,
+    ...blueprint.leadingIndicators,
+    ...blueprint.disconfirmers,
+  ].join(" ");
+  const itemTerms = new Set(textTokens(itemText));
+  const blueprintTerms = textTokens(blueprintText);
+  const overlap = blueprintTerms.filter((term) => itemTerms.has(term));
+
+  return overlap.length >= 2;
+}
+
+function researchGroupForBlueprint(researchDigest, blueprint, now) {
+  if (!researchDigest?.items?.length) return null;
+  const matches = researchDigest.items
+    .filter((item) => item && itemMatchesBlueprint(item, blueprint))
+    .slice(0, 8);
+  if (!matches.length) return null;
+
+  const source = {
+    id: "codex-global-news-research",
+    name: "Codex Global News Research",
+    evidenceType: "codex_research_digest",
+    adapter: "codexResearchDigest",
+    url: researchDigest.sourcePath || DEFAULT_RESEARCH_INPUT,
+    requiresKey: false,
+  };
+
+  return {
+    source,
+    status: "fetched",
+    evidence: matches.map((item, index) => {
+      const sourceName = firstText(item.sourceName || item.source || item.publisher) || source.name;
+      return {
+        sourceId: source.id,
+        sourceName,
+        sourceType: source.evidenceType,
+        adapter: source.adapter,
+        title: firstText(item.title) || `${blueprint.title} Codex research item ${index + 1}`,
+        url: firstText(item.url) || source.url,
+        observedAt: parseOptionalDate(item.publishedAt || item.observedAt || item.date, now),
+        capturedAt: parseOptionalDate(item.capturedAt || researchDigest.generatedAt, now),
+        summary: firstText(item.summary || item.read || item.analysis) || `${sourceName} reporting was matched to ${blueprint.title}.`,
+        confidence: normalizeConfidence(item.confidence, stableScore(`${blueprint.id}:codex:${index}`, 58, 82)),
+        researchDirection: item.direction || item.effect || "context",
+        researchDigestGeneratedAt: researchDigest.generatedAt,
+      };
+    }),
+    error: null,
+  };
 }
 
 function sourceAvailable(source, dryRun) {
@@ -1066,7 +1195,16 @@ function buildCandidate(blueprint, evidenceGroups, now) {
 
 function buildBrowserSignal(candidate, index, generator) {
   const sourceMix = candidate.ingestion.source_mix;
-  const evidence = candidate.evidence.slice(0, 12).map((item) => ({
+  const evidence = candidate.evidence
+    .slice()
+    .sort((left, right) => {
+      const leftResearch = left.sourceId === "codex-global-news-research" ? 1 : 0;
+      const rightResearch = right.sourceId === "codex-global-news-research" ? 1 : 0;
+      if (leftResearch !== rightResearch) return rightResearch - leftResearch;
+      return new Date(right.observedAt).getTime() - new Date(left.observedAt).getTime();
+    })
+    .slice(0, 12)
+    .map((item) => ({
     sourceId: item.sourceId,
     sourceName: item.sourceName,
     sourceType: item.sourceType,
@@ -1077,7 +1215,7 @@ function buildBrowserSignal(candidate, index, generator) {
     confidence: item.confidence,
     summary: item.summary,
   }));
-  const sourceNames = [...new Set(evidence.map((item) => item.sourceName))];
+  const sourceNames = [...new Set(candidate.evidence.map((item) => item.sourceName))].slice(0, 12);
 
   return {
     id: candidate.id,
@@ -1134,6 +1272,7 @@ function buildPredictionsDataset(output) {
 async function generate(options) {
   const now = new Date();
   const sources = selectSources(options);
+  const researchDigest = await loadResearchDigest(options.researchInput, now);
   const blueprints = SIGNAL_BLUEPRINTS.slice(0, options.limit);
   const candidates = [];
   const sourceRuns = new Map();
@@ -1151,6 +1290,18 @@ async function generate(options) {
       };
       existing.statuses[group.status] = (existing.statuses[group.status] || 0) + 1;
       sourceRuns.set(source.id, existing);
+    }
+    const researchGroup = researchGroupForBlueprint(researchDigest, blueprint, now);
+    if (researchGroup) {
+      groups.push(researchGroup);
+      const existing = sourceRuns.get(researchGroup.source.id) || {
+        id: researchGroup.source.id,
+        name: researchGroup.source.name,
+        adapter: researchGroup.source.adapter,
+        statuses: {},
+      };
+      existing.statuses[researchGroup.status] = (existing.statuses[researchGroup.status] || 0) + 1;
+      sourceRuns.set(researchGroup.source.id, existing);
     }
     candidates.push(buildCandidate(blueprint, groups, now));
   }
@@ -1170,6 +1321,14 @@ async function generate(options) {
       cadenceTarget: "nightly-0100-local",
       dryRunRequested: options.dryRun,
       patternEngineVersion: PATTERN_ENGINE_VERSION,
+      codexResearchDigest: researchDigest
+        ? {
+            sourcePath: researchDigest.sourcePath,
+            generatedAt: researchDigest.generatedAt,
+            itemCount: researchDigest.items.length,
+            missing: Boolean(researchDigest.missing),
+          }
+        : null,
     },
     contract: NIGHTLY_INPUT_CONTRACT,
     sourceRegistry: sources.map((source) => ({

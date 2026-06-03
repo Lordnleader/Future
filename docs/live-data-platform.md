@@ -56,10 +56,14 @@ The generator works without secrets, but these unlock stronger source coverage:
 
 ## Nightly Research
 
-The deterministic API pipeline should be the source of record. A separate Codex
+The deterministic API pipeline remains the source of record. A separate Codex
 nightly research scan can run at 1am to search broader web/news sources and
-propose candidate signals, but those candidates should still be validated into
-the same JSON contract before they appear as live data-backed predictions.
+write `data/research/codex-news-digest.json`. The generator reads that file with
+`--research-input`, treats each item as evidence, and still validates the result
+through the same `patternModel` contract before it reaches the live site.
+
+See `docs/codex-news-research-automation.md` for the digest schema, the
+publishing flow, and the no-cost boundary.
 
 ## Current Browser Contract
 

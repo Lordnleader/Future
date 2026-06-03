@@ -1989,7 +1989,9 @@ function buildPublicNarrative(signal, model) {
   const hidden = publicHiddenVariable(signal, model);
   const leading = asTextList(model.leadingIndicators, 4);
   const disconfirmers = asTextList(model.disconfirmers, 3);
-  const sources = asTextList(signal.sources, 4);
+  const researchItems = (signal.evidence || []).filter((item) => item.sourceId === "codex-global-news-research");
+  const researchSources = asTextList(researchItems.map((item) => item.sourceName), 2);
+  const sources = uniqueItems([...researchSources, ...asTextList(signal.sources, 6)]).slice(0, 4);
   const referenceClass = compactText(model.scores?.referenceClass || "similar past patterns");
   const weights = model.scenarioWeights || {};
   const baseWeight = Number.isFinite(Number(weights.base)) ? Number(weights.base) : null;
@@ -2000,11 +2002,15 @@ function buildPublicNarrative(signal, model) {
   const deeperBase = cleanInternalLanguage(model.nonObviousRead || signal.why || signal.rationale);
   const rationale = publicSentence(signal.rationale, signal.summary);
   const why = publicSentence(signal.why, signal.implication);
+  const researchNote = researchItems[0]?.summary
+    ? `Fresh reporting adds: ${sentence(researchItems[0].summary)}`
+    : null;
 
   return {
     deck: `${region}. ${sentence(signal.summary)} The useful question is whether ${lowerFirst(hidden)} is starting to move from background condition to practical constraint.`,
     overview: `${signal.title} is ${indefiniteArticle(scorePhrase)} ${scorePhrase} ${category} reading about ${region}. ${rationale} ${why} It becomes more interesting when ${lowerFirst(hidden)} starts changing decisions before the public story has a single neat explanation.`,
     evidenceNotes: [
+      researchNote,
       `Recent reporting gives the signal its timing: ${sentence(signal.summary)}`,
       `The older context matters because this resembles ${referenceClass}.`,
       `The place matters because ${region} turns the pattern into an observable operating problem rather than an abstract global theme.`,
