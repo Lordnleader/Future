@@ -3788,7 +3788,7 @@ function setMode(nextMode) {
   if (nextMode === "landing") {
     delete appShell.dataset.landingDone;
   } else {
-    const hideDelay = nextMode === "launching" ? 2050 : 1100;
+    const hideDelay = nextMode === "launching" ? 1160 : 700;
     landingHideTimer = window.setTimeout(() => {
       if (mode !== "landing") {
         appShell.dataset.landingDone = "true";
@@ -3947,22 +3947,23 @@ function enterExperience() {
   if (mode !== "landing") return;
   enterButton.disabled = true;
   clearScrolledCard();
-  centerLon = normalizeLon(landingLon);
+  centerLon = 15;
   targetLon = centerLon;
   autoLon = centerLon;
   centerLat = 8;
   targetLat = 8;
-  currentZoom = 0.78;
+  currentZoom = 1.64;
   targetZoom = 1;
   spin.velocityX = 0;
   spin.velocityY = 0;
+  spin.manualUntil = performance.now() + 1200;
   setMode("launching");
-  window.setTimeout(startDetailedAssets, 260);
+  startDetailedAssets();
   window.setTimeout(() => {
     setMode("browse");
     enterButton.disabled = false;
     canvas.focus?.();
-  }, 1580);
+  }, 1040);
 }
 
 function applyLaunchState() {
@@ -4289,6 +4290,7 @@ updateCard(selectedSignal);
 updateBrief(selectedSignal);
 resize();
 setLandTelemetry();
+window.setTimeout(startDetailedAssets, 140);
 applyLaunchState();
 loadNightlyPredictions();
 window.__futureSignalsState = () => ({
