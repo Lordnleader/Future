@@ -3760,7 +3760,7 @@ function findHoveredSignal() {
 }
 
 function updateHoverPlate(event) {
-  if (!hoveredSignal || mode === "landing") {
+  if (!hoveredSignal || mode !== "browse") {
     hoverPlate.classList.remove("is-visible");
     return;
   }
@@ -3774,6 +3774,10 @@ function updateHoverPlate(event) {
 function setMode(nextMode) {
   mode = nextMode;
   appShell.dataset.mode = nextMode;
+  if (nextMode !== "browse") {
+    hoveredSignal = null;
+    hoverPlate.classList.remove("is-visible");
+  }
   window.clearTimeout(landingHideTimer);
   if (nextMode === "landing") {
     delete appShell.dataset.landingDone;
@@ -3858,12 +3862,13 @@ function updateBrief(signal) {
   );
 }
 
-function openBrief() {
+function openBrief(targetSelector = "#brief") {
   if (mode === "landing" || mode === "browse") {
     setSelectedSignal(selectedSignal);
   }
   setMode("brief");
-  document.querySelector("#brief").scrollIntoView({ behavior: "smooth", block: "start" });
+  const target = document.querySelector(targetSelector) || document.querySelector("#brief");
+  target.scrollIntoView({ behavior: "smooth", block: "start" });
 }
 
 function enterExperience() {
@@ -4189,8 +4194,8 @@ window.addEventListener("resize", resize);
 desktopMedia.addEventListener?.("change", handleViewportChange);
 window.addEventListener("wheel", handleWheel, { passive: false });
 enterButton.addEventListener("click", enterExperience);
-openBriefButton.addEventListener("click", openBrief);
-sourcesButton.addEventListener("click", openBrief);
+openBriefButton.addEventListener("click", () => openBrief());
+sourcesButton.addEventListener("click", () => openBrief("#sources"));
 landing.addEventListener("pointermove", handleLandingPointerMove);
 landing.addEventListener("pointerleave", handleLandingPointerLeave);
 canvas.addEventListener("pointermove", handleCanvasPointerMove);

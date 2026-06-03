@@ -46,6 +46,13 @@ button {
   border: 0;
 }
 
+button:focus-visible,
+a:focus-visible,
+#globeCanvas:focus-visible {
+  outline: 2px solid rgba(198, 33, 31, 0.72);
+  outline-offset: 3px;
+}
+
 a {
   text-decoration: none;
 }
@@ -107,8 +114,8 @@ a {
 .landing::before {
   opacity: 1;
   background:
-    radial-gradient(circle at 50% 47%, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.34) 17rem, transparent 33rem),
-    linear-gradient(180deg, rgba(255, 255, 255, 0.4), rgba(247, 246, 242, 0.18) 48%, rgba(238, 238, 234, 0.28));
+    radial-gradient(circle at 50% 47%, rgba(255, 255, 255, 0.64), rgba(255, 255, 255, 0.2) 17rem, transparent 33rem),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.24), rgba(247, 246, 242, 0.12) 48%, rgba(238, 238, 234, 0.22));
   transition: opacity 700ms ease;
 }
 
@@ -130,7 +137,7 @@ a {
   width: 100%;
   height: 100%;
   pointer-events: none;
-  opacity: 0.58;
+  opacity: 0.72;
   transform:
     translate3d(
       calc(var(--landing-x) * -0.5rem),
@@ -409,6 +416,12 @@ a {
 
 .hover-plate.is-visible {
   opacity: 1;
+}
+
+.app-shell[data-mode="selected"] .hover-plate,
+.app-shell[data-mode="brief"] .hover-plate,
+.app-shell[data-mode="launching"] .hover-plate {
+  opacity: 0;
 }
 
 .hover-plate span {
@@ -820,9 +833,11 @@ a {
   }
 
   .globe-readout {
+    position: fixed;
+    z-index: 8;
     left: 1rem;
     right: auto;
-    bottom: 1rem;
+    bottom: max(1rem, env(safe-area-inset-bottom));
   }
 
   .app-shell[data-mode="selected"] .globe-readout,

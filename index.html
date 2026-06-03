@@ -14,7 +14,7 @@
       href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="./src/styles.css?v=20260524-public-brief1" />
+    <link rel="stylesheet" href="./src/styles.css?v=20260603-qa1" />
   </head>
   <body>
     <main class="app-shell" data-mode="landing">
@@ -98,7 +98,12 @@
 
           <section class="globe-stage" aria-label="Interactive future signals globe">
             <canvas id="earthCanvas" aria-hidden="true"></canvas>
-            <canvas id="globeCanvas"></canvas>
+            <canvas
+              id="globeCanvas"
+              role="img"
+              tabindex="0"
+              aria-label="Interactive globe of future signals"
+            ></canvas>
             <div class="globe-vignette" aria-hidden="true"></div>
             <div class="scanline" aria-hidden="true"></div>
             <div class="globe-readout" aria-live="polite">
@@ -180,7 +185,7 @@
               </p>
             </article>
 
-            <article class="brief-panel">
+            <article class="brief-panel" id="sources">
               <p class="panel-label">Sources</p>
               <ul class="source-list" id="sourceList"></ul>
             </article>
@@ -200,6 +205,6 @@
       </section>
     </main>
 
-    <script type="module" src="./src/main.js?v=20260524-public-brief1"></script>
+    <script type="module" src="./src/main.js?v=20260603-qa1"></script>
   </body>
 </html>
