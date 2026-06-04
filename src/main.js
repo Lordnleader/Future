@@ -4063,19 +4063,52 @@ function normalizeNightlySignal(signal, index) {
   });
 }
 
+function signalRunKey(signal) {
+  const lat = Math.round(signal.lat * 10) / 10;
+  const lon = Math.round(signal.lon * 10) / 10;
+  const title = signal.title.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim().slice(0, 36);
+  return `${lat}:${lon}:${signal.category}:${title}`;
+}
+
+function uniqueNightlySignals(signalList) {
+  const seenIds = new Set();
+  const seenRunKeys = new Set();
+  return signalList.filter((signal) => {
+    const runKey = signalRunKey(signal);
+    if (seenIds.has(signal.id) || seenRunKeys.has(runKey)) return false;
+    seenIds.add(signal.id);
+    seenRunKeys.add(runKey);
+    return true;
+  });
+}
+
+function findReplacementSignal(previousSignal, candidates) {
+  if (!previousSignal) return null;
+  const matchingId = candidates.find((signal) => signal.id === previousSignal.id);
+  if (matchingId) return matchingId;
+
+  const nearby = candidates
+    .map((signal) => ({
+      signal,
+      distance: Math.hypot(signal.lat - previousSignal.lat, shortestAngle(signal.lon, previousSignal.lon)),
+    }))
+    .filter((candidate) => candidate.distance <= 2.2)
+    .sort((a, b) => a.distance - b.distance);
+
+  return nearby[0]?.signal || null;
+}
+
 function applyNightlyPredictions(payload) {
   const incomingSignals = Array.isArray(payload.signals)
-    ? payload.signals
+    ? uniqueNightlySignals(payload.signals
         .map((signal, index) => normalizeNightlySignal(signal, index))
-        .filter(Boolean)
+        .filter(Boolean))
     : [];
   if (!incomingSignals.length) return false;
 
-  const previousSelectedId = selectedSignal?.id;
+  const previousSelectedSignal = selectedSignal;
   const passiveMode = mode === "landing" || mode === "browse" || mode === "launching";
-  const incomingIds = new Set(incomingSignals.map((signal) => signal.id));
-  const fallbackSignals = signals.filter((signal) => !signal.nightly && !incomingIds.has(signal.id));
-  signals = [...incomingSignals, ...fallbackSignals];
+  signals = incomingSignals;
   rebuildSignalIndexes();
 
   nightlyPredictionMeta = {
@@ -4090,7 +4123,7 @@ function applyNightlyPredictions(payload) {
 
   selectedSignal = passiveMode
     ? incomingSignals[0]
-    : signalsById.get(previousSelectedId) || incomingSignals[0];
+    : findReplacementSignal(previousSelectedSignal, incomingSignals) || incomingSignals[0];
   updateCard(selectedSignal);
   updateBrief(selectedSignal);
 
