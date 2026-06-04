@@ -1274,37 +1274,32 @@ async function generate(options) {
   const sources = selectSources(options);
   const researchDigest = await loadResearchDigest(options.researchInput, now);
   const blueprints = SIGNAL_BLUEPRINTS.slice(0, options.limit);
-  const candidates = [];
   const sourceRuns = new Map();
+  const candidateInputs = await Promise.all(
+    blueprints.map(async (blueprint) => {
+      const groups = await Promise.all(
+        sources.map((source) => collectEvidence(source, blueprint, now, options.dryRun)),
+      );
+      const researchGroup = researchGroupForBlueprint(researchDigest, blueprint, now);
+      if (researchGroup) groups.push(researchGroup);
+      return { blueprint, groups };
+    }),
+  );
 
-  for (const blueprint of blueprints) {
-    const groups = [];
-    for (const source of sources) {
-      const group = await collectEvidence(source, blueprint, now, options.dryRun);
-      groups.push(group);
-      const existing = sourceRuns.get(source.id) || {
-        id: source.id,
-        name: source.name,
-        adapter: source.adapter,
+  for (const { groups } of candidateInputs) {
+    for (const group of groups) {
+      const existing = sourceRuns.get(group.source.id) || {
+        id: group.source.id,
+        name: group.source.name,
+        adapter: group.source.adapter,
         statuses: {},
       };
       existing.statuses[group.status] = (existing.statuses[group.status] || 0) + 1;
-      sourceRuns.set(source.id, existing);
+      sourceRuns.set(group.source.id, existing);
     }
-    const researchGroup = researchGroupForBlueprint(researchDigest, blueprint, now);
-    if (researchGroup) {
-      groups.push(researchGroup);
-      const existing = sourceRuns.get(researchGroup.source.id) || {
-        id: researchGroup.source.id,
-        name: researchGroup.source.name,
-        adapter: researchGroup.source.adapter,
-        statuses: {},
-      };
-      existing.statuses[researchGroup.status] = (existing.statuses[researchGroup.status] || 0) + 1;
-      sourceRuns.set(researchGroup.source.id, existing);
-    }
-    candidates.push(buildCandidate(blueprint, groups, now));
   }
+
+  const candidates = candidateInputs.map(({ blueprint, groups }) => buildCandidate(blueprint, groups, now));
 
   const dryRun = candidates.every((candidate) =>
     candidate.ingestion.source_mix.every((source) => source.status !== "fetched"),
