@@ -1,11 +1,11 @@
 {
   "schemaVersion": "future-signals.predictions.v1",
-  "generatedAt": "2026-10-25T02:01:58.367Z",
+  "generatedAt": "2026-10-25T05:24:15.077Z",
   "generator": {
     "name": "predict-the-future-nightly-signal-generator",
     "version": "nightly-signal-scaffold-0.3.0",
-    "runId": "nightly-2026-10-25T02-01-58-367Z",
-    "generatedAt": "2026-10-25T02:01:58.367Z",
+    "runId": "nightly-2026-10-25T05-24-15-077Z",
+    "generatedAt": "2026-10-25T05:24:15.077Z",
     "mode": "mixed_or_live",
     "cadenceTarget": "nightly-0100-local",
     "dryRunRequested": false,
@@ -162,7 +162,7 @@
           "title": "Sustainability dynamics in the electricity sector: the role of marketing",
           "url": "https://doi.org/10.15556/ijsim.02.04.005",
           "observedAt": "2116-01-01T00:00:00.000Z",
-          "capturedAt": "2026-10-25T02:01:58.367Z",
+          "capturedAt": "2026-10-25T05:24:15.077Z",
           "confidence": 67,
           "summary": "Crossref research metadata match from i-das; DOI 10.15556/ijsim.02.04.005."
         },
@@ -173,7 +173,7 @@
           "title": "Investigation on Velocity Response and Energy Saving Performance of Water Hydraulic Systems Without Using Servo Valve",
           "url": "https://doi.org/10.3384/ecp1392a41",
           "observedAt": "2103-09-09T00:00:00.000Z",
-          "capturedAt": "2026-10-25T02:01:58.367Z",
+          "capturedAt": "2026-10-25T05:24:15.077Z",
           "confidence": 68,
           "summary": "Crossref research metadata match from Linköping University Electronic Press; DOI 10.3384/ecp1392a41."
         },
@@ -184,7 +184,7 @@
           "title": "Market Failure or Government Failure? A Response to Jaworski",
           "url": "https://doi.org/10.12747/bejr2013.01.08",
           "observedAt": "2103-03-10T00:00:00.000Z",
-          "capturedAt": "2026-10-25T02:01:58.367Z",
+          "capturedAt": "2026-10-25T05:24:15.077Z",
           "confidence": 48,
           "summary": "Crossref research metadata match from Journal Review Foundation; DOI 10.12747/bejr2013.01.08."
         },
@@ -194,8 +194,8 @@
           "sourceType": "entity_context",
           "title": "Grid energy storage",
           "url": "https://en.wikipedia.org/wiki/Grid_energy_storage",
-          "observedAt": "2026-10-25T02:01:58.367Z",
-          "capturedAt": "2026-10-25T02:01:58.367Z",
+          "observedAt": "2026-10-25T05:24:15.077Z",
+          "capturedAt": "2026-10-25T05:24:15.077Z",
           "confidence": 55,
           "summary": "Wikipedia context: Grid energy storage, also known as large-scale energy storage, is a set of technologies connected to the electrical power grid that store energy for later use. These systems help balance sup."
         }
@@ -210,7 +210,7 @@
           "evidence_count": 1,
           "url": "https://api.gdeltproject.org/api/v2/doc/doc",
           "requires_key": false,
-          "error": "fetch failed"
+          "error": "HTTP 429"
         },
         {
           "source_id": "world-bank-indicators",
@@ -475,7 +475,7 @@
               "sourceId": "ilostat",
               "sourceName": "ILOSTAT",
               "title": "Grid Flexibility Becomes A Local Resilience Product stub evidence 1",
-              "observedAt": "2026-10-24T02:01:58.367Z",
+              "observedAt": "2026-10-24T05:24:15.077Z",
               "quality": 74,
               "url": "https://ilostat.ilo.org/data/bulk/"
             },
@@ -483,7 +483,7 @@
               "sourceId": "faostat",
               "sourceName": "FAOSTAT",
               "title": "Grid Flexibility Becomes A Local Resilience Product stub evidence 1",
-              "observedAt": "2026-10-24T02:01:58.367Z",
+              "observedAt": "2026-10-24T05:24:15.077Z",
               "quality": 72,
               "url": "https://www.fao.org/faostat/"
             }
@@ -609,7 +609,7 @@
           "comparator": {
             "sourceName": "Wikipedia / MediaWiki",
             "title": "Grid energy storage",
-            "observedAt": "2026-10-25T02:01:58.367Z",
+            "observedAt": "2026-10-25T05:24:15.077Z",
             "window": "structural_baseline",
             "quality": 72,
             "url": "https://en.wikipedia.org/wiki/Grid_energy_storage"
@@ -623,14 +623,14 @@
           "recent": {
             "sourceName": "ILOSTAT",
             "title": "Grid Flexibility Becomes A Local Resilience Product stub evidence 1",
-            "observedAt": "2026-10-24T02:01:58.367Z",
+            "observedAt": "2026-10-24T05:24:15.077Z",
             "quality": 74,
             "url": "https://ilostat.ilo.org/data/bulk/"
           },
           "comparator": {
             "sourceName": "Wikidata Query Service",
             "title": "Grid Flexibility Becomes A Local Resilience Product stub evidence 1",
-            "observedAt": "2026-10-24T02:01:58.367Z",
+            "observedAt": "2026-10-24T05:24:15.077Z",
             "window": "structural_baseline",
             "quality": 67,
             "url": "https://query.wikidata.org/sparql"
@@ -651,14 +651,14 @@
           "recent": {
             "sourceName": "FAOSTAT",
             "title": "Grid Flexibility Becomes A Local Resilience Product stub evidence 1",
-            "observedAt": "2026-10-24T02:01:58.367Z",
+            "observedAt": "2026-10-24T05:24:15.077Z",
             "quality": 72,
             "url": "https://www.fao.org/faostat/"
           },
           "comparator": {
             "sourceName": "Wikidata Query Service",
             "title": "Grid Flexibility Becomes A Local Resilience Product stub evidence 1",
-            "observedAt": "2026-10-24T02:01:58.367Z",
+            "observedAt": "2026-10-24T05:24:15.077Z",
             "window": "structural_baseline",
             "quality": 67,
             "url": "https://query.wikidata.org/sparql"
@@ -678,7 +678,7 @@
       ],
       "patternModel": {
         "version": "PFE-3.0-deterministic",
-        "generatedAt": "2026-10-25T02:01:58.367Z",
+        "generatedAt": "2026-10-25T05:24:15.077Z",
         "cadence": "nightly-0100-local",
         "costModel": "no paid APIs, no LLM/API calls, deterministic open-source JavaScript",
         "referenceClass": {
@@ -817,7 +817,7 @@
                 "sourceId": "ilostat",
                 "sourceName": "ILOSTAT",
                 "title": "Grid Flexibility Becomes A Local Resilience Product stub evidence 1",
-                "observedAt": "2026-10-24T02:01:58.367Z",
+                "observedAt": "2026-10-24T05:24:15.077Z",
                 "quality": 74,
                 "url": "https://ilostat.ilo.org/data/bulk/"
               },
@@ -825,7 +825,7 @@
                 "sourceId": "faostat",
                 "sourceName": "FAOSTAT",
                 "title": "Grid Flexibility Becomes A Local Resilience Product stub evidence 1",
-                "observedAt": "2026-10-24T02:01:58.367Z",
+                "observedAt": "2026-10-24T05:24:15.077Z",
                 "quality": 72,
                 "url": "https://www.fao.org/faostat/"
               }
@@ -951,7 +951,7 @@
             "comparator": {
               "sourceName": "Wikipedia / MediaWiki",
               "title": "Grid energy storage",
-              "observedAt": "2026-10-25T02:01:58.367Z",
+              "observedAt": "2026-10-25T05:24:15.077Z",
               "window": "structural_baseline",
               "quality": 72,
               "url": "https://en.wikipedia.org/wiki/Grid_energy_storage"
@@ -965,14 +965,14 @@
             "recent": {
               "sourceName": "ILOSTAT",
               "title": "Grid Flexibility Becomes A Local Resilience Product stub evidence 1",
-              "observedAt": "2026-10-24T02:01:58.367Z",
+              "observedAt": "2026-10-24T05:24:15.077Z",
               "quality": 74,
               "url": "https://ilostat.ilo.org/data/bulk/"
             },
             "comparator": {
               "sourceName": "Wikidata Query Service",
               "title": "Grid Flexibility Becomes A Local Resilience Product stub evidence 1",
-              "observedAt": "2026-10-24T02:01:58.367Z",
+              "observedAt": "2026-10-24T05:24:15.077Z",
               "window": "structural_baseline",
               "quality": 67,
               "url": "https://query.wikidata.org/sparql"
@@ -993,14 +993,14 @@
             "recent": {
               "sourceName": "FAOSTAT",
               "title": "Grid Flexibility Becomes A Local Resilience Product stub evidence 1",
-              "observedAt": "2026-10-24T02:01:58.367Z",
+              "observedAt": "2026-10-24T05:24:15.077Z",
               "quality": 72,
               "url": "https://www.fao.org/faostat/"
             },
             "comparator": {
               "sourceName": "Wikidata Query Service",
               "title": "Grid Flexibility Becomes A Local Resilience Product stub evidence 1",
-              "observedAt": "2026-10-24T02:01:58.367Z",
+              "observedAt": "2026-10-24T05:24:15.077Z",
               "window": "structural_baseline",
               "quality": 67,
               "url": "https://query.wikidata.org/sparql"
@@ -1056,8 +1056,8 @@
           "probability": 82,
           "priorProbability": 64,
           "updateDelta": 18,
-          "openedAt": "2026-10-25T02:01:58.367Z",
-          "dueAt": "2029-04-25T02:01:58.367Z",
+          "openedAt": "2026-10-25T05:24:15.077Z",
+          "dueAt": "2029-04-25T05:24:15.077Z",
           "horizonMonths": {
             "min": 12,
             "max": 30
@@ -1108,8 +1108,8 @@
           "probability": 0.82,
           "outcome": null,
           "status": "open",
-          "openedAt": "2026-10-25T02:01:58.367Z",
-          "dueAt": "2029-04-25T02:01:58.367Z",
+          "openedAt": "2026-10-25T05:24:15.077Z",
+          "dueAt": "2029-04-25T05:24:15.077Z",
           "resolutionCriteria": [
             "Resolve positive if at least two leading indicators materially appear before 2029-04-25.",
             "Resolve negative if the listed falsifiers dominate for two consecutive nightly runs.",
@@ -1154,7 +1154,7 @@
         },
         "uiModel": {
           "version": "PFE-3.0-deterministic",
-          "generatedAt": "2026-10-25T02:01:58.367Z",
+          "generatedAt": "2026-10-25T05:24:15.077Z",
           "score": 85,
           "scores": {
             "baseRate": 72,
@@ -1253,8 +1253,8 @@
         "probability": 82,
         "priorProbability": 64,
         "updateDelta": 18,
-        "openedAt": "2026-10-25T02:01:58.367Z",
-        "dueAt": "2029-04-25T02:01:58.367Z",
+        "openedAt": "2026-10-25T05:24:15.077Z",
+        "dueAt": "2029-04-25T05:24:15.077Z",
         "horizonMonths": {
           "min": 12,
           "max": 30
@@ -1276,18 +1276,18 @@
         "probability": 0.82,
         "outcome": null,
         "status": "open",
-        "openedAt": "2026-10-25T02:01:58.367Z",
-        "dueAt": "2029-04-25T02:01:58.367Z",
+        "openedAt": "2026-10-25T05:24:15.077Z",
+        "dueAt": "2029-04-25T05:24:15.077Z",
         "resolutionCriteria": [
           "Resolve positive if at least two leading indicators materially appear before 2029-04-25.",
           "Resolve negative if the listed falsifiers dominate for two consecutive nightly runs.",
           "Keep unresolved if evidence remains mixed without observable market, policy, or operating behavior."
         ]
       },
-      "generatedAt": "2026-10-25T02:01:58.367Z",
+      "generatedAt": "2026-10-25T05:24:15.077Z",
       "generator": {
-        "runId": "nightly-2026-10-25T02-01-58-367Z",
-        "generatedAt": "2026-10-25T02:01:58.367Z",
+        "runId": "nightly-2026-10-25T05-24-15-077Z",
+        "generatedAt": "2026-10-25T05:24:15.077Z",
         "mode": "mixed_or_live",
         "cadenceTarget": "nightly-0100-local",
         "patternEngineVersion": "PFE-3.0-deterministic"
@@ -1426,7 +1426,7 @@
           "title": "Investigation and Optimization of Air Pollution Risk by a Multi-criteria Decision Making Method Using Fuzzy TOPSIS: A Case Study of Construction Workers",
           "url": "https://doi.org/10.32598/jaehr.9.4.1229",
           "observedAt": "2121-10-01T00:00:00.000Z",
-          "capturedAt": "2026-10-25T02:01:58.367Z",
+          "capturedAt": "2026-10-25T05:24:15.077Z",
           "confidence": 59,
           "summary": "Crossref research metadata match from Maad Rayan Publishing Company; DOI 10.32598/jaehr.9.4.1229."
         },
@@ -1437,7 +1437,7 @@
           "title": "Assessment of Human Health Risk and Surface Soil Contamination by Some Toxic Elements in Arak City, Iran",
           "url": "https://doi.org/10.32598/jaehr.9.4.1233",
           "observedAt": "2121-10-01T00:00:00.000Z",
-          "capturedAt": "2026-10-25T02:01:58.367Z",
+          "capturedAt": "2026-10-25T05:24:15.077Z",
           "confidence": 60,
           "summary": "Crossref research metadata match from Maad Rayan Publishing Company; DOI 10.32598/jaehr.9.4.1233."
         },
@@ -1448,7 +1448,7 @@
           "title": "Investigating the Non-carcinogenic Risk and Hazard Quotient of Heavy Metals in High-traffic Districts of Tehran Metropolis, Iran",
           "url": "https://doi.org/10.32598/jaehr.9.4.1219",
           "observedAt": "2121-10-01T00:00:00.000Z",
-          "capturedAt": "2026-10-25T02:01:58.367Z",
+          "capturedAt": "2026-10-25T05:24:15.077Z",
           "confidence": 61,
           "summary": "Crossref research metadata match from Maad Rayan Publishing Company; DOI 10.32598/jaehr.9.4.1219."
         },
@@ -1458,8 +1458,8 @@
           "sourceType": "entity_context",
           "title": "Climate change adaptation",
           "url": "https://en.wikipedia.org/wiki/Climate_change_adaptation",
-          "observedAt": "2026-10-25T02:01:58.367Z",
-          "capturedAt": "2026-10-25T02:01:58.367Z",
+          "observedAt": "2026-10-25T05:24:15.077Z",
+          "capturedAt": "2026-10-25T05:24:15.077Z",
           "confidence": 56,
           "summary": "Wikipedia context: Climate change adaptation is the process of adjusting to the effects of climate change, both current and anticipated. Adaptation aims to moderate or avoid harm for people, and is usually don."
         }
@@ -1474,7 +1474,7 @@
           "evidence_count": 1,
           "url": "https://api.gdeltproject.org/api/v2/doc/doc",
           "requires_key": false,
-          "error": "fetch failed"
+          "error": "HTTP 429"
         },
         {
           "source_id": "world-bank-indicators",
@@ -1739,7 +1739,7 @@
               "sourceId": "ilostat",
               "sourceName": "ILOSTAT",
               "title": "Coastal Risk Pricing Spreads Beyond Obvious Hotspots stub evidence 1",
-              "observedAt": "2026-10-24T02:01:58.367Z",
+              "observedAt": "2026-10-24T05:24:15.077Z",
               "quality": 71,
               "url": "https://ilostat.ilo.org/data/bulk/"
             },
@@ -1747,7 +1747,7 @@
               "sourceId": "faostat",
               "sourceName": "FAOSTAT",
               "title": "Coastal Risk Pricing Spreads Beyond Obvious Hotspots stub evidence 1",
-              "observedAt": "2026-10-24T02:01:58.367Z",
+              "observedAt": "2026-10-24T05:24:15.077Z",
               "quality": 69,
               "url": "https://www.fao.org/faostat/"
             }
@@ -1832,10 +1832,10 @@
             {
               "sourceId": "arxiv",
               "sourceName": "arXiv",
-              "title": "Reading, Writing, Sharing, and Interacting with the World through Video",
-              "observedAt": "2026-10-22T17:59:50Z",
+              "title": "Odd radio circle J1555+2726: Observational evidence for shock re-acceleration of fossil plasma",
+              "observedAt": "2026-10-22T17:59:32Z",
               "quality": 73,
-              "url": "https://arxiv.org/abs/2610.31668v1"
+              "url": "https://arxiv.org/abs/2610.31664v1"
             }
           ]
         }
@@ -1891,14 +1891,14 @@
           "recent": {
             "sourceName": "ILOSTAT",
             "title": "Coastal Risk Pricing Spreads Beyond Obvious Hotspots stub evidence 1",
-            "observedAt": "2026-10-24T02:01:58.367Z",
+            "observedAt": "2026-10-24T05:24:15.077Z",
             "quality": 71,
             "url": "https://ilostat.ilo.org/data/bulk/"
           },
           "comparator": {
             "sourceName": "OECD Data API",
             "title": "Coastal Risk Pricing Spreads Beyond Obvious Hotspots stub evidence 1",
-            "observedAt": "2026-10-24T02:01:58.367Z",
+            "observedAt": "2026-10-24T05:24:15.077Z",
             "window": "structural_baseline",
             "quality": 66,
             "url": "https://sdmx.oecd.org/public/rest/"
@@ -1919,14 +1919,14 @@
           "recent": {
             "sourceName": "FAOSTAT",
             "title": "Coastal Risk Pricing Spreads Beyond Obvious Hotspots stub evidence 1",
-            "observedAt": "2026-10-24T02:01:58.367Z",
+            "observedAt": "2026-10-24T05:24:15.077Z",
             "quality": 69,
             "url": "https://www.fao.org/faostat/"
           },
           "comparator": {
             "sourceName": "OECD Data API",
             "title": "Coastal Risk Pricing Spreads Beyond Obvious Hotspots stub evidence 1",
-            "observedAt": "2026-10-24T02:01:58.367Z",
+            "observedAt": "2026-10-24T05:24:15.077Z",
             "window": "structural_baseline",
             "quality": 66,
             "url": "https://sdmx.oecd.org/public/rest/"
@@ -1946,7 +1946,7 @@
       ],
       "patternModel": {
         "version": "PFE-3.0-deterministic",
-        "generatedAt": "2026-10-25T02:01:58.367Z",
+        "generatedAt": "2026-10-25T05:24:15.077Z",
         "cadence": "nightly-0100-local",
         "costModel": "no paid APIs, no LLM/API calls, deterministic open-source JavaScript",
         "referenceClass": {
@@ -2066,7 +2066,7 @@
                 "sourceId": "ilostat",
                 "sourceName": "ILOSTAT",
                 "title": "Coastal Risk Pricing Spreads Beyond Obvious Hotspots stub evidence 1",
-                "observedAt": "2026-10-24T02:01:58.367Z",
+                "observedAt": "2026-10-24T05:24:15.077Z",
                 "quality": 71,
                 "url": "https://ilostat.ilo.org/data/bulk/"
               },
@@ -2074,7 +2074,7 @@
                 "sourceId": "faostat",
                 "sourceName": "FAOSTAT",
                 "title": "Coastal Risk Pricing Spreads Beyond Obvious Hotspots stub evidence 1",
-                "observedAt": "2026-10-24T02:01:58.367Z",
+                "observedAt": "2026-10-24T05:24:15.077Z",
                 "quality": 69,
                 "url": "https://www.fao.org/faostat/"
               }
@@ -2159,10 +2159,10 @@
               {
                 "sourceId": "arxiv",
                 "sourceName": "arXiv",
-                "title": "Reading, Writing, Sharing, and Interacting with the World through Video",
-                "observedAt": "2026-10-22T17:59:50Z",
+                "title": "Odd radio circle J1555+2726: Observational evidence for shock re-acceleration of fossil plasma",
+                "observedAt": "2026-10-22T17:59:32Z",
                 "quality": 73,
-                "url": "https://arxiv.org/abs/2610.31668v1"
+                "url": "https://arxiv.org/abs/2610.31664v1"
               }
             ]
           }
@@ -2218,14 +2218,14 @@
             "recent": {
               "sourceName": "ILOSTAT",
               "title": "Coastal Risk Pricing Spreads Beyond Obvious Hotspots stub evidence 1",
-              "observedAt": "2026-10-24T02:01:58.367Z",
+              "observedAt": "2026-10-24T05:24:15.077Z",
               "quality": 71,
               "url": "https://ilostat.ilo.org/data/bulk/"
             },
             "comparator": {
               "sourceName": "OECD Data API",
               "title": "Coastal Risk Pricing Spreads Beyond Obvious Hotspots stub evidence 1",
-              "observedAt": "2026-10-24T02:01:58.367Z",
+              "observedAt": "2026-10-24T05:24:15.077Z",
               "window": "structural_baseline",
               "quality": 66,
               "url": "https://sdmx.oecd.org/public/rest/"
@@ -2246,14 +2246,14 @@
             "recent": {
               "sourceName": "FAOSTAT",
               "title": "Coastal Risk Pricing Spreads Beyond Obvious Hotspots stub evidence 1",
-              "observedAt": "2026-10-24T02:01:58.367Z",
+              "observedAt": "2026-10-24T05:24:15.077Z",
               "quality": 69,
               "url": "https://www.fao.org/faostat/"
             },
             "comparator": {
               "sourceName": "OECD Data API",
               "title": "Coastal Risk Pricing Spreads Beyond Obvious Hotspots stub evidence 1",
-              "observedAt": "2026-10-24T02:01:58.367Z",
+              "observedAt": "2026-10-24T05:24:15.077Z",
               "window": "structural_baseline",
               "quality": 66,
               "url": "https://sdmx.oecd.org/public/rest/"
@@ -2309,8 +2309,8 @@
           "probability": 82,
           "priorProbability": 64,
           "updateDelta": 18,
-          "openedAt": "2026-10-25T02:01:58.367Z",
-          "dueAt": "2029-10-25T02:01:58.367Z",
+          "openedAt": "2026-10-25T05:24:15.077Z",
+          "dueAt": "2029-10-25T05:24:15.077Z",
           "horizonMonths": {
             "min": 12,
             "max": 36
@@ -2361,8 +2361,8 @@
           "probability": 0.82,
           "outcome": null,
           "status": "open",
-          "openedAt": "2026-10-25T02:01:58.367Z",
-          "dueAt": "2029-10-25T02:01:58.367Z",
+          "openedAt": "2026-10-25T05:24:15.077Z",
+          "dueAt": "2029-10-25T05:24:15.077Z",
           "resolutionCriteria": [
             "Resolve positive if at least two leading indicators materially appear before 2029-10-25.",
             "Resolve negative if the listed falsifiers dominate for two consecutive nightly runs.",
@@ -2407,7 +2407,7 @@
         },
         "uiModel": {
           "version": "PFE-3.0-deterministic",
-          "generatedAt": "2026-10-25T02:01:58.367Z",
+          "generatedAt": "2026-10-25T05:24:15.077Z",
           "score": 85,
           "scores": {
             "baseRate": 72,
@@ -2504,8 +2504,8 @@
         "probability": 82,
         "priorProbability": 64,
         "updateDelta": 18,
-        "openedAt": "2026-10-25T02:01:58.367Z",
-        "dueAt": "2029-10-25T02:01:58.367Z",
+        "openedAt": "2026-10-25T05:24:15.077Z",
+        "dueAt": "2029-10-25T05:24:15.077Z",
         "horizonMonths": {
           "min": 12,
           "max": 36
@@ -2527,18 +2527,18 @@
         "probability": 0.82,
         "outcome": null,
         "status": "open",
-        "openedAt": "2026-10-25T02:01:58.367Z",
-        "dueAt": "2029-10-25T02:01:58.367Z",
+        "openedAt": "2026-10-25T05:24:15.077Z",
+        "dueAt": "2029-10-25T05:24:15.077Z",
         "resolutionCriteria": [
           "Resolve positive if at least two leading indicators materially appear before 2029-10-25.",
           "Resolve negative if the listed falsifiers dominate for two consecutive nightly runs.",
           "Keep unresolved if evidence remains mixed without observable market, policy, or operating behavior."
         ]
       },
-      "generatedAt": "2026-10-25T02:01:58.367Z",
+      "generatedAt": "2026-10-25T05:24:15.077Z",
       "generator": {
-        "runId": "nightly-2026-10-25T02-01-58-367Z",
-        "generatedAt": "2026-10-25T02:01:58.367Z",
+        "runId": "nightly-2026-10-25T05-24-15-077Z",
+        "generatedAt": "2026-10-25T05:24:15.077Z",
         "mode": "mixed_or_live",
         "cadenceTarget": "nightly-0100-local",
         "patternEngineVersion": "PFE-3.0-deterministic"
@@ -2676,8 +2676,8 @@
           "sourceType": "entity_context",
           "title": "Submarine",
           "url": "https://en.wikipedia.org/wiki/Submarine",
-          "observedAt": "2026-10-25T02:01:58.367Z",
-          "capturedAt": "2026-10-25T02:01:58.367Z",
+          "observedAt": "2026-10-25T05:24:15.077Z",
+          "capturedAt": "2026-10-25T05:24:15.077Z",
           "confidence": 47,
           "summary": "Wikipedia context: A submarine (often shortened to sub) is a watercraft capable of independent operation underwater. (It differs from a submersible, which has more limited underwater capability.) The term \"sub."
         },
@@ -2687,8 +2687,8 @@
           "sourceType": "entity_context",
           "title": "Technology",
           "url": "https://en.wikipedia.org/wiki/Technology",
-          "observedAt": "2026-10-25T02:01:58.367Z",
-          "capturedAt": "2026-10-25T02:01:58.367Z",
+          "observedAt": "2026-10-25T05:24:15.077Z",
+          "capturedAt": "2026-10-25T05:24:15.077Z",
           "confidence": 48,
           "summary": "Wikipedia context: Technology is the application of conceptual knowledge to achieve practical goals, especially in a reproducible way. The word technology can also mean the products resulting from such efforts."
         },
@@ -2698,8 +2698,8 @@
           "sourceType": "entity_context",
           "title": "2021 in science",
           "url": "https://en.wikipedia.org/wiki/2021_in_science",
-          "observedAt": "2026-10-25T02:01:58.367Z",
-          "capturedAt": "2026-10-25T02:01:58.367Z",
+          "observedAt": "2026-10-25T05:24:15.077Z",
+          "capturedAt": "2026-10-25T05:24:15.077Z",
           "confidence": 49,
           "summary": "Wikipedia context: This is a list of several significant scientific events that occurred or were scheduled to occur in 2021.."
         },
@@ -2710,7 +2710,7 @@
           "title": "Open-Meteo Forecast: EAST AFRICA / FOOD + HEALTH short-range weather signal",
           "url": "https://api.open-meteo.com/v1/forecast?latitude=-1.3&longitude=36.8&hourly=temperature_2m%2Cprecipitation%2Cwind_speed_10m&daily=temperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&timezone=UTC&forecast_days=3",
           "observedAt": "2026-10-25T00:00:00.000Z",
-          "capturedAt": "2026-10-25T02:01:58.367Z",
+          "capturedAt": "2026-10-25T05:24:15.077Z",
           "confidence": 60,
           "summary": "Open-Meteo forecast near EAST AFRICA / FOOD + HEALTH: max temperature 30 C and precipitation 5 mm."
         }
@@ -2725,7 +2725,7 @@
           "evidence_count": 1,
           "url": "https://api.gdeltproject.org/api/v2/doc/doc",
           "requires_key": false,
-          "error": "fetch failed"
+          "error": "HTTP 429"
         },
         {
           "source_id": "world-bank-indicators",
@@ -2988,7 +2988,7 @@
               "sourceId": "faostat",
               "sourceName": "FAOSTAT",
               "title": "Cold Chains Become Cross-Sector Growth Infrastructure stub evidence 1",
-              "observedAt": "2026-10-24T02:01:58.367Z",
+              "observedAt": "2026-10-24T05:24:15.077Z",
               "quality": 73,
               "url": "https://www.fao.org/faostat/"
             },
@@ -2996,7 +2996,7 @@
               "sourceId": "ilostat",
               "sourceName": "ILOSTAT",
               "title": "Cold Chains Become Cross-Sector Growth Infrastructure stub evidence 1",
-              "observedAt": "2026-10-24T02:01:58.367Z",
+              "observedAt": "2026-10-24T05:24:15.077Z",
               "quality": 67,
               "url": "https://ilostat.ilo.org/data/bulk/"
             }
@@ -3100,14 +3100,6 @@
             {
               "sourceId": "arxiv",
               "sourceName": "arXiv",
-              "title": "Magnetic Activity as a Driver of Low-gravity-like Spectral Morphology in Late-M Dwarfs",
-              "observedAt": "2026-10-22T17:56:28Z",
-              "quality": 73,
-              "url": "https://arxiv.org/abs/2610.31647v1"
-            },
-            {
-              "sourceId": "arxiv",
-              "sourceName": "arXiv",
               "title": "Low-Bit N-Gram Embeddings for Language Models",
               "observedAt": "2026-10-22T17:56:13Z",
               "quality": 73,
@@ -3122,10 +3114,18 @@
               "url": "https://arxiv.org/abs/2610.31649v1"
             },
             {
+              "sourceId": "arxiv",
+              "sourceName": "arXiv",
+              "title": "Magnetic Activity as a Driver of Low-gravity-like Spectral Morphology in Late-M Dwarfs",
+              "observedAt": "2026-10-22T17:56:28Z",
+              "quality": 72,
+              "url": "https://arxiv.org/abs/2610.31647v1"
+            },
+            {
               "sourceId": "wikipedia",
               "sourceName": "Wikipedia / MediaWiki",
               "title": "2021 in science",
-              "observedAt": "2026-10-25T02:01:58.367Z",
+              "observedAt": "2026-10-25T05:24:15.077Z",
               "quality": 71,
               "url": "https://en.wikipedia.org/wiki/2021_in_science"
             }
@@ -3185,14 +3185,14 @@
           "recent": {
             "sourceName": "FAOSTAT",
             "title": "Cold Chains Become Cross-Sector Growth Infrastructure stub evidence 1",
-            "observedAt": "2026-10-24T02:01:58.367Z",
+            "observedAt": "2026-10-24T05:24:15.077Z",
             "quality": 73,
             "url": "https://www.fao.org/faostat/"
           },
           "comparator": {
             "sourceName": "OECD Data API",
             "title": "Cold Chains Become Cross-Sector Growth Infrastructure stub evidence 1",
-            "observedAt": "2026-10-24T02:01:58.367Z",
+            "observedAt": "2026-10-24T05:24:15.077Z",
             "window": "structural_baseline",
             "quality": 65,
             "url": "https://sdmx.oecd.org/public/rest/"
@@ -3213,14 +3213,14 @@
           "recent": {
             "sourceName": "ILOSTAT",
             "title": "Cold Chains Become Cross-Sector Growth Infrastructure stub evidence 1",
-            "observedAt": "2026-10-24T02:01:58.367Z",
+            "observedAt": "2026-10-24T05:24:15.077Z",
             "quality": 67,
             "url": "https://ilostat.ilo.org/data/bulk/"
           },
           "comparator": {
             "sourceName": "OECD Data API",
             "title": "Cold Chains Become Cross-Sector Growth Infrastructure stub evidence 1",
-            "observedAt": "2026-10-24T02:01:58.367Z",
+            "observedAt": "2026-10-24T05:24:15.077Z",
             "window": "structural_baseline",
             "quality": 65,
             "url": "https://sdmx.oecd.org/public/rest/"
@@ -3240,7 +3240,7 @@
       ],
       "patternModel": {
         "version": "PFE-3.0-deterministic",
-        "generatedAt": "2026-10-25T02:01:58.367Z",
+        "generatedAt": "2026-10-25T05:24:15.077Z",
         "cadence": "nightly-0100-local",
         "costModel": "no paid APIs, no LLM/API calls, deterministic open-source JavaScript",
         "referenceClass": {
@@ -3378,7 +3378,7 @@
                 "sourceId": "faostat",
                 "sourceName": "FAOSTAT",
                 "title": "Cold Chains Become Cross-Sector Growth Infrastructure stub evidence 1",
-                "observedAt": "2026-10-24T02:01:58.367Z",
+                "observedAt": "2026-10-24T05:24:15.077Z",
                 "quality": 73,
                 "url": "https://www.fao.org/faostat/"
               },
@@ -3386,7 +3386,7 @@
                 "sourceId": "ilostat",
                 "sourceName": "ILOSTAT",
                 "title": "Cold Chains Become Cross-Sector Growth Infrastructure stub evidence 1",
-                "observedAt": "2026-10-24T02:01:58.367Z",
+                "observedAt": "2026-10-24T05:24:15.077Z",
                 "quality": 67,
                 "url": "https://ilostat.ilo.org/data/bulk/"
               }
@@ -3490,14 +3490,6 @@
               {
                 "sourceId": "arxiv",
                 "sourceName": "arXiv",
-                "title": "Magnetic Activity as a Driver of Low-gravity-like Spectral Morphology in Late-M Dwarfs",
-                "observedAt": "2026-10-22T17:56:28Z",
-                "quality": 73,
-                "url": "https://arxiv.org/abs/2610.31647v1"
-              },
-              {
-                "sourceId": "arxiv",
-                "sourceName": "arXiv",
                 "title": "Low-Bit N-Gram Embeddings for Language Models",
                 "observedAt": "2026-10-22T17:56:13Z",
                 "quality": 73,
@@ -3512,10 +3504,18 @@
                 "url": "https://arxiv.org/abs/2610.31649v1"
               },
               {
+                "sourceId": "arxiv",
+                "sourceName": "arXiv",
+                "title": "Magnetic Activity as a Driver of Low-gravity-like Spectral Morphology in Late-M Dwarfs",
+                "observedAt": "2026-10-22T17:56:28Z",
+                "quality": 72,
+                "url": "https://arxiv.org/abs/2610.31647v1"
+              },
+              {
                 "sourceId": "wikipedia",
                 "sourceName": "Wikipedia / MediaWiki",
                 "title": "2021 in science",
-                "observedAt": "2026-10-25T02:01:58.367Z",
+                "observedAt": "2026-10-25T05:24:15.077Z",
                 "quality": 71,
                 "url": "https://en.wikipedia.org/wiki/2021_in_science"
               }
@@ -3575,14 +3575,14 @@
             "recent": {
               "sourceName": "FAOSTAT",
               "title": "Cold Chains Become Cross-Sector Growth Infrastructure stub evidence 1",
-              "observedAt": "2026-10-24T02:01:58.367Z",
+              "observedAt": "2026-10-24T05:24:15.077Z",
               "quality": 73,
               "url": "https://www.fao.org/faostat/"
             },
             "comparator": {
               "sourceName": "OECD Data API",
               "title": "Cold Chains Become Cross-Sector Growth Infrastructure stub evidence 1",
-              "observedAt": "2026-10-24T02:01:58.367Z",
+              "observedAt": "2026-10-24T05:24:15.077Z",
               "window": "structural_baseline",
               "quality": 65,
               "url": "https://sdmx.oecd.org/public/rest/"
@@ -3603,14 +3603,14 @@
             "recent": {
               "sourceName": "ILOSTAT",
               "title": "Cold Chains Become Cross-Sector Growth Infrastructure stub evidence 1",
-              "observedAt": "2026-10-24T02:01:58.367Z",
+              "observedAt": "2026-10-24T05:24:15.077Z",
               "quality": 67,
               "url": "https://ilostat.ilo.org/data/bulk/"
             },
             "comparator": {
               "sourceName": "OECD Data API",
               "title": "Cold Chains Become Cross-Sector Growth Infrastructure stub evidence 1",
-              "observedAt": "2026-10-24T02:01:58.367Z",
+              "observedAt": "2026-10-24T05:24:15.077Z",
               "window": "structural_baseline",
               "quality": 65,
               "url": "https://sdmx.oecd.org/public/rest/"
@@ -3666,8 +3666,8 @@
           "probability": 81,
           "priorProbability": 62,
           "updateDelta": 19,
-          "openedAt": "2026-10-25T02:01:58.367Z",
-          "dueAt": "2030-10-25T02:01:58.367Z",
+          "openedAt": "2026-10-25T05:24:15.077Z",
+          "dueAt": "2030-10-25T05:24:15.077Z",
           "horizonMonths": {
             "min": 24,
             "max": 48
@@ -3718,8 +3718,8 @@
           "probability": 0.81,
           "outcome": null,
           "status": "open",
-          "openedAt": "2026-10-25T02:01:58.367Z",
-          "dueAt": "2030-10-25T02:01:58.367Z",
+          "openedAt": "2026-10-25T05:24:15.077Z",
+          "dueAt": "2030-10-25T05:24:15.077Z",
           "resolutionCriteria": [
             "Resolve positive if at least two leading indicators materially appear before 2030-10-25.",
             "Resolve negative if the listed falsifiers dominate for two consecutive nightly runs.",
@@ -3764,7 +3764,7 @@
         },
         "uiModel": {
           "version": "PFE-3.0-deterministic",
-          "generatedAt": "2026-10-25T02:01:58.367Z",
+          "generatedAt": "2026-10-25T05:24:15.077Z",
           "score": 83,
           "scores": {
             "baseRate": 70,
@@ -3864,8 +3864,8 @@
         "probability": 81,
         "priorProbability": 62,
         "updateDelta": 19,
-        "openedAt": "2026-10-25T02:01:58.367Z",
-        "dueAt": "2030-10-25T02:01:58.367Z",
+        "openedAt": "2026-10-25T05:24:15.077Z",
+        "dueAt": "2030-10-25T05:24:15.077Z",
         "horizonMonths": {
           "min": 24,
           "max": 48
@@ -3887,18 +3887,18 @@
         "probability": 0.81,
         "outcome": null,
         "status": "open",
-        "openedAt": "2026-10-25T02:01:58.367Z",
-        "dueAt": "2030-10-25T02:01:58.367Z",
+        "openedAt": "2026-10-25T05:24:15.077Z",
+        "dueAt": "2030-10-25T05:24:15.077Z",
         "resolutionCriteria": [
           "Resolve positive if at least two leading indicators materially appear before 2030-10-25.",
           "Resolve negative if the listed falsifiers dominate for two consecutive nightly runs.",
           "Keep unresolved if evidence remains mixed without observable market, policy, or operating behavior."
         ]
       },
-      "generatedAt": "2026-10-25T02:01:58.367Z",
+      "generatedAt": "2026-10-25T05:24:15.077Z",
       "generator": {
-        "runId": "nightly-2026-10-25T02-01-58-367Z",
-        "generatedAt": "2026-10-25T02:01:58.367Z",
+        "runId": "nightly-2026-10-25T05-24-15-077Z",
+        "generatedAt": "2026-10-25T05:24:15.077Z",
         "mode": "mixed_or_live",
         "cadenceTarget": "nightly-0100-local",
         "patternEngineVersion": "PFE-3.0-deterministic"
@@ -3911,7 +3911,7 @@
       "lat": 22.6,
       "lon": 78.9,
       "labelRank": 4,
-      "confidence": 80,
+      "confidence": 79,
       "region": "INDIA / HEAT + LABOUR",
       "category": "Labour",
       "horizon": "12-36 months",
@@ -4031,48 +4031,48 @@
           "summary": "WHO Kenya's 2025 annual report, published in April 2026, said more than 2,000 cold-chain units were upgraded across all 47 counties, lifting coverage above 95% and reducing stockouts and temperature excursions. That is exactly the kind of cross-sector logistics base this signal looks for."
         },
         {
-          "sourceId": "crossref",
-          "sourceName": "Crossref",
-          "sourceType": "research_metadata",
-          "title": "Investigation and Optimization of Air Pollution Risk by a Multi-criteria Decision Making Method Using Fuzzy TOPSIS: A Case Study of Construction Workers",
-          "url": "https://doi.org/10.32598/jaehr.9.4.1229",
-          "observedAt": "2121-10-01T00:00:00.000Z",
-          "capturedAt": "2026-10-25T02:01:58.367Z",
-          "confidence": 54,
-          "summary": "Crossref research metadata match from Maad Rayan Publishing Company; DOI 10.32598/jaehr.9.4.1229."
-        },
-        {
-          "sourceId": "crossref",
-          "sourceName": "Crossref",
-          "sourceType": "research_metadata",
-          "title": "Effect of Drought Stress, Soil Salinity, P. indica, and MWCNs on Biodegradation of Diesel Oil in the Pb- and Cd-Polluted Soil Under Cultivation of Triticale Plant",
-          "url": "https://doi.org/10.32598/jaehr.9.4.1232",
-          "observedAt": "2121-10-01T00:00:00.000Z",
-          "capturedAt": "2026-10-25T02:01:58.367Z",
-          "confidence": 55,
-          "summary": "Crossref research metadata match from Maad Rayan Publishing Company; DOI 10.32598/jaehr.9.4.1232."
-        },
-        {
-          "sourceId": "crossref",
-          "sourceName": "Crossref",
-          "sourceType": "research_metadata",
-          "title": "Natural Sustainability Ethics for Resolving Current Outer Space Challenges",
-          "url": "https://doi.org/10.61781/11i20212bmlm",
-          "observedAt": "2121-04-20T00:00:00.000Z",
-          "capturedAt": "2026-10-25T02:01:58.367Z",
-          "confidence": 56,
-          "summary": "Crossref research metadata match from BML Munjal University; DOI 10.61781/11i20212bmlm."
-        },
-        {
           "sourceId": "open-meteo",
           "sourceName": "Open-Meteo Forecast",
           "sourceType": "observed_condition",
           "title": "Open-Meteo Forecast: INDIA / HEAT + LABOUR short-range weather signal",
           "url": "https://api.open-meteo.com/v1/forecast?latitude=22.6&longitude=78.9&hourly=temperature_2m%2Cprecipitation%2Cwind_speed_10m&daily=temperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&timezone=UTC&forecast_days=3",
           "observedAt": "2026-10-25T00:00:00.000Z",
-          "capturedAt": "2026-10-25T02:01:58.367Z",
+          "capturedAt": "2026-10-25T05:24:15.077Z",
           "confidence": 54,
           "summary": "Open-Meteo forecast near INDIA / HEAT + LABOUR: max temperature 28.5 C and precipitation 0 mm."
+        },
+        {
+          "sourceId": "nasa-power",
+          "sourceName": "NASA POWER",
+          "sourceType": "physical_baseline",
+          "title": "NASA POWER: recent physical baseline near INDIA / HEAT + LABOUR",
+          "url": "https://power.larc.nasa.gov/api/temporal/daily/point?latitude=22.6&longitude=78.9&start=20261019&end=20261025&community=RE&parameters=T2M%2CPRECTOTCORR%2CWS10M&format=JSON",
+          "observedAt": "2026-10-25T00:00:00.000Z",
+          "capturedAt": "2026-10-25T05:24:15.077Z",
+          "confidence": 58,
+          "summary": "NASA POWER baseline: T2M -999 C, precipitation -999 mm/day, wind -999 m/s."
+        },
+        {
+          "sourceId": "gdelt-doc",
+          "sourceName": "GDELT DOC 2.1",
+          "sourceType": "current_event",
+          "title": "Heat Stress Becomes A Labour-Capacity Constraint stub evidence 1",
+          "url": "https://api.gdeltproject.org/api/v2/doc/doc",
+          "observedAt": "2026-10-24T05:24:15.077Z",
+          "capturedAt": "2026-10-25T05:24:15.077Z",
+          "confidence": 60,
+          "summary": "GDELT DOC 2.1 fallback context for \"India heat stress labour productivity construction logistics wet bulb\" kept the source in the nightly evidence mix when live data was unavailable during this run."
+        },
+        {
+          "sourceId": "usgs-earthquakes",
+          "sourceName": "USGS Earthquake Catalog",
+          "sourceType": "hazard_event",
+          "title": "Heat Stress Becomes A Labour-Capacity Constraint stub evidence 1",
+          "url": "https://earthquake.usgs.gov/fdsnws/event/1/query",
+          "observedAt": "2026-10-24T05:24:15.077Z",
+          "capturedAt": "2026-10-25T05:24:15.077Z",
+          "confidence": 52,
+          "summary": "USGS Earthquake Catalog fallback context for \"India heat stress labour productivity construction logistics wet bulb\" kept the source in the nightly evidence mix when live data was unavailable during this run."
         }
       ],
       "sourceMix": [
@@ -4085,7 +4085,7 @@
           "evidence_count": 1,
           "url": "https://api.gdeltproject.org/api/v2/doc/doc",
           "requires_key": false,
-          "error": "fetch failed"
+          "error": "HTTP 429"
         },
         {
           "source_id": "world-bank-indicators",
@@ -4147,11 +4147,11 @@
           "source_name": "Crossref",
           "evidence_type": "research_metadata",
           "adapter": "crossref",
-          "status": "fetched",
-          "evidence_count": 3,
+          "status": "error_fallback_stub",
+          "evidence_count": 1,
           "url": "https://api.crossref.org/works",
           "requires_key": false,
-          "error": null
+          "error": "HTTP 429"
         },
         {
           "source_id": "arxiv",
@@ -4350,7 +4350,7 @@
               "sourceId": "ilostat",
               "sourceName": "ILOSTAT",
               "title": "Heat Stress Becomes A Labour-Capacity Constraint stub evidence 1",
-              "observedAt": "2026-10-24T02:01:58.367Z",
+              "observedAt": "2026-10-24T05:24:15.077Z",
               "quality": 70,
               "url": "https://ilostat.ilo.org/data/bulk/"
             },
@@ -4358,7 +4358,7 @@
               "sourceId": "faostat",
               "sourceName": "FAOSTAT",
               "title": "Heat Stress Becomes A Labour-Capacity Constraint stub evidence 1",
-              "observedAt": "2026-10-24T02:01:58.367Z",
+              "observedAt": "2026-10-24T05:24:15.077Z",
               "quality": 69,
               "url": "https://www.fao.org/faostat/"
             }
@@ -4373,7 +4373,7 @@
           "topEvidence": []
         },
         "structural_baseline": {
-          "count": 19,
+          "count": 17,
           "sources": [
             "World Bank Indicators",
             "Crossref",
@@ -4396,7 +4396,7 @@
             "context",
             "general"
           ],
-          "averageQuality": 66,
+          "averageQuality": 64,
           "terms": [
             "access",
             "electricity",
@@ -4408,38 +4408,14 @@
             "indicator",
             "accs",
             "indicators",
-            "investigation",
-            "optimization",
-            "pollution",
-            "risk",
-            "multi-criteria",
-            "decision"
+            "heat",
+            "stress",
+            "labour-capacity",
+            "constraint",
+            "stub",
+            "evidence"
           ],
           "topEvidence": [
-            {
-              "sourceId": "crossref",
-              "sourceName": "Crossref",
-              "title": "Investigation and Optimization of Air Pollution Risk by a Multi-criteria Decision Making Method Using Fuzzy TOPSIS: A Case Study of Construction Workers",
-              "observedAt": "2121-10-01T00:00:00.000Z",
-              "quality": 77,
-              "url": "https://doi.org/10.32598/jaehr.9.4.1229"
-            },
-            {
-              "sourceId": "crossref",
-              "sourceName": "Crossref",
-              "title": "Effect of Drought Stress, Soil Salinity, P. indica, and MWCNs on Biodegradation of Diesel Oil in the Pb- and Cd-Polluted Soil Under Cultivation of Triticale Plant",
-              "observedAt": "2121-10-01T00:00:00.000Z",
-              "quality": 77,
-              "url": "https://doi.org/10.32598/jaehr.9.4.1232"
-            },
-            {
-              "sourceId": "crossref",
-              "sourceName": "Crossref",
-              "title": "Natural Sustainability Ethics for Resolving Current Outer Space Challenges",
-              "observedAt": "2121-04-20T00:00:00.000Z",
-              "quality": 77,
-              "url": "https://doi.org/10.61781/11i20212bmlm"
-            },
             {
               "sourceId": "arxiv",
               "sourceName": "arXiv",
@@ -4447,6 +4423,30 @@
               "observedAt": "2026-10-22T17:59:50Z",
               "quality": 75,
               "url": "https://arxiv.org/abs/2610.31669v1"
+            },
+            {
+              "sourceId": "arxiv",
+              "sourceName": "arXiv",
+              "title": "Half-Completeness from Standard Gravitational Dispersion Relations",
+              "observedAt": "2026-10-22T17:59:40Z",
+              "quality": 75,
+              "url": "https://arxiv.org/abs/2610.31665v1"
+            },
+            {
+              "sourceId": "arxiv",
+              "sourceName": "arXiv",
+              "title": "Ricci flow of Integrable Sigma Models, Hitchin Systems and Quantum Seiberg-Witten theory",
+              "observedAt": "2026-10-22T17:59:58Z",
+              "quality": 74,
+              "url": "https://arxiv.org/abs/2610.31672v1"
+            },
+            {
+              "sourceId": "codex-global-news-research",
+              "sourceName": "GOV.UK / Department for Energy Security and Net Zero",
+              "title": "UK launches call for evidence on community batteries",
+              "observedAt": "2026-06-04T00:00:00.000Z",
+              "quality": 65,
+              "url": "https://www.gov.uk/government/news/new-proposals-to-cut-bills-with-community-batteries"
             }
           ]
         }
@@ -4463,7 +4463,7 @@
           "comparator": {
             "sourceName": "OECD Data API",
             "title": "Heat Stress Becomes A Labour-Capacity Constraint stub evidence 1",
-            "observedAt": "2026-10-24T02:01:58.367Z",
+            "observedAt": "2026-10-24T05:24:15.077Z",
             "window": "structural_baseline",
             "quality": 62,
             "url": "https://sdmx.oecd.org/public/rest/"
@@ -4486,7 +4486,7 @@
           "comparator": {
             "sourceName": "OECD Data API",
             "title": "Heat Stress Becomes A Labour-Capacity Constraint stub evidence 1",
-            "observedAt": "2026-10-24T02:01:58.367Z",
+            "observedAt": "2026-10-24T05:24:15.077Z",
             "window": "structural_baseline",
             "quality": 62,
             "url": "https://sdmx.oecd.org/public/rest/"
@@ -4502,14 +4502,14 @@
           "recent": {
             "sourceName": "ILOSTAT",
             "title": "Heat Stress Becomes A Labour-Capacity Constraint stub evidence 1",
-            "observedAt": "2026-10-24T02:01:58.367Z",
+            "observedAt": "2026-10-24T05:24:15.077Z",
             "quality": 70,
             "url": "https://ilostat.ilo.org/data/bulk/"
           },
           "comparator": {
             "sourceName": "OECD Data API",
             "title": "Heat Stress Becomes A Labour-Capacity Constraint stub evidence 1",
-            "observedAt": "2026-10-24T02:01:58.367Z",
+            "observedAt": "2026-10-24T05:24:15.077Z",
             "window": "structural_baseline",
             "quality": 62,
             "url": "https://sdmx.oecd.org/public/rest/"
@@ -4530,14 +4530,14 @@
           "recent": {
             "sourceName": "FAOSTAT",
             "title": "Heat Stress Becomes A Labour-Capacity Constraint stub evidence 1",
-            "observedAt": "2026-10-24T02:01:58.367Z",
+            "observedAt": "2026-10-24T05:24:15.077Z",
             "quality": 69,
             "url": "https://www.fao.org/faostat/"
           },
           "comparator": {
             "sourceName": "OECD Data API",
             "title": "Heat Stress Becomes A Labour-Capacity Constraint stub evidence 1",
-            "observedAt": "2026-10-24T02:01:58.367Z",
+            "observedAt": "2026-10-24T05:24:15.077Z",
             "window": "structural_baseline",
             "quality": 62,
             "url": "https://sdmx.oecd.org/public/rest/"
@@ -4557,7 +4557,7 @@
       ],
       "patternModel": {
         "version": "PFE-3.0-deterministic",
-        "generatedAt": "2026-10-25T02:01:58.367Z",
+        "generatedAt": "2026-10-25T05:24:15.077Z",
         "cadence": "nightly-0100-local",
         "costModel": "no paid APIs, no LLM/API calls, deterministic open-source JavaScript",
         "referenceClass": {
@@ -4582,7 +4582,6 @@
             "domain": "physical",
             "terms": [
               "heat",
-              "drought",
               "storm",
               "cooling"
             ]
@@ -4690,7 +4689,7 @@
                 "sourceId": "ilostat",
                 "sourceName": "ILOSTAT",
                 "title": "Heat Stress Becomes A Labour-Capacity Constraint stub evidence 1",
-                "observedAt": "2026-10-24T02:01:58.367Z",
+                "observedAt": "2026-10-24T05:24:15.077Z",
                 "quality": 70,
                 "url": "https://ilostat.ilo.org/data/bulk/"
               },
@@ -4698,7 +4697,7 @@
                 "sourceId": "faostat",
                 "sourceName": "FAOSTAT",
                 "title": "Heat Stress Becomes A Labour-Capacity Constraint stub evidence 1",
-                "observedAt": "2026-10-24T02:01:58.367Z",
+                "observedAt": "2026-10-24T05:24:15.077Z",
                 "quality": 69,
                 "url": "https://www.fao.org/faostat/"
               }
@@ -4713,7 +4712,7 @@
             "topEvidence": []
           },
           "structural_baseline": {
-            "count": 19,
+            "count": 17,
             "sources": [
               "World Bank Indicators",
               "Crossref",
@@ -4736,7 +4735,7 @@
               "context",
               "general"
             ],
-            "averageQuality": 66,
+            "averageQuality": 64,
             "terms": [
               "access",
               "electricity",
@@ -4748,38 +4747,14 @@
               "indicator",
               "accs",
               "indicators",
-              "investigation",
-              "optimization",
-              "pollution",
-              "risk",
-              "multi-criteria",
-              "decision"
+              "heat",
+              "stress",
+              "labour-capacity",
+              "constraint",
+              "stub",
+              "evidence"
             ],
             "topEvidence": [
-              {
-                "sourceId": "crossref",
-                "sourceName": "Crossref",
-                "title": "Investigation and Optimization of Air Pollution Risk by a Multi-criteria Decision Making Method Using Fuzzy TOPSIS: A Case Study of Construction Workers",
-                "observedAt": "2121-10-01T00:00:00.000Z",
-                "quality": 77,
-                "url": "https://doi.org/10.32598/jaehr.9.4.1229"
-              },
-              {
-                "sourceId": "crossref",
-                "sourceName": "Crossref",
-                "title": "Effect of Drought Stress, Soil Salinity, P. indica, and MWCNs on Biodegradation of Diesel Oil in the Pb- and Cd-Polluted Soil Under Cultivation of Triticale Plant",
-                "observedAt": "2121-10-01T00:00:00.000Z",
-                "quality": 77,
-                "url": "https://doi.org/10.32598/jaehr.9.4.1232"
-              },
-              {
-                "sourceId": "crossref",
-                "sourceName": "Crossref",
-                "title": "Natural Sustainability Ethics for Resolving Current Outer Space Challenges",
-                "observedAt": "2121-04-20T00:00:00.000Z",
-                "quality": 77,
-                "url": "https://doi.org/10.61781/11i20212bmlm"
-              },
               {
                 "sourceId": "arxiv",
                 "sourceName": "arXiv",
@@ -4787,6 +4762,30 @@
                 "observedAt": "2026-10-22T17:59:50Z",
                 "quality": 75,
                 "url": "https://arxiv.org/abs/2610.31669v1"
+              },
+              {
+                "sourceId": "arxiv",
+                "sourceName": "arXiv",
+                "title": "Half-Completeness from Standard Gravitational Dispersion Relations",
+                "observedAt": "2026-10-22T17:59:40Z",
+                "quality": 75,
+                "url": "https://arxiv.org/abs/2610.31665v1"
+              },
+              {
+                "sourceId": "arxiv",
+                "sourceName": "arXiv",
+                "title": "Ricci flow of Integrable Sigma Models, Hitchin Systems and Quantum Seiberg-Witten theory",
+                "observedAt": "2026-10-22T17:59:58Z",
+                "quality": 74,
+                "url": "https://arxiv.org/abs/2610.31672v1"
+              },
+              {
+                "sourceId": "codex-global-news-research",
+                "sourceName": "GOV.UK / Department for Energy Security and Net Zero",
+                "title": "UK launches call for evidence on community batteries",
+                "observedAt": "2026-06-04T00:00:00.000Z",
+                "quality": 65,
+                "url": "https://www.gov.uk/government/news/new-proposals-to-cut-bills-with-community-batteries"
               }
             ]
           }
@@ -4803,7 +4802,7 @@
             "comparator": {
               "sourceName": "OECD Data API",
               "title": "Heat Stress Becomes A Labour-Capacity Constraint stub evidence 1",
-              "observedAt": "2026-10-24T02:01:58.367Z",
+              "observedAt": "2026-10-24T05:24:15.077Z",
               "window": "structural_baseline",
               "quality": 62,
               "url": "https://sdmx.oecd.org/public/rest/"
@@ -4826,7 +4825,7 @@
             "comparator": {
               "sourceName": "OECD Data API",
               "title": "Heat Stress Becomes A Labour-Capacity Constraint stub evidence 1",
-              "observedAt": "2026-10-24T02:01:58.367Z",
+              "observedAt": "2026-10-24T05:24:15.077Z",
               "window": "structural_baseline",
               "quality": 62,
               "url": "https://sdmx.oecd.org/public/rest/"
@@ -4842,14 +4841,14 @@
             "recent": {
               "sourceName": "ILOSTAT",
               "title": "Heat Stress Becomes A Labour-Capacity Constraint stub evidence 1",
-              "observedAt": "2026-10-24T02:01:58.367Z",
+              "observedAt": "2026-10-24T05:24:15.077Z",
               "quality": 70,
               "url": "https://ilostat.ilo.org/data/bulk/"
             },
             "comparator": {
               "sourceName": "OECD Data API",
               "title": "Heat Stress Becomes A Labour-Capacity Constraint stub evidence 1",
-              "observedAt": "2026-10-24T02:01:58.367Z",
+              "observedAt": "2026-10-24T05:24:15.077Z",
               "window": "structural_baseline",
               "quality": 62,
               "url": "https://sdmx.oecd.org/public/rest/"
@@ -4870,14 +4869,14 @@
             "recent": {
               "sourceName": "FAOSTAT",
               "title": "Heat Stress Becomes A Labour-Capacity Constraint stub evidence 1",
-              "observedAt": "2026-10-24T02:01:58.367Z",
+              "observedAt": "2026-10-24T05:24:15.077Z",
               "quality": 69,
               "url": "https://www.fao.org/faostat/"
             },
             "comparator": {
               "sourceName": "OECD Data API",
               "title": "Heat Stress Becomes A Labour-Capacity Constraint stub evidence 1",
-              "observedAt": "2026-10-24T02:01:58.367Z",
+              "observedAt": "2026-10-24T05:24:15.077Z",
               "window": "structural_baseline",
               "quality": 62,
               "url": "https://sdmx.oecd.org/public/rest/"
@@ -4898,18 +4897,18 @@
         "scores": {
           "baseRate": 66,
           "recencyPulse": 98,
-          "persistence": 88,
+          "persistence": 98,
           "acceleration": 98,
           "novelty": 96,
           "sourceDiversity": 98,
-          "evidenceQuality": 68,
-          "contradiction": 4,
+          "evidenceQuality": 61,
+          "contradiction": 6,
           "impact": 91,
           "falsifiability": 96,
           "convergence": 98,
-          "uncertainty": 61,
-          "probability": 77,
-          "confidence": 80,
+          "uncertainty": 63,
+          "probability": 75,
+          "confidence": 79,
           "sourceFamilies": [
             "event stream",
             "official",
@@ -4926,15 +4925,15 @@
             "max": 36
           }
         },
-        "confidence": 80,
+        "confidence": 79,
         "convictionBand": "Strong structured watch",
         "forecast": {
           "statement": "Heat Stress Becomes A Labour-Capacity Constraint will strengthen as an observable labour signal within 12-36 months.",
-          "probability": 77,
+          "probability": 75,
           "priorProbability": 58,
-          "updateDelta": 19,
-          "openedAt": "2026-10-25T02:01:58.367Z",
-          "dueAt": "2029-10-25T02:01:58.367Z",
+          "updateDelta": 17,
+          "openedAt": "2026-10-25T05:24:15.077Z",
+          "dueAt": "2029-10-25T05:24:15.077Z",
           "horizonMonths": {
             "min": 12,
             "max": 36
@@ -4960,33 +4959,33 @@
         ],
         "scenarioSpread": {
           "weights": {
-            "base": 54,
+            "base": 53,
             "upside": 34,
-            "downside": 12
+            "downside": 13
           },
           "baseCase": {
-            "probability": 54,
-            "summary": "54% base case: Heat alerts, outdoor work exposure, and cooling access suggest labour capacity can tighten before official productivity data fully reflects it. The hinge is working-capital tolerance."
+            "probability": 53,
+            "summary": "53% base case: Heat alerts, outdoor work exposure, and cooling access suggest labour capacity can tighten before official productivity data fully reflects it. The hinge is working-capital tolerance."
           },
           "upsideCase": {
             "probability": 34,
             "summary": "34% acceleration case: if municipal heat-action plans adding work-hour restrictions, this can move from watchlist to operating assumption before consensus data catches up."
           },
           "downsideCase": {
-            "probability": 12,
-            "summary": "12% break case: downgrade the forecast if wet-bulb alerts remain sporadic while work-hour rules do not change"
+            "probability": 13,
+            "summary": "13% break case: downgrade the forecast if wet-bulb alerts remain sporadic while work-hour rules do not change"
           }
         },
-        "reasoningSummary": "PFE-3.0-deterministic assigns 80/100 confidence and 77% probability after pairing the 8-item 24-hour pulse with 0 60-day comparators and 19 structural baselines. Strongest dimensions: recency pulse 98, persistence 88, acceleration 98; contradiction 4.",
+        "reasoningSummary": "PFE-3.0-deterministic assigns 79/100 confidence and 75% probability after pairing the 8-item 24-hour pulse with 0 60-day comparators and 17 structural baselines. Strongest dimensions: recency pulse 98, persistence 98, acceleration 98; contradiction 6.",
         "nonObviousRead": "contracts, inventory days, and insurance language can move before the visible shortage arrives. The model is watching working-capital tolerance rather than the headline theme itself, because the evidence crosses physical, capital, policy.",
         "brierTracking": {
           "forecastId": "nightly-india-heat-labour:2026-10-25:PFE-3.0-deterministic",
           "scoreType": "brier_binary",
-          "probability": 0.77,
+          "probability": 0.75,
           "outcome": null,
           "status": "open",
-          "openedAt": "2026-10-25T02:01:58.367Z",
-          "dueAt": "2029-10-25T02:01:58.367Z",
+          "openedAt": "2026-10-25T05:24:15.077Z",
+          "dueAt": "2029-10-25T05:24:15.077Z",
           "resolutionCriteria": [
             "Resolve positive if at least two leading indicators materially appear before 2029-10-25.",
             "Resolve negative if the listed falsifiers dominate for two consecutive nightly runs.",
@@ -5005,8 +5004,8 @@
         ],
         "evidenceStack": [
           "Outside view: physical stress reducing usable labour capacity before headline labour data changes; prior 58% before nightly evidence updates.",
-          "24-hour pulse: 8 items, average quality 66/100; update delta +19 points.",
-          "60-day comparison: 0 comparator items plus 19 structural baseline items.",
+          "24-hour pulse: 8 items, average quality 66/100; update delta +17 points.",
+          "60-day comparison: 0 comparator items plus 17 structural baseline items.",
           "Pattern test: Chokepoint repricing maps security risk -> insurance wording -> route time -> working capital.",
           "Disconfirmation test: wet-bulb alerts remain sporadic while work-hour rules do not change"
         ],
@@ -5025,29 +5024,29 @@
           "deeperRead": "Contracts, inventory days, and insurance language can move before the visible shortage arrives. The important thing to watch is working-capital tolerance rather than the headline itself, because the evidence crosses physical, capital, policy. In plain terms, the visible headline may be late; the earlier move is when working-capital tolerance changes prices, rules, contracts, capacity, or everyday operating choices.",
           "watch": "Watch working-capital tolerance, municipal heat-action plans adding work-hour restrictions, logistics and construction firms changing shift patterns, and cooling subsidies or worker-safety rules moving from guidance to enforcement. The reading becomes more durable when these signs appear together instead of as isolated anecdotes.",
           "changePicture": "This reading should soften if wet-bulb alerts remain sporadic while work-hour rules do not change, cooling access expands faster than heat-exposure days, and war-risk premiums fall while routing normalizes for at least two reporting cycles.",
-          "scenarioSpread": "Main path (54%): Heat alerts, outdoor work exposure, and cooling access suggest labour capacity can tighten before official productivity data fully reflects it. The hinge is working-capital tolerance. Faster path (34%): if municipal heat-action plans adding work-hour restrictions, this can move from watchlist to operating assumption before consensus data catches up. Reversal path (12%): the picture weakens if wet-bulb alerts remain sporadic while work-hour rules do not change.",
+          "scenarioSpread": "Main path (53%): Heat alerts, outdoor work exposure, and cooling access suggest labour capacity can tighten before official productivity data fully reflects it. The hinge is working-capital tolerance. Faster path (34%): if municipal heat-action plans adding work-hour restrictions, this can move from watchlist to operating assumption before consensus data catches up. Reversal path (13%): the picture weakens if wet-bulb alerts remain sporadic while work-hour rules do not change.",
           "cardRead": "This reads less like one headline and more like a pattern taking shape: shift timing, cooling infrastructure, insurance, and worker-retention plans become operating strategy. Watch whether working-capital tolerance starts showing up in prices, policy, contracts, or operating decisions.",
           "watchShort": "working-capital tolerance, municipal heat-action plans adding work-hour restrictions, logistics and construction firms changing shift patterns, and cooling subsidies or worker-safety rules moving from guidance to enforcement"
         },
         "uiModel": {
           "version": "PFE-3.0-deterministic",
-          "generatedAt": "2026-10-25T02:01:58.367Z",
-          "score": 80,
+          "generatedAt": "2026-10-25T05:24:15.077Z",
+          "score": 79,
           "scores": {
             "baseRate": 66,
-            "evidence": 68,
+            "evidence": 61,
             "weakSignalBurst": 98,
             "convergence": 98,
-            "causalTension": 88,
+            "causalTension": 98,
             "friction": 98,
             "asymmetry": 91,
             "leadLag": 96,
-            "timing": 39,
+            "timing": 37,
             "falsifiability": 96,
             "novelty": 96,
-            "uncertainty": 61,
+            "uncertainty": 63,
             "sourceDiversity": 6,
-            "sourceReliability": 68,
+            "sourceReliability": 61,
             "domains": [
               "physical",
               "capital",
@@ -5060,9 +5059,9 @@
             "referenceClass": "physical stress reducing usable labour capacity before headline labour data changes"
           },
           "scenarioWeights": {
-            "base": 54,
+            "base": 53,
             "upside": 34,
-            "downside": 12
+            "downside": 13
           },
           "convictionBand": "Strong structured watch",
           "archetype": "Chokepoint repricing",
@@ -5081,16 +5080,16 @@
             "war-risk premiums fall while routing normalizes for at least two reporting cycles",
             "the recent 24-hour evidence pulse falls back below the 60-day baseline for two consecutive runs"
           ],
-          "baseCase": "54% base case: Heat alerts, outdoor work exposure, and cooling access suggest labour capacity can tighten before official productivity data fully reflects it. The hinge is working-capital tolerance.",
+          "baseCase": "53% base case: Heat alerts, outdoor work exposure, and cooling access suggest labour capacity can tighten before official productivity data fully reflects it. The hinge is working-capital tolerance.",
           "upsideCase": "34% acceleration case: if municipal heat-action plans adding work-hour restrictions, this can move from watchlist to operating assumption before consensus data catches up.",
-          "downsideCase": "12% break case: downgrade the forecast if wet-bulb alerts remain sporadic while work-hour rules do not change",
+          "downsideCase": "13% break case: downgrade the forecast if wet-bulb alerts remain sporadic while work-hour rules do not change",
           "nonObviousRead": "contracts, inventory days, and insurance language can move before the visible shortage arrives. The model is watching working-capital tolerance rather than the headline theme itself, because the evidence crosses physical, capital, policy.",
-          "confidenceReason": "PFE-3.0-deterministic assigns 80/100 confidence and 77% probability after pairing the 8-item 24-hour pulse with 0 60-day comparators and 19 structural baselines. Strongest dimensions: recency pulse 98, persistence 88, acceleration 98; contradiction 4.",
+          "confidenceReason": "PFE-3.0-deterministic assigns 79/100 confidence and 75% probability after pairing the 8-item 24-hour pulse with 0 60-day comparators and 17 structural baselines. Strongest dimensions: recency pulse 98, persistence 98, acceleration 98; contradiction 6.",
           "executiveRead": "INDIA / HEAT + LABOUR. Strong structured watch: Heat alerts, outdoor work exposure, and cooling access suggest labour capacity can tighten before official productivity data fully reflects it.",
           "evidenceStack": [
             "Outside view: physical stress reducing usable labour capacity before headline labour data changes; prior 58% before nightly evidence updates.",
-            "24-hour pulse: 8 items, average quality 66/100; update delta +19 points.",
-            "60-day comparison: 0 comparator items plus 19 structural baseline items.",
+            "24-hour pulse: 8 items, average quality 66/100; update delta +17 points.",
+            "60-day comparison: 0 comparator items plus 17 structural baseline items.",
             "Pattern test: Chokepoint repricing maps security risk -> insurance wording -> route time -> working capital.",
             "Disconfirmation test: wet-bulb alerts remain sporadic while work-hour rules do not change"
           ],
@@ -5109,7 +5108,7 @@
             "deeperRead": "Contracts, inventory days, and insurance language can move before the visible shortage arrives. The important thing to watch is working-capital tolerance rather than the headline itself, because the evidence crosses physical, capital, policy. In plain terms, the visible headline may be late; the earlier move is when working-capital tolerance changes prices, rules, contracts, capacity, or everyday operating choices.",
             "watch": "Watch working-capital tolerance, municipal heat-action plans adding work-hour restrictions, logistics and construction firms changing shift patterns, and cooling subsidies or worker-safety rules moving from guidance to enforcement. The reading becomes more durable when these signs appear together instead of as isolated anecdotes.",
             "changePicture": "This reading should soften if wet-bulb alerts remain sporadic while work-hour rules do not change, cooling access expands faster than heat-exposure days, and war-risk premiums fall while routing normalizes for at least two reporting cycles.",
-            "scenarioSpread": "Main path (54%): Heat alerts, outdoor work exposure, and cooling access suggest labour capacity can tighten before official productivity data fully reflects it. The hinge is working-capital tolerance. Faster path (34%): if municipal heat-action plans adding work-hour restrictions, this can move from watchlist to operating assumption before consensus data catches up. Reversal path (12%): the picture weakens if wet-bulb alerts remain sporadic while work-hour rules do not change.",
+            "scenarioSpread": "Main path (53%): Heat alerts, outdoor work exposure, and cooling access suggest labour capacity can tighten before official productivity data fully reflects it. The hinge is working-capital tolerance. Faster path (34%): if municipal heat-action plans adding work-hour restrictions, this can move from watchlist to operating assumption before consensus data catches up. Reversal path (13%): the picture weakens if wet-bulb alerts remain sporadic while work-hour rules do not change.",
             "cardRead": "This reads less like one headline and more like a pattern taking shape: shift timing, cooling infrastructure, insurance, and worker-retention plans become operating strategy. Watch whether working-capital tolerance starts showing up in prices, policy, contracts, or operating decisions.",
             "watchShort": "working-capital tolerance, municipal heat-action plans adding work-hour restrictions, logistics and construction firms changing shift patterns, and cooling subsidies or worker-safety rules moving from guidance to enforcement"
           },
@@ -5127,11 +5126,11 @@
       },
       "forecast": {
         "statement": "Heat Stress Becomes A Labour-Capacity Constraint will strengthen as an observable labour signal within 12-36 months.",
-        "probability": 77,
+        "probability": 75,
         "priorProbability": 58,
-        "updateDelta": 19,
-        "openedAt": "2026-10-25T02:01:58.367Z",
-        "dueAt": "2029-10-25T02:01:58.367Z",
+        "updateDelta": 17,
+        "openedAt": "2026-10-25T05:24:15.077Z",
+        "dueAt": "2029-10-25T05:24:15.077Z",
         "horizonMonths": {
           "min": 12,
           "max": 36
@@ -5150,21 +5149,21 @@
       "brierTracking": {
         "forecastId": "nightly-india-heat-labour:2026-10-25:PFE-3.0-deterministic",
         "scoreType": "brier_binary",
-        "probability": 0.77,
+        "probability": 0.75,
         "outcome": null,
         "status": "open",
-        "openedAt": "2026-10-25T02:01:58.367Z",
-        "dueAt": "2029-10-25T02:01:58.367Z",
+        "openedAt": "2026-10-25T05:24:15.077Z",
+        "dueAt": "2029-10-25T05:24:15.077Z",
         "resolutionCriteria": [
           "Resolve positive if at least two leading indicators materially appear before 2029-10-25.",
           "Resolve negative if the listed falsifiers dominate for two consecutive nightly runs.",
           "Keep unresolved if evidence remains mixed without observable market, policy, or operating behavior."
         ]
       },
-      "generatedAt": "2026-10-25T02:01:58.367Z",
+      "generatedAt": "2026-10-25T05:24:15.077Z",
       "generator": {
-        "runId": "nightly-2026-10-25T02-01-58-367Z",
-        "generatedAt": "2026-10-25T02:01:58.367Z",
+        "runId": "nightly-2026-10-25T05-24-15-077Z",
+        "generatedAt": "2026-10-25T05:24:15.077Z",
         "mode": "mixed_or_live",
         "cadenceTarget": "nightly-0100-local",
         "patternEngineVersion": "PFE-3.0-deterministic"
@@ -5303,9 +5302,9 @@
           "title": "Open-Meteo Forecast: MEDITERRANEAN / TOURISM short-range weather signal",
           "url": "https://api.open-meteo.com/v1/forecast?latitude=39.3&longitude=15&hourly=temperature_2m%2Cprecipitation%2Cwind_speed_10m&daily=temperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&timezone=UTC&forecast_days=3",
           "observedAt": "2026-10-25T00:00:00.000Z",
-          "capturedAt": "2026-10-25T02:01:58.367Z",
+          "capturedAt": "2026-10-25T05:24:15.077Z",
           "confidence": 72,
-          "summary": "Open-Meteo forecast near MEDITERRANEAN / TOURISM: max temperature 19.7 C and precipitation 0.4 mm."
+          "summary": "Open-Meteo forecast near MEDITERRANEAN / TOURISM: max temperature 19.9 C and precipitation 0.6 mm."
         },
         {
           "sourceId": "nasa-power",
@@ -5314,7 +5313,7 @@
           "title": "NASA POWER: recent physical baseline near MEDITERRANEAN / TOURISM",
           "url": "https://power.larc.nasa.gov/api/temporal/daily/point?latitude=39.3&longitude=15&start=20261019&end=20261025&community=RE&parameters=T2M%2CPRECTOTCORR%2CWS10M&format=JSON",
           "observedAt": "2026-10-25T00:00:00.000Z",
-          "capturedAt": "2026-10-25T02:01:58.367Z",
+          "capturedAt": "2026-10-25T05:24:15.077Z",
           "confidence": 58,
           "summary": "NASA POWER baseline: T2M -999 C, precipitation -999 mm/day, wind -999 m/s."
         },
@@ -5324,8 +5323,8 @@
           "sourceType": "current_event",
           "title": "Peak Tourism Starts Moving Around Heat Risk stub evidence 1",
           "url": "https://api.gdeltproject.org/api/v2/doc/doc",
-          "observedAt": "2026-10-24T02:01:58.367Z",
-          "capturedAt": "2026-10-25T02:01:58.367Z",
+          "observedAt": "2026-10-24T05:24:15.077Z",
+          "capturedAt": "2026-10-25T05:24:15.077Z",
           "confidence": 66,
           "summary": "GDELT DOC 2.1 fallback context for \"Mediterranean heatwave tourism wildfire travel insurance summer bookings\" kept the source in the nightly evidence mix when live data was unavailable during this run."
         },
@@ -5335,8 +5334,8 @@
           "sourceType": "humanitarian_event",
           "title": "Peak Tourism Starts Moving Around Heat Risk stub evidence 1",
           "url": "https://api.reliefweb.int/v1/reports",
-          "observedAt": "2026-10-24T02:01:58.367Z",
-          "capturedAt": "2026-10-25T02:01:58.367Z",
+          "observedAt": "2026-10-24T05:24:15.077Z",
+          "capturedAt": "2026-10-25T05:24:15.077Z",
           "confidence": 50,
           "summary": "ReliefWeb fallback context for \"Mediterranean heatwave tourism wildfire travel insurance summer bookings\" kept the source in the nightly evidence mix when live data was unavailable during this run."
         }
@@ -5351,7 +5350,7 @@
           "evidence_count": 1,
           "url": "https://api.gdeltproject.org/api/v2/doc/doc",
           "requires_key": false,
-          "error": "fetch failed"
+          "error": "HTTP 429"
         },
         {
           "source_id": "world-bank-indicators",
@@ -5614,7 +5613,7 @@
               "sourceId": "ilostat",
               "sourceName": "ILOSTAT",
               "title": "Peak Tourism Starts Moving Around Heat Risk stub evidence 1",
-              "observedAt": "2026-10-24T02:01:58.367Z",
+              "observedAt": "2026-10-24T05:24:15.077Z",
               "quality": 72,
               "url": "https://ilostat.ilo.org/data/bulk/"
             },
@@ -5622,7 +5621,7 @@
               "sourceId": "faostat",
               "sourceName": "FAOSTAT",
               "title": "Peak Tourism Starts Moving Around Heat Risk stub evidence 1",
-              "observedAt": "2026-10-24T02:01:58.367Z",
+              "observedAt": "2026-10-24T05:24:15.077Z",
               "quality": 70,
               "url": "https://www.fao.org/faostat/"
             }
@@ -5805,14 +5804,14 @@
           "recent": {
             "sourceName": "ILOSTAT",
             "title": "Peak Tourism Starts Moving Around Heat Risk stub evidence 1",
-            "observedAt": "2026-10-24T02:01:58.367Z",
+            "observedAt": "2026-10-24T05:24:15.077Z",
             "quality": 72,
             "url": "https://ilostat.ilo.org/data/bulk/"
           },
           "comparator": {
             "sourceName": "Wikidata Query Service",
             "title": "Peak Tourism Starts Moving Around Heat Risk stub evidence 1",
-            "observedAt": "2026-10-24T02:01:58.367Z",
+            "observedAt": "2026-10-24T05:24:15.077Z",
             "window": "structural_baseline",
             "quality": 64,
             "url": "https://query.wikidata.org/sparql"
@@ -5833,14 +5832,14 @@
           "recent": {
             "sourceName": "FAOSTAT",
             "title": "Peak Tourism Starts Moving Around Heat Risk stub evidence 1",
-            "observedAt": "2026-10-24T02:01:58.367Z",
+            "observedAt": "2026-10-24T05:24:15.077Z",
             "quality": 70,
             "url": "https://www.fao.org/faostat/"
           },
           "comparator": {
             "sourceName": "Wikidata Query Service",
             "title": "Peak Tourism Starts Moving Around Heat Risk stub evidence 1",
-            "observedAt": "2026-10-24T02:01:58.367Z",
+            "observedAt": "2026-10-24T05:24:15.077Z",
             "window": "structural_baseline",
             "quality": 64,
             "url": "https://query.wikidata.org/sparql"
@@ -5860,7 +5859,7 @@
       ],
       "patternModel": {
         "version": "PFE-3.0-deterministic",
-        "generatedAt": "2026-10-25T02:01:58.367Z",
+        "generatedAt": "2026-10-25T05:24:15.077Z",
         "cadence": "nightly-0100-local",
         "costModel": "no paid APIs, no LLM/API calls, deterministic open-source JavaScript",
         "referenceClass": {
@@ -5990,7 +5989,7 @@
                 "sourceId": "ilostat",
                 "sourceName": "ILOSTAT",
                 "title": "Peak Tourism Starts Moving Around Heat Risk stub evidence 1",
-                "observedAt": "2026-10-24T02:01:58.367Z",
+                "observedAt": "2026-10-24T05:24:15.077Z",
                 "quality": 72,
                 "url": "https://ilostat.ilo.org/data/bulk/"
               },
@@ -5998,7 +5997,7 @@
                 "sourceId": "faostat",
                 "sourceName": "FAOSTAT",
                 "title": "Peak Tourism Starts Moving Around Heat Risk stub evidence 1",
-                "observedAt": "2026-10-24T02:01:58.367Z",
+                "observedAt": "2026-10-24T05:24:15.077Z",
                 "quality": 70,
                 "url": "https://www.fao.org/faostat/"
               }
@@ -6181,14 +6180,14 @@
             "recent": {
               "sourceName": "ILOSTAT",
               "title": "Peak Tourism Starts Moving Around Heat Risk stub evidence 1",
-              "observedAt": "2026-10-24T02:01:58.367Z",
+              "observedAt": "2026-10-24T05:24:15.077Z",
               "quality": 72,
               "url": "https://ilostat.ilo.org/data/bulk/"
             },
             "comparator": {
               "sourceName": "Wikidata Query Service",
               "title": "Peak Tourism Starts Moving Around Heat Risk stub evidence 1",
-              "observedAt": "2026-10-24T02:01:58.367Z",
+              "observedAt": "2026-10-24T05:24:15.077Z",
               "window": "structural_baseline",
               "quality": 64,
               "url": "https://query.wikidata.org/sparql"
@@ -6209,14 +6208,14 @@
             "recent": {
               "sourceName": "FAOSTAT",
               "title": "Peak Tourism Starts Moving Around Heat Risk stub evidence 1",
-              "observedAt": "2026-10-24T02:01:58.367Z",
+              "observedAt": "2026-10-24T05:24:15.077Z",
               "quality": 70,
               "url": "https://www.fao.org/faostat/"
             },
             "comparator": {
               "sourceName": "Wikidata Query Service",
               "title": "Peak Tourism Starts Moving Around Heat Risk stub evidence 1",
-              "observedAt": "2026-10-24T02:01:58.367Z",
+              "observedAt": "2026-10-24T05:24:15.077Z",
               "window": "structural_baseline",
               "quality": 64,
               "url": "https://query.wikidata.org/sparql"
@@ -6272,8 +6271,8 @@
           "probability": 78,
           "priorProbability": 60,
           "updateDelta": 18,
-          "openedAt": "2026-10-25T02:01:58.367Z",
-          "dueAt": "2029-10-25T02:01:58.367Z",
+          "openedAt": "2026-10-25T05:24:15.077Z",
+          "dueAt": "2029-10-25T05:24:15.077Z",
           "horizonMonths": {
             "min": 12,
             "max": 36
@@ -6324,8 +6323,8 @@
           "probability": 0.78,
           "outcome": null,
           "status": "open",
-          "openedAt": "2026-10-25T02:01:58.367Z",
-          "dueAt": "2029-10-25T02:01:58.367Z",
+          "openedAt": "2026-10-25T05:24:15.077Z",
+          "dueAt": "2029-10-25T05:24:15.077Z",
           "resolutionCriteria": [
             "Resolve positive if at least two leading indicators materially appear before 2029-10-25.",
             "Resolve negative if the listed falsifiers dominate for two consecutive nightly runs.",
@@ -6370,7 +6369,7 @@
         },
         "uiModel": {
           "version": "PFE-3.0-deterministic",
-          "generatedAt": "2026-10-25T02:01:58.367Z",
+          "generatedAt": "2026-10-25T05:24:15.077Z",
           "score": 83,
           "scores": {
             "baseRate": 68,
@@ -6469,8 +6468,8 @@
         "probability": 78,
         "priorProbability": 60,
         "updateDelta": 18,
-        "openedAt": "2026-10-25T02:01:58.367Z",
-        "dueAt": "2029-10-25T02:01:58.367Z",
+        "openedAt": "2026-10-25T05:24:15.077Z",
+        "dueAt": "2029-10-25T05:24:15.077Z",
         "horizonMonths": {
           "min": 12,
           "max": 36
@@ -6492,18 +6491,18 @@
         "probability": 0.78,
         "outcome": null,
         "status": "open",
-        "openedAt": "2026-10-25T02:01:58.367Z",
-        "dueAt": "2029-10-25T02:01:58.367Z",
+        "openedAt": "2026-10-25T05:24:15.077Z",
+        "dueAt": "2029-10-25T05:24:15.077Z",
         "resolutionCriteria": [
           "Resolve positive if at least two leading indicators materially appear before 2029-10-25.",
           "Resolve negative if the listed falsifiers dominate for two consecutive nightly runs.",
           "Keep unresolved if evidence remains mixed without observable market, policy, or operating behavior."
         ]
       },
-      "generatedAt": "2026-10-25T02:01:58.367Z",
+      "generatedAt": "2026-10-25T05:24:15.077Z",
       "generator": {
-        "runId": "nightly-2026-10-25T02-01-58-367Z",
-        "generatedAt": "2026-10-25T02:01:58.367Z",
+        "runId": "nightly-2026-10-25T05-24-15-077Z",
+        "generatedAt": "2026-10-25T05:24:15.077Z",
         "mode": "mixed_or_live",
         "cadenceTarget": "nightly-0100-local",
         "patternEngineVersion": "PFE-3.0-deterministic"
@@ -6516,7 +6515,7 @@
       "lat": 36.2,
       "lon": 138.2,
       "labelRank": 6,
-      "confidence": 85,
+      "confidence": 84,
       "region": "JAPAN / CARE CAPACITY",
       "category": "Robotics",
       "horizon": "24-60 months",
@@ -6625,59 +6624,59 @@
           "summary": "WHO Kenya's 2025 annual report, published in April 2026, said more than 2,000 cold-chain units were upgraded across all 47 counties, lifting coverage above 95% and reducing stockouts and temperature excursions. That is exactly the kind of cross-sector logistics base this signal looks for."
         },
         {
+          "sourceId": "crossref",
+          "sourceName": "Crossref",
+          "sourceType": "research_metadata",
+          "title": "Effects of Integrative Behavioral Couple Therapy on Infertility Self-efficacy, Dyadic Adjustment, and Sexual Satisfaction in Infertile Couples",
+          "url": "https://doi.org/10.32598/jccnc.7.1.354.1",
+          "observedAt": "2121-02-01T00:00:00.000Z",
+          "capturedAt": "2026-10-25T05:24:15.077Z",
+          "confidence": 50,
+          "summary": "Crossref research metadata match from Negah Scientific Publisher; DOI 10.32598/jccnc.7.1.354.1."
+        },
+        {
+          "sourceId": "crossref",
+          "sourceName": "Crossref",
+          "sourceType": "research_metadata",
+          "title": "The Effects of Relaxing Music on Life Distress and Maternal-fetal Attachment in Pregnant Women",
+          "url": "https://doi.org/10.32598/jccnc.7.1.33.14",
+          "observedAt": "2121-02-01T00:00:00.000Z",
+          "capturedAt": "2026-10-25T05:24:15.077Z",
+          "confidence": 51,
+          "summary": "Crossref research metadata match from Negah Scientific Publisher; DOI 10.32598/jccnc.7.1.33.14."
+        },
+        {
+          "sourceId": "crossref",
+          "sourceName": "Crossref",
+          "sourceType": "research_metadata",
+          "title": "The Relationship Between Perfectionism, Early Maladaptive Schemas, Attachment Styles, and Body Image Concern by the Mediating Role of Self-esteem in Cosmetic Surgery Applicants",
+          "url": "https://doi.org/10.32598/jccnc.7.1.351.1",
+          "observedAt": "2121-02-01T00:00:00.000Z",
+          "capturedAt": "2026-10-25T05:24:15.077Z",
+          "confidence": 52,
+          "summary": "Crossref research metadata match from Negah Scientific Publisher; DOI 10.32598/jccnc.7.1.351.1."
+        },
+        {
           "sourceId": "wikipedia",
           "sourceName": "Wikipedia / MediaWiki",
           "sourceType": "entity_context",
           "title": "Assistive technology",
           "url": "https://en.wikipedia.org/wiki/Assistive_technology",
-          "observedAt": "2026-10-25T02:01:58.367Z",
-          "capturedAt": "2026-10-25T02:01:58.367Z",
+          "observedAt": "2026-10-25T05:24:15.077Z",
+          "capturedAt": "2026-10-25T05:24:15.077Z",
           "confidence": 51,
           "summary": "Wikipedia context: Assistive technology (AT) is a term for assistive, adaptive, and rehabilitative devices for people with disabilities and the elderly. People with disabilities often have difficulty performin."
-        },
-        {
-          "sourceId": "open-meteo",
-          "sourceName": "Open-Meteo Forecast",
-          "sourceType": "observed_condition",
-          "title": "Open-Meteo Forecast: JAPAN / CARE CAPACITY short-range weather signal",
-          "url": "https://api.open-meteo.com/v1/forecast?latitude=36.2&longitude=138.2&hourly=temperature_2m%2Cprecipitation%2Cwind_speed_10m&daily=temperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&timezone=UTC&forecast_days=3",
-          "observedAt": "2026-10-25T00:00:00.000Z",
-          "capturedAt": "2026-10-25T02:01:58.367Z",
-          "confidence": 60,
-          "summary": "Open-Meteo forecast near JAPAN / CARE CAPACITY: max temperature 20.3 C and precipitation 18.3 mm."
-        },
-        {
-          "sourceId": "nasa-power",
-          "sourceName": "NASA POWER",
-          "sourceType": "physical_baseline",
-          "title": "NASA POWER: recent physical baseline near JAPAN / CARE CAPACITY",
-          "url": "https://power.larc.nasa.gov/api/temporal/daily/point?latitude=36.2&longitude=138.2&start=20261019&end=20261025&community=RE&parameters=T2M%2CPRECTOTCORR%2CWS10M&format=JSON",
-          "observedAt": "2026-10-25T00:00:00.000Z",
-          "capturedAt": "2026-10-25T02:01:58.367Z",
-          "confidence": 73,
-          "summary": "NASA POWER baseline: T2M -999 C, precipitation -999 mm/day, wind -999 m/s."
         },
         {
           "sourceId": "usgs-earthquakes",
           "sourceName": "USGS Earthquake Catalog",
           "sourceType": "hazard_event",
-          "title": "M 5.3 - 44 km ESE of Miyazaki, Japan",
-          "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4qq",
-          "observedAt": "2026-10-24T23:59:36.599Z",
-          "capturedAt": "2026-10-25T02:01:58.367Z",
+          "title": "M 4.8 - Bonin Islands, Japan region",
+          "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4rr",
+          "observedAt": "2026-10-25T02:36:32.787Z",
+          "capturedAt": "2026-10-25T05:24:15.077Z",
           "confidence": 66,
-          "summary": "USGS event context near JAPAN / CARE CAPACITY: magnitude 5.3 Mw at 44 km ESE of Miyazaki, Japan."
-        },
-        {
-          "sourceId": "gdelt-doc",
-          "sourceName": "GDELT DOC 2.1",
-          "sourceType": "current_event",
-          "title": "Care Automation Moves Into Mundane Infrastructure stub evidence 1",
-          "url": "https://api.gdeltproject.org/api/v2/doc/doc",
-          "observedAt": "2026-10-24T02:01:58.367Z",
-          "capturedAt": "2026-10-25T02:01:58.367Z",
-          "confidence": 54,
-          "summary": "GDELT DOC 2.1 fallback context for \"Japan elderly care robotics sensors caregiver shortage automation\" kept the source in the nightly evidence mix when live data was unavailable during this run."
+          "summary": "USGS event context near JAPAN / CARE CAPACITY: magnitude 4.8 Mw at Bonin Islands, Japan region."
         }
       ],
       "sourceMix": [
@@ -6752,11 +6751,11 @@
           "source_name": "Crossref",
           "evidence_type": "research_metadata",
           "adapter": "crossref",
-          "status": "error_fallback_stub",
-          "evidence_count": 1,
+          "status": "fetched",
+          "evidence_count": 3,
           "url": "https://api.crossref.org/works",
           "requires_key": false,
-          "error": "HTTP 429"
+          "error": null
         },
         {
           "source_id": "arxiv",
@@ -6896,7 +6895,7 @@
       ],
       "evidenceWindows": {
         "recent_24h": {
-          "count": 8,
+          "count": 10,
           "sources": [
             "GDELT DOC 2.1",
             "Open-Meteo Forecast",
@@ -6915,7 +6914,7 @@
             "official",
             "general"
           ],
-          "averageQuality": 71,
+          "averageQuality": 72,
           "terms": [
             "care",
             "automation",
@@ -6946,10 +6945,10 @@
             {
               "sourceId": "usgs-earthquakes",
               "sourceName": "USGS Earthquake Catalog",
-              "title": "M 5.3 - 44 km ESE of Miyazaki, Japan",
-              "observedAt": "2026-10-24T23:59:36.599Z",
+              "title": "M 4.8 - Bonin Islands, Japan region",
+              "observedAt": "2026-10-25T02:36:32.787Z",
               "quality": 83,
-              "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4qq"
+              "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4rr"
             },
             {
               "sourceId": "open-meteo",
@@ -6960,59 +6959,25 @@
               "url": "https://api.open-meteo.com/v1/forecast?latitude=36.2&longitude=138.2&hourly=temperature_2m%2Cprecipitation%2Cwind_speed_10m&daily=temperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&timezone=UTC&forecast_days=3"
             },
             {
-              "sourceId": "ilostat",
-              "sourceName": "ILOSTAT",
-              "title": "Care Automation Moves Into Mundane Infrastructure stub evidence 1",
-              "observedAt": "2026-10-24T02:01:58.367Z",
-              "quality": 73,
-              "url": "https://ilostat.ilo.org/data/bulk/"
+              "sourceId": "usgs-earthquakes",
+              "sourceName": "USGS Earthquake Catalog",
+              "title": "M 6.5 - Bonin Islands, Japan region",
+              "observedAt": "2026-10-25T02:09:23.818Z",
+              "quality": 77,
+              "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4r9"
             }
           ]
         },
         "prior_60d": {
-          "count": 2,
-          "sources": [
-            "USGS Earthquake Catalog"
-          ],
-          "sourceGroups": [
-            "hazard"
-          ],
-          "averageQuality": 77,
-          "terms": [
-            "noda",
-            "japan",
-            "usgs",
-            "event",
-            "context",
-            "care",
-            "capacity",
-            "magnitude",
-            "earthquake",
-            "catalog",
-            "shikotan",
-            "russia"
-          ],
-          "topEvidence": [
-            {
-              "sourceId": "usgs-earthquakes",
-              "sourceName": "USGS Earthquake Catalog",
-              "title": "M 5.1 - 72 km ENE of Noda, Japan",
-              "observedAt": "2026-10-23T16:07:51.754Z",
-              "quality": 77,
-              "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4e2"
-            },
-            {
-              "sourceId": "usgs-earthquakes",
-              "sourceName": "USGS Earthquake Catalog",
-              "title": "M 4.8 - 39 km NE of Shikotan, Russia",
-              "observedAt": "2026-10-22T17:21:26.780Z",
-              "quality": 77,
-              "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u45f"
-            }
-          ]
+          "count": 0,
+          "sources": [],
+          "sourceGroups": [],
+          "averageQuality": 0,
+          "terms": [],
+          "topEvidence": []
         },
         "structural_baseline": {
-          "count": 16,
+          "count": 18,
           "sources": [
             "World Bank Indicators",
             "Crossref",
@@ -7033,7 +6998,7 @@
             "context",
             "general"
           ],
-          "averageQuality": 65,
+          "averageQuality": 67,
           "terms": [
             "access",
             "electricity",
@@ -7045,21 +7010,37 @@
             "indicator",
             "accs",
             "indicators",
-            "care",
-            "automation",
-            "moves",
-            "mundane",
-            "infrastructure",
-            "stub"
+            "effects",
+            "integrative",
+            "behavioral",
+            "couple",
+            "therapy",
+            "infertility"
           ],
           "topEvidence": [
             {
-              "sourceId": "arxiv",
-              "sourceName": "arXiv",
-              "title": "Sensorimotor Alignment: A Platonic Proxy for Embodied Policy Success",
-              "observedAt": "2026-10-22T17:59:51Z",
-              "quality": 73,
-              "url": "https://arxiv.org/abs/2610.31670v1"
+              "sourceId": "crossref",
+              "sourceName": "Crossref",
+              "title": "Effects of Integrative Behavioral Couple Therapy on Infertility Self-efficacy, Dyadic Adjustment, and Sexual Satisfaction in Infertile Couples",
+              "observedAt": "2121-02-01T00:00:00.000Z",
+              "quality": 76,
+              "url": "https://doi.org/10.32598/jccnc.7.1.354.1"
+            },
+            {
+              "sourceId": "crossref",
+              "sourceName": "Crossref",
+              "title": "The Effects of Relaxing Music on Life Distress and Maternal-fetal Attachment in Pregnant Women",
+              "observedAt": "2121-02-01T00:00:00.000Z",
+              "quality": 76,
+              "url": "https://doi.org/10.32598/jccnc.7.1.33.14"
+            },
+            {
+              "sourceId": "crossref",
+              "sourceName": "Crossref",
+              "title": "The Relationship Between Perfectionism, Early Maladaptive Schemas, Attachment Styles, and Body Image Concern by the Mediating Role of Self-esteem in Cosmetic Surgery Applicants",
+              "observedAt": "2121-02-01T00:00:00.000Z",
+              "quality": 76,
+              "url": "https://doi.org/10.32598/jccnc.7.1.351.1"
             },
             {
               "sourceId": "arxiv",
@@ -7068,22 +7049,6 @@
               "observedAt": "2026-10-22T17:59:06Z",
               "quality": 73,
               "url": "https://arxiv.org/abs/2610.31661v1"
-            },
-            {
-              "sourceId": "arxiv",
-              "sourceName": "arXiv",
-              "title": "Extending Harmonic Function Methods via Root Locus for Coordinated Path Generation",
-              "observedAt": "2026-10-22T17:45:31Z",
-              "quality": 73,
-              "url": "https://arxiv.org/abs/2610.31625v1"
-            },
-            {
-              "sourceId": "wikipedia",
-              "sourceName": "Wikipedia / MediaWiki",
-              "title": "Assistive technology",
-              "observedAt": "2026-10-25T02:01:58.367Z",
-              "quality": 71,
-              "url": "https://en.wikipedia.org/wiki/Assistive_technology"
             }
           ]
         }
@@ -7098,47 +7063,41 @@
             "url": "https://power.larc.nasa.gov/api/temporal/daily/point?latitude=36.2&longitude=138.2&start=20261019&end=20261025&community=RE&parameters=T2M%2CPRECTOTCORR%2CWS10M&format=JSON"
           },
           "comparator": {
-            "sourceName": "USGS Earthquake Catalog",
-            "title": "M 5.1 - 72 km ENE of Noda, Japan",
-            "observedAt": "2026-10-23T16:07:51.754Z",
-            "window": "prior_60d",
-            "quality": 77,
-            "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4e2"
+            "sourceName": "Wikidata Query Service",
+            "title": "Care Automation Moves Into Mundane Infrastructure stub evidence 1",
+            "observedAt": "2026-10-24T05:24:15.077Z",
+            "window": "structural_baseline",
+            "quality": 67,
+            "url": "https://query.wikidata.org/sparql"
           },
           "overlapTerms": [
             "japan",
-            "care",
-            "capacity"
+            "care"
           ],
-          "interpretation": "Recent NASA POWER evidence is paired with USGS Earthquake Catalog prior 60d context around japan, care, capacity."
+          "interpretation": "Recent NASA POWER evidence is paired with Wikidata Query Service structural baseline context around japan, care."
         },
         {
           "recent": {
             "sourceName": "USGS Earthquake Catalog",
-            "title": "M 5.3 - 44 km ESE of Miyazaki, Japan",
-            "observedAt": "2026-10-24T23:59:36.599Z",
+            "title": "M 4.8 - Bonin Islands, Japan region",
+            "observedAt": "2026-10-25T02:36:32.787Z",
             "quality": 83,
-            "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4qq"
+            "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4rr"
           },
           "comparator": {
-            "sourceName": "USGS Earthquake Catalog",
-            "title": "M 5.1 - 72 km ENE of Noda, Japan",
-            "observedAt": "2026-10-23T16:07:51.754Z",
-            "window": "prior_60d",
-            "quality": 77,
-            "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4e2"
+            "sourceName": "Wikidata Query Service",
+            "title": "Care Automation Moves Into Mundane Infrastructure stub evidence 1",
+            "observedAt": "2026-10-24T05:24:15.077Z",
+            "window": "structural_baseline",
+            "quality": 67,
+            "url": "https://query.wikidata.org/sparql"
           },
           "overlapTerms": [
             "japan",
-            "usgs",
-            "event",
             "context",
-            "care",
-            "capacity",
-            "magnitude",
-            "earthquake"
+            "care"
           ],
-          "interpretation": "Recent USGS Earthquake Catalog evidence is paired with USGS Earthquake Catalog prior 60d context around japan, usgs, event."
+          "interpretation": "Recent USGS Earthquake Catalog evidence is paired with Wikidata Query Service structural baseline context around japan, context, care."
         },
         {
           "recent": {
@@ -7149,52 +7108,46 @@
             "url": "https://api.open-meteo.com/v1/forecast?latitude=36.2&longitude=138.2&hourly=temperature_2m%2Cprecipitation%2Cwind_speed_10m&daily=temperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&timezone=UTC&forecast_days=3"
           },
           "comparator": {
-            "sourceName": "USGS Earthquake Catalog",
-            "title": "M 5.1 - 72 km ENE of Noda, Japan",
-            "observedAt": "2026-10-23T16:07:51.754Z",
-            "window": "prior_60d",
-            "quality": 77,
-            "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4e2"
-          },
-          "overlapTerms": [
-            "japan",
-            "care",
-            "capacity"
-          ],
-          "interpretation": "Recent Open-Meteo Forecast evidence is paired with USGS Earthquake Catalog prior 60d context around japan, care, capacity."
-        },
-        {
-          "recent": {
-            "sourceName": "ILOSTAT",
-            "title": "Care Automation Moves Into Mundane Infrastructure stub evidence 1",
-            "observedAt": "2026-10-24T02:01:58.367Z",
-            "quality": 73,
-            "url": "https://ilostat.ilo.org/data/bulk/"
-          },
-          "comparator": {
             "sourceName": "Wikidata Query Service",
             "title": "Care Automation Moves Into Mundane Infrastructure stub evidence 1",
-            "observedAt": "2026-10-24T02:01:58.367Z",
+            "observedAt": "2026-10-24T05:24:15.077Z",
             "window": "structural_baseline",
             "quality": 67,
             "url": "https://query.wikidata.org/sparql"
           },
           "overlapTerms": [
-            "care",
-            "automation",
-            "moves",
-            "mundane",
-            "infrastructure",
-            "stub",
-            "evidence",
-            "fallback"
+            "japan",
+            "care"
           ],
-          "interpretation": "Recent ILOSTAT evidence is paired with Wikidata Query Service structural baseline context around care, automation, moves."
+          "interpretation": "Recent Open-Meteo Forecast evidence is paired with Wikidata Query Service structural baseline context around japan, care."
+        },
+        {
+          "recent": {
+            "sourceName": "USGS Earthquake Catalog",
+            "title": "M 6.5 - Bonin Islands, Japan region",
+            "observedAt": "2026-10-25T02:09:23.818Z",
+            "quality": 77,
+            "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4r9"
+          },
+          "comparator": {
+            "sourceName": "Wikidata Query Service",
+            "title": "Care Automation Moves Into Mundane Infrastructure stub evidence 1",
+            "observedAt": "2026-10-24T05:24:15.077Z",
+            "window": "structural_baseline",
+            "quality": 67,
+            "url": "https://query.wikidata.org/sparql"
+          },
+          "overlapTerms": [
+            "japan",
+            "context",
+            "care"
+          ],
+          "interpretation": "Recent USGS Earthquake Catalog evidence is paired with Wikidata Query Service structural baseline context around japan, context, care."
         }
       ],
       "patternModel": {
         "version": "PFE-3.0-deterministic",
-        "generatedAt": "2026-10-25T02:01:58.367Z",
+        "generatedAt": "2026-10-25T05:24:15.077Z",
         "cadence": "nightly-0100-local",
         "costModel": "no paid APIs, no LLM/API calls, deterministic open-source JavaScript",
         "referenceClass": {
@@ -7254,7 +7207,7 @@
         ],
         "evidenceWindows": {
           "recent_24h": {
-            "count": 8,
+            "count": 10,
             "sources": [
               "GDELT DOC 2.1",
               "Open-Meteo Forecast",
@@ -7273,7 +7226,7 @@
               "official",
               "general"
             ],
-            "averageQuality": 71,
+            "averageQuality": 72,
             "terms": [
               "care",
               "automation",
@@ -7304,10 +7257,10 @@
               {
                 "sourceId": "usgs-earthquakes",
                 "sourceName": "USGS Earthquake Catalog",
-                "title": "M 5.3 - 44 km ESE of Miyazaki, Japan",
-                "observedAt": "2026-10-24T23:59:36.599Z",
+                "title": "M 4.8 - Bonin Islands, Japan region",
+                "observedAt": "2026-10-25T02:36:32.787Z",
                 "quality": 83,
-                "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4qq"
+                "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4rr"
               },
               {
                 "sourceId": "open-meteo",
@@ -7318,59 +7271,25 @@
                 "url": "https://api.open-meteo.com/v1/forecast?latitude=36.2&longitude=138.2&hourly=temperature_2m%2Cprecipitation%2Cwind_speed_10m&daily=temperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&timezone=UTC&forecast_days=3"
               },
               {
-                "sourceId": "ilostat",
-                "sourceName": "ILOSTAT",
-                "title": "Care Automation Moves Into Mundane Infrastructure stub evidence 1",
-                "observedAt": "2026-10-24T02:01:58.367Z",
-                "quality": 73,
-                "url": "https://ilostat.ilo.org/data/bulk/"
+                "sourceId": "usgs-earthquakes",
+                "sourceName": "USGS Earthquake Catalog",
+                "title": "M 6.5 - Bonin Islands, Japan region",
+                "observedAt": "2026-10-25T02:09:23.818Z",
+                "quality": 77,
+                "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4r9"
               }
             ]
           },
           "prior_60d": {
-            "count": 2,
-            "sources": [
-              "USGS Earthquake Catalog"
-            ],
-            "sourceGroups": [
-              "hazard"
-            ],
-            "averageQuality": 77,
-            "terms": [
-              "noda",
-              "japan",
-              "usgs",
-              "event",
-              "context",
-              "care",
-              "capacity",
-              "magnitude",
-              "earthquake",
-              "catalog",
-              "shikotan",
-              "russia"
-            ],
-            "topEvidence": [
-              {
-                "sourceId": "usgs-earthquakes",
-                "sourceName": "USGS Earthquake Catalog",
-                "title": "M 5.1 - 72 km ENE of Noda, Japan",
-                "observedAt": "2026-10-23T16:07:51.754Z",
-                "quality": 77,
-                "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4e2"
-              },
-              {
-                "sourceId": "usgs-earthquakes",
-                "sourceName": "USGS Earthquake Catalog",
-                "title": "M 4.8 - 39 km NE of Shikotan, Russia",
-                "observedAt": "2026-10-22T17:21:26.780Z",
-                "quality": 77,
-                "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u45f"
-              }
-            ]
+            "count": 0,
+            "sources": [],
+            "sourceGroups": [],
+            "averageQuality": 0,
+            "terms": [],
+            "topEvidence": []
           },
           "structural_baseline": {
-            "count": 16,
+            "count": 18,
             "sources": [
               "World Bank Indicators",
               "Crossref",
@@ -7391,7 +7310,7 @@
               "context",
               "general"
             ],
-            "averageQuality": 65,
+            "averageQuality": 67,
             "terms": [
               "access",
               "electricity",
@@ -7403,21 +7322,37 @@
               "indicator",
               "accs",
               "indicators",
-              "care",
-              "automation",
-              "moves",
-              "mundane",
-              "infrastructure",
-              "stub"
+              "effects",
+              "integrative",
+              "behavioral",
+              "couple",
+              "therapy",
+              "infertility"
             ],
             "topEvidence": [
               {
-                "sourceId": "arxiv",
-                "sourceName": "arXiv",
-                "title": "Sensorimotor Alignment: A Platonic Proxy for Embodied Policy Success",
-                "observedAt": "2026-10-22T17:59:51Z",
-                "quality": 73,
-                "url": "https://arxiv.org/abs/2610.31670v1"
+                "sourceId": "crossref",
+                "sourceName": "Crossref",
+                "title": "Effects of Integrative Behavioral Couple Therapy on Infertility Self-efficacy, Dyadic Adjustment, and Sexual Satisfaction in Infertile Couples",
+                "observedAt": "2121-02-01T00:00:00.000Z",
+                "quality": 76,
+                "url": "https://doi.org/10.32598/jccnc.7.1.354.1"
+              },
+              {
+                "sourceId": "crossref",
+                "sourceName": "Crossref",
+                "title": "The Effects of Relaxing Music on Life Distress and Maternal-fetal Attachment in Pregnant Women",
+                "observedAt": "2121-02-01T00:00:00.000Z",
+                "quality": 76,
+                "url": "https://doi.org/10.32598/jccnc.7.1.33.14"
+              },
+              {
+                "sourceId": "crossref",
+                "sourceName": "Crossref",
+                "title": "The Relationship Between Perfectionism, Early Maladaptive Schemas, Attachment Styles, and Body Image Concern by the Mediating Role of Self-esteem in Cosmetic Surgery Applicants",
+                "observedAt": "2121-02-01T00:00:00.000Z",
+                "quality": 76,
+                "url": "https://doi.org/10.32598/jccnc.7.1.351.1"
               },
               {
                 "sourceId": "arxiv",
@@ -7426,22 +7361,6 @@
                 "observedAt": "2026-10-22T17:59:06Z",
                 "quality": 73,
                 "url": "https://arxiv.org/abs/2610.31661v1"
-              },
-              {
-                "sourceId": "arxiv",
-                "sourceName": "arXiv",
-                "title": "Extending Harmonic Function Methods via Root Locus for Coordinated Path Generation",
-                "observedAt": "2026-10-22T17:45:31Z",
-                "quality": 73,
-                "url": "https://arxiv.org/abs/2610.31625v1"
-              },
-              {
-                "sourceId": "wikipedia",
-                "sourceName": "Wikipedia / MediaWiki",
-                "title": "Assistive technology",
-                "observedAt": "2026-10-25T02:01:58.367Z",
-                "quality": 71,
-                "url": "https://en.wikipedia.org/wiki/Assistive_technology"
               }
             ]
           }
@@ -7456,47 +7375,41 @@
               "url": "https://power.larc.nasa.gov/api/temporal/daily/point?latitude=36.2&longitude=138.2&start=20261019&end=20261025&community=RE&parameters=T2M%2CPRECTOTCORR%2CWS10M&format=JSON"
             },
             "comparator": {
-              "sourceName": "USGS Earthquake Catalog",
-              "title": "M 5.1 - 72 km ENE of Noda, Japan",
-              "observedAt": "2026-10-23T16:07:51.754Z",
-              "window": "prior_60d",
-              "quality": 77,
-              "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4e2"
+              "sourceName": "Wikidata Query Service",
+              "title": "Care Automation Moves Into Mundane Infrastructure stub evidence 1",
+              "observedAt": "2026-10-24T05:24:15.077Z",
+              "window": "structural_baseline",
+              "quality": 67,
+              "url": "https://query.wikidata.org/sparql"
             },
             "overlapTerms": [
               "japan",
-              "care",
-              "capacity"
+              "care"
             ],
-            "interpretation": "Recent NASA POWER evidence is paired with USGS Earthquake Catalog prior 60d context around japan, care, capacity."
+            "interpretation": "Recent NASA POWER evidence is paired with Wikidata Query Service structural baseline context around japan, care."
           },
           {
             "recent": {
               "sourceName": "USGS Earthquake Catalog",
-              "title": "M 5.3 - 44 km ESE of Miyazaki, Japan",
-              "observedAt": "2026-10-24T23:59:36.599Z",
+              "title": "M 4.8 - Bonin Islands, Japan region",
+              "observedAt": "2026-10-25T02:36:32.787Z",
               "quality": 83,
-              "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4qq"
+              "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4rr"
             },
             "comparator": {
-              "sourceName": "USGS Earthquake Catalog",
-              "title": "M 5.1 - 72 km ENE of Noda, Japan",
-              "observedAt": "2026-10-23T16:07:51.754Z",
-              "window": "prior_60d",
-              "quality": 77,
-              "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4e2"
+              "sourceName": "Wikidata Query Service",
+              "title": "Care Automation Moves Into Mundane Infrastructure stub evidence 1",
+              "observedAt": "2026-10-24T05:24:15.077Z",
+              "window": "structural_baseline",
+              "quality": 67,
+              "url": "https://query.wikidata.org/sparql"
             },
             "overlapTerms": [
               "japan",
-              "usgs",
-              "event",
               "context",
-              "care",
-              "capacity",
-              "magnitude",
-              "earthquake"
+              "care"
             ],
-            "interpretation": "Recent USGS Earthquake Catalog evidence is paired with USGS Earthquake Catalog prior 60d context around japan, usgs, event."
+            "interpretation": "Recent USGS Earthquake Catalog evidence is paired with Wikidata Query Service structural baseline context around japan, context, care."
           },
           {
             "recent": {
@@ -7507,64 +7420,58 @@
               "url": "https://api.open-meteo.com/v1/forecast?latitude=36.2&longitude=138.2&hourly=temperature_2m%2Cprecipitation%2Cwind_speed_10m&daily=temperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&timezone=UTC&forecast_days=3"
             },
             "comparator": {
-              "sourceName": "USGS Earthquake Catalog",
-              "title": "M 5.1 - 72 km ENE of Noda, Japan",
-              "observedAt": "2026-10-23T16:07:51.754Z",
-              "window": "prior_60d",
-              "quality": 77,
-              "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4e2"
-            },
-            "overlapTerms": [
-              "japan",
-              "care",
-              "capacity"
-            ],
-            "interpretation": "Recent Open-Meteo Forecast evidence is paired with USGS Earthquake Catalog prior 60d context around japan, care, capacity."
-          },
-          {
-            "recent": {
-              "sourceName": "ILOSTAT",
-              "title": "Care Automation Moves Into Mundane Infrastructure stub evidence 1",
-              "observedAt": "2026-10-24T02:01:58.367Z",
-              "quality": 73,
-              "url": "https://ilostat.ilo.org/data/bulk/"
-            },
-            "comparator": {
               "sourceName": "Wikidata Query Service",
               "title": "Care Automation Moves Into Mundane Infrastructure stub evidence 1",
-              "observedAt": "2026-10-24T02:01:58.367Z",
+              "observedAt": "2026-10-24T05:24:15.077Z",
               "window": "structural_baseline",
               "quality": 67,
               "url": "https://query.wikidata.org/sparql"
             },
             "overlapTerms": [
-              "care",
-              "automation",
-              "moves",
-              "mundane",
-              "infrastructure",
-              "stub",
-              "evidence",
-              "fallback"
+              "japan",
+              "care"
             ],
-            "interpretation": "Recent ILOSTAT evidence is paired with Wikidata Query Service structural baseline context around care, automation, moves."
+            "interpretation": "Recent Open-Meteo Forecast evidence is paired with Wikidata Query Service structural baseline context around japan, care."
+          },
+          {
+            "recent": {
+              "sourceName": "USGS Earthquake Catalog",
+              "title": "M 6.5 - Bonin Islands, Japan region",
+              "observedAt": "2026-10-25T02:09:23.818Z",
+              "quality": 77,
+              "url": "https://earthquake.usgs.gov/earthquakes/eventpage/us6000u4r9"
+            },
+            "comparator": {
+              "sourceName": "Wikidata Query Service",
+              "title": "Care Automation Moves Into Mundane Infrastructure stub evidence 1",
+              "observedAt": "2026-10-24T05:24:15.077Z",
+              "window": "structural_baseline",
+              "quality": 67,
+              "url": "https://query.wikidata.org/sparql"
+            },
+            "overlapTerms": [
+              "japan",
+              "context",
+              "care"
+            ],
+            "interpretation": "Recent USGS Earthquake Catalog evidence is paired with Wikidata Query Service structural baseline context around japan, context, care."
           }
         ],
         "scores": {
           "baseRate": 64,
           "recencyPulse": 98,
-          "persistence": 98,
+          "persistence": 85,
           "acceleration": 98,
           "novelty": 96,
           "sourceDiversity": 98,
-          "evidenceQuality": 89,
-          "contradiction": 3,
+          "evidenceQuality": 82,
+          "contradiction": 2,
           "impact": 82,
           "falsifiability": 96,
           "convergence": 98,
-          "uncertainty": 60,
-          "probability": 78,
-          "confidence": 85,
+          "uncertainty": 61,
+          "probability": 79,
+          "confidence": 84,
           "sourceFamilies": [
             "event stream",
             "official",
@@ -7581,15 +7488,15 @@
             "max": 60
           }
         },
-        "confidence": 85,
+        "confidence": 84,
         "convictionBand": "Strong structured watch",
         "forecast": {
           "statement": "Care Automation Moves Into Mundane Infrastructure will strengthen as an observable robotics signal within 24-60 months.",
-          "probability": 78,
+          "probability": 79,
           "priorProbability": 56,
-          "updateDelta": 22,
-          "openedAt": "2026-10-25T02:01:58.367Z",
-          "dueAt": "2031-10-25T02:01:58.367Z",
+          "updateDelta": 23,
+          "openedAt": "2026-10-25T05:24:15.077Z",
+          "dueAt": "2031-10-25T05:24:15.077Z",
           "horizonMonths": {
             "min": 24,
             "max": 60
@@ -7632,16 +7539,16 @@
             "summary": "13% break case: downgrade the forecast if care staffing improves without automation-led service redesign"
           }
         },
-        "reasoningSummary": "PFE-3.0-deterministic assigns 85/100 confidence and 78% probability after pairing the 8-item 24-hour pulse with 2 60-day comparators and 16 structural baselines. Strongest dimensions: recency pulse 98, persistence 98, acceleration 98; contradiction 3.",
+        "reasoningSummary": "PFE-3.0-deterministic assigns 84/100 confidence and 79% probability after pairing the 10-item 24-hour pulse with 0 60-day comparators and 18 structural baselines. Strongest dimensions: recency pulse 98, persistence 85, acceleration 98; contradiction 2.",
         "nonObviousRead": "the constraint can appear in service reliability before it appears in national labour statistics. The model is watching usable human capacity at the exact moment demand peaks rather than the headline theme itself, because the evidence crosses physical, policy, capacity.",
         "brierTracking": {
           "forecastId": "nightly-japan-care-automation:2026-10-25:PFE-3.0-deterministic",
           "scoreType": "brier_binary",
-          "probability": 0.78,
+          "probability": 0.79,
           "outcome": null,
           "status": "open",
-          "openedAt": "2026-10-25T02:01:58.367Z",
-          "dueAt": "2031-10-25T02:01:58.367Z",
+          "openedAt": "2026-10-25T05:24:15.077Z",
+          "dueAt": "2031-10-25T05:24:15.077Z",
           "resolutionCriteria": [
             "Resolve positive if at least two leading indicators materially appear before 2031-10-25.",
             "Resolve negative if the listed falsifiers dominate for two consecutive nightly runs.",
@@ -7660,8 +7567,8 @@
         ],
         "evidenceStack": [
           "Outside view: automation adoption where demographic demand outruns human service capacity; prior 56% before nightly evidence updates.",
-          "24-hour pulse: 8 items, average quality 71/100; update delta +22 points.",
-          "60-day comparison: 2 comparator items plus 16 structural baseline items.",
+          "24-hour pulse: 10 items, average quality 72/100; update delta +23 points.",
+          "60-day comparison: 0 comparator items plus 18 structural baseline items.",
           "Pattern test: Capacity gap maps demographic pressure -> labour scarcity -> service reliability -> automation demand.",
           "Disconfirmation test: care staffing improves without automation-led service redesign"
         ],
@@ -7686,23 +7593,23 @@
         },
         "uiModel": {
           "version": "PFE-3.0-deterministic",
-          "generatedAt": "2026-10-25T02:01:58.367Z",
-          "score": 85,
+          "generatedAt": "2026-10-25T05:24:15.077Z",
+          "score": 84,
           "scores": {
             "baseRate": 64,
-            "evidence": 89,
+            "evidence": 82,
             "weakSignalBurst": 98,
             "convergence": 98,
-            "causalTension": 98,
+            "causalTension": 85,
             "friction": 98,
             "asymmetry": 82,
             "leadLag": 96,
-            "timing": 40,
+            "timing": 39,
             "falsifiability": 96,
             "novelty": 96,
-            "uncertainty": 60,
-            "sourceDiversity": 7,
-            "sourceReliability": 89,
+            "uncertainty": 61,
+            "sourceDiversity": 6,
+            "sourceReliability": 82,
             "domains": [
               "physical",
               "policy",
@@ -7738,12 +7645,12 @@
           "upsideCase": "33% acceleration case: if care providers procuring sensor and lift systems at chain scale, this can move from watchlist to operating assumption before consensus data catches up.",
           "downsideCase": "13% break case: downgrade the forecast if care staffing improves without automation-led service redesign",
           "nonObviousRead": "the constraint can appear in service reliability before it appears in national labour statistics. The model is watching usable human capacity at the exact moment demand peaks rather than the headline theme itself, because the evidence crosses physical, policy, capacity.",
-          "confidenceReason": "PFE-3.0-deterministic assigns 85/100 confidence and 78% probability after pairing the 8-item 24-hour pulse with 2 60-day comparators and 16 structural baselines. Strongest dimensions: recency pulse 98, persistence 98, acceleration 98; contradiction 3.",
+          "confidenceReason": "PFE-3.0-deterministic assigns 84/100 confidence and 79% probability after pairing the 10-item 24-hour pulse with 0 60-day comparators and 18 structural baselines. Strongest dimensions: recency pulse 98, persistence 85, acceleration 98; contradiction 2.",
           "executiveRead": "JAPAN / CARE CAPACITY. Strong structured watch: Ageing, caregiver scarcity, sensors, and reimbursement pressure make practical care automation more important than theatrical robots.",
           "evidenceStack": [
             "Outside view: automation adoption where demographic demand outruns human service capacity; prior 56% before nightly evidence updates.",
-            "24-hour pulse: 8 items, average quality 71/100; update delta +22 points.",
-            "60-day comparison: 2 comparator items plus 16 structural baseline items.",
+            "24-hour pulse: 10 items, average quality 72/100; update delta +23 points.",
+            "60-day comparison: 0 comparator items plus 18 structural baseline items.",
             "Pattern test: Capacity gap maps demographic pressure -> labour scarcity -> service reliability -> automation demand.",
             "Disconfirmation test: care staffing improves without automation-led service redesign"
           ],
@@ -7780,11 +7687,11 @@
       },
       "forecast": {
         "statement": "Care Automation Moves Into Mundane Infrastructure will strengthen as an observable robotics signal within 24-60 months.",
-        "probability": 78,
+        "probability": 79,
         "priorProbability": 56,
-        "updateDelta": 22,
-        "openedAt": "2026-10-25T02:01:58.367Z",
-        "dueAt": "2031-10-25T02:01:58.367Z",
+        "updateDelta": 23,
+        "openedAt": "2026-10-25T05:24:15.077Z",
+        "dueAt": "2031-10-25T05:24:15.077Z",
         "horizonMonths": {
           "min": 24,
           "max": 60
@@ -7803,21 +7710,21 @@
       "brierTracking": {
         "forecastId": "nightly-japan-care-automation:2026-10-25:PFE-3.0-deterministic",
         "scoreType": "brier_binary",
-        "probability": 0.78,
+        "probability": 0.79,
         "outcome": null,
         "status": "open",
-        "openedAt": "2026-10-25T02:01:58.367Z",
-        "dueAt": "2031-10-25T02:01:58.367Z",
+        "openedAt": "2026-10-25T05:24:15.077Z",
+        "dueAt": "2031-10-25T05:24:15.077Z",
         "resolutionCriteria": [
           "Resolve positive if at least two leading indicators materially appear before 2031-10-25.",
           "Resolve negative if the listed falsifiers dominate for two consecutive nightly runs.",
           "Keep unresolved if evidence remains mixed without observable market, policy, or operating behavior."
         ]
       },
-      "generatedAt": "2026-10-25T02:01:58.367Z",
+      "generatedAt": "2026-10-25T05:24:15.077Z",
       "generator": {
-        "runId": "nightly-2026-10-25T02-01-58-367Z",
-        "generatedAt": "2026-10-25T02:01:58.367Z",
+        "runId": "nightly-2026-10-25T05-24-15-077Z",
+        "generatedAt": "2026-10-25T05:24:15.077Z",
         "mode": "mixed_or_live",
         "cadenceTarget": "nightly-0100-local",
         "patternEngineVersion": "PFE-3.0-deterministic"
@@ -7830,7 +7737,7 @@
       "lat": -2.4,
       "lon": 121.6,
       "labelRank": 7,
-      "confidence": 79,
+      "confidence": 82,
       "region": "INDONESIA / BATTERY MATERIALS",
       "category": "Materials",
       "horizon": "24-72 months",
@@ -7939,13 +7846,46 @@
           "summary": "NOAA's May 21 seasonal outlook still gives 2026 a 55% chance of a below-normal Atlantic hurricane season, which moderates the immediate storm-loss narrative even though it does not remove structural flood and insurance stress for exposed Gulf assets."
         },
         {
+          "sourceId": "crossref",
+          "sourceName": "Crossref",
+          "sourceType": "research_metadata",
+          "title": "PENGARUH KUALITAS LAYANAN DAN INSENTIF TERHADAP PERILAKU WORD OF MOUTH (WOM) KONSUMEN GARUDA INDONESIA JURUSAN JOGJA-JAKARTA",
+          "url": "https://doi.org/10.56521/manajemen-dirgantara.v8i2.110",
+          "observedAt": "2150-12-25T00:00:00.000Z",
+          "capturedAt": "2026-10-25T05:24:15.077Z",
+          "confidence": 63,
+          "summary": "Crossref research metadata match from Sekolah Tinggi Teknologi Kedirgantaraan Yogyakarta; DOI 10.56521/manajemen-dirgantara.v8i2.110."
+        },
+        {
+          "sourceId": "crossref",
+          "sourceName": "Crossref",
+          "sourceType": "research_metadata",
+          "title": "The Correlation between Stigma and Family Acceptance with Religiosity of PLWH MSM in Medan, Indonesia",
+          "url": "https://doi.org/10.31372/20190403.1048",
+          "observedAt": "2109-09-16T00:00:00.000Z",
+          "capturedAt": "2026-10-25T05:24:15.077Z",
+          "confidence": 64,
+          "summary": "Crossref research metadata match from JMIR Publications Inc.; DOI 10.31372/20190403.1048."
+        },
+        {
+          "sourceId": "crossref",
+          "sourceName": "Crossref",
+          "sourceType": "research_metadata",
+          "title": "PENGARUH KOMITE AUDIT, KEPEMILIKAN INSTITUSIONAL, DAN STRUKTUR MODAL TERHADAP NILAI PERUSAHAAN: STUDI PADA PERUSAHAAN RITEL DI BURSA EFEK INDONESIA TAHUN 2020-2024",
+          "url": "https://doi.org/10.25105/jat.v13i2.26504",
+          "observedAt": "2029-09-29T00:00:00.000Z",
+          "capturedAt": "2026-10-25T05:24:15.077Z",
+          "confidence": 65,
+          "summary": "Crossref research metadata match from Universitas Trisakti; DOI 10.25105/jat.v13i2.26504."
+        },
+        {
           "sourceId": "open-meteo",
           "sourceName": "Open-Meteo Forecast",
           "sourceType": "observed_condition",
           "title": "Open-Meteo Forecast: INDONESIA / BATTERY MATERIALS short-range weather signal",
           "url": "https://api.open-meteo.com/v1/forecast?latitude=-2.4&longitude=121.6&hourly=temperature_2m%2Cprecipitation%2Cwind_speed_10m&daily=temperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&timezone=UTC&forecast_days=3",
           "observedAt": "2026-10-25T00:00:00.000Z",
-          "capturedAt": "2026-10-25T02:01:58.367Z",
+          "capturedAt": "2026-10-25T05:24:15.077Z",
           "confidence": 68,
           "summary": "Open-Meteo forecast near INDONESIA / BATTERY MATERIALS: max temperature 28.8 C and precipitation 0 mm."
         },
@@ -7956,42 +7896,9 @@
           "title": "NASA POWER: recent physical baseline near INDONESIA / BATTERY MATERIALS",
           "url": "https://power.larc.nasa.gov/api/temporal/daily/point?latitude=-2.4&longitude=121.6&start=20261019&end=20261025&community=RE&parameters=T2M%2CPRECTOTCORR%2CWS10M&format=JSON",
           "observedAt": "2026-10-25T00:00:00.000Z",
-          "capturedAt": "2026-10-25T02:01:58.367Z",
+          "capturedAt": "2026-10-25T05:24:15.077Z",
           "confidence": 64,
           "summary": "NASA POWER baseline: T2M -999 C, precipitation -999 mm/day, wind -999 m/s."
-        },
-        {
-          "sourceId": "gdelt-doc",
-          "sourceName": "GDELT DOC 2.1",
-          "sourceType": "current_event",
-          "title": "Nickel Governance Becomes Part Of Battery Value stub evidence 1",
-          "url": "https://api.gdeltproject.org/api/v2/doc/doc",
-          "observedAt": "2026-10-24T02:01:58.367Z",
-          "capturedAt": "2026-10-25T02:01:58.367Z",
-          "confidence": 46,
-          "summary": "GDELT DOC 2.1 fallback context for \"Indonesia nickel battery supply chain emissions tailings governance scrutiny\" kept the source in the nightly evidence mix when live data was unavailable during this run."
-        },
-        {
-          "sourceId": "reliefweb",
-          "sourceName": "ReliefWeb",
-          "sourceType": "humanitarian_event",
-          "title": "Nickel Governance Becomes Part Of Battery Value stub evidence 1",
-          "url": "https://api.reliefweb.int/v1/reports",
-          "observedAt": "2026-10-24T02:01:58.367Z",
-          "capturedAt": "2026-10-25T02:01:58.367Z",
-          "confidence": 62,
-          "summary": "ReliefWeb fallback context for \"Indonesia nickel battery supply chain emissions tailings governance scrutiny\" kept the source in the nightly evidence mix when live data was unavailable during this run."
-        },
-        {
-          "sourceId": "crossref",
-          "sourceName": "Crossref",
-          "sourceType": "research_metadata",
-          "title": "Nickel Governance Becomes Part Of Battery Value stub evidence 1",
-          "url": "https://api.crossref.org/works",
-          "observedAt": "2026-10-24T02:01:58.367Z",
-          "capturedAt": "2026-10-25T02:01:58.367Z",
-          "confidence": 58,
-          "summary": "Crossref fallback context for \"Indonesia nickel battery supply chain emissions tailings governance scrutiny\" kept the source in the nightly evidence mix when live data was unavailable during this run."
         }
       ],
       "sourceMix": [
@@ -8066,11 +7973,11 @@
           "source_name": "Crossref",
           "evidence_type": "research_metadata",
           "adapter": "crossref",
-          "status": "error_fallback_stub",
-          "evidence_count": 1,
+          "status": "fetched",
+          "evidence_count": 3,
           "url": "https://api.crossref.org/works",
           "requires_key": false,
-          "error": "HTTP 429"
+          "error": null
         },
         {
           "source_id": "arxiv",
@@ -8267,7 +8174,7 @@
               "sourceId": "ilostat",
               "sourceName": "ILOSTAT",
               "title": "Nickel Governance Becomes Part Of Battery Value stub evidence 1",
-              "observedAt": "2026-10-24T02:01:58.367Z",
+              "observedAt": "2026-10-24T05:24:15.077Z",
               "quality": 71,
               "url": "https://ilostat.ilo.org/data/bulk/"
             },
@@ -8275,7 +8182,7 @@
               "sourceId": "faostat",
               "sourceName": "FAOSTAT",
               "title": "Nickel Governance Becomes Part Of Battery Value stub evidence 1",
-              "observedAt": "2026-10-24T02:01:58.367Z",
+              "observedAt": "2026-10-24T05:24:15.077Z",
               "quality": 69,
               "url": "https://www.fao.org/faostat/"
             }
@@ -8334,7 +8241,7 @@
           ]
         },
         "structural_baseline": {
-          "count": 16,
+          "count": 18,
           "sources": [
             "World Bank Indicators",
             "Crossref",
@@ -8356,7 +8263,7 @@
             "context",
             "general"
           ],
-          "averageQuality": 64,
+          "averageQuality": 67,
           "terms": [
             "access",
             "electricity",
@@ -8368,21 +8275,37 @@
             "indicator",
             "accs",
             "indicators",
-            "nickel",
-            "governance",
-            "part",
-            "battery",
-            "value",
-            "stub"
+            "pengaruh",
+            "kualitas",
+            "layanan",
+            "insentif",
+            "terhadap",
+            "perilaku"
           ],
           "topEvidence": [
             {
-              "sourceId": "arxiv",
-              "sourceName": "arXiv",
-              "title": "Odd radio circle J1555+2726: Observational evidence for shock re-acceleration of fossil plasma",
-              "observedAt": "2026-10-22T17:59:32Z",
-              "quality": 73,
-              "url": "https://arxiv.org/abs/2610.31664v1"
+              "sourceId": "crossref",
+              "sourceName": "Crossref",
+              "title": "The Correlation between Stigma and Family Acceptance with Religiosity of PLWH MSM in Medan, Indonesia",
+              "observedAt": "2109-09-16T00:00:00.000Z",
+              "quality": 80,
+              "url": "https://doi.org/10.31372/20190403.1048"
+            },
+            {
+              "sourceId": "crossref",
+              "sourceName": "Crossref",
+              "title": "PENGARUH KOMITE AUDIT, KEPEMILIKAN INSTITUSIONAL, DAN STRUKTUR MODAL TERHADAP NILAI PERUSAHAAN: STUDI PADA PERUSAHAAN RITEL DI BURSA EFEK INDONESIA TAHUN 2020-2024",
+              "observedAt": "2029-09-29T00:00:00.000Z",
+              "quality": 80,
+              "url": "https://doi.org/10.25105/jat.v13i2.26504"
+            },
+            {
+              "sourceId": "crossref",
+              "sourceName": "Crossref",
+              "title": "PENGARUH KUALITAS LAYANAN DAN INSENTIF TERHADAP PERILAKU WORD OF MOUTH (WOM) KONSUMEN GARUDA INDONESIA JURUSAN JOGJA-JAKARTA",
+              "observedAt": "2150-12-25T00:00:00.000Z",
+              "quality": 79,
+              "url": "https://doi.org/10.56521/manajemen-dirgantara.v8i2.110"
             },
             {
               "sourceId": "arxiv",
@@ -8391,22 +8314,6 @@
               "observedAt": "2026-10-22T17:59:02Z",
               "quality": 73,
               "url": "https://arxiv.org/abs/2610.31658v1"
-            },
-            {
-              "sourceId": "arxiv",
-              "sourceName": "arXiv",
-              "title": "Causal Chain of Thought: Mitigating Attention Leakage via Context Isolation",
-              "observedAt": "2026-10-22T17:52:56Z",
-              "quality": 73,
-              "url": "https://arxiv.org/abs/2610.31639v1"
-            },
-            {
-              "sourceId": "wikidata",
-              "sourceName": "Wikidata Query Service",
-              "title": "Nickel Governance Becomes Part Of Battery Value stub evidence 1",
-              "observedAt": "2026-10-24T02:01:58.367Z",
-              "quality": 67,
-              "url": "https://query.wikidata.org/sparql"
             }
           ]
         }
@@ -8462,14 +8369,14 @@
           "recent": {
             "sourceName": "ILOSTAT",
             "title": "Nickel Governance Becomes Part Of Battery Value stub evidence 1",
-            "observedAt": "2026-10-24T02:01:58.367Z",
+            "observedAt": "2026-10-24T05:24:15.077Z",
             "quality": 71,
             "url": "https://ilostat.ilo.org/data/bulk/"
           },
           "comparator": {
             "sourceName": "Wikidata Query Service",
             "title": "Nickel Governance Becomes Part Of Battery Value stub evidence 1",
-            "observedAt": "2026-10-24T02:01:58.367Z",
+            "observedAt": "2026-10-24T05:24:15.077Z",
             "window": "structural_baseline",
             "quality": 67,
             "url": "https://query.wikidata.org/sparql"
@@ -8490,14 +8397,14 @@
           "recent": {
             "sourceName": "FAOSTAT",
             "title": "Nickel Governance Becomes Part Of Battery Value stub evidence 1",
-            "observedAt": "2026-10-24T02:01:58.367Z",
+            "observedAt": "2026-10-24T05:24:15.077Z",
             "quality": 69,
             "url": "https://www.fao.org/faostat/"
           },
           "comparator": {
             "sourceName": "Wikidata Query Service",
             "title": "Nickel Governance Becomes Part Of Battery Value stub evidence 1",
-            "observedAt": "2026-10-24T02:01:58.367Z",
+            "observedAt": "2026-10-24T05:24:15.077Z",
             "window": "structural_baseline",
             "quality": 67,
             "url": "https://query.wikidata.org/sparql"
@@ -8517,7 +8424,7 @@
       ],
       "patternModel": {
         "version": "PFE-3.0-deterministic",
-        "generatedAt": "2026-10-25T02:01:58.367Z",
+        "generatedAt": "2026-10-25T05:24:15.077Z",
         "cadence": "nightly-0100-local",
         "costModel": "no paid APIs, no LLM/API calls, deterministic open-source JavaScript",
         "referenceClass": {
@@ -8639,7 +8546,7 @@
                 "sourceId": "ilostat",
                 "sourceName": "ILOSTAT",
                 "title": "Nickel Governance Becomes Part Of Battery Value stub evidence 1",
-                "observedAt": "2026-10-24T02:01:58.367Z",
+                "observedAt": "2026-10-24T05:24:15.077Z",
                 "quality": 71,
                 "url": "https://ilostat.ilo.org/data/bulk/"
               },
@@ -8647,7 +8554,7 @@
                 "sourceId": "faostat",
                 "sourceName": "FAOSTAT",
                 "title": "Nickel Governance Becomes Part Of Battery Value stub evidence 1",
-                "observedAt": "2026-10-24T02:01:58.367Z",
+                "observedAt": "2026-10-24T05:24:15.077Z",
                 "quality": 69,
                 "url": "https://www.fao.org/faostat/"
               }
@@ -8706,7 +8613,7 @@
             ]
           },
           "structural_baseline": {
-            "count": 16,
+            "count": 18,
             "sources": [
               "World Bank Indicators",
               "Crossref",
@@ -8728,7 +8635,7 @@
               "context",
               "general"
             ],
-            "averageQuality": 64,
+            "averageQuality": 67,
             "terms": [
               "access",
               "electricity",
@@ -8740,21 +8647,37 @@
               "indicator",
               "accs",
               "indicators",
-              "nickel",
-              "governance",
-              "part",
-              "battery",
-              "value",
-              "stub"
+              "pengaruh",
+              "kualitas",
+              "layanan",
+              "insentif",
+              "terhadap",
+              "perilaku"
             ],
             "topEvidence": [
               {
-                "sourceId": "arxiv",
-                "sourceName": "arXiv",
-                "title": "Odd radio circle J1555+2726: Observational evidence for shock re-acceleration of fossil plasma",
-                "observedAt": "2026-10-22T17:59:32Z",
-                "quality": 73,
-                "url": "https://arxiv.org/abs/2610.31664v1"
+                "sourceId": "crossref",
+                "sourceName": "Crossref",
+                "title": "The Correlation between Stigma and Family Acceptance with Religiosity of PLWH MSM in Medan, Indonesia",
+                "observedAt": "2109-09-16T00:00:00.000Z",
+                "quality": 80,
+                "url": "https://doi.org/10.31372/20190403.1048"
+              },
+              {
+                "sourceId": "crossref",
+                "sourceName": "Crossref",
+                "title": "PENGARUH KOMITE AUDIT, KEPEMILIKAN INSTITUSIONAL, DAN STRUKTUR MODAL TERHADAP NILAI PERUSAHAAN: STUDI PADA PERUSAHAAN RITEL DI BURSA EFEK INDONESIA TAHUN 2020-2024",
+                "observedAt": "2029-09-29T00:00:00.000Z",
+                "quality": 80,
+                "url": "https://doi.org/10.25105/jat.v13i2.26504"
+              },
+              {
+                "sourceId": "crossref",
+                "sourceName": "Crossref",
+                "title": "PENGARUH KUALITAS LAYANAN DAN INSENTIF TERHADAP PERILAKU WORD OF MOUTH (WOM) KONSUMEN GARUDA INDONESIA JURUSAN JOGJA-JAKARTA",
+                "observedAt": "2150-12-25T00:00:00.000Z",
+                "quality": 79,
+                "url": "https://doi.org/10.56521/manajemen-dirgantara.v8i2.110"
               },
               {
                 "sourceId": "arxiv",
@@ -8763,22 +8686,6 @@
                 "observedAt": "2026-10-22T17:59:02Z",
                 "quality": 73,
                 "url": "https://arxiv.org/abs/2610.31658v1"
-              },
-              {
-                "sourceId": "arxiv",
-                "sourceName": "arXiv",
-                "title": "Causal Chain of Thought: Mitigating Attention Leakage via Context Isolation",
-                "observedAt": "2026-10-22T17:52:56Z",
-                "quality": 73,
-                "url": "https://arxiv.org/abs/2610.31639v1"
-              },
-              {
-                "sourceId": "wikidata",
-                "sourceName": "Wikidata Query Service",
-                "title": "Nickel Governance Becomes Part Of Battery Value stub evidence 1",
-                "observedAt": "2026-10-24T02:01:58.367Z",
-                "quality": 67,
-                "url": "https://query.wikidata.org/sparql"
               }
             ]
           }
@@ -8834,14 +8741,14 @@
             "recent": {
               "sourceName": "ILOSTAT",
               "title": "Nickel Governance Becomes Part Of Battery Value stub evidence 1",
-              "observedAt": "2026-10-24T02:01:58.367Z",
+              "observedAt": "2026-10-24T05:24:15.077Z",
               "quality": 71,
               "url": "https://ilostat.ilo.org/data/bulk/"
             },
             "comparator": {
               "sourceName": "Wikidata Query Service",
               "title": "Nickel Governance Becomes Part Of Battery Value stub evidence 1",
-              "observedAt": "2026-10-24T02:01:58.367Z",
+              "observedAt": "2026-10-24T05:24:15.077Z",
               "window": "structural_baseline",
               "quality": 67,
               "url": "https://query.wikidata.org/sparql"
@@ -8862,14 +8769,14 @@
             "recent": {
               "sourceName": "FAOSTAT",
               "title": "Nickel Governance Becomes Part Of Battery Value stub evidence 1",
-              "observedAt": "2026-10-24T02:01:58.367Z",
+              "observedAt": "2026-10-24T05:24:15.077Z",
               "quality": 69,
               "url": "https://www.fao.org/faostat/"
             },
             "comparator": {
               "sourceName": "Wikidata Query Service",
               "title": "Nickel Governance Becomes Part Of Battery Value stub evidence 1",
-              "observedAt": "2026-10-24T02:01:58.367Z",
+              "observedAt": "2026-10-24T05:24:15.077Z",
               "window": "structural_baseline",
               "quality": 67,
               "url": "https://query.wikidata.org/sparql"
@@ -8889,19 +8796,19 @@
         ],
         "scores": {
           "baseRate": 64,
-          "recencyPulse": 86,
+          "recencyPulse": 89,
           "persistence": 98,
           "acceleration": 75,
           "novelty": 96,
           "sourceDiversity": 98,
-          "evidenceQuality": 83,
-          "contradiction": 4,
+          "evidenceQuality": 89,
+          "contradiction": 3,
           "impact": 89,
           "falsifiability": 96,
           "convergence": 98,
-          "uncertainty": 67,
-          "probability": 73,
-          "confidence": 79,
+          "uncertainty": 64,
+          "probability": 76,
+          "confidence": 82,
           "sourceFamilies": [
             "event stream",
             "official",
@@ -8918,15 +8825,15 @@
             "max": 72
           }
         },
-        "confidence": 79,
+        "confidence": 82,
         "convictionBand": "Strong structured watch",
         "forecast": {
           "statement": "Nickel Governance Becomes Part Of Battery Value will strengthen as an observable materials signal within 24-72 months.",
-          "probability": 73,
+          "probability": 76,
           "priorProbability": 56,
-          "updateDelta": 17,
-          "openedAt": "2026-10-25T02:01:58.367Z",
-          "dueAt": "2032-10-25T02:01:58.367Z",
+          "updateDelta": 20,
+          "openedAt": "2026-10-25T05:24:15.077Z",
+          "dueAt": "2032-10-25T05:24:15.077Z",
           "horizonMonths": {
             "min": 24,
             "max": 72
@@ -8952,33 +8859,33 @@
         ],
         "scenarioSpread": {
           "weights": {
-            "base": 53,
+            "base": 54,
             "upside": 31,
-            "downside": 16
+            "downside": 15
           },
           "baseCase": {
-            "probability": 53,
-            "summary": "53% base case: Battery demand, environmental scrutiny, and downstream processing make governance quality part of the material premium. The hinge is credible fallback capacity."
+            "probability": 54,
+            "summary": "54% base case: Battery demand, environmental scrutiny, and downstream processing make governance quality part of the material premium. The hinge is credible fallback capacity."
           },
           "upsideCase": {
             "probability": 31,
             "summary": "31% acceleration case: if automakers demanding provenance and emissions disclosure, this can move from watchlist to operating assumption before consensus data catches up."
           },
           "downsideCase": {
-            "probability": 16,
-            "summary": "16% break case: downgrade the forecast if buyers prioritize volume while governance requirements remain weak"
+            "probability": 15,
+            "summary": "15% break case: downgrade the forecast if buyers prioritize volume while governance requirements remain weak"
           }
         },
-        "reasoningSummary": "PFE-3.0-deterministic assigns 79/100 confidence and 73% probability after pairing the 7-item 24-hour pulse with 3 60-day comparators and 16 structural baselines. Strongest dimensions: recency pulse 86, persistence 98, acceleration 75; contradiction 4.",
+        "reasoningSummary": "PFE-3.0-deterministic assigns 82/100 confidence and 76% probability after pairing the 7-item 24-hour pulse with 3 60-day comparators and 18 structural baselines. Strongest dimensions: recency pulse 89, persistence 98, acceleration 75; contradiction 3.",
         "nonObviousRead": "buyers start paying for continuity and controllability while headline capacity still looks adequate. The model is watching credible fallback capacity rather than the headline theme itself, because the evidence crosses physical, capital, capacity.",
         "brierTracking": {
           "forecastId": "nightly-indonesia-nickel-governance:2026-10-25:PFE-3.0-deterministic",
           "scoreType": "brier_binary",
-          "probability": 0.73,
+          "probability": 0.76,
           "outcome": null,
           "status": "open",
-          "openedAt": "2026-10-25T02:01:58.367Z",
-          "dueAt": "2032-10-25T02:01:58.367Z",
+          "openedAt": "2026-10-25T05:24:15.077Z",
+          "dueAt": "2032-10-25T05:24:15.077Z",
           "resolutionCriteria": [
             "Resolve positive if at least two leading indicators materially appear before 2032-10-25.",
             "Resolve negative if the listed falsifiers dominate for two consecutive nightly runs.",
@@ -8997,8 +8904,8 @@
         ],
         "evidenceStack": [
           "Outside view: strategic materials gaining value from proof, traceability, and social license; prior 56% before nightly evidence updates.",
-          "24-hour pulse: 7 items, average quality 68/100; update delta +17 points.",
-          "60-day comparison: 3 comparator items plus 16 structural baseline items.",
+          "24-hour pulse: 7 items, average quality 68/100; update delta +20 points.",
+          "60-day comparison: 3 comparator items plus 18 structural baseline items.",
           "Pattern test: Resilience premium maps reliability shock -> backup demand -> procurement change -> capital allocation.",
           "Disconfirmation test: buyers prioritize volume while governance requirements remain weak"
         ],
@@ -9017,29 +8924,29 @@
           "deeperRead": "Buyers start paying for continuity and controllability while headline capacity still looks adequate. The important thing to watch is credible fallback capacity rather than the headline itself, because the evidence crosses physical, capital, capacity. In plain terms, the visible headline may be late; the earlier move is when credible fallback capacity changes prices, rules, contracts, capacity, or everyday operating choices.",
           "watch": "Watch credible fallback capacity, automakers demanding provenance and emissions disclosure, tailings and power-source rules tightening around nickel processing, and buyers paying premiums for auditable lower-impact supply. The reading becomes more durable when these signs appear together instead of as isolated anecdotes.",
           "changePicture": "This reading should soften if buyers prioritize volume while governance requirements remain weak, alternative chemistries materially reduce nickel exposure, and central reliability improves before users change procurement or financing behavior.",
-          "scenarioSpread": "Main path (53%): Battery demand, environmental scrutiny, and downstream processing make governance quality part of the material premium. The hinge is credible fallback capacity. Faster path (31%): if automakers demanding provenance and emissions disclosure, this can move from watchlist to operating assumption before consensus data catches up. Reversal path (16%): the picture weakens if buyers prioritize volume while governance requirements remain weak.",
+          "scenarioSpread": "Main path (54%): Battery demand, environmental scrutiny, and downstream processing make governance quality part of the material premium. The hinge is credible fallback capacity. Faster path (31%): if automakers demanding provenance and emissions disclosure, this can move from watchlist to operating assumption before consensus data catches up. Reversal path (15%): the picture weakens if buyers prioritize volume while governance requirements remain weak.",
           "cardRead": "This reads less like one headline and more like a pattern taking shape: auditable, cleaner supply can become a commercial advantage even before scarcity alone drives pricing. Watch whether credible fallback capacity starts showing up in prices, policy, contracts, or operating decisions.",
           "watchShort": "credible fallback capacity, automakers demanding provenance and emissions disclosure, tailings and power-source rules tightening around nickel processing, and buyers paying premiums for auditable lower-impact supply"
         },
         "uiModel": {
           "version": "PFE-3.0-deterministic",
-          "generatedAt": "2026-10-25T02:01:58.367Z",
-          "score": 79,
+          "generatedAt": "2026-10-25T05:24:15.077Z",
+          "score": 82,
           "scores": {
             "baseRate": 64,
-            "evidence": 83,
-            "weakSignalBurst": 86,
+            "evidence": 89,
+            "weakSignalBurst": 89,
             "convergence": 98,
             "causalTension": 98,
             "friction": 75,
             "asymmetry": 89,
             "leadLag": 96,
-            "timing": 33,
+            "timing": 36,
             "falsifiability": 96,
             "novelty": 96,
-            "uncertainty": 67,
+            "uncertainty": 64,
             "sourceDiversity": 6,
-            "sourceReliability": 83,
+            "sourceReliability": 89,
             "domains": [
               "physical",
               "capital",
@@ -9051,9 +8958,9 @@
             "referenceClass": "strategic materials gaining value from proof, traceability, and social license"
           },
           "scenarioWeights": {
-            "base": 53,
+            "base": 54,
             "upside": 31,
-            "downside": 16
+            "downside": 15
           },
           "convictionBand": "Strong structured watch",
           "archetype": "Resilience premium",
@@ -9072,16 +8979,16 @@
             "central reliability improves before users change procurement or financing behavior",
             "the recent 24-hour evidence pulse falls back below the 60-day baseline for two consecutive runs"
           ],
-          "baseCase": "53% base case: Battery demand, environmental scrutiny, and downstream processing make governance quality part of the material premium. The hinge is credible fallback capacity.",
+          "baseCase": "54% base case: Battery demand, environmental scrutiny, and downstream processing make governance quality part of the material premium. The hinge is credible fallback capacity.",
           "upsideCase": "31% acceleration case: if automakers demanding provenance and emissions disclosure, this can move from watchlist to operating assumption before consensus data catches up.",
-          "downsideCase": "16% break case: downgrade the forecast if buyers prioritize volume while governance requirements remain weak",
+          "downsideCase": "15% break case: downgrade the forecast if buyers prioritize volume while governance requirements remain weak",
           "nonObviousRead": "buyers start paying for continuity and controllability while headline capacity still looks adequate. The model is watching credible fallback capacity rather than the headline theme itself, because the evidence crosses physical, capital, capacity.",
-          "confidenceReason": "PFE-3.0-deterministic assigns 79/100 confidence and 73% probability after pairing the 7-item 24-hour pulse with 3 60-day comparators and 16 structural baselines. Strongest dimensions: recency pulse 86, persistence 98, acceleration 75; contradiction 4.",
+          "confidenceReason": "PFE-3.0-deterministic assigns 82/100 confidence and 76% probability after pairing the 7-item 24-hour pulse with 3 60-day comparators and 18 structural baselines. Strongest dimensions: recency pulse 89, persistence 98, acceleration 75; contradiction 3.",
           "executiveRead": "INDONESIA / BATTERY MATERIALS. Strong structured watch: Battery demand, environmental scrutiny, and downstream processing make governance quality part of the material premium.",
           "evidenceStack": [
             "Outside view: strategic materials gaining value from proof, traceability, and social license; prior 56% before nightly evidence updates.",
-            "24-hour pulse: 7 items, average quality 68/100; update delta +17 points.",
-            "60-day comparison: 3 comparator items plus 16 structural baseline items.",
+            "24-hour pulse: 7 items, average quality 68/100; update delta +20 points.",
+            "60-day comparison: 3 comparator items plus 18 structural baseline items.",
             "Pattern test: Resilience premium maps reliability shock -> backup demand -> procurement change -> capital allocation.",
             "Disconfirmation test: buyers prioritize volume while governance requirements remain weak"
           ],
@@ -9100,7 +9007,7 @@
             "deeperRead": "Buyers start paying for continuity and controllability while headline capacity still looks adequate. The important thing to watch is credible fallback capacity rather than the headline itself, because the evidence crosses physical, capital, capacity. In plain terms, the visible headline may be late; the earlier move is when credible fallback capacity changes prices, rules, contracts, capacity, or everyday operating choices.",
             "watch": "Watch credible fallback capacity, automakers demanding provenance and emissions disclosure, tailings and power-source rules tightening around nickel processing, and buyers paying premiums for auditable lower-impact supply. The reading becomes more durable when these signs appear together instead of as isolated anecdotes.",
             "changePicture": "This reading should soften if buyers prioritize volume while governance requirements remain weak, alternative chemistries materially reduce nickel exposure, and central reliability improves before users change procurement or financing behavior.",
-            "scenarioSpread": "Main path (53%): Battery demand, environmental scrutiny, and downstream processing make governance quality part of the material premium. The hinge is credible fallback capacity. Faster path (31%): if automakers demanding provenance and emissions disclosure, this can move from watchlist to operating assumption before consensus data catches up. Reversal path (16%): the picture weakens if buyers prioritize volume while governance requirements remain weak.",
+            "scenarioSpread": "Main path (54%): Battery demand, environmental scrutiny, and downstream processing make governance quality part of the material premium. The hinge is credible fallback capacity. Faster path (31%): if automakers demanding provenance and emissions disclosure, this can move from watchlist to operating assumption before consensus data catches up. Reversal path (15%): the picture weakens if buyers prioritize volume while governance requirements remain weak.",
             "cardRead": "This reads less like one headline and more like a pattern taking shape: auditable, cleaner supply can become a commercial advantage even before scarcity alone drives pricing. Watch whether credible fallback capacity starts showing up in prices, policy, contracts, or operating decisions.",
             "watchShort": "credible fallback capacity, automakers demanding provenance and emissions disclosure, tailings and power-source rules tightening around nickel processing, and buyers paying premiums for auditable lower-impact supply"
           },
@@ -9118,11 +9025,11 @@
       },
       "forecast": {
         "statement": "Nickel Governance Becomes Part Of Battery Value will strengthen as an observable materials signal within 24-72 months.",
-        "probability": 73,
+        "probability": 76,
         "priorProbability": 56,
-        "updateDelta": 17,
-        "openedAt": "2026-10-25T02:01:58.367Z",
-        "dueAt": "2032-10-25T02:01:58.367Z",
+        "updateDelta": 20,
+        "openedAt": "2026-10-25T05:24:15.077Z",
+        "dueAt": "2032-10-25T05:24:15.077Z",
         "horizonMonths": {
           "min": 24,
           "max": 72
@@ -9141,21 +9048,21 @@
       "brierTracking": {
         "forecastId": "nightly-indonesia-nickel-governance:2026-10-25:PFE-3.0-deterministic",
         "scoreType": "brier_binary",
-        "probability": 0.73,
+        "probability": 0.76,
         "outcome": null,
         "status": "open",
-        "openedAt": "2026-10-25T02:01:58.367Z",
-        "dueAt": "2032-10-25T02:01:58.367Z",
+        "openedAt": "2026-10-25T05:24:15.077Z",
+        "dueAt": "2032-10-25T05:24:15.077Z",
         "resolutionCriteria": [
           "Resolve positive if at least two leading indicators materially appear before 2032-10-25.",
           "Resolve negative if the listed falsifiers dominate for two consecutive nightly runs.",
           "Keep unresolved if evidence remains mixed without observable market, policy, or operating behavior."
         ]
       },
-      "generatedAt": "2026-10-25T02:01:58.367Z",
+      "generatedAt": "2026-10-25T05:24:15.077Z",
       "generator": {
-        "runId": "nightly-2026-10-25T02-01-58-367Z",
-        "generatedAt": "2026-10-25T02:01:58.367Z",
+        "runId": "nightly-2026-10-25T05-24-15-077Z",
+        "generatedAt": "2026-10-25T05:24:15.077Z",
         "mode": "mixed_or_live",
         "cadenceTarget": "nightly-0100-local",
         "patternEngineVersion": "PFE-3.0-deterministic"
@@ -9282,8 +9189,8 @@
           "sourceType": "entity_context",
           "title": "Nuclear marine propulsion",
           "url": "https://en.wikipedia.org/wiki/Nuclear_marine_propulsion",
-          "observedAt": "2026-10-25T02:01:58.367Z",
-          "capturedAt": "2026-10-25T02:01:58.367Z",
+          "observedAt": "2026-10-25T05:24:15.077Z",
+          "capturedAt": "2026-10-25T05:24:15.077Z",
           "confidence": 46,
           "summary": "Wikipedia context: Nuclear marine propulsion is propulsion of a ship or submarine with heat provided by a nuclear reactor. The power plant heats water to produce steam for a turbine used to turn the ship's pro."
         },
@@ -9293,8 +9200,8 @@
           "sourceType": "entity_context",
           "title": "Environmental impact of shipping",
           "url": "https://en.wikipedia.org/wiki/Environmental_impact_of_shipping",
-          "observedAt": "2026-10-25T02:01:58.367Z",
-          "capturedAt": "2026-10-25T02:01:58.367Z",
+          "observedAt": "2026-10-25T05:24:15.077Z",
+          "capturedAt": "2026-10-25T05:24:15.077Z",
           "confidence": 47,
           "summary": "Wikipedia context: The environmental impact of shipping include air pollution, water pollution, acoustic, and oil pollution. Ships are responsible for more than 3% of greenhouse gas emissions and 18% of nitrog."
         },
@@ -9302,12 +9209,12 @@
           "sourceId": "wikipedia",
           "sourceName": "Wikipedia / MediaWiki",
           "sourceType": "entity_context",
-          "title": "Hurricane Sandy",
-          "url": "https://en.wikipedia.org/wiki/Hurricane_Sandy",
-          "observedAt": "2026-10-25T02:01:58.367Z",
-          "capturedAt": "2026-10-25T02:01:58.367Z",
+          "title": "Second presidency of Donald Trump",
+          "url": "https://en.wikipedia.org/wiki/Second_presidency_of_Donald_Trump",
+          "observedAt": "2026-10-25T05:24:15.077Z",
+          "capturedAt": "2026-10-25T05:24:15.077Z",
           "confidence": 48,
-          "summary": "Wikipedia context: Hurricane Sandy (unofficially referred to as Superstorm Sandy) was an extremely large and devastating tropical cyclone which ravaged the Caribbean and the coastal Mid-Atlantic region of the ."
+          "summary": "Wikipedia context: Donald Trump's second and current tenure as the president of the United States began upon his inauguration as the 47th president on January 20, 2025. Trump, a Republican, previously served a."
         },
         {
           "sourceId": "open-meteo",
@@ -9316,7 +9223,7 @@
           "title": "Open-Meteo Forecast: ARCTIC / ROUTES + SECURITY short-range weather signal",
           "url": "https://api.open-meteo.com/v1/forecast?latitude=69.6&longitude=66&hourly=temperature_2m%2Cprecipitation%2Cwind_speed_10m&daily=temperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum&timezone=UTC&forecast_days=3",
           "observedAt": "2026-10-25T00:00:00.000Z",
-          "capturedAt": "2026-10-25T02:01:58.367Z",
+          "capturedAt": "2026-10-25T05:24:15.077Z",
           "confidence": 71,
           "summary": "Open-Meteo forecast near ARCTIC / ROUTES + SECURITY: max temperature 6.1 C and precipitation 2.9 mm."
         },
@@ -9327,7 +9234,7 @@
           "title": "NASA POWER: recent physical baseline near ARCTIC / ROUTES + SECURITY",
           "url": "https://power.larc.nasa.gov/api/temporal/daily/point?latitude=69.6&longitude=66&start=20261019&end=20261025&community=RE&parameters=T2M%2CPRECTOTCORR%2CWS10M&format=JSON",
           "observedAt": "2026-10-25T00:00:00.000Z",
-          "capturedAt": "2026-10-25T02:01:58.367Z",
+          "capturedAt": "2026-10-25T05:24:15.077Z",
           "confidence": 62,
           "summary": "NASA POWER baseline: T2M -999 C, precipitation -999 mm/day, wind -999 m/s."
         }
@@ -9607,7 +9514,7 @@
               "sourceId": "faostat",
               "sourceName": "FAOSTAT",
               "title": "Arctic Optionality Grows Before Routine Shipping stub evidence 1",
-              "observedAt": "2026-10-24T02:01:58.367Z",
+              "observedAt": "2026-10-24T05:24:15.077Z",
               "quality": 73,
               "url": "https://www.fao.org/faostat/"
             },
@@ -9615,7 +9522,7 @@
               "sourceId": "ilostat",
               "sourceName": "ILOSTAT",
               "title": "Arctic Optionality Grows Before Routine Shipping stub evidence 1",
-              "observedAt": "2026-10-24T02:01:58.367Z",
+              "observedAt": "2026-10-24T05:24:15.077Z",
               "quality": 68,
               "url": "https://ilostat.ilo.org/data/bulk/"
             }
@@ -9699,7 +9606,7 @@
               "sourceId": "wikipedia",
               "sourceName": "Wikipedia / MediaWiki",
               "title": "Nuclear marine propulsion",
-              "observedAt": "2026-10-25T02:01:58.367Z",
+              "observedAt": "2026-10-25T05:24:15.077Z",
               "quality": 70,
               "url": "https://en.wikipedia.org/wiki/Nuclear_marine_propulsion"
             }
@@ -9755,14 +9662,14 @@
           "recent": {
             "sourceName": "FAOSTAT",
             "title": "Arctic Optionality Grows Before Routine Shipping stub evidence 1",
-            "observedAt": "2026-10-24T02:01:58.367Z",
+            "observedAt": "2026-10-24T05:24:15.077Z",
             "quality": 73,
             "url": "https://www.fao.org/faostat/"
           },
           "comparator": {
             "sourceName": "Wikidata Query Service",
             "title": "Arctic Optionality Grows Before Routine Shipping stub evidence 1",
-            "observedAt": "2026-10-24T02:01:58.367Z",
+            "observedAt": "2026-10-24T05:24:15.077Z",
             "window": "structural_baseline",
             "quality": 68,
             "url": "https://query.wikidata.org/sparql"
@@ -9783,14 +9690,14 @@
           "recent": {
             "sourceName": "ILOSTAT",
             "title": "Arctic Optionality Grows Before Routine Shipping stub evidence 1",
-            "observedAt": "2026-10-24T02:01:58.367Z",
+            "observedAt": "2026-10-24T05:24:15.077Z",
             "quality": 68,
             "url": "https://ilostat.ilo.org/data/bulk/"
           },
           "comparator": {
             "sourceName": "Wikidata Query Service",
             "title": "Arctic Optionality Grows Before Routine Shipping stub evidence 1",
-            "observedAt": "2026-10-24T02:01:58.367Z",
+            "observedAt": "2026-10-24T05:24:15.077Z",
             "window": "structural_baseline",
             "quality": 68,
             "url": "https://query.wikidata.org/sparql"
@@ -9810,7 +9717,7 @@
       ],
       "patternModel": {
         "version": "PFE-3.0-deterministic",
-        "generatedAt": "2026-10-25T02:01:58.367Z",
+        "generatedAt": "2026-10-25T05:24:15.077Z",
         "cadence": "nightly-0100-local",
         "costModel": "no paid APIs, no LLM/API calls, deterministic open-source JavaScript",
         "referenceClass": {
@@ -9949,7 +9856,7 @@
                 "sourceId": "faostat",
                 "sourceName": "FAOSTAT",
                 "title": "Arctic Optionality Grows Before Routine Shipping stub evidence 1",
-                "observedAt": "2026-10-24T02:01:58.367Z",
+                "observedAt": "2026-10-24T05:24:15.077Z",
                 "quality": 73,
                 "url": "https://www.fao.org/faostat/"
               },
@@ -9957,7 +9864,7 @@
                 "sourceId": "ilostat",
                 "sourceName": "ILOSTAT",
                 "title": "Arctic Optionality Grows Before Routine Shipping stub evidence 1",
-                "observedAt": "2026-10-24T02:01:58.367Z",
+                "observedAt": "2026-10-24T05:24:15.077Z",
                 "quality": 68,
                 "url": "https://ilostat.ilo.org/data/bulk/"
               }
@@ -10041,7 +9948,7 @@
                 "sourceId": "wikipedia",
                 "sourceName": "Wikipedia / MediaWiki",
                 "title": "Nuclear marine propulsion",
-                "observedAt": "2026-10-25T02:01:58.367Z",
+                "observedAt": "2026-10-25T05:24:15.077Z",
                 "quality": 70,
                 "url": "https://en.wikipedia.org/wiki/Nuclear_marine_propulsion"
               }
@@ -10097,14 +10004,14 @@
             "recent": {
               "sourceName": "FAOSTAT",
               "title": "Arctic Optionality Grows Before Routine Shipping stub evidence 1",
-              "observedAt": "2026-10-24T02:01:58.367Z",
+              "observedAt": "2026-10-24T05:24:15.077Z",
               "quality": 73,
               "url": "https://www.fao.org/faostat/"
             },
             "comparator": {
               "sourceName": "Wikidata Query Service",
               "title": "Arctic Optionality Grows Before Routine Shipping stub evidence 1",
-              "observedAt": "2026-10-24T02:01:58.367Z",
+              "observedAt": "2026-10-24T05:24:15.077Z",
               "window": "structural_baseline",
               "quality": 68,
               "url": "https://query.wikidata.org/sparql"
@@ -10125,14 +10032,14 @@
             "recent": {
               "sourceName": "ILOSTAT",
               "title": "Arctic Optionality Grows Before Routine Shipping stub evidence 1",
-              "observedAt": "2026-10-24T02:01:58.367Z",
+              "observedAt": "2026-10-24T05:24:15.077Z",
               "quality": 68,
               "url": "https://ilostat.ilo.org/data/bulk/"
             },
             "comparator": {
               "sourceName": "Wikidata Query Service",
               "title": "Arctic Optionality Grows Before Routine Shipping stub evidence 1",
-              "observedAt": "2026-10-24T02:01:58.367Z",
+              "observedAt": "2026-10-24T05:24:15.077Z",
               "window": "structural_baseline",
               "quality": 68,
               "url": "https://query.wikidata.org/sparql"
@@ -10188,8 +10095,8 @@
           "probability": 78,
           "priorProbability": 59,
           "updateDelta": 19,
-          "openedAt": "2026-10-25T02:01:58.367Z",
-          "dueAt": "2033-10-25T02:01:58.367Z",
+          "openedAt": "2026-10-25T05:24:15.077Z",
+          "dueAt": "2033-10-25T05:24:15.077Z",
           "horizonMonths": {
             "min": 36,
             "max": 84
@@ -10240,8 +10147,8 @@
           "probability": 0.78,
           "outcome": null,
           "status": "open",
-          "openedAt": "2026-10-25T02:01:58.367Z",
-          "dueAt": "2033-10-25T02:01:58.367Z",
+          "openedAt": "2026-10-25T05:24:15.077Z",
+          "dueAt": "2033-10-25T05:24:15.077Z",
           "resolutionCriteria": [
             "Resolve positive if at least two leading indicators materially appear before 2033-10-25.",
             "Resolve negative if the listed falsifiers dominate for two consecutive nightly runs.",
@@ -10286,7 +10193,7 @@
         },
         "uiModel": {
           "version": "PFE-3.0-deterministic",
-          "generatedAt": "2026-10-25T02:01:58.367Z",
+          "generatedAt": "2026-10-25T05:24:15.077Z",
           "score": 81,
           "scores": {
             "baseRate": 67,
@@ -10386,8 +10293,8 @@
         "probability": 78,
         "priorProbability": 59,
         "updateDelta": 19,
-        "openedAt": "2026-10-25T02:01:58.367Z",
-        "dueAt": "2033-10-25T02:01:58.367Z",
+        "openedAt": "2026-10-25T05:24:15.077Z",
+        "dueAt": "2033-10-25T05:24:15.077Z",
         "horizonMonths": {
           "min": 36,
           "max": 84
@@ -10409,18 +10316,18 @@
         "probability": 0.78,
         "outcome": null,
         "status": "open",
-        "openedAt": "2026-10-25T02:01:58.367Z",
-        "dueAt": "2033-10-25T02:01:58.367Z",
+        "openedAt": "2026-10-25T05:24:15.077Z",
+        "dueAt": "2033-10-25T05:24:15.077Z",
         "resolutionCriteria": [
           "Resolve positive if at least two leading indicators materially appear before 2033-10-25.",
           "Resolve negative if the listed falsifiers dominate for two consecutive nightly runs.",
           "Keep unresolved if evidence remains mixed without observable market, policy, or operating behavior."
         ]
       },
-      "generatedAt": "2026-10-25T02:01:58.367Z",
+      "generatedAt": "2026-10-25T05:24:15.077Z",
       "generator": {
-        "runId": "nightly-2026-10-25T02-01-58-367Z",
-        "generatedAt": "2026-10-25T02:01:58.367Z",
+        "runId": "nightly-2026-10-25T05-24-15-077Z",
+        "generatedAt": "2026-10-25T05:24:15.077Z",
         "mode": "mixed_or_live",
         "cadenceTarget": "nightly-0100-local",
         "patternEngineVersion": "PFE-3.0-deterministic"
